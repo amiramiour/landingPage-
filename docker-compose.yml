@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./landing-page-front
+    ports:
+      - "3000:80"  # Redirige le port 80 du conteneur vers le port 3000 sur votre machine locale
+    volumes:
+      - ./landing-page-front:/usr/src/app  # Optionnel, pour le développement
