@@ -3,25 +3,28 @@ import emailjs from 'emailjs-com';
 
 function ContactForm() {
   const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    // Envoyer l'email avec EmailJS
     emailjs.send(
-      'service_landing',   
-      'template_3ulxasn',  
-      { user_email: email, message }, 
-      'SDymhgfb50Y19Qnkj' 
+      'service_landing',    // ID du service
+      'template_3ulxasn',   // ID du modèle
+      { 
+        user_email: email,    // Email saisi par l'utilisateur
+        message: 'Interested in Startup'  // Message fixe
+      },
+      'SDymhgfb50Y19Qnkj'     // Clé publique
     )
     .then((result) => {
-      alert('Email envoyé avec succès !');
-      setEmail('');
-      setMessage('');
+      console.log('Succès:', result.text);
+      alert('Merci pour votre intérêt !');
+      setEmail(''); // Réinitialiser le champ
     })
     .catch((error) => {
-      console.error('Erreur lors de l\'envoi de l\'email :', error);
-      alert('Une erreur est survenue.');
+      console.error('Erreur:', error);
+      alert('Une erreur est survenue. Veuillez réessayer.');
     });
   };
 
@@ -29,19 +32,12 @@ function ContactForm() {
     <form onSubmit={handleSubmit}>
       <input
         type="email"
-        name="user_email" // Correspond à {{user_email}} dans le modèle EmailJS
-        placeholder="Votre email"
+        name="user_email" // Correspond au champ dynamique dans EmailJS
+        placeholder="Entrez votre email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
       />
-      <textarea
-        name="message" // Correspond à {{message}} dans le modèle EmailJS
-        placeholder="Votre message"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        required
-      ></textarea>
       <button type="submit">Envoyer</button>
     </form>
   );
