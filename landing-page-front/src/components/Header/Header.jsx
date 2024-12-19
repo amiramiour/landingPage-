@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Header.css';
 import logo from '../../assets/logo.png'; 
-import { FaBars } from 'react-icons/fa'; // Assurez-vous que ce package est installé
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,7 +16,6 @@ const Header = () => {
           <img src={logo} alt="LINKYJOB Logo" className="logo-image" />
         </div>
         <button className="menu-toggle" onClick={toggleMenu}>
-          <FaBars /> {/* Utilisation de l'icône ici */}
         </button>
         <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
           <a href="#" className="nav-link">Espace Etudiant</a>
