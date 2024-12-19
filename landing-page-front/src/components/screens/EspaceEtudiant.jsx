@@ -1,12 +1,10 @@
 import React from 'react';
-import Prestas from '../PrestatinQualifis/Prestas';
-import Header from '../Header/Header';
-import EtudHero from '../EtudHero/EtudHero';
-import Information from '../Information/information';
-import Services from '../Services/Services';
-import GeneralServices from '../GeneralServices/GeneralServices';
-import Footer from '../Footer/Footer';
 import '../../App.css';
+import EtudHero from '../EtudHero/EtudHero';
+import Footer from '../Footer/Footer';
+import Formulaire from '../Formulaire/Formulaire';
+import Header from '../Header/Header';
+import Prestas from '../PrestatinQualifis/Prestas';
 
 function Home() {
   return (
@@ -14,6 +12,7 @@ function Home() {
       <Header />
       <EtudHero />
       <Prestas />
+      <Formulaire />
       <Footer />
     </div>
   );

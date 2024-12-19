@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './components/screens/Home';
-import EspaceEtudiant from './components/screens/EspaceEtudiant';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
+import EspaceEtudiant from './components/screens/EspaceEtudiant';
+import Home from './components/screens/Home';
 
 function App() {
   return (
