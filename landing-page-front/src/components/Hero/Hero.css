@@ -30,6 +30,7 @@
   font-weight: bold;
   display: inline-block; /* Garder "La plateforme" sur la même ligne */
   font-family: 'Montserrat', sans-serif;
+  padding-right: 7px;
 }
 
 .hero .qui-relie {
@@ -37,6 +38,7 @@
   color: var(--white); /* Blanc */
   display: inline-block;
   font-family: 'Montserrat', sans-serif;
+  padding-right: 7px;
 }
 
 .hero .students {
@@ -52,6 +54,7 @@
   color: var(--white); /* Blanc */
   display: inline-block;
   font-family: 'Montserrat', sans-serif;
+  padding-right: 7px;
 }
 
 .hero .employers {
@@ -60,6 +63,7 @@
   font-weight: bold;
   display: inline-block;
   font-family: 'Montserrat', sans-serif;
+  padding-right: 7px;
 }
 
 .hero .missions {
