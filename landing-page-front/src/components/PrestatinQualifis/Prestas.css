@@ -1,0 +1,61 @@
+.prestas-container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.prestas-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #6EC1E4;
+  margin-bottom: 1rem;
+}
+
+.prestas-filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* Ajoute un espace entre les liens */
+  margin-bottom: 2rem;
+}
+
+.filter-button {
+  padding: 0.5rem 1rem;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.filter-button.active {
+  color: black;
+  background-color: white;
+  width: 5rem;
+}
+
+.filter-button:hover {
+  background: #6EC1E4;
+  color: white;
+}
+
+.prestas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.filter-link {
+  padding: 0.5rem 1rem; /* Ajoute du padding pour les liens */
+  font-weight: 500;
+  text-decoration: none; /* Supprime le soulignement par défaut des liens */
+  color: black;
+  transition: background-color 0.3s ease;
+}
+
+.filter-link:hover {
+  background: #6EC1E4;
+  color: white;
+}
+
+.filter-link.active {
+  background-color: #FF7F32;
+  color: white;
+}
