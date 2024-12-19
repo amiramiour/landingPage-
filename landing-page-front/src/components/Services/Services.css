@@ -3,18 +3,61 @@
 .services {
   padding: 4rem 2rem;
   background-color: var(--white);
+  position: relative;
 }
 
 .services-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.services h2 {
+.services-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  background-color: var(--secondary-color);
+  z-index: 0;
+}
+
+.services-header h2 {
   font-size: 2rem;
   color: var(--text-color);
   margin-bottom: 1rem;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  margin-top: 3rem;
+
 }
+
+.services-description {
+  color: var(--gray-600);
+  max-width: 600px;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.voir-plus {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
 
 .services-description {
   color: var(--gray-600);
@@ -22,26 +65,35 @@
   margin: 0 auto;
 }
 
+.services-scroll {
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  margin: 0 -2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.services-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 .services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
   gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: max-content;
 }
 
 .voir-plus {
-  display: block;
-  margin: 3rem auto 0;
-  padding: 0.8rem 2rem;
-  background-color: var(--primary-color);
-  color: var(--white);
+  position: absolute;
+  right: 2rem;
+  top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: 20px;
   font-weight: 500;
-  transition: background-color 0.2s ease;
-}
-
-.voir-plus:hover {
-  background-color: #0056b3;
+  font-size: 0.875rem;
 }
