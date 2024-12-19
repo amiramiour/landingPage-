@@ -37,7 +37,6 @@
   color: #87ceeb;
 }
 
-
 .footer-nav {
   display: flex;
   justify-content: center;
@@ -57,8 +56,6 @@
   color: #87ceeb;
 }
 
-
-
 .icons {
   display: flex;
   gap: 1rem;
@@ -72,6 +69,7 @@
 .icons svg:hover {
   color: #87ceeb;
 }
+
 .divider {
   height: 1px;
   border: none;
@@ -80,6 +78,10 @@
 }
 
 @media (max-width: 768px) {
+  .footer-content {
+    padding: 0 1rem;
+  }
+
   .footer-nav {
     flex-direction: column;
     align-items: center;
@@ -89,6 +91,7 @@
   .footer-contact {
     flex-direction: column;
     align-items: center;
+    gap: 2rem;
   }
 
   .contact-info {
@@ -98,6 +101,29 @@
   }
 
   .icons {
+    justify-content: center;
     margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 1rem 0;
+  }
+
+  .footer-logo img {
+    max-height: 100px;
+  }
+
+  .footer-nav {
+    gap: 0.5rem;
+  }
+
+  .footer-contact {
+    gap: 1rem;
+  }
+
+  .icons {
+    gap: 0.5rem;
   }
 }

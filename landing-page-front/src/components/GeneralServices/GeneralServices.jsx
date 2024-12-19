@@ -2,6 +2,9 @@ import React from 'react';
 import ServiceCard from '../ServiceCard/ServiceCard';
 import './GeneralServices.css';
 import receptionist from '../../assets/recept.jpeg';
+import Animateur from '../../assets/Animateur interculturel.jpeg';
+import Assistant from '../../assets/Assistant relation.jpeg';
+import Assistantexport from '../../assets/Assistant export.png';
 
 
 const servicesData = [
@@ -17,21 +20,21 @@ const servicesData = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     category: 'CDJ',
     date: '10 DEC 2024',
-    icon: receptionist,
+    icon: Animateur,
   },
   {
     title: 'Assistant relation client international',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     category: 'Groupe valorlty',
     date: '07 DEC 2024',
-    icon: receptionist,
+    icon: Assistant,
   },
   {
     title: 'Assistant export',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     category: 'Groupe valorlty',
     date: '03 DEC 2024',
-    icon: receptionist,
+    icon: Assistantexport,
   },
 ];
 
