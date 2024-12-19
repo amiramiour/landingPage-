@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
-import PrestaCard from './PrestaCard';
-import './Prestas.css';
+import PrestaCard from './PrestaCardGen';
+import './PrestasGen.css';
 import tech from '../../assets/Techniciensinformatique.jpeg';
 import CommunityManagermultilingue from '../../assets/CommunityManagermultilingue.jpeg';
 import Cours from '../../assets/Cours de soutien de langueetrangere.jpeg';
 
-const Prestas = () => {
+const PrestasGen = () => {
   const prestas = [
     {
       image: tech,
-      type: 'Prestation qualifiés',
-      date: '11 DEC 2024',
-      title: 'Techniciens informatique',
+      type: 'Service Générales',
+      date: '15 DEC 2024',
+      title: 'Réceptionniste bilingue/trilingue',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
     },
     {
       image: CommunityManagermultilingue,
-      type: 'Service qualifiés',
-      date: '05 DEC 2024',
-      title: 'Community Manager multilingue',
+      type: 'Service Générales',
+      date: '10 DEC 2024',
+      title: 'Animateur interculturel',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
     },
     {
       image: Cours,
-      type: 'Service qualifiés',
-      date: '30 NOV 2024',
-      title: 'Cours de soutien langue étrangère',
+      type: 'Service Générales',
+      date: '07 DEC 2024',
+      title: 'Assistant relation client international',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
     },
   ];
@@ -42,12 +42,6 @@ const Prestas = () => {
 
   return (
     <div className="prestas-container">
-      <h2 className="prestas-title">ESPACE ETUDIANT</h2>
-      <div className="prestas-filters">
-        <button className="filter-button active">Tous</button>
-        <a href="#" className="filter-link">Prestations qualifiés</a>
-        <a href="#" className="filter-link">Prestations générales</a>
-      </div>
 
       {/* Afficher les 3 divs */}
       <div className="prestas-grid">
@@ -65,10 +59,10 @@ const Prestas = () => {
 
       {/* Ajouter les flèches en dessous */}
       <div className="prestas-navigation">
-        <button className="nav-button" onClick={handlePrev}>
+        <button className="nav-button1" onClick={handlePrev}>
           ←
         </button>
-        <button className="nav-button" onClick={handleNext}>
+        <button className="nav-button1" onClick={handleNext}>
           →
         </button>
       </div>
@@ -76,4 +70,4 @@ const Prestas = () => {
   );
 };
 
-export default Prestas;
+export default PrestasGen;

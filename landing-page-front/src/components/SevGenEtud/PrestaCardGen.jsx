@@ -1,13 +1,13 @@
 import React from 'react';
-import './PrestaCard.css';
+import './PrestaCardGen.css';
 
-const PrestaCard = ({ image, type, date, title, description }) => {
+const PrestaCardGen = ({ image, type, date, title, description }) => {
   return (
     <div className="presta-card">
       <img src={image} alt={title} className="presta-card-image" />
       <div className="presta-card-content">
         <div className="presta-card-header">
-          <span className="presta-card-type yellow">
+          <span className="presta-card-type yellow1">
             {type}
           </span>
           <span className="presta-card-date">{date}</span>
@@ -20,4 +20,4 @@ const PrestaCard = ({ image, type, date, title, description }) => {
   );
 };
 
-export default PrestaCard;
+export default PrestaCardGen;
