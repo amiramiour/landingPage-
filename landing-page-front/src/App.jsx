@@ -5,6 +5,8 @@ import Hero from './components/Hero/Hero';
 import Information from './components/Information/information';
 import Services from './components/Services/Services';
 
+import GeneralServices from './components/GeneralServices/GeneralServices';
+import Footer from './components/Footer/Footer';
 import './App.css';
 
 function App() {
@@ -13,8 +15,10 @@ function App() {
       <Header />
       <Hero />
       <Services />
+      <GeneralServices />
       <Information />
       <Condition />
+      <Footer />
     </div>
   );
 }

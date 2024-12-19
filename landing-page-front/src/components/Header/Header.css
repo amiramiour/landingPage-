@@ -4,20 +4,27 @@
   width: 100%;
   top: 0;
   z-index: 1000;
+  height: 55px; /* Hauteur fixe du header */
+  display: flex;
+  align-items: center; /* Centrer verticalement les éléments */
 }
 
 .header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  width: 100%;
+  padding: 0 2rem; /* Ajuster le padding horizontal */
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .logo-image {
-  height: 100px; /* Ajuster la taille de l'image du logo */
-  width: auto;
+
+  padding-top: 10px;
+    height: 100px;
+    width: auto;
+
 }
 
 .nav-links {
@@ -80,7 +87,81 @@
   background-color: white; /* Fond des options */
   color: black;
 }
+
 .hero .logo-image {
   width: 150px; /* Ajustez la taille selon vos besoins */
   margin-bottom: 2rem; /* Espace entre le logo et les phrases */
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .header nav {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-link {
+    font-size: 1rem; /* Ajuster la taille du texte */
+  }
+
+  .btn-inscription, .btn-connexion {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .language-select {
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu-toggle {
+    display: block;
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .logo-image {
+    padding-top: 11px;
+        height: 98px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header nav {
+    padding: 0.5rem;
+  }
+
+  .nav-link {
+    font-size: 0.8rem; /* Ajuster la taille du texte */
+  }
+
+  .btn-inscription, .btn-connexion {
+    padding: 0.5rem;
+  }
+
+  .logo-image {
+    height: 50px; /* Ajuster la taille de l'image du logo pour les petits écrans */
+  }
 }

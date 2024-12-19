@@ -3,7 +3,9 @@ import React from 'react';
 import ServiceCard from '../ServiceCard/ServiceCard';
 import './Services.css';
 import tech from '../../assets/Techniciensinformatique.jpeg'; // Import du logo
-
+import soutien from '../../assets/Cours de soutien de langueetrangere.jpeg'; // Import du logo
+import community from '../../assets/CommunityManagermultilingue.jpeg'; // Import du logo
+import conseiller from '../../assets/Conseillerclienteleinternationale.jpeg'; // Import du logo
 
 const servicesData = [
   {
@@ -18,21 +20,21 @@ const servicesData = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     category: 'Comptabilité',
     date: '05 DEC 2024',
-    icon: tech,
+    icon: soutien,
   },
   {
     title: 'Community Manager multilingue',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     category: 'Community',
     date: '30 NOV 2024',
-    icon: tech,
+    icon: community,
   },
   {
     title: 'Conseiller commercial',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     category: 'Diplomatie',
     date: '27 NOV 2024',
-    icon: tech,
+    icon: conseiller,
   },
 ];
 
