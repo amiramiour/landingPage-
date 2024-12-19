@@ -1,0 +1,47 @@
+@import '../../styles/variables.css';
+
+.services {
+  padding: 4rem 2rem;
+  background-color: var(--white);
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.services h2 {
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.services-description {
+  color: var(--gray-600);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.voir-plus {
+  display: block;
+  margin: 3rem auto 0;
+  padding: 0.8rem 2rem;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.voir-plus:hover {
+  background-color: #0056b3;
+}

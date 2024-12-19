@@ -1,0 +1,86 @@
+.header {
+  background-color: black; /* Couleur de fond noire */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-image {
+  height: 30px; /* Ajuster la taille de l'image du logo */
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  color: white; /* Texte blanc */
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem; /* Ajuster la taille du texte */
+  transition: color 0.2s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.nav-link:hover {
+  color: gray; /* Couleur au survol */
+}
+
+.btn-inscription {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 30px; /* Bouton arrondi */
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.btn-inscription:hover {
+  background-color: gray;
+}
+
+.btn-connexion {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 0.5rem 1rem;
+  border-radius: 30px; /* Bouton arrondi */
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-connexion:hover {
+  background-color: white;
+  color: black;
+}
+
+.language-select {
+  padding: 0.3rem 0.5rem;
+  border: none;
+  background-color: black; /* Fond noir pour se fondre dans le header */
+  color: white;
+  cursor: pointer;
+}
+
+.language-select option {
+  background-color: white; /* Fond des options */
+  color: black;
+}
+.hero .logo-image {
+  width: 150px; /* Ajustez la taille selon vos besoins */
+  margin-bottom: 2rem; /* Espace entre le logo et les phrases */
+}
