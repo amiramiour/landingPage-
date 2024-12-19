@@ -12,13 +12,17 @@
     height: 100vh; /* Prend toute la hauteur de l'écran */
     box-sizing: border-box;
   }
-  .logo-image {
-    width: 100px; /* Augmente la largeur maximale */
-  height: 40px; /* Maintient les proportions */
-  border-radius: 8px; /* Conserve les coins arrondis */
-  margin-left: -57px;
-  margin-top: -35px;
-  
+  .logoo-image {
+    
+
+    
+        width: 200px; /* Augmente la largeur maximale */
+      height: 100px; /* Maintient les proportions */
+      
+      margin-left: -12%;
+      margin-top: -40px;
+      
+
   }
   .first-line {
     font-weight: bold; /* Texte en gras */

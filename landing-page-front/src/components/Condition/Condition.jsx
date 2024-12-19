@@ -11,7 +11,7 @@ const Condition = () => {
     <div className="condition-container">
       <div className="left-content">
         <h3>Condition pour joindre</h3>
-        <img src={logoImage} alt="Logo" className="logo-image" />
+        <img src={logoImage} alt="Logo" className="logoo-image" />
       </div>
      
       
