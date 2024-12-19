@@ -7,18 +7,15 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 40px; /* Ajuste uniquement les bords extérieurs de tout le conteneur */
-    color: white;
+    padding: 75px;
+        color: white;
     height: 100vh; /* Prend toute la hauteur de l'écran */
     box-sizing: border-box;
   }
-  .logo-image {
-    width: 100px; /* Augmente la largeur maximale */
-  height: 40px; /* Maintient les proportions */
-  border-radius: 8px; /* Conserve les coins arrondis */
-  margin-left: -57px;
-  margin-top: -35px;
-  
+  .logoo-image {
+    width: 220px;
+    height: 120px;
+
   }
   .first-line {
     font-weight: bold; /* Texte en gras */
@@ -45,17 +42,17 @@
   .left-content {
     width: 20%;
     text-align: left;
-    margin-left: 400px;
-    margin-bottom:100px;
     display: flex;
     flex-direction: column;
+    margin-left: 50px;
+
   }
   
   .left-content h3 {
-    font-size: 48px; /* Increased font size */
-  margin-bottom: 10px;
+    font-size: 32px; /* Increased font size */
   font-weight: bold;
   line-height: 1.2;
+  margin-left: 2rem;
   }
   
   
