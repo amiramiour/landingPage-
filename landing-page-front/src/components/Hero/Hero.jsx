@@ -1,6 +1,7 @@
 import React from 'react';
 import './Hero.css';
 import logo from '../../assets/logo.png'; 
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -21,8 +22,8 @@ const Hero = () => {
           </div>
         </h1>
         <div className="cta-buttons">
-          <button className="btn-student">Je suis Etudiant</button>
-          <button className="btn-employer">Je suis Particulier / Entreprise</button>
+        <Link to="/espace-etudiant" className="btn-student">Je suis Etudiant</Link>
+        <button className="btn-employer">Je suis Particulier / Entreprise</button>
         </div>
       </div>
     </div>
