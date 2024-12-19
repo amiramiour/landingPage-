@@ -11,6 +11,24 @@
   color: white;
   height: 100vh; /* Prend toute la hauteur de l'écran */
   box-sizing: border-box;
+  position: relative; /* Nécessaire pour l'overlay */
+}
+
+.condition-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Overlay semi-transparent */
+  backdrop-filter: blur(3px); /* Flou de l'image de fond */
+  z-index: 1; /* Place l'overlay au-dessus de l'image de fond */
+}
+
+.condition-container > * {
+  position: relative;
+  z-index: 2; /* Place le contenu au-dessus de l'overlay */
 }
 
 .logoo-image {
