@@ -1,0 +1,107 @@
+/* Conteneur principal */
+.condition-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('./Condition.png'); /* Image de fond */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 40px; /* Ajuste uniquement les bords extérieurs de tout le conteneur */
+    color: white;
+    height: 100vh; /* Prend toute la hauteur de l'écran */
+    box-sizing: border-box;
+  }
+  .logo-image {
+    width: 100px; /* Augmente la largeur maximale */
+  height: 40px; /* Maintient les proportions */
+  border-radius: 8px; /* Conserve les coins arrondis */
+  margin-left: -57px;
+  margin-top: -35px;
+  
+  }
+  .first-line {
+    font-weight: bold; /* Texte en gras */
+     /* Tout en majuscules */
+    text-align: center; /* Centrer la première ligne */
+  }
+  
+  .second-line {
+    display: inline-block; /* S'assure que la ligne est traitée comme un bloc */
+    text-align: center; /* Centrer le texte */
+    margin-left: 30px; /* Décale la deuxième ligne légèrement vers la droite */
+    font-size: 90%; /* Réduit la taille de la police si nécessaire */
+  }
+  .information-image img {
+    max-width: 400px; /* Augmente la largeur maximale */
+    height: auto; /* Maintient les proportions */
+    border-radius: 8px; /* Conserve les coins arrondis */
+    object-fit: contain; /* Assure un bon ajustement de l'image */
+  }
+  
+  
+  
+  /* Contenu de gauche */
+  .left-content {
+    width: 20%;
+    text-align: left;
+    margin-left: 400px;
+    margin-bottom:100px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .left-content h3 {
+    font-size: 48px; /* Increased font size */
+  margin-bottom: 10px;
+  font-weight: bold;
+  line-height: 1.2;
+  }
+  
+  
+  
+  /* Contenu de droite */
+  .right-content {
+    width: 50%; /* Ajustez la largeur pour l'espacement */
+    text-align: left;
+    padding : 10%;
+  }
+  
+  .right-content h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .right-content ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .right-content li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+  
+  .inscription-button {
+    margin-top: 20px;
+    padding: 10px 30px; /* Increased horizontal padding for better proportion */
+    background-color: #87CEEB;
+    color: white;
+    border: none;
+    border-radius: 25px; /* Increased border-radius for a more circular appearance */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .inscription-button:hover {
+    background-color: #008CBA;
+  }
+  
