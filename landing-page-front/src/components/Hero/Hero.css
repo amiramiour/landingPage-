@@ -1,15 +1,22 @@
 @import '../../styles/variables.css';
 
 .hero {
-  min-height: 100vh; /* Hauteur complète de l'écran */
+  min-height: 100vh; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 3rem 1rem 3rem;  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+  padding: 3rem 1rem 3rem;  
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
               url('../../assets/bg.png') center/cover no-repeat; /* Utilise bg.png comme fond */
-  margin-top: 60px;
+}
+
+.hero .logo-image-hero {
+  max-height: 200px; /* Ajustez la taille maximale de l'image */
+  width: auto;
+  display: block;
+  margin: 0 auto;  /* Centrer l'image horizontalement */
 }
 
 .hero h1 {
@@ -21,8 +28,6 @@
   max-width: 800px;
   margin-bottom: 2rem;
 }
-
-
 
 .hero .la-plateforme {
   font-size: 32px;
@@ -111,4 +116,18 @@
 .btn-employer:hover {
   transform: translateY(-2px);
   cursor: pointer;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .cta-buttons {
+    flex-direction: column; /* Affiche les boutons l'un au-dessus de l'autre */
+    gap: 1rem;
+  }
+
+  .btn-student,
+  .btn-employer {
+    width: 100%; /* Les boutons prennent toute la largeur disponible */
+    text-align: center;
+  }
 }

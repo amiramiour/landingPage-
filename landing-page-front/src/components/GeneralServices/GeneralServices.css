@@ -1,12 +1,12 @@
 @import '../../styles/variables.css';
 
-.services {
+.services-section {
   padding: 4rem 2rem;
   background-color: var(--white);
   position: relative;
 }
 
-.services-header {
+.services-header-section {
   text-align: left;
   margin-bottom: 3rem;
   position: relative;
@@ -15,18 +15,18 @@
   align-items: flex-start;
 }
 
-.services-header::before {
+.services-header-section::before {
   content: '';
   position: absolute;
   left: 0;
   top: 0;
   width: 40px;
   height: 40px;
-  background-color: var(--secondary-color);
+  background-color: #7FD8B1;
   z-index: 0;
 }
 
-.services-header h2 {
+.services-header-section h2 {
   font-size: 2rem;
   color: var(--text-color);
   margin-bottom: 1rem;
@@ -34,22 +34,21 @@
   position: relative;
   z-index: 1;
   margin-top: 3rem;
-
 }
 
-.services-description {
+.services-description-section {
   color: var(--gray-600);
   max-width: 600px;
   text-align: left;
   font-size: 0.875rem;
 }
 
-.voir-plus {
+.voir-plus-section {
   position: absolute;
   right: 0;
   top: 0;
   padding: 0.5rem 1.5rem;
-  background-color: var(--secondary-color);
+  background-color: #7FD8B1;
   color: black;
   border: none;
   border-radius: 20px;
@@ -58,13 +57,7 @@
   cursor: pointer;
 }
 
-
-.services-description {
-  color: var(--gray-600);
-  max-width: 600px;
-}
-
-.services-scroll {
+.services-scroll-section {
   overflow-x: auto;
   padding-bottom: 1rem;
   margin: 0 -2rem;
@@ -74,25 +67,12 @@
   -ms-overflow-style: none;
 }
 
-.services-scroll::-webkit-scrollbar {
+.services-scroll-section::-webkit-scrollbar {
   display: none;
 }
 
-.services-grid {
+.services-grid-section {
   display: flex;
   gap: 2rem;
   width: max-content;
-}
-
-.voir-plus {
-  position: absolute;
-  right: 2rem;
-  top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--secondary-color);
-  color: var(--text-color);
-  border: none;
-  border-radius: 20px;
-  font-weight: 500;
-  font-size: 0.875rem;
 }

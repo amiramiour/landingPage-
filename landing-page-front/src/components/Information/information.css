@@ -1,88 +1,133 @@
 .title {
-    font-family: Arial, sans-serif;
-    font-size: 36px; /* Taille du texte global */
-    font-weight: normal;
-    color: black; /* Texte global en noir */
-  }
-  .information-text {
-    flex: 1;
-    margin-left: 150px; /* Décalage global des titres et textes vers le centre */
-    margin-right: 20px; /* Garde l'espacement avec l'image */
-  }
-  
-  .information-text h2 {
-    text-align: left; /* Assure l'alignement à gauche des titres */
-    margin-bottom: 10px; /* Ajoute un espace entre le titre et le texte */
-  }
-  
-  .information-text p {
-    text-align: left; /* Assure l'alignement à gauche du texte */
-    margin-top: 10px; /* Ajoute un espace au-dessus du paragraphe */
-  }
-  
-  @media (max-width: 768px) {
-    .information-text {
-      margin-left: 10px; /* Réduit le décalage pour les petits écrans */
-      margin-right: 10px;
-    }
-  }
-  
-  
-  .highlight {
-    color: #00BFFF; /* Bleu ciel */
-    font-weight: bold; /* Mettre "400 000 étudiants" en gras */
-  }
-  .highlight1 {
-    color: #90EE90;
-    font-weight: bold; /* Mettre "400 000 étudiants" en gras */
-  }
-  .highlights {
-    color: orange; /* Bleu ciel */
-    font-weight: bold; /* Mettre "400 000 étudiants" en gras */
-  }
-.black-text {
-    color: #000000; /* Noir foncé */
+  font-family: Arial, sans-serif;
+  font-size: 36px; /* Taille du texte global */
+  font-weight: normal;
+  color: black; /* Texte global en noir */
 }
-  
+
+.information-text {
+  flex: 1;
+  margin-left: 150px; /* Décalage global des titres et textes vers le centre */
+  margin-right: 20px; /* Garde l'espacement avec l'image */
+}
+
+.information-text h2 {
+  text-align: left; /* Assure l'alignement à gauche des titres */
+  margin-bottom: 10px; /* Ajoute un espace entre le titre et le texte */
+}
+
+.information-text p {
+  text-align: left; /* Assure l'alignement à gauche du texte */
+  margin-top: 10px; /* Ajoute un espace au-dessus du paragraphe */
+}
+
+.highlight {
+  color: #00BFFF; /* Bleu ciel */
+  font-weight: bold; /* Mettre "400 000 étudiants" en gras */
+}
+
+.highlight1 {
+  color: #90EE90;
+  font-weight: bold; /* Mettre "400 000 étudiants" en gras */
+}
+
+.highlights {
+  color: orange; /* Bleu ciel */
+  font-weight: bold; /* Mettre "400 000 étudiants" en gras */
+}
+
+.black-text {
+  color: #000000; /* Noir foncé */
+}
+
 .information-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin: 40px 0;
-    background-color: white; /* Définit un arrière-plan blanc */
-    padding: 20px; /* Ajoute un espace intérieur pour une meilleure présentation */
-    border-radius: 8px; /* Optionnel : ajoute des coins arrondis */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optionnel : ajoute une ombre pour un effet de carte */
-  }
-  
-  
-  .information-item {
-    display: flex;
-    flex-direction: row; /* Par défaut, texte à gauche, image à droite */
-    align-items: center;
-    text-align: left;
-  }
-  
-  .information-item.reverse {
-    flex-direction: row-reverse; /* Inverse l'ordre : image à gauche, texte à droite */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  background-color: white; /* Définit un arrière-plan blanc */
+  padding: 20px; /* Ajoute un espace intérieur pour une meilleure présentation */
+  border-radius: 8px; /* Optionnel : ajoute des coins arrondis */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optionnel : ajoute une ombre pour un effet de carte */
+}
+
+.information-item {
+  display: flex;
+  flex-direction: row; /* Par défaut, texte à gauche, image à droite */
+  align-items: center;
+  text-align: left;
+}
+
+.information-item.reverse {
+  flex-direction: row-reverse; /* Inverse l'ordre : image à gauche, texte à droite */
+}
+
+.information-text {
+  flex: 1;
+  margin-right: 20px; /* Espacement entre le texte et l'image */
+}
+
+.information-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.information-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  max-width: 300px; /* Limite la largeur de l'image */
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
   .information-text {
-    flex: 1;
-    margin-right: 20px; /* Espacement entre le texte et l'image */
+    margin-left: 10px; /* Réduit le décalage pour les petits écrans */
+    margin-right: 10px;
   }
-  
-  .information-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+  .information-item {
+    flex-direction: column; /* Empile les éléments verticalement */
+    text-align: center;
   }
-  
+
+  .information-item.reverse {
+    flex-direction: column; /* Empile les éléments verticalement */
+  }
+
+  .information-text h2 {
+    text-align: center; /* Centre les titres */
+  }
+
+  .information-text p {
+    text-align: center; /* Centre le texte */
+  }
+
   .information-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    max-width: 300px; /* Limite la largeur de l'image */
+    max-width: 100%; /* Assure que l'image prend toute la largeur disponible */
   }
-  
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 28px; /* Réduit la taille du texte pour les très petits écrans */
+  }
+
+  .information-text {
+    margin-left: 5px; /* Réduit encore plus le décalage pour les très petits écrans */
+    margin-right: 5px;
+  }
+
+  .information-text h2 {
+    font-size: 24px; /* Réduit la taille des titres */
+  }
+
+  .information-text p {
+    font-size: 14px; /* Réduit la taille du texte */
+  }
+
+  .information-image img {
+    max-width: 100%; /* Assure que l'image prend toute la largeur disponible */
+  }
+}

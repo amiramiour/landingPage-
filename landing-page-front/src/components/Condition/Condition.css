@@ -1,5 +1,6 @@
 /* Conteneur principal */
 .condition-container {
+<<<<<<< HEAD
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -58,54 +59,179 @@
   .left-content h3 {
     font-size: 48px; /* Increased font size */
   margin-bottom: 10px;
+=======
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url('./Condition.png'); /* Image de fond */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 75px;
+  color: white;
+  height: 100vh; /* Prend toute la hauteur de l'écran */
+  box-sizing: border-box;
+  position: relative; /* Nécessaire pour l'overlay */
+}
+
+.condition-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Overlay semi-transparent */
+  backdrop-filter: blur(3px); /* Flou de l'image de fond */
+  z-index: 1; /* Place l'overlay au-dessus de l'image de fond */
+}
+
+.condition-container > * {
+  position: relative;
+  z-index: 2; /* Place le contenu au-dessus de l'overlay */
+}
+
+.logoo-image {
+  width: 220px;
+  height: 120px;
+}
+
+.first-line {
+  font-weight: bold; /* Texte en gras */
+  text-align: center; /* Centrer la première ligne */
+}
+
+.second-line {
+  display: inline-block; /* S'assure que la ligne est traitée comme un bloc */
+  text-align: center; /* Centrer le texte */
+  margin-left: 30px; /* Décale la deuxième ligne légèrement vers la droite */
+  font-size: 90%; /* Réduit la taille de la police si nécessaire */
+}
+
+.information-image img {
+  max-width: 400px; /* Augmente la largeur maximale */
+  height: auto; /* Maintient les proportions */
+  border-radius: 8px; /* Conserve les coins arrondis */
+  object-fit: contain; /* Assure un bon ajustement de l'image */
+}
+
+/* Contenu de gauche */
+.left-content {
+  width: 20%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.left-content h3 {
+  font-size: 32px; /* Increased font size */
+>>>>>>> V1
   font-weight: bold;
   line-height: 1.2;
+  margin-left: 2rem;
+}
+
+/* Contenu de droite */
+.right-content {
+  width: 50%; /* Ajustez la largeur pour l'espacement */
+  text-align: left;
+  padding: 10%;
+}
+
+.right-content h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.right-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.right-content li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.inscription-button {
+  margin-top: 20px;
+  padding: 10px 30px; /* Increased horizontal padding for better proportion */
+  background-color: #87CEEB;
+  color: white;
+  border: none;
+  border-radius: 25px; /* Increased border-radius for a more circular appearance */
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.inscription-button:hover {
+  background-color: #008CBA;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .condition-container {
+    flex-direction: column;
+    padding: 20px;
+    height: auto; /* Ajuste la hauteur pour les petits écrans */
   }
-  
-  
-  
-  /* Contenu de droite */
-  .right-content {
-    width: 50%; /* Ajustez la largeur pour l'espacement */
-    text-align: left;
-    padding : 10%;
-  }
-  
-  .right-content h3 {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .right-content ul {
-    list-style: none;
+
+  .left-content, .right-content {
+    width: 100%;
+    margin-left: 0;
     padding: 0;
   }
-  
-  .right-content li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
+
+  .left-content {
+    margin-bottom: 20px;
   }
-  
-  .icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
+
+  .right-content {
+    padding: 0 10%;
   }
-  
+
+  .logoo-image {
+    width: 150px;
+    height: 80px;
+  }
+
+  .first-line, .second-line {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .information-image img {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .condition-container {
+    padding: 10px;
+  }
+
+  .left-content h3 {
+    font-size: 24px;
+    margin-left: 0;
+  }
+
+  .right-content h3 {
+    font-size: 18px;
+  }
+
   .inscription-button {
-    margin-top: 20px;
-    padding: 10px 30px; /* Increased horizontal padding for better proportion */
-    background-color: #87CEEB;
-    color: white;
-    border: none;
-    border-radius: 25px; /* Increased border-radius for a more circular appearance */
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
   }
-  
-  .inscription-button:hover {
-    background-color: #008CBA;
-  }
-  
+}

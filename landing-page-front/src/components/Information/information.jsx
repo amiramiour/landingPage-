@@ -1,5 +1,5 @@
 import React from 'react';
-import './Information.css';
+import './information.css';
 import commeImage from './comme.png';
 import searchImage from './search.png';
 import securiteImage from './securite.png';
