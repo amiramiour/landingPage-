@@ -1,290 +1,313 @@
-.formulaire-container {
-    min-height: 100vh;
-    width: 100%;
-    background-image: url('photo.jpg'); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    position: relative;
-  }
+.form-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('photo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
 
 .formulaire {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-  
-  .formulaire h1 {
-    color: white;
-    margin-bottom: 2rem;
-  }
-  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.formulaire h1 {
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.75rem;
+  border-radius: 25px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.horaires-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.horaire-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.horaire-item label {
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+}
+
+.horaire-item select {
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23000000' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 15px) center;
+  text-align: center;
+}
+
+.horaire-item select:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.message textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.conditions {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.conditions input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+
+.conditions a {
+  color: white;
+  text-decoration: underline;
+}
+
+.documents-section {
+  margin-top: 5rem;
+  padding: 2rem;
+  position: relative;
+  width: 100%;
+}
+
+.documents-section h2 {
+  color: white;
+  position: absolute;
+  left: 5%;
+  bottom: 98%;
+  margin: 0;
+  font-size: 2rem;
+}
+
+.document-list {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 40%;
+  margin-top: 4rem;
+}
+
+.document-list::before {
+  content: '';
+  position: absolute;
+  left: 53.5%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #5BC0DE;
+}
+
+.document-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.document-circle {
+  width: 20px;
+  height: 20px;
+  background-color: #5BC0DE;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.document-content {
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.document-content h3 {
+  color: white;
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+.upload-button {
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  align-self: flex-start;
+}
+
+.upload-button:hover {
+  text-decoration: underline;
+}
+
+.upload-button input[type="file"] {
+  display: none;
+}
+
+.upload-button::after {
+  content: '›';
+  font-size: 1.2rem;
+  margin-left: 5px;
+}
+
+.submit-button {
+  background-color: #5BC0DE;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  position: relative;
+  left: 53%;
+}
+
+.submit-button:hover {
+  background-color: #46b8da;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
   .form-row {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-  
-  .form-group {
-    flex: 1;
-    display: flex;
     flex-direction: column;
   }
-  
-  .form-group label {
-    color: white;
-    margin-bottom: 0.5rem;
+
+  .horaires-section {
+    flex-direction: column;
+    align-items: center;
   }
-  
+
+  .horaire-item {
+    width: 100%;
+  }
+
+  .documents-section {
+    padding: 1rem;
+  }
+
+  .documents-section h2 {
+    margin-left: 2rem;
+  }
+
+  .document-list {
+    padding-left: 2rem;
+  }
+
+  .document-list::before {
+    left: 10px;
+  }
+
+  .document-circle {
+    left: 10px;
+    transform: none;
+  }
+
+  .document-content {
+    margin-left: 2rem;
+  }
+
+  .submit-button {
+    left: 0;
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .formulaire {
+    padding: 1rem;
+  }
+
+  .formulaire h1 {
+    font-size: 1.5rem;
+  }
+
   .form-group input,
   .form-group select,
   .form-group textarea {
-    padding: 0.75rem;
-    border-radius: 25px; 
-    border: none;
-    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem;
   }
-  
-  .horaires-section {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px; /* Space between each day column */
-    margin: 2rem 0;
-    width: 100%;
-  }
-  
-  .horaire-item {
-    flex: 1; /* Makes each item take equal space */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px; /* Space between label and select */
-  }
-  
+
   .horaire-item label {
-    color: white;
-    font-size: 1rem;
-    font-weight: 500;
-    width: 100%;
-    text-align: center;
+    font-size: 0.875rem;
   }
-  
-  
+
   .horaire-item select {
-    width: 100%;
-    padding: 12px 20px; /* Increased padding for larger size */
-    border-radius: 25px; /* More circular borders */
-    background-color: rgba(255, 255, 255, 0.9);
-    border: none;
-    font-size: 0.9rem;
-    cursor: pointer;
-    appearance: none; /* Removes default select styling */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23000000' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: calc(100% - 15px) center;
-    text-align: center;
-  }
-  .horaire-item select:hover {
-    background-color: rgba(255, 255, 255, 1);
-  }
-  
-  
-  .message textarea {
-    min-height: 150px;
-    resize: vertical;
-  }
-  
-  .conditions {
-    flex-direction: row !important;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .conditions input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .conditions a {
-    color: white;
-    text-decoration: underline;
-  }
-  
-  .submit-button {
-    margin-top: 20rem;
-    padding: 10rem 20rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-  }
-  
-  .submit-button:hover {
-    background-color: #0056b3;
-  }
-  
-  @media (max-width: 768px) {
-    .form-row {
-      flex-direction: column;
-    }
-    
-    .horaires-section {
-      justify-content: center;
-    }
+    font-size: 0.875rem;
   }
 
-  /* Add these styles to your existing CSS file */
-
-  .documents-section {
-    margin-top: 5rem;
-    padding: 2rem;
-    position: relative;
-    width: 100%;
-  }
-  
-  /* Repositionnement du titre */
   .documents-section h2 {
-    color: white;
-    position: absolute; /* Position absolue pour le placer précisément */
-    left:5%; /* Aligner avec le début de la timeline */
-    bottom: 98%; /* Aligner avec le premier élément */
-    margin: 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
-  
-  .document-list {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding-left: 40%;
-    margin-top: 4rem; /* Espace pour le titre */
-  }
-  
-  /* Le reste du CSS reste identique */
-  
-  /* Vertical line */
-  .document-list::before {
-    content: '';
-    position: absolute;
-    left: 53.5%; /* Match with padding-left of document-list */
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: #5BC0DE;
-  }
-  
-  .document-item {
-    display: flex;
-    flex-direction: column; /* Changed to column */
-    margin-bottom: 3rem;
-    position: relative;
-  }
-  
-  /* Blue circle */
-  .document-circle {
-    width: 20px;
-    height: 20px;
-    background-color: #5BC0DE;
-    border-radius: 50%;
-    position: absolute;
-    left: 0;
-    transform: translateX(-50%);
-    z-index: 2;
-  }
-  
-  .document-content {
-    margin-left: 2rem;
-    display: flex;
-    flex-direction: column; /* Changed to column */
-    gap: 0.5rem; /* Space between title and button */
-  }
-  
+
   .document-content h3 {
-    color: white;
-    font-size: 1rem;
-    font-weight: normal;
-    margin: 0;
+    font-size: 0.875rem;
   }
-  
+
   .upload-button {
-    color: white;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    font-size: 0.9rem;
-    align-self: flex-start; /* Aligns button to the left under the title */
+    font-size: 0.75rem;
   }
-  
-  .upload-button:hover {
-    text-decoration: underline;
-  }
-  
-  .upload-button input[type="file"] {
-    display: none;
-  }
-  
-  /* Arrow icon for upload button */
+
   .upload-button::after {
-    content: '›';
-    font-size: 1.2rem;
-    margin-left: 5px;
-  }
-  
-  /* Submit button styling */
-  .submit-button {
-    background-color: #5BC0DE;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    padding: 0.75rem 2rem;
     font-size: 1rem;
-    cursor: pointer;
-    margin-top: 1rem; /* Réduit de 2rem à 1rem pour remonter le bouton */
-    /* ou vous pouvez utiliser une valeur négative pour le margin-top */
-    /* margin-top: -1rem; */ /* Si vous voulez le remonter encore plus */
-    position: relative;
-    left: 53%;
-    
   }
-  
-  .submit-button:hover {
-    background-color: #46b8da;
+
+  .submit-button {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
   }
-  
-  @media (max-width: 768px) {
-    .documents-section {
-      padding: 1rem;
-    }
-  
-    .documents-section h2 {
-      margin-left: 2rem;
-    }
-  
-    .document-list {
-      padding-left: 2rem;
-    }
-  
-    .document-list::before {
-      left: 10px;
-    }
-  
-    .document-circle {
-      left: 10px;
-      transform: none;
-    }
-  
-    .document-content {
-      margin-left: 2rem;
-    }
-  
-    .submit-button {
-      margin-left: 2rem;
-    }
-  }
+}
