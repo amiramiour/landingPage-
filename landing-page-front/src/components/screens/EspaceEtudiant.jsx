@@ -4,7 +4,9 @@ import PrestasGen from '../SevGenEtud/PrestasGen';
 import Header from '../Header/Header';
 import EtudHero from '../EtudHero/EtudHero';
 import Footer from '../Footer/Footer';
-import '../../App.css';
+import Formulaire from '../Formulaire/Formulaire';
+import Header from '../Header/Header';
+import Prestas from '../PrestatinQualifis/Prestas';
 
 function Home() {
   return (
@@ -13,6 +15,8 @@ function Home() {
       <EtudHero />
       <Prestas />
       <PrestasGen />
+
+      <Formulaire />
       <Footer />
     </div>
   );
