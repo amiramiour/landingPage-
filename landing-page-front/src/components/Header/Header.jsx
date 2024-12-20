@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Header.css';
-import logo from '../../assets/logo.png'; 
+import logo from '../../assets/logo.png';
+import menuIcon from '../../assets/menu-icon-24.png'; // Import de l'icône de menu
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,6 +17,7 @@ const Header = () => {
           <img src={logo} alt="LINKYJOB Logo" className="logo-image" />
         </div>
         <button className="menu-toggle" onClick={toggleMenu}>
+          <img src={menuIcon} alt="Menu Icon" />
         </button>
         <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
           <a href="#" className="nav-link">Espace Etudiant</a>
