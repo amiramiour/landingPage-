@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import de Link
 import './Header.css';
 import logo from '../../assets/logo.png';
 import menuIcon from '../../assets/menu-icon-24.png'; // Import de l'icône de menu
@@ -14,13 +15,15 @@ const Header = () => {
     <header className="header">
       <nav>
         <div className="logo">
-          <img src={logo} alt="LINKYJOB Logo" className="logo-image" />
+          <Link to="/">
+            <img src={logo} alt="LINKYJOB Logo" className="logo-image" />
+          </Link>
         </div>
         <button className="menu-toggle" onClick={toggleMenu}>
           <img src={menuIcon} alt="Menu Icon" />
         </button>
         <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
-          <a href="#" className="nav-link">Espace Etudiant</a>
+          <Link to="/espace-etudiant" className="nav-link">Espace Etudiant</Link>
           <a href="#" className="nav-link">Espace Entreprise</a>
           <a href="#" className="nav-link">Espace Particulier</a>
           <a href="#" className="nav-link">Prestations</a>

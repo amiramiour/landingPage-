@@ -2,6 +2,7 @@ import React from 'react';
 import './Footer.css';
 import logo from '../../assets/logo.png';
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa'; // Import des icônes
+import { Link } from 'react-router-dom'; // Import de Link
 
 const Footer = () => {
   return (
@@ -12,8 +13,8 @@ const Footer = () => {
         </div>
         
         <nav className="footer-nav">
-          <a href="#espace-etudiant">Espace Etudiant</a>
-          <a href="#espace-entreprise">Espace Entreprise</a>
+        <Link to="/espace-etudiant" className="nav-link">Espace Etudiant</Link>
+        <a href="#espace-entreprise">Espace Entreprise</a>
           <a href="#espace-particulier">Espace Particulier</a>
           <a href="#prestations">Prestations</a>
           <a href="#a-propos">A propos</a>
