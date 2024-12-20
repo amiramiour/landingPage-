@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css';
 import logo from '../../assets/logo.png';
+import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa'; // Import des icônes
 
 const Footer = () => {
   return (
@@ -23,7 +24,10 @@ const Footer = () => {
 
         <nav className="footer-contact">
           <span className="icons">
-           
+            <FaFacebook size={20} />
+            <FaInstagram size={20} />
+            <FaTwitter size={20} />
+            <FaLinkedin size={20} />
           </span>
           <p>Téléphone: <a href="tel:0144751820">01 44 75 18 20</a></p>
           <p>Email: <a href="mailto:linkyjob@gmail.com">linkyjob@gmail.com</a></p>
