@@ -9,7 +9,9 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-logo">
+        <Link to="/">
           <img src={logo} alt="LinkyJob Logo" />
+          </Link>
         </div>
         
         <nav className="footer-nav">
