@@ -19,11 +19,14 @@
   margin: 0 auto;
 }
 
-.logo-image {
-  padding-top: 10px;
-  height: 100px;
+.header-logo {
+  height: 35px; /* Taille plus discrète */
   width: auto;
+  object-fit: contain;
+  padding: 0;
+  margin-top : 13px;
 }
+
 
 .nav-links {
   display: flex;
@@ -58,7 +61,7 @@
   background-color: gray;
 }
 
-.btn-connexion {
+.btn-connexion-header {
   background-color: transparent;
   color: white;
   border: 1px solid white;
@@ -80,7 +83,6 @@
   color: white;
   cursor: pointer;
 }
-
 .language-select option {
   background-color: white; /* Fond des options */
   color: black;
@@ -90,6 +92,18 @@
   width: 150px; /* Ajustez la taille selon vos besoins */
   margin-bottom: 2rem; /* Espace entre le logo et les phrases */
 }
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {

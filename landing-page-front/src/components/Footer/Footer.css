@@ -1,35 +1,37 @@
-/* Footer.css */
 .footer {
   background-color: #000;
   color: white;
   padding: 2rem 0;
-  width: 100%;
 }
 
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  text-align: center;
+}
+
+.footer-logo {
+  margin-bottom: 2rem;
 }
 
 .footer-logo img {
-  max-height: 160px;
-  width: auto;
-  display: block;
-  margin: 0 auto;
+  max-width: 200px;
+  height: auto;
 }
 
-.footer-contact {
+.footer-nav {
   display: flex;
   justify-content: center;
-  gap: 10rem;
   flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 .footer-nav a {
   color: white;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   transition: color 0.3s ease;
 }
 
@@ -37,28 +39,34 @@
   color: #87ceeb;
 }
 
-.footer-nav {
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #fff; /* Blanc pur */
+  margin: 2rem auto;
+  width: 95%;
+  opacity: 0.6; /* Légèrement translucide, tu peux mettre 1 si tu veux opaque */
+}
+
+.footer-contact {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
+  gap: 2rem;
+  text-align: left;
 }
 
-.footer-contact a {
-  color: white;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.3s ease;
+.footer-contact > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
-.footer-contact a:hover {
-  color: #87ceeb;
-}
 
 .icons {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .icons svg {
@@ -70,60 +78,26 @@
   color: #87ceeb;
 }
 
-.divider {
-  height: 1px;
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin: 2rem 0;
+.footer-contact p {
+  margin: 0;
+}
+
+.footer-contact a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+  color: #87ceeb;
 }
 
 @media (max-width: 768px) {
-  .footer-content {
-    padding: 0 1rem;
-  }
-
   .footer-nav {
-    flex-direction: column;
-    align-items: center;
     gap: 1rem;
   }
-
-  .footer-contact {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .contact-info {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
+  
   .icons {
-    justify-content: center;
-    margin-bottom: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer {
-    padding: 1rem 0;
-  }
-
-  .footer-logo img {
-    max-height: 100px;
-  }
-
-  .footer-nav {
-    gap: 0.5rem;
-  }
-
-  .footer-contact {
     gap: 1rem;
-  }
-
-  .icons {
-    gap: 0.5rem;
   }
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 import './Hero.css';
-import logo from '../../assets/logo.png'; 
+import logoHero from '../../assets/LogoHero.png'; 
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
     <div className="hero-container">
       <div className="hero">
-        <img src={logo} alt="LINKYJOB Logo" className="logo-image-hero" />
+        <img src={logoHero} alt="LINKYJOB Logo" className="logo-image-hero" />
         
         <h1>
           <div className="line">
