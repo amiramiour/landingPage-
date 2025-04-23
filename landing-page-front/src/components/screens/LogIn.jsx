@@ -2,13 +2,13 @@ import React from 'react';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import ContactForm from '../ContactForm/ContactForm';
+import LoginForm from '../LoginForm/LoginForm';
 
 function Contact() {
   return (
     <div className="app">
       <Header />
-      <ContactForm />
+      <LoginForm />
       <Footer />
     </div>
   );

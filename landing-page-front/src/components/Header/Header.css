@@ -60,18 +60,43 @@
 .btn-inscription:hover {
   background-color: gray;
 }
+.btn-connexion-header.active {
+  background-color: white;
+  color: black;
+}
+
 
 .btn-connexion-header {
   background-color: transparent;
   color: white;
   border: 1px solid white;
   padding: 0.5rem 1rem;
-  border-radius: 30px; /* Bouton arrondi */
+  border-radius: 30px; 
   font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none; 
+
+}
+.btn-connexion-header {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  text-decoration: none;
   transition: all 0.2s ease;
 }
 
-.btn-connexion:hover {
+.btn-connexion-header:hover {
+  background-color: white;
+  color: black;
+}
+
+.btn-connexion-header.active {
+  background-color: white;
+  color: black;
+}
+
+
+.btn-connexion-header:hover {
   background-color: white;
   color: black;
 }

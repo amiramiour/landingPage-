@@ -6,24 +6,24 @@ import { Link } from 'react-router-dom';
 const Hero = () => {
   return (
     <div className="hero-container">
-      <div className="hero">
-        <img src={logoHero} alt="LINKYJOB Logo" className="logo-image-hero" />
+      <div className="hero-section">
+        <img src={logoHero} alt="LINKYJOB Logo" className="hero-logo" />
         
-        <h1>
-          <div className="line">
-            <span className="la-plateforme">La plateforme </span>
-            <span className="qui-relie"> qui relie </span>
-            <span className="students"> étudiants internationaux </span>
+        <h1 className="hero-heading">
+          <div className="hero-line">
+            <span className="hero-plateforme">La plateforme </span>
+            <span className="hero-relie"> qui relie </span>
+            <span className="hero-students"> étudiants internationaux </span>
           </div>
-          <div className="line">
-            <span className="et">et</span>
-            <span className="employers"> employeurs </span>
-            <span className="missions"> pour des missions adaptées partout en France.</span>
+          <div className="hero-line">
+            <span className="hero-et">et</span>
+            <span className="hero-employers"> employeurs </span>
+            <span className="hero-missions"> pour des missions adaptées partout en France.</span>
           </div>
         </h1>
-        <div className="cta-buttons">
-        <Link to="/espace-etudiant" className="btn-student">Je suis Etudiant</Link>
-        <button className="btn-employer">Je suis Particulier / Entreprise</button>
+        <div className="hero-cta-buttons">
+          <Link to="/espace-etudiant" className="hero-btn-student">Je suis Etudiant</Link>
+          <button className="hero-btn-employer">Je suis Particulier / Entreprise</button>
         </div>
       </div>
     </div>

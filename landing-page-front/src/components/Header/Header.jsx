@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../../assets/logo.png';
@@ -29,8 +30,16 @@ const Header = () => {
           </div>
         </div>
         <div className="right-section">
-          <button className="btn-connexion-header">Connexion</button>
-          <button className="menu-toggle" onClick={toggleMenu}>
+        <NavLink 
+  to="/login" 
+  className={({ isActive }) =>
+    isActive ? 'btn-connexion-header active' : 'btn-connexion-header'
+  }
+>
+  Connexion
+</NavLink>
+
+        <button className="menu-toggle" onClick={toggleMenu}>
             <img src={menuIcon} alt="Menu Icon" />
           </button>
         </div>
