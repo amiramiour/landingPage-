@@ -28,8 +28,7 @@ const Header = () => {
           <a href="#" className="nav-link">Espace Particulier</a>
           <a href="#" className="nav-link">Prestations</a>
           <a href="#" className="nav-link">A propos</a>
-          <a href="#" className="nav-link">Contact</a>
-          <button className="btn-inscription">Inscription</button>
+          <Link to="/Contact" className="nav-link">Contact</Link>
           <button className="btn-connexion">Connexion</button>
           <select className="language-select">
             <option value="fr">FR</option>

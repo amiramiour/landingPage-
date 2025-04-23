@@ -1,0 +1,120 @@
+
+/* Container principal */
+.contact-container {
+  text-align: center;
+  padding: 60px 20px;
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Form styles */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 20px auto;
+  position: relative;
+  padding: 40px 0;
+}
+
+/* Lignes décoratives */
+.line-top-left,
+.line-top-right,
+.line-bottom-left,
+.line-bottom-right {
+  content: '';
+  position: absolute;
+  width: 400px; /* Longueur de la ligne */
+  height: 3px; /* Épaisseur de la ligne */
+}
+
+/* Ligne en haut à gauche */
+.line-top-left {
+  left: -20%;
+  top: 33%;
+  background: linear-gradient(to right, #FFD700, #FFA500);
+}
+
+/* Ligne en haut à droite */
+.line-top-right {
+  right: -20%;
+  top: 33%;
+  background: linear-gradient(to right, #FFA500, #FF4500);
+}
+
+/* Ligne en bas à gauche */
+.line-bottom-left {
+  left: -20%;
+  bottom: 45%;
+  background: linear-gradient(to right, #00CED1, #4169E1);
+}
+
+/* Ligne en bas à droite */
+.line-bottom-right {
+  right: -20%;
+  bottom: 45%;
+  background: linear-gradient(to right, #4169E1, #0000FF);
+}
+
+
+/* Title styles */
+h1 {
+  font-size: 2.5em;
+  font-weight: 500;
+}
+
+/* Input styles */
+.contact-form input[type="text"],
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  font-size: 16px;
+  background: white;
+}
+
+.contact-form textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+/* Label styles */
+.form-label {
+  text-align: left;
+  margin-bottom: 4px;
+  color: #333;
+  font-size: 14px;
+}
+
+/* Checkbox container */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+/* Button styles */
+button {
+  background-color: black;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #333;
+}
