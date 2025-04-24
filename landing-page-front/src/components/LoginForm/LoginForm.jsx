@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Globe } from 'lucide-react';
 import './LoginForm.css';
 import LogoLogin from '../../assets/LogoLogin.png';
-
+import { Link } from 'react-router-dom'; 
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -99,8 +99,8 @@ const LoginForm = () => {
             <div className="form-group">
               <div className="password-header">
                 <label htmlFor="password">Mot de passe*</label>
-                <a href="#forgot-password" className="forgot-password">Mot de passe oublié?</a>
-              </div>
+                <Link to="/mot-de-passe-oublie" className="forgot-password">Mot de passe oublié?</Link>
+                </div>
               <input
                 type="password"
                 id="password"

@@ -26,30 +26,30 @@
   .line {
     position: absolute;
     height: 3px;
-    width: 40%;
+    width: 25%;
   }
   
   .line-yellow {
     background: linear-gradient(90deg, rgba(253, 224, 71, 1) 0%, rgba(253, 224, 71, 0) 100%);
-    top: 45%;
+    top: 40%;
     left: 0;
   }
   
   .line-blue {
     background: linear-gradient(90deg, rgba(56, 189, 248, 0) 0%, rgba(56, 189, 248, 1) 100%);
-    top: 45%;
+    top: 40%;
     right: 0;
   }
   
   .line-orange {
     background: linear-gradient(90deg, rgba(251, 146, 60, 1) 0%, rgba(251, 146, 60, 0) 100%);
-    bottom: 20%;
+    bottom: 35%;
     left: 0;
   }
   
   .line-teal {
     background: linear-gradient(90deg, rgba(45, 212, 191, 0) 0%, rgba(45, 212, 191, 1) 100%);
-    bottom: 20%;
+    bottom: 35%;
     right: 0;
   }
   
@@ -107,6 +107,7 @@
   .form-container {
     padding: 1rem 1.5rem; /* réduit le padding horizontal */
     border: 1px solid black;
+    margin-bottom: 50px;
   }
   
   

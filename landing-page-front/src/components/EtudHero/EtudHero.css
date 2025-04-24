@@ -20,8 +20,10 @@
 .etud-hero-logo {
   max-height: 200px;
   width: auto;
-  margin-bottom: 2rem;
+  display: block;
+  margin: 0 auto 2rem;
 }
+
 
 .etud-hero-title {
   display: flex;
