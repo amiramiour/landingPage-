@@ -1,3 +1,5 @@
+@import '../../styles/variables.css';
+
 .forgetpass-container {
     position: relative;
     width: 100%;
@@ -7,97 +9,96 @@
     justify-content: center;
     overflow: hidden;
     padding-top: 80px;
-  }
-  
-  .lf-logo {
+}
+
+.lf-logo {
     height: 103px;
     width: auto;
-  }
-  
-  /* === Scoped Decorative Lines === */
+}
+
+/* === Scoped Decorative Lines === */
 .fp-decorative-lines {
     position: absolute;
     width: 100%;
     height: 100%;
     pointer-events: none;
     z-index: 0;
-  }
-  
-  .fp-line {
+}
+
+.fp-line {
     position: absolute;
     height: 3px;
     width: 25%;
-  }
-  
-  .fp-line-yellow {
+}
+
+.fp-line-yellow {
     background: linear-gradient(90deg, rgba(253, 224, 71, 1), rgba(253, 224, 71, 0));
     top: 40%;
     left: 0;
-  }
-  
-  .fp-line-blue {
+}
+
+.fp-line-blue {
     background: linear-gradient(90deg, rgba(56, 189, 248, 0), rgba(56, 189, 248, 1));
     top: 40%;
     right: 0;
-  }
-  
-  .fp-line-orange {
+}
+
+.fp-line-orange {
     background: linear-gradient(90deg, rgba(251, 146, 60, 1), rgba(251, 146, 60, 0));
     bottom: 25%;
     left: 0;
-  }
-  
-  .fp-line-teal {
+}
+
+.fp-line-teal {
     background: linear-gradient(90deg, rgba(45, 212, 191, 0), rgba(45, 212, 191, 1));
     bottom: 25%;
     right: 0;
-  }
-  
-  .fp-circle {
+}
+
+.fp-circle {
     width: 14px;
     height: 14px;
     border-radius: 50%;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-  }
-  
-  .fp-circle-yellow { background: rgba(253, 224, 71, 1); right: 0; }
-  .fp-circle-blue { background: rgba(56, 189, 248, 1); left: 0; }
-  .fp-circle-orange { background: rgba(251, 146, 60, 1); right: 0; }
-  .fp-circle-teal { background: rgba(45, 212, 191, 1); left: 0; }
-  
-  
-  /* Wrapper & form */
-  .forgetpass-wrapper {
+}
+
+.fp-circle-yellow { background: rgba(253, 224, 71, 1); right: 0; }
+.fp-circle-blue { background: rgba(56, 189, 248, 1); left: 0; }
+.fp-circle-orange { background: rgba(251, 146, 60, 1); right: 0; }
+.fp-circle-teal { background: rgba(45, 212, 191, 1); left: 0; }
+
+/* Wrapper & form */
+.forgetpass-wrapper {
     background-color: white;
     padding: 2rem;
     max-width: 500px;
     width: 100%;
     z-index: 1;
     text-align: center;
-  }
-  
-  .logo-container {
+}
+
+.logo-container {
     display: flex;
     justify-content: center;
     margin-bottom: 3rem;
-  }
-  
-  .forgetpass-title {
+}
+
+.forgetpass-title {
     font-size: 32px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     margin-bottom: 0.5rem;
-  }
-  
-  .forgetpass-subtitle {
+}
+
+.forgetpass-subtitle {
     font-size: 0.875rem;
     color: #6b7280;
     margin-bottom: 2rem;
-  }
-  
-  input[type="email"] {
+}
+
+input[type="email"] {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid black;
@@ -106,15 +107,15 @@
     margin-bottom: 1rem;
     color: black;
     background-color: white;
-  }
-  
-  input[type="email"]:focus {
+}
+
+input[type="email"]:focus {
     outline: none;
     border-color: black;
     box-shadow: none;
-  }
-  
-  .btn-primary {
+}
+
+.btn-primary {
     background-color: black;
     color: white;
     padding: 0.75rem;
@@ -123,21 +124,62 @@
     border: none;
     cursor: pointer;
     transition: background-color 0.2s ease;
-  }
-  
-  .btn-primary:hover {
+}
+
+.btn-primary:hover {
     background-color: #1f2937;
-  }
-  
-  .back-link {
+}
+
+.back-link {
     display: block;
     margin-top: 1.5rem;
     font-size: 0.85rem;
     color: black;
     text-decoration: none;
-  }
-  
-  .back-link:hover {
+}
+
+.back-link:hover {
     text-decoration: underline;
-  }
-  
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+    .forgetpass-container {
+        padding: 40px 20px;
+        min-height: auto;
+    }
+
+    .forgetpass-wrapper {
+        padding: 1.5rem;
+        max-width: 100%;
+    }
+
+    .forgetpass-title {
+        font-size: 24px;
+    }
+
+    .forgetpass-subtitle {
+        font-size: 0.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    input[type="email"] {
+        font-size: 0.8rem;
+    }
+
+    .btn-primary {
+        padding: 0.6rem;
+    }
+
+    .logo-container {
+        margin-bottom: 2rem;
+    }
+
+    .lf-logo {
+        height: 80px;
+    }
+
+    .fp-line, .fp-circle {
+        display: none; /* Cacher les lignes décoratives sur mobile pour plus de clarté */
+    }
+}
