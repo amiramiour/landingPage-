@@ -49,7 +49,6 @@ const Prestas = () => {
         <a href="#" className="filter-link">Prestations générales</a>
       </div>
 
-      {/* Afficher les 3 divs */}
       <div className="prestas-grid">
         {prestas.map((presta, index) => (
           <PrestaCard
@@ -63,7 +62,6 @@ const Prestas = () => {
         ))}
       </div>
 
-      {/* Ajouter les flèches en dessous */}
       <div className="prestas-navigation">
         <button className="nav-button" onClick={handlePrev}>
           ←

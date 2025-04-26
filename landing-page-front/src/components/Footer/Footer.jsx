@@ -1,22 +1,22 @@
 import React from 'react';
 import './Footer.css';
-import logo from '../../assets/logo.png';
-import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa'; // Import des icônes
-import { Link } from 'react-router-dom'; // Import de Link
+import LogoFooter from '../../assets/LogoFooter.png';
+import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-logo">
-        <Link to="/">
-          <img src={logo} alt="LinkyJob Logo" />
+          <Link to="/">
+            <img src={LogoFooter} alt="LinkyJob Logo" />
           </Link>
         </div>
         
         <nav className="footer-nav">
-        <Link to="/espace-etudiant" className="nav-link">Espace Etudiant</Link>
-        <a href="#espace-entreprise">Espace Entreprise</a>
+          <Link to="/espace-etudiant" className="nav-link">Espace Etudiant</Link>
+          <a href="#espace-entreprise">Espace Entreprise</a>
           <a href="#espace-particulier">Espace Particulier</a>
           <a href="#prestations">Prestations</a>
           <a href="#a-propos">A propos</a>

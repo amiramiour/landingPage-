@@ -1,38 +1,38 @@
 import React from 'react';
 import './EtudHero.css';
-import logo from '../../assets/logo.png'; 
+import logoHero from '../../assets/LogoHero.png';
 import { Link } from 'react-router-dom';
 
-const Hero = () => {
+const EtudHero = () => {
   return (
-    <div className="hero-container">
-      <div className="hero">
-        <img src={logo} alt="LINKYJOB Logo" className="logo-image-hero" />
+    <div className="etud-hero-container">
+      <div className="etud-hero">
+      <img src={logoHero} alt="LINKYJOB Logo" className="etud-hero-logo" />
         
-        <h1>
-          <div className="line">
-            <span className="students1"> ESPACE ETUDIANT </span>
+        <h1 className="etud-hero-title">
+          <div className="etud-hero-line">
+            <span className="etud-hero-students">ESPACE ÉTUDIANT</span>
           </div>
-          <div className="line">
-            <span className="Étudiantinternational">Étudiant international ?</span>
-            <span className="Trouvez"> Trouvez un job flexible avec </span>
-            <span className="LinkyJob"> LinkyJob !</span>
+          <div className="etud-hero-line">
+            <span className="etud-hero-question">Étudiant international ?</span>
+            <span className="etud-hero-find">Trouvez un job flexible avec</span>
+            <span className="etud-hero-linky">LinkyJob !</span>
           </div>
         </h1>
-            <div className="cta-buttons">
-            <div className="search-bar">
-                <input 
-                type="text" 
-                className="search-input" 
-                placeholder="Trouver un Job..." 
-                />
-                <button className="search-button">Recherche</button>
-            </div>
-            </div>
 
+        <div className="etud-hero-cta">
+          <div className="etud-hero-search">
+            <input 
+              type="text" 
+              className="etud-hero-input" 
+              placeholder="Trouver un Job..." 
+            />
+            <button className="etud-hero-button">Recherche</button>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Hero;
+export default EtudHero;

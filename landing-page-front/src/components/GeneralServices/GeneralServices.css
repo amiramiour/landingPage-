@@ -76,3 +76,38 @@
   gap: 2rem;
   width: max-content;
 }
+@media (max-width: 768px) {
+  .services-section {
+    padding: 2rem 1rem;
+  }
+
+  .services-header-section {
+    margin-bottom: 2rem;
+  }
+
+  .services-header-section::before {
+    width: 30px;
+    height: 30px;
+  }
+
+  .services-header-section h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .services-description-section {
+    font-size: 0.8rem;
+    max-width: 100%;
+  }
+
+  .voir-plus-section {
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+    top: -10px; /* remonter un peu le bouton si besoin */
+    right: 10px;
+  }
+
+  .services-grid-section {
+    gap: 1rem;
+  }
+}

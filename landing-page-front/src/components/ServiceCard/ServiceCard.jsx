@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './ServiceCard.css';
 
-const ServiceCard = ({ title, description, icon, category, date }) => {
+const ServiceCard = ({ id, title, description, icon, category, date }) => {
   return (
-    <div className="service-card">
+    <Link to={`/prestationsqualifiee/${id}`} className="service-card">
       <img src={icon} alt={title} className="service-card-image" />
       <div className="service-qualifies">Service qualifiés</div>
       <h3>{title}</h3>
@@ -15,7 +16,7 @@ const ServiceCard = ({ title, description, icon, category, date }) => {
         </div>
         <span className="date">{date}</span>
       </div>
-    </div>
+    </Link>
   );
 };
 

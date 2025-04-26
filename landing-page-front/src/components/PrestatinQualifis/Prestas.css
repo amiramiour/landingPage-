@@ -13,8 +13,9 @@
 .prestas-filters {
   display: flex;
   justify-content: center;
-  gap: 1rem; /* Ajoute un espace entre les liens */
+  gap: 1rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
 .filter-button {
@@ -43,9 +44,9 @@
 }
 
 .filter-link {
-  padding: 0.5rem 1rem; /* Ajoute du padding pour les liens */
+  padding: 0.5rem 1rem;
   font-weight: 500;
-  text-decoration: none; /* Supprime le soulignement par défaut des liens */
+  text-decoration: none;
   color: black;
   transition: background-color 0.3s ease;
 }
@@ -63,8 +64,8 @@
 .prestas-navigation {
   display: flex;
   justify-content: center;
-  gap: 1rem; /* Ajoute un espace entre les boutons */
-  margin-top: 2rem; /* Distance par rapport à la grille */
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 .nav-button {
@@ -85,4 +86,54 @@
 .nav-button:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .prestas-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .prestas-title {
+    font-size: 1.5rem;
+  }
+
+  .prestas-filters {
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .filter-button,
+  .filter-link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .prestas-grid {
+    gap: 1rem;
+  }
+
+  .nav-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .prestas-title {
+    font-size: 1.3rem;
+  }
+
+  .filter-button,
+  .filter-link {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .nav-button {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
 }

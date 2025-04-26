@@ -20,7 +20,7 @@
 
 .presta-card-content {
   padding: 1rem;
-  text-align: left; /* Aligne le texte à gauche */
+  text-align: left;
 }
 
 .presta-card-header {
@@ -74,4 +74,53 @@
 
 .presta-card-link:hover {
   text-decoration: underline;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .presta-card-image {
+    height: 160px;
+  }
+
+  .presta-card-content {
+    padding: 0.75rem;
+  }
+
+  .presta-card-title {
+    font-size: 1.1rem;
+  }
+
+  .presta-card-description {
+    font-size: 0.8rem;
+  }
+
+  .presta-card-type {
+    font-size: 0.8rem;
+  }
+
+  .presta-card-link,
+  .presta-card-date {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .presta-card-image {
+    height: 140px;
+  }
+
+  .presta-card-content {
+    padding: 0.5rem;
+  }
+
+  .presta-card-title {
+    font-size: 1rem;
+  }
+
+  .presta-card-description,
+  .presta-card-link,
+  .presta-card-date,
+  .presta-card-type {
+    font-size: 0.75rem;
+  }
 }

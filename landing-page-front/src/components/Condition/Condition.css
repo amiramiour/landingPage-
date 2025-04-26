@@ -1,17 +1,16 @@
-/* Conteneur principal */
 .condition-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-image: url('./Condition.png'); /* Image de fond */
+  background-image: url('./Condition.png'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   padding: 75px;
   color: white;
-  height: 100vh; /* Prend toute la hauteur de l'écran */
+  height: 100vh; 
   box-sizing: border-box;
-  position: relative; /* Nécessaire pour l'overlay */
+  position: relative; 
 }
 
 .condition-container::before {
@@ -21,14 +20,14 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Overlay semi-transparent */
-  backdrop-filter: blur(3px); /* Flou de l'image de fond */
-  z-index: 1; /* Place l'overlay au-dessus de l'image de fond */
+  background: rgba(0, 0, 0, 0.5); 
+  backdrop-filter: blur(3px); 
+  z-index: 1; 
 }
 
 .condition-container > * {
   position: relative;
-  z-index: 2; /* Place le contenu au-dessus de l'overlay */
+  z-index: 2;
 }
 
 .logoo-image {
@@ -37,25 +36,24 @@
 }
 
 .first-line {
-  font-weight: bold; /* Texte en gras */
-  text-align: center; /* Centrer la première ligne */
+  font-weight: bold; 
+  text-align: center; 
 }
 
 .second-line {
-  display: inline-block; /* S'assure que la ligne est traitée comme un bloc */
-  text-align: center; /* Centrer le texte */
-  margin-left: 30px; /* Décale la deuxième ligne légèrement vers la droite */
-  font-size: 90%; /* Réduit la taille de la police si nécessaire */
+  display: inline-block; 
+  text-align: center; 
+  margin-left: 30px; 
+  font-size: 90%; 
 }
 
 .information-image img {
-  max-width: 400px; /* Augmente la largeur maximale */
-  height: auto; /* Maintient les proportions */
-  border-radius: 8px; /* Conserve les coins arrondis */
-  object-fit: contain; /* Assure un bon ajustement de l'image */
+  max-width: 400px; 
+  height: auto; 
+  border-radius: 8px;
+  object-fit: contain;
 }
 
-/* Contenu de gauche */
 .left-content {
   width: 20%;
   text-align: left;
@@ -65,7 +63,7 @@
 }
 
 .left-content h3 {
-  font-size: 32px; /* Increased font size */
+  font-size: 32px; 
   font-weight: bold;
   line-height: 1.2;
   margin-left: 2rem;
@@ -73,7 +71,7 @@
 
 /* Contenu de droite */
 .right-content {
-  width: 50%; /* Ajustez la largeur pour l'espacement */
+  width: 50%; 
   text-align: left;
   padding: 10%;
 }
@@ -102,26 +100,25 @@
 
 .inscription-button {
   margin-top: 20px;
-  padding: 10px 30px; /* Increased horizontal padding for better proportion */
+  padding: 10px 30px; 
   background-color: #87CEEB;
   color: white;
   border: none;
-  border-radius: 25px; /* Increased border-radius for a more circular appearance */
+  border-radius: 25px; 
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  transition: background-color 0.3s ease; 
 }
 
 .inscription-button:hover {
   background-color: #008CBA;
 }
 
-/* Media Queries for Responsive Design */
 @media (max-width: 768px) {
   .condition-container {
     flex-direction: column;
     padding: 20px;
-    height: auto; /* Ajuste la hauteur pour les petits écrans */
+    height: auto; 
   }
 
   .left-content, .right-content {

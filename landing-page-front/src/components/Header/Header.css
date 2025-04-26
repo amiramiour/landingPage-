@@ -1,12 +1,14 @@
+@import '../../styles/variables.css';
+
 .header {
-  background-color: black; /* Couleur de fond noire */
+  background-color: black;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
-  height: 55px; /* Hauteur fixe du header */
+  height: 55px;
   display: flex;
-  align-items: center; /* Centrer verticalement les éléments */
+  align-items: center;
 }
 
 .header nav {
@@ -14,15 +16,35 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 2rem; /* Ajuster le padding horizontal */
+  padding: 0 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.logo-image {
-  padding-top: 10px;
-  height: 100px;
+.header-logo {
+  height: 35px;
   width: auto;
+  object-fit: contain;
+  padding: 0;
+  margin-top: 13px;
+}
+
+.vector-icon {
+  width: 12px; 
+  height: 8px;
+  vertical-align: middle;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .nav-links {
@@ -32,16 +54,17 @@
 }
 
 .nav-link {
-  color: white; /* Texte blanc */
+  color: white;
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.9rem; /* Ajuster la taille du texte */
-  transition: color 0.2s ease;
+  font-size: 0.9rem;
   font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .nav-link:hover {
-  color: gray; /* Couleur au survol */
+  color: gray;
 }
 
 .btn-inscription {
@@ -49,7 +72,7 @@
   color: black;
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 30px; /* Bouton arrondi */
+  border-radius: 30px;
   font-weight: 500;
   transition: background-color 0.2s ease;
 }
@@ -58,17 +81,19 @@
   background-color: gray;
 }
 
-.btn-connexion {
+.btn-connexion-header {
   background-color: transparent;
   color: white;
   border: 1px solid white;
   padding: 0.5rem 1rem;
-  border-radius: 30px; /* Bouton arrondi */
+  border-radius: 30px;
   font-weight: 500;
+  text-decoration: none;
   transition: all 0.2s ease;
 }
 
-.btn-connexion:hover {
+.btn-connexion-header:hover,
+.btn-connexion-header.active {
   background-color: white;
   color: black;
 }
@@ -76,22 +101,60 @@
 .language-select {
   padding: 0.3rem 0.5rem;
   border: none;
-  background-color: black; /* Fond noir pour se fondre dans le header */
+  background-color: black;
   color: white;
   cursor: pointer;
 }
 
 .language-select option {
-  background-color: white; /* Fond des options */
+  background-color: white;
   color: black;
 }
 
 .hero .logo-image {
-  width: 150px; /* Ajustez la taille selon vos besoins */
-  margin-bottom: 2rem; /* Espace entre le logo et les phrases */
+  width: 150px;
+  margin-bottom: 2rem;
 }
 
-/* Media Queries for Responsive Design */
+.dropdown-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1001;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  margin-top: 5px;
+  width: max-content;
+}
+
+.dropdown-link {
+  padding: 10px 20px;
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  transition: opacity 0.2s;
+}
+
+.dropdown-link.qualifiees {
+  background-color: #FFEE7E;
+  color: black;
+}
+
+.dropdown-link.generales {
+  background-color: black;
+  color: #7EE2D6;
+}
+
+.dropdown-link:hover {
+  opacity: 0.8;
+}
+
+/* === Responsive Design === */
+
+/* Tablette et petit écran */
 @media (max-width: 768px) {
   .header nav {
     flex-direction: row;
@@ -104,10 +167,10 @@
     flex-direction: column;
     gap: 1rem;
     position: absolute;
-    top: 55px; /* Ajustez cette valeur pour qu'elle corresponde à la hauteur du header */
+    top: 55px;
     left: 0;
     width: 100%;
-    background-color: black; /* Assurez-vous que le fond est le même que le header */
+    background-color: black;
     padding: 1rem 0;
   }
 
@@ -116,61 +179,49 @@
   }
 
   .nav-link {
-    font-size: 1rem; /* Ajuster la taille du texte */
+    font-size: 1rem;
   }
 
-  .btn-inscription, .btn-connexion {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 0.5rem;
-  }
-
-  .language-select {
-    width: 100%;
+  .btn-inscription, .btn-connexion-header, .language-select {
+    width: 90%;
     text-align: center;
   }
 
   .menu-toggle {
     display: block;
-    background-color: transparent;
-    color: white;
+    background: transparent;
     border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1.5rem;
     cursor: pointer;
   }
 
   .menu-toggle img {
-    width: 24px; /* Ajustez la taille de l'icône de menu */
+    width: 24px;
     height: 24px;
   }
 }
 
+/* Desktop */
 @media (min-width: 769px) {
   .menu-toggle {
     display: none;
   }
-
-  .logo-image {
-    padding-top: 11px;
-    height: 98px;
-  }
 }
 
+/* Téléphone très petit */
 @media (max-width: 480px) {
   .header nav {
     padding: 0.5rem;
   }
 
   .nav-link {
-    font-size: 0.8rem; /* Ajuster la taille du texte */
+    font-size: 0.8rem;
   }
 
-  .btn-inscription, .btn-connexion {
+  .btn-inscription, .btn-connexion-header {
     padding: 0.5rem;
   }
 
   .logo-image {
-    height: 50px; /* Ajuster la taille de l'image du logo pour les petits écrans */
+    height: 50px;
   }
 }

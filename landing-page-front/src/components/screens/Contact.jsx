@@ -8,7 +8,7 @@ function Contact() {
   return (
     <div className="app">
       <Header />
-        <ContactForm />
+      <ContactForm />
       <Footer />
     </div>
   );

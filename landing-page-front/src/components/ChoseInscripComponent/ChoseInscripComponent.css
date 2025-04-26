@@ -1,0 +1,139 @@
+.choseInscripComponent-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+.choseInsc-wrapper {
+  background-color: white;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem; 
+}
+
+
+.lf-logo {
+  height: 103px;
+  width: auto;
+}
+
+.choseInsc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center; 
+
+}
+
+.choseInsc-title {
+  margin-top: 0%;
+
+  font-size: 32px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  margin-bottom: 3rem;
+}
+
+.choseInsc-btn1,
+.choseInsc-btn2 {
+  width: 320px;             
+  height: 60px;              
+  border-radius: 40px;      
+  padding: 32px;
+  font-size: 1.3rem;
+  font-weight: 500;
+  border: 2px solid; 
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration-line: none;
+}
+.choseInsc-btn1 {
+  color: #3db8df;             
+  border-color: #3db8df;
+}
+
+.choseInsc-btn1:hover {
+  background-color: #3db8df;
+  color: white;
+}
+
+.choseInsc-btn2 {
+  color: #f57c1f;             
+  border-color: #f57c1f;
+}
+
+.choseInsc-btn2:hover {
+  background-color: #f57c1f;
+  color: white;
+}
+
+
+.back-link {
+  display: block;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: black;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+@media (max-width: 768px) {
+  .choseInsc-wrapper {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+
+  .choseInsc-title {
+    font-size: 28px;
+    margin-bottom: 2rem;
+  }
+
+  .choseInsc-btn1,
+  .choseInsc-btn2 {
+    width: 100%;      
+    font-size: 1.1rem;
+    padding: 1rem;     
+  }
+
+  .lf-logo {
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .choseInsc-title {
+    font-size: 24px;
+  }
+
+  .choseInsc-btn1,
+  .choseInsc-btn2 {
+    font-size: 1rem;
+    height: auto;
+    padding: 0.8rem;
+  }
+
+  .back-link {
+    font-size: 0.75rem;
+  }
+}
