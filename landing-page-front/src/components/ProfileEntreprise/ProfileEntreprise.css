@@ -1,0 +1,115 @@
+.pe-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pe-profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5rem;
+  }
+  
+  .pe-image-wrapper {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  
+  .pe-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .pe-info {
+    margin-left: 3rem;
+  }
+  
+  .pe-info p:last-of-type {
+    margin-bottom: 0.5rem; /* réduit l'espace sous le dernier <p> */
+  }
+  
+  .pe-info strong {
+    font-weight: 600;
+    color: #000;
+  }
+  
+  .pe-missions-title {
+    margin: 3.5rem 0 0.3rem;
+    font-weight: 600;
+    color: #000; /* assure la cohérence avec les autres */
+    font-size: 0.95rem;
+  }
+  .pe-name{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 0.5rem;
+  }
+  
+  .pe-missions {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    margin-bottom:1.5rem ;
+  }
+  
+  .pe-missions li {
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .pe-btn {
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 0.6rem 1.6rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .pe-btn:hover {
+    background-color: #1f2937;
+  }
+  
+  .pe-back {
+    display: block;
+    margin-top: 3rem;
+    font-size: 0.8rem;
+    color: black;
+    text-decoration: none;
+    align-self: flex-start;
+  }
+  
+  .pe-back:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 640px) {
+    .pe-profile {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .pe-info {
+      max-width: 100%;
+    }
+  
+    .pe-back {
+      align-self: center;
+    }
+  }
+  
