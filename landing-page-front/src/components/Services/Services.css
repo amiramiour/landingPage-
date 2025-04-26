@@ -34,7 +34,6 @@
   position: relative;
   z-index: 1;
   margin-top: 3rem;
-
 }
 
 .services-description {
@@ -46,22 +45,16 @@
 
 .voir-plus {
   position: absolute;
-  right: 0;
-  top: 0;
-  padding: 0.5rem 1.5rem;
+  right: 2rem;
+  top: 1rem;
+  padding: 0.5rem 1rem;
   background-color: var(--secondary-color);
-  color: black;
+  color: var(--text-color);
   border: none;
   border-radius: 20px;
   font-weight: 500;
   font-size: 0.875rem;
   cursor: pointer;
-}
-
-
-.services-description {
-  color: var(--gray-600);
-  max-width: 600px;
 }
 
 .services-scroll {
@@ -84,15 +77,62 @@
   width: max-content;
 }
 
-.voir-plus {
-  position: absolute;
-  right: 2rem;
-  top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--secondary-color);
-  color: var(--text-color);
-  border: none;
-  border-radius: 20px;
-  font-weight: 500;
-  font-size: 0.875rem;
+/* === Responsive === */
+@media (max-width: 768px) {
+  .services {
+    padding: 3rem 1.5rem;
+  }
+
+  .services-header {
+    margin-bottom: 2rem;
+  }
+
+  .services-header::before {
+    width: 30px;
+    height: 30px;
+  }
+
+  .services-header h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .services-description {
+    font-size: 0.8rem;
+    max-width: 100%;
+  }
+
+  .voir-plus {
+    top: 0.5rem;
+    right: 1rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .services-grid {
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services {
+    padding: 2rem 1rem;
+  }
+
+  .services-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .services-description {
+    font-size: 0.75rem;
+  }
+
+  .voir-plus {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  .services-grid {
+    gap: 1rem;
+  }
 }
