@@ -127,9 +127,10 @@ const LoginForm = () => {
             </div>
             
             <div className="register-prompt">
-              <span>Vous n'avez pas de compte?</span>
-              <a href="#register" className="register-link">Inscription</a>
+            <span>Vous n'avez pas de compte?</span>
+            <Link to="/choseInscrip" className="register-link">Inscription</Link>
             </div>
+
           </form>
         </div>
       </div>
