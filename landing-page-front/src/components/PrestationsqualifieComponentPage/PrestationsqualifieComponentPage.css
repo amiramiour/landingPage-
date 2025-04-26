@@ -1,0 +1,255 @@
+.pq-section {
+    background-color: #f9fafb;
+    padding: 4rem 2rem;
+  }
+  
+  .pq-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .pq-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .pq-line {
+    width: 40px;
+    height: 40px;
+    background-color: #facc15;
+    margin: 0 auto 1rem;
+  }
+  
+  .pq-main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .pq-subtitle {
+    color: #6b7280;
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .pq-service-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  
+  .pq-user-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+  
+  .pq-user-name {
+    font-weight: 600;
+    color: black;
+  }
+  .pq-meta-global {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+  }
+  
+  .pq-user-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #d1d5db;
+  }
+  
+  .pq-meta-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .pq-user-name {
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: black;
+    margin-bottom: 0.2rem;
+  }
+  
+  .pq-meta-info-simple {
+    font-size: 0.85rem;
+    color: #4b5563;
+  }
+  
+  
+  
+  .pq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .pq-service-card {
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .pq-service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+  
+  .pq-image-wrapper {
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .pq-image {
+    width: 220px;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .pq-badge-top {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: rgba(255,255,255,0.8);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  
+  .pq-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .pq-service-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  
+  
+  .pq-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+  }
+  
+  .pq-description {
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin-bottom: 1rem;
+    margin-right: 4rem;
+  }
+  
+  .pq-meta {
+    font-size: 0.8rem;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .pq-meta-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .pq-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  
+  .pq-badge {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  
+  .pq-green-badge {
+    background-color: #4caf50;
+  }
+  
+  .pq-red-badge {
+    background-color: #f44336;
+  }
+  
+  .pq-blue-badge {
+    background-color: #2196f3;
+  }
+  
+  .pq-cta {
+    margin-top: 3rem;
+    text-align: center;
+  }
+  
+  .pq-btn {
+    background-color: #facc15;
+    color: black;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    transition: background-color 0.3s;
+  }
+  
+  .pq-btn:hover {
+    background-color: #eab308;
+  }
+  
+  @media (max-width: 1024px) {
+    .pq-grid {
+      grid-template-columns: 1fr; /* Une carte par ligne sur tablette */
+    }
+  
+    .pq-service-card {
+      flex-direction: column; /* Carte devient verticale */
+      align-items: center; /* Centrer contenu */
+    }
+  
+    .pq-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+  
+    .pq-content {
+      padding: 1rem;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .pq-description {
+      margin-right: 0; /* Plus de margin droit inutile sur mobile */
+    }
+  
+    .pq-meta-global {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 1rem;
+    }
+  
+    .pq-meta-text {
+      align-items: center;
+      text-align: center;
+    }
+  
+    .pq-user-icon {
+      width: 45px;
+      height: 45px;
+    }
+  }
+  
