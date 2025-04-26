@@ -25,6 +25,7 @@
 }
 
 
+
 .etud-hero-title {
   display: flex;
   flex-direction: column;
@@ -42,7 +43,7 @@
 .etud-hero-students {
   font-size: 32px;
   font-weight: bold;
-  color: var(--white);
+  color: #6EC1E4;
   font-family: 'Montserrat', sans-serif;
 }
 
