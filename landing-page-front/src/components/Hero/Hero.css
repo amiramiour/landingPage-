@@ -125,3 +125,20 @@
     text-align: center;
   }
 }
+@media (max-width: 768px) {
+  .hero-logo {
+    max-width: 80%;
+    height: auto;
+  }
+
+  .hero-cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero-btn-student,
+  .hero-btn-employer {
+    width: 100%;
+    text-align: center;
+  }
+}

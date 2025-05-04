@@ -24,8 +24,6 @@
   margin: 0 auto 2rem;
 }
 
-
-
 .etud-hero-title {
   display: flex;
   flex-direction: column;
@@ -108,13 +106,57 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .etud-hero-logo {
+    max-width: 80%;
+    height: auto;
+  }
+
+  .etud-hero-students {
+    font-size: 28px;
+  }
+
+  .etud-hero-question,
+  .etud-hero-linky {
+    font-size: 20px;
+  }
+
+  .etud-hero-find {
+    font-size: 18px;
+  }
+
   .etud-hero-cta {
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
   }
 
   .etud-hero-input,
   .etud-hero-button {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .etud-hero-logo {
+    max-width: 70%;
+  }
+
+  .etud-hero-students {
+    font-size: 24px;
+  }
+
+  .etud-hero-question,
+  .etud-hero-linky {
+    font-size: 18px;
+  }
+
+  .etud-hero-find {
+    font-size: 16px;
+  }
+
+  .etud-hero-input,
+  .etud-hero-button {
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
   }
 }

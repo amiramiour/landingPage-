@@ -1,15 +1,19 @@
+// LoginForm.jsx
 import React, { useState } from 'react';
-import { Globe } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './LoginForm.css';
 import LogoLogin from '../../assets/LogoLogin.png';
-import { Link } from 'react-router-dom'; 
-
+import profilePicture from '../../assets/profilePicture.png';
 const LoginForm = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
-  
+
   const [errors, setErrors] = useState({
     username: '',
     password: '',
@@ -17,71 +21,46 @@ const LoginForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-    
-    // Clear error when user starts typing
+    setFormData(prev => ({ ...prev, [name]: value }));
+
     if (errors[name]) {
-      setErrors({
-        ...errors,
-        [name]: '',
-      });
+      setErrors(prev => ({ ...prev, [name]: '' }));
     }
   };
 
   const validateForm = () => {
     const newErrors = {};
-    
-    if (!formData.username.trim()) {
-      newErrors.username = 'Le nom est requis';
-    }
-    
-    if (!formData.password) {
-      newErrors.password = 'Le mot de passe est requis';
-    }
-    
+    if (!formData.username.trim()) newErrors.username = 'Le nom est requis';
+    if (!formData.password) newErrors.password = 'Le mot de passe est requis';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
     if (validateForm()) {
-      // Submit form logic would go here
-      console.log('Form submitted:', formData);
+      login({ name: formData.username, photo: profilePicture });
+      navigate('/');
     }
   };
 
   return (
     <div className="login-container">
       <div className="decorative-lines">
-  <div className="line line-yellow">
-    <div className="circle circle-yellow"></div>
-  </div>
-  <div className="line line-blue">
-    <div className="circle circle-blue"></div>
-  </div>
-  <div className="line line-orange">
-    <div className="circle circle-orange"></div>
-  </div>
-  <div className="line line-teal">
-    <div className="circle circle-teal"></div>
-  </div>
-</div>
+        <div className="line line-yellow"><div className="circle circle-yellow"></div></div>
+        <div className="line line-blue"><div className="circle circle-blue"></div></div>
+        <div className="line line-orange"><div className="circle circle-orange"></div></div>
+        <div className="line line-teal"><div className="circle circle-teal"></div></div>
+      </div>
 
-      
       <div className="login-form-wrapper">
         <div className="logo-container">
-                <img src={LogoLogin} alt="Logo LinkyJob" className="lf-logo" />
-          
+          <img src={LogoLogin} alt="Logo LinkyJob" className="lf-logo" />
         </div>
-        
+
         <div className="form-container">
           <h2 className="form-title">Connexion</h2>
-          
+
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="username">Nom*</label>
@@ -95,12 +74,12 @@ const LoginForm = () => {
               />
               {errors.username && <span className="error-message">{errors.username}</span>}
             </div>
-            
+
             <div className="form-group">
               <div className="password-header">
                 <label htmlFor="password">Mot de passe*</label>
                 <Link to="/mot-de-passe-oublie" className="forgot-password">Mot de passe oublié?</Link>
-                </div>
+              </div>
               <input
                 type="password"
                 id="password"
@@ -111,9 +90,9 @@ const LoginForm = () => {
               />
               {errors.password && <span className="error-message">{errors.password}</span>}
             </div>
-            
+
             <button type="submit" className="btn btn-primary">Connexion</button>
-            
+
             <div className="google-login">
               <button type="button" className="btn btn-google">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
@@ -125,12 +104,11 @@ const LoginForm = () => {
                 Connectez-vous avec Gmail
               </button>
             </div>
-            
-            <div className="register-prompt">
-            <span>Vous n'avez pas de compte?</span>
-            <Link to="/choseInscrip" className="register-link">Inscription</Link>
-            </div>
 
+            <div className="register-prompt">
+              <span>Vous n'avez pas de compte?</span>
+              <Link to="/choseInscrip" className="register-link">Inscription</Link>
+            </div>
           </form>
         </div>
       </div>

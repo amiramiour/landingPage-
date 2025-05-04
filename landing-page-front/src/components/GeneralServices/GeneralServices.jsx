@@ -1,5 +1,5 @@
 import React from 'react';
-import ServiceCard from '../ServiceCard/ServiceCard';
+import ServiceCard1 from '../ServiceCard1/ServiceCard';
 import './GeneralServices.css';
 import receptionist from '../../assets/recept.jpeg';
 import Animateur from '../../assets/Animateur interculturel.jpeg';
@@ -51,7 +51,7 @@ const GeneralServices = () => {
       <div className="services-scroll-section">
         <div className="services-grid-section">
           {servicesData.map((service, index) => (
-            <ServiceCard key={index} {...service} />
+            <ServiceCard1 key={index} {...service} />
           ))}
         </div>
       </div>

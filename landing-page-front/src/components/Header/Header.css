@@ -151,6 +151,13 @@
 .dropdown-link:hover {
   opacity: 0.8;
 }
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 
 /* === Responsive Design === */
 
@@ -192,11 +199,20 @@
     background: transparent;
     border: none;
     cursor: pointer;
+    margin-right: auto;
+
   }
 
   .menu-toggle img {
     width: 24px;
     height: 24px;
+    margin-right: 2rem;
+
+  }
+
+  .header-logo {
+    height: auto;
+    max-width: 120px;
   }
 }
 
@@ -223,5 +239,9 @@
 
   .logo-image {
     height: 50px;
+  }
+
+  .header-logo {
+    max-width: 100px;
   }
 }

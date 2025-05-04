@@ -1,0 +1,339 @@
+/* --------------------------------- */
+/* BASE STYLES GLOBAL */
+/* --------------------------------- */
+.apropos-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    color: #333;
+  }
+  
+  /* Scroll Animation */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Common Illustration Images */
+  .illustration {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 12px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .hero-linkyjob,
+    .platform-section,
+    .opportunities-section,
+    .security-section {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .hero-content-linkyjob,
+    .platform-content,
+    .opportunities-content,
+    .security-content {
+      align-items: center;
+    }
+  
+    .hero-image-linkyjob img,
+    .platform-illustration img,
+    .opportunities-illustration img,
+    .security-illustration img {
+      max-width: 400px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .hero-title-linkyjob {
+      font-size: 1.8rem;
+    }
+  
+    .hero-description-linkyjob,
+    .platform-description,
+    .opportunities-description,
+    .section-description {
+      font-size: 1.4rem;
+    }
+  
+    .hero-button-linkyjob {
+      width: 100%;
+    }
+  }
+  
+  /* Colors Text Specials */
+  .text-blue-linkyjob {
+    color: #5dade2;
+    font-weight: 600;
+  }
+  
+  .text-orange-linkyjob {
+    color: #f39c12;
+    font-weight: 600;
+  }
+  
+  .text-green-linkyjob {
+    color: #2ecc71;
+    font-weight: 600;
+  }
+  
+  /* --------------------------------- */
+  /* HERO SECTION ("Avec LinkyJob") */
+  /* --------------------------------- */
+  .hero-linkyjob {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+  
+  .hero-content-linkyjob {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-top-linkyjob {
+    margin-bottom: 2rem;
+  }
+  
+  .hero-title-linkyjob {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .linkyjob-logo img {
+    width: 300px;
+  }
+  
+  .hero-description-linkyjob {
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #222;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-button-linkyjob {
+    padding: 0.8rem 2rem;
+    border: 1px solid #333;
+    background: transparent;
+    color: #333;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .hero-button-linkyjob:hover {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .hero-image-linkyjob {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hero-image-linkyjob img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+  }
+  
+  /* --------------------------------- */
+  /* PLATFORM SECTION (Présentation LinkyJob) */
+  /* --------------------------------- */
+  .platform-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+  
+  .platform-illustration {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .platform-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .platform-description {
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #222;
+    text-align: center;
+  }
+  
+  .platform-bold {
+    font-weight: 700;
+    color: #000;
+  }
+  
+  /* --------------------------------- */
+  /* OPPORTUNITIES SECTION (Opportunités) */
+  /* --------------------------------- */
+  .opportunities-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+  
+  .opportunities-illustration {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .opportunities-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .opportunities-description {
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #222;
+    text-align: center;
+  }
+  
+ /* --------------------------------- */
+/* SECURITY SECTION (Sécurité/Conformité) */
+/* --------------------------------- */
+.security-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+  
+  .security-illustration {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .security-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .security-description {
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #222;
+    text-align: center;
+  }
+  
+  /* Responsive spécifique sécurité */
+  @media (max-width: 1024px) {
+    .security-section {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .security-content {
+      align-items: center;
+      text-align: center;
+    }
+  }
+  
+
+
+
+/* --------------------------------- */
+.hero-button-linkyjob {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-button-linkyjob::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 3px;
+    background-color: #3498db;
+    transition: width 0.3s ease;
+  }
+  
+  .hero-button-linkyjob:hover::after {
+    width: 100%;
+  }
+  .fade-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .fade-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .animate-in.fade-in-left,
+  .animate-in.fade-in-right {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .hero-button-linkyjob:hover {
+    animation: vibrate-1 0.3s linear infinite;
+  }
+  
+  @keyframes vibrate-1 {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+  }
+      

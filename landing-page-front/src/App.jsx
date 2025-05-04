@@ -13,8 +13,12 @@ import RegisterFormEntreprise from './components/screens/RegisterFormEntrepriseS
 import ProfileEntreprise from './components/screens/ProfileEntrepriseScreen';
 import PrestationsqualifieScreen from './components/screens/PrestationsqualifieScreen';
 import PqProfileScreen from './components/screens/PqProfileScreen';
+import AproposScreen from './components/screens/AproposScreen';
+import { AuthProvider } from './components/context/AuthContext'; 
+
 function App() {
   return (
+          <AuthProvider>
     <Router>
       <div className="app">
         <Routes>
@@ -30,13 +34,12 @@ function App() {
           <Route path="/profile/:id" element={<ProfileEntreprise />} />
           <Route path="/prestationsqualifiee" element={<PrestationsqualifieScreen />} />
           <Route path="/prestationsqualifiee/:id" element={<PqProfileScreen />} />
-
-
-
-
+          <Route path="/apropos" element={<AproposScreen />} />
         </Routes>
       </div>
     </Router>
+    </AuthProvider>
+
   );
 }
 
