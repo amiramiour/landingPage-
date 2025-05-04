@@ -43,35 +43,30 @@ const services = [
 ];
 
 const ServiceCard = ({ service }) => {
-    return (
-      <Link to={`/prestationsqualifiee/${service.id}`} className="pq-service-card-link">
-        <div className="pq-service-card">
-          <div className="pq-image-wrapper">
-            <img 
-              src={service.image} 
-              alt={service.title} 
-              className="pq-image"
-            />
-          </div>
-          <div className="pq-content">
-            <span className="pq-service-label">Service qualifié</span>
-            <h3 className="pq-title">{service.title}</h3>
-            <p className="pq-description">{service.description}</p>
-            
-            <div className="pq-meta-global">
-              <img src={icon} alt="User Icon" className="pq-user-icon" />
-              <div className="pq-meta-text">
-                <div className="pq-user-name">{service.fullName}</div>
-                <div className="pq-meta-info-simple">
-                  <span>{service.date}</span> • <span>{service.time}</span>
-                </div>
+  return (
+    <Link to={`/prestationsqualifiee/${service.id}`} className="pq-service-card-link">
+      <div className="pq-service-card">
+        <div className="pq-image-wrapper">
+          <img src={service.image} alt={service.title} className="pq-image" />
+        </div>
+        <div className="pq-content">
+          <span className="pq-service-label">Service qualifié</span>
+          <h3 className="pq-title">{service.title}</h3>
+          <p className="pq-description">{service.description}</p>
+          <div className="pq-meta-global">
+            <img src={icon} alt="User Icon" className="pq-user-icon" />
+            <div className="pq-meta-text">
+              <div className="pq-user-name">{service.fullName}</div>
+              <div className="pq-meta-info-simple">
+                <span>{service.date}</span> • <span>{service.time}</span>
               </div>
             </div>
           </div>
         </div>
-      </Link>
-    );
-  };
+      </div>
+    </Link>
+  );
+};
 
 function PrestationsqualifieComponentPage() {
   return (

@@ -24,7 +24,6 @@
   margin: 0 auto 2rem;
 }
 
-
 .entreprise-hero-title {
   display: flex;
   flex-direction: column;
@@ -107,13 +106,57 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .entreprise-hero-logo {
+    max-width: 80%;
+    height: auto;
+  }
+
+  .entreprise-hero-students {
+    font-size: 28px;
+  }
+
+  .entreprise-hero-question,
+  .entreprise-hero-linky {
+    font-size: 20px;
+  }
+
+  .entreprise-hero-find {
+    font-size: 18px;
+  }
+
   .entreprise-hero-cta {
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
   }
 
   .entreprise-hero-input,
   .entreprise-hero-button {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .entreprise-hero-logo {
+    max-width: 70%;
+  }
+
+  .entreprise-hero-students {
+    font-size: 24px;
+  }
+
+  .entreprise-hero-question,
+  .entreprise-hero-linky {
+    font-size: 18px;
+  }
+
+  .entreprise-hero-find {
+    font-size: 16px;
+  }
+
+  .entreprise-hero-input,
+  .entreprise-hero-button {
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
   }
 }
