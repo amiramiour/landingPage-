@@ -5,6 +5,8 @@ services:
     build:
       context: ./landing-page-front
     ports:
-      - "3000:80"  # Redirige le port 80 du conteneur vers le port 3000 sur votre machine locale
+      - "5173:5173"   
     volumes:
-      - ./landing-page-front:/usr/src/app  # Optionnel, pour le développement
+      - ./landing-page-front:/usr/src/app
+    working_dir: /usr/src/app
+    command: npm run dev -- --host
