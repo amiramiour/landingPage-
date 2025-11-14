@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import ForgetPass from '../ForgetPass/ForgetPass';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
+import ForgetPass from '../components/ForgetPass/ForgetPass';
 
 function Contact() {
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import ChoseInscripComponent from '../ChoseInscripComponent/ChoseInscripComponent'; // ⚠️ Renommé ici
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
+import ChoseInscripComponent from '../components/ChoseInscripComponent/ChoseInscripComponent'; // ⚠️ Renommé ici
 
 function ChoseInscrip() {
   return (
