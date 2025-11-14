@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './RegisterFormEtud.css';
 import LogoLogin from '../../assets/LogoLogin.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';   // ⬅️ AJOUT
 
 const RegisterFormEtud = () => {
+
+  const navigate = useNavigate(); // ⬅️ AJOUT
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -54,6 +57,9 @@ const RegisterFormEtud = () => {
 
       alert("Compte étudiant créé !");
       console.log("REGISTER STUDENT:", data);
+
+      navigate("/login"); // ⬅️ REDIRECTION
+
     } catch (err) {
       console.error(err);
       alert("Erreur réseau");

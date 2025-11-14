@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './RegisterFormEntreprise.css';
 import LogoLogin from '../../assets/LogoLogin.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; 
 
 const RegisterFormEntreprise = () => {
+
+  const navigate = useNavigate(); 
+
   const [formData, setFormData] = useState({
     companyName: "",
     companyType: "",
@@ -24,13 +27,11 @@ const RegisterFormEntreprise = () => {
 const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Normaliser entreprise
     const normalizedType = formData.companyType
-  .trim()
-  .toUpperCase()
-  .replace(/[^A-Z]/g, "_") // remplace espaces, tirets, accents → "_"
-  .replace(/_+/g, "_"); // nettoie les doublons "__"
-
+      .trim()
+      .toUpperCase()
+      .replace(/[^A-Z]/g, "_")
+      .replace(/_+/g, "_");
 
     const payload = {
       role: "company",
@@ -38,7 +39,7 @@ const handleSubmit = async (e) => {
       companyType: normalizedType,
       companyId: formData.companyId,
       address: formData.address,
-      email: formData.email, // email de connexion
+      email: formData.email,
       password: formData.password,
     };
 
@@ -59,6 +60,7 @@ const handleSubmit = async (e) => {
       alert("Compte entreprise créé !");
       console.log("REGISTER COMPANY:", data);
 
+      navigate("/login");  
     } catch (err) {
       console.error(err);
       alert("Erreur réseau");
