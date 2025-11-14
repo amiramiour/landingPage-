@@ -14,7 +14,6 @@ const Header = () => {
   const location = useLocation();
 
   React.useEffect(() => {
-    // initialise l’onglet actif selon l’URL actuelle
     const path = location.pathname;
     if (path.includes('espace-etudiant')) setActivePage('etudiant');
     else if (path.includes('espace-entreprise')) setActivePage('entreprise');
@@ -39,63 +38,65 @@ const Header = () => {
   return (
     <header className="header">
       <nav>
+        {/* Logo à gauche */}
         <div className="left-section">
-          <div className="logo">
-            <Link to="/">
-              <img src={logo} alt="LINKYJOB Logo" className="header-logo" />
-            </Link>
-          </div>
-          <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
-            <Link
-              to="/espace-etudiant"
-              className="nav-link"
-              onClick={() => setActivePage('etudiant')}
-              style={activePage === 'etudiant' ? getLinkStyle('etudiant') : {}}
-            >
-              Espace Etudiant
-            </Link>
-            <Link
-              to="/espace-entreprise"
-              className="nav-link"
-              onClick={() => setActivePage('entreprise')}
-              style={activePage === 'entreprise' ? getLinkStyle('entreprise') : {}}
-            >
-              Espace Entreprise
-            </Link>
-            <div className="dropdown">
-              <span className="nav-link" onClick={togglePrestations}>
-                Prestations <img src={vectorIcon} alt="Flèche bas" className="vector-icon" />
-              </span>
-              {prestationsOpen && (
-                <div className="dropdown-content">
-                  <Link to="/prestationsqualifiee" className="dropdown-link qualifiees">
-                    Prestations Qualifiées
-                  </Link>
-                  <Link to="/prestationsgenerales" className="dropdown-link generales">
-                    Prestations Générales
-                  </Link>
-                </div>
-              )}
-            </div>
-            <Link
-              to="/apropos"
-              className="nav-link"
-              onClick={() => setActivePage('apropos')}
-              style={activePage === 'apropos' ? getLinkStyle('apropos') : {}}
-            >
-              A propos
-            </Link>
-            <Link
-              to="/contact"
-              className="nav-link"
-              onClick={() => setActivePage('contact')}
-              style={activePage === 'contact' ? getLinkStyle('contact') : {}}
-            >
-              Contact
-            </Link>
-          </div>
+          <Link to="/">
+            <img src={logo} alt="LINKYJOB Logo" className="header-logo" />
+          </Link>
         </div>
 
+        {/* Liens au centre */}
+        <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
+          <Link
+            to="/espace-etudiant"
+            className="nav-link"
+            onClick={() => setActivePage('etudiant')}
+            style={activePage === 'etudiant' ? getLinkStyle('etudiant') : {}}
+          >
+            Espace Etudiant
+          </Link>
+          <Link
+            to="/espace-entreprise"
+            className="nav-link"
+            onClick={() => setActivePage('entreprise')}
+            style={activePage === 'entreprise' ? getLinkStyle('entreprise') : {}}
+          >
+            Espace Entreprise
+          </Link>
+          <div className="dropdown">
+            <span className="nav-link" onClick={togglePrestations}>
+              MISSIONS DE SERVICE<img src={vectorIcon} alt="Flèche bas" className="vector-icon" />
+            </span>
+            {prestationsOpen && (
+              <div className="dropdown-content">
+                <Link to="/prestationsqualifiee" className="dropdown-link qualifiees">
+                  Missions d'expertise
+                </Link>
+                <Link to="/prestationsgenerales" className="dropdown-link generales">
+                  Missions de service
+                </Link>
+              </div>
+            )}
+          </div>
+          <Link
+            to="/apropos"
+            className="nav-link"
+            onClick={() => setActivePage('apropos')}
+            style={activePage === 'apropos' ? getLinkStyle('apropos') : {}}
+          >
+            A propos
+          </Link>
+          <Link
+            to="/contact"
+            className="nav-link"
+            onClick={() => setActivePage('contact')}
+            style={activePage === 'contact' ? getLinkStyle('contact') : {}}
+          >
+            Contact
+          </Link>
+        </div>
+
+        {/* Connexion / Profil à droite */}
         <div className="right-section">
           {user ? (
             <img src={user.photo} alt="Profil" className="profile-pic" />

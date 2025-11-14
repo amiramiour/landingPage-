@@ -6,9 +6,10 @@
   width: 100%;
   top: 0;
   z-index: 1000;
-  height: 55px;
+  height: 60px;
   display: flex;
   align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .header nav {
@@ -17,103 +18,46 @@
   align-items: center;
   width: 100%;
   padding: 0 2rem;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
+/* Logo */
 .header-logo {
-  height: 35px;
+  height: 38px;
   width: auto;
   object-fit: contain;
-  padding: 0;
-  margin-top: 13px;
 }
 
-.vector-icon {
-  width: 12px; 
-  height: 8px;
-  vertical-align: middle;
-}
-
-.left-section {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-.right-section {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
+/* Liens centrés */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
+  flex: 1;
+  justify-content: center; /* centre horizontalement */
 }
 
 .nav-link {
   color: white;
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-family: 'Montserrat', sans-serif;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .nav-link:hover {
-  color: gray;
+  color: #ccc;
+  transform: translateY(-2px);
 }
 
-.btn-inscription {
-  background-color: white;
-  color: black;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 30px;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
-}
-
-.btn-inscription:hover {
-  background-color: gray;
-}
-
-.btn-connexion-header {
-  background-color: transparent;
-  color: white;
-  border: 1px solid white;
-  padding: 0.5rem 1rem;
-  border-radius: 30px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.btn-connexion-header:hover,
-.btn-connexion-header.active {
-  background-color: white;
-  color: black;
-}
-
-.language-select {
-  padding: 0.3rem 0.5rem;
-  border: none;
-  background-color: black;
-  color: white;
-  cursor: pointer;
-}
-
-.language-select option {
-  background-color: white;
-  color: black;
-}
-
-.hero .logo-image {
-  width: 150px;
-  margin-bottom: 2rem;
+/* Dropdown */
+.vector-icon {
+  width: 12px; 
+  height: 8px;
+  margin-left: 4px;
 }
 
 .dropdown-content {
@@ -151,30 +95,60 @@
 .dropdown-link:hover {
   opacity: 0.8;
 }
+
+/* Section droite */
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-connexion-header {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 25px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-connexion-header:hover,
+.btn-connexion-header.active {
+  background-color: white;
+  color: black;
+}
+
 .profile-pic {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid white;
 }
 
+/* Menu mobile */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
 
-/* === Responsive Design === */
+.menu-toggle img {
+  width: 24px;
+  height: 24px;
+}
 
-/* Tablette et petit écran */
+/* Responsive */
 @media (max-width: 768px) {
-  .header nav {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 1rem;
-  }
-
   .nav-links {
     display: none;
     flex-direction: column;
     gap: 1rem;
     position: absolute;
-    top: 55px;
+    top: 60px;
     left: 0;
     width: 100%;
     background-color: black;
@@ -185,60 +159,23 @@
     display: flex;
   }
 
-  .nav-link {
-    font-size: 1rem;
-  }
-
-  .btn-inscription, .btn-connexion-header, .language-select {
-    width: 90%;
-    text-align: center;
-  }
-
   .menu-toggle {
     display: block;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    margin-right: auto;
-
-  }
-
-  .menu-toggle img {
-    width: 24px;
-    height: 24px;
-    margin-right: 2rem;
-
   }
 
   .header-logo {
-    height: auto;
     max-width: 120px;
   }
 }
 
-/* Desktop */
-@media (min-width: 769px) {
-  .menu-toggle {
-    display: none;
-  }
-}
-
-/* Téléphone très petit */
 @media (max-width: 480px) {
-  .header nav {
-    padding: 0.5rem;
-  }
-
   .nav-link {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 
-  .btn-inscription, .btn-connexion-header {
-    padding: 0.5rem;
-  }
-
-  .logo-image {
-    height: 50px;
+  .btn-connexion-header {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
   }
 
   .header-logo {
