@@ -6,7 +6,7 @@ const ServiceCard = ({ id, title, description, icon, category, date }) => {
   return (
     <Link to={`/prestationsqualifiee/${id}`} className="service-card">
       <img src={icon} alt={title} className="service-card-image" />
-      <div className="service-qualifies">Service qualifiés</div>
+      <div className="service-qualifies">MISSIONS D’EXPERTISE</div>
       <h3>{title}</h3>
       <p>{description}</p>
       <div className="service-meta">

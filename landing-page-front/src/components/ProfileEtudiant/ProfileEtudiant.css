@@ -1,0 +1,326 @@
+/* ====== PAGE ====== */
+.profile-page {
+  background-color: #ffffff; /* fond global blanc */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px 40px; /* espace sous le header */
+  font-family: "Poppins", sans-serif;
+}
+
+/* ====== SECTION DU HAUT : 2 COLONNES ====== */
+.top-section {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* assure même hauteur */
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 40px;
+}
+
+/* ====== CARTES BLEU CLAIR ====== */
+.profil-card,
+.dossier-card,
+.suivi-card {
+  background-color: #e6f2fb;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* ====== PROFIL ====== */
+.profil-card {
+  flex: 1;
+  max-width: 350px;
+  padding: 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profil-photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 10px;
+}
+
+.profil-titre {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.profil-info p {
+  font-size: 14px;
+  color: #333;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.btn-modifier {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  align-self: center;
+  transition: background-color 0.3s;
+}
+
+.btn-modifier:hover {
+  background-color: #0056b3;
+}
+
+/* ====== DÉPÔT DE DOSSIER ====== */
+.dossier-card {
+  flex: 2;
+  padding: 25px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dossier-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.dossier-liste {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.dossier-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #cfdbe6;
+}
+
+.dossier-nom {
+  text-transform: capitalize;
+  color: #000;
+}
+
+.btn-upload {
+  background: transparent;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.btn-upload:hover {
+  text-decoration: underline;
+}
+
+.icon-check {
+  color: #28a745;
+  font-size: 20px;
+}
+
+.btn-soumettre {
+  background-color: #ccc;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 25px;
+  cursor: not-allowed;
+  display: block;
+  margin: 25px auto 0;
+  transition: background 0.3s;
+}
+
+.btn-soumettre.active {
+  background-color: #007bff;
+  cursor: pointer;
+}
+
+/* ====== SUIVI ====== */
+.suivi-card {
+  width: 100%;
+  max-width: 1200px;
+  padding: 30px;
+  text-align: center;
+}
+
+.suivi-card h2 {
+  color: #000;
+}
+
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.etape {
+  flex: 1;
+  text-align: center;
+  color: #999;
+}
+
+.etape svg {
+  font-size: 30px;
+  margin-bottom: 6px;
+  color: #ccc;
+}
+
+.etape.active svg {
+  color: #007bff;
+}
+
+.etape p {
+  font-size: 14px;
+  margin: 0;
+  color: #333;
+}
+
+.etape small {
+  display: block;
+  color: #777;
+}
+
+/* ====== MODAL ====== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px 50px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-icon {
+  color: #28a745;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.btn-ok {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+/* ====== TIMELINE VERTICALE DANS DÉPÔT DE DOSSIER ====== */
+.dossier-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #cfdbe6;
+  position: relative;
+}
+
+.dossier-timeline {
+  position: relative;
+  width: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dossier-circle {
+  width: 16px;
+  height: 16px;
+  background-color: #56aaff;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.dossier-line {
+  width: 2px;
+  background-color: #000;
+  flex-grow: 1;
+  margin-top: 2px;
+}
+
+.dossier-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+/* ====== TIMELINE VERTICALE DANS DÉPÔT DE DOSSIER ====== */
+.dossier-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #cfdbe6;
+  position: relative;
+}
+
+.dossier-timeline {
+  position: relative;
+  width: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dossier-circle {
+  width: 18px;
+  height: 18px;
+  background-color: #56aaff;
+  border-radius: 50%;
+  z-index: 2;
+  border: 1px solid #3399ff;
+}
+
+.dossier-line {
+  width: 2px;
+  background-color: #000;
+  flex-grow: 1;
+  margin-top: 2px;
+  z-index: 1;
+}
+
+.dossier-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+  .top-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profil-card,
+  .dossier-card {
+    width: 100%;
+    max-width: 700px;
+  }
+}

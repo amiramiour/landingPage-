@@ -42,7 +42,7 @@ const Services = () => {
   return (
     <section className="services">
       <div className="services-header">
-        <h2>PRESTATIONS QUALIFIES</h2>
+        <h2>MISSIONS D’EXPERTISE</h2>
         <p className="services-description">
           Pour les missions requérant des compétences techniques ou un savoir certifié.
         </p>

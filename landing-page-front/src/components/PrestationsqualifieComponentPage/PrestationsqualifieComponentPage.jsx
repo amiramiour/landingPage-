@@ -74,7 +74,7 @@ function PrestationsqualifieComponentPage() {
       <div className="pq-container">
         <div className="pq-header">
           <div className="pq-line"></div>
-          <h1 className="pq-main-title">PRESTATIONS QUALIFIÉES</h1>
+          <h1 className="pq-main-title">MISSIONS D'EXPERTISE</h1>
           <p className="pq-subtitle">
             Pour les missions requérant des compétences techniques ou un savoir certifié.
           </p>

@@ -42,7 +42,7 @@ const GeneralServices = () => {
   return (
     <section className="services">
       <div className="services-header-section">
-        <h2>PRESTATIONS GENERALES</h2>
+        <h2>MISSIONS DE SERVICE</h2>
         <p className="services-description-section">
           Pour les missions accessibles sans formation préalable ou expertise particulière.
         </p>

@@ -12,7 +12,7 @@ const prq = () => {
         <h1 className="prq-hero-title">
           <div className="prq-hero-line">
             <span className="prq-hero-students">Découvrez nos </span>
-            <span className="prq-hero-question">Prestations qualifiées</span>
+            <span className="prq-hero-question">Missions D'expertise</span>
           </div>
           
         </h1>
