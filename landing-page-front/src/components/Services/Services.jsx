@@ -1,44 +1,31 @@
-//Services.jsx
-import React from 'react';
-import ServiceCard from '../ServiceCard/ServiceCard';
-import './Services.css';
-import tech from '../../assets/Techniciensinformatique.jpeg'; // Import du logo
-import soutien from '../../assets/Cours de soutien de langueetrangere.jpeg'; // Import du logo
-import community from '../../assets/CommunityManagermultilingue.jpeg'; // Import du logo
-import conseiller from '../../assets/Conseillerclienteleinternationale.jpeg'; // Import du logo
+import React, { useRef, useEffect, useState } from "react";
+import ServiceCard from "../ServiceCard/ServiceCard";
+import "./Services.css";
 
-const servicesData = [
-  {
-    title: 'Techniciens informatique',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    category: 'Freelance Informatique',
-    date: '11 DEC 2024',
-    icon: tech,
-  },
-  {
-    title: 'Cours de soutien de langue étrangère',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    category: 'Comptabilité',
-    date: '05 DEC 2024',
-    icon: soutien,
-  },
-  {
-    title: 'Community Manager multilingue',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    category: 'Community',
-    date: '30 NOV 2024',
-    icon: community,
-  },
-  {
-    title: 'Conseiller commercial',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    category: 'Diplomatie',
-    date: '27 NOV 2024',
-    icon: conseiller,
-  },
-];
+import arrowLeft from "../../assets/Buttongauche.png";
+import arrowRight from "../../assets/Buttondroite.png";
+import defaultImg from "../../assets/Techniciensinformatique.jpeg"; 
 
 const Services = () => {
+  const scrollRef = useRef(null);
+  const [missions, setMissions] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/missions")
+      .then((res) => res.json())
+      .then((data) => {
+        const all = data.data || data; // cache ou db
+        const filtered = all.filter(
+          (m) => m.type === "mission_d_expertise"
+        );
+        setMissions(filtered);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  const scrollLeft = () => scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
+  const scrollRight = () => scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+
   return (
     <section className="services">
       <div className="services-header">
@@ -48,12 +35,26 @@ const Services = () => {
         </p>
         <button className="voir-plus">Voir plus</button>
       </div>
-      <div className="services-scroll">
+
+      <div className="services-scroll" ref={scrollRef}>
         <div className="services-grid">
-          {servicesData.map((service, index) => (
-            <ServiceCard key={index} {...service} />
+          {missions.map((mission) => (
+            <ServiceCard
+              key={mission.id}
+              id={mission.id}
+              title={mission.title}
+              description={mission.description}
+              category={mission.niveau || "Mission qualifiée"}
+              date={mission.startDate?.slice(0, 10)}
+              icon={defaultImg}
+            />
           ))}
         </div>
+      </div>
+
+      <div className="scroll-buttons">
+        <img src={arrowLeft} className="scroll-btn" onClick={scrollLeft} />
+        <img src={arrowRight} className="scroll-btn" onClick={scrollRight} />
       </div>
     </section>
   );
