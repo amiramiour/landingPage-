@@ -22,7 +22,7 @@
   top: 0;
   width: 40px;
   height: 40px;
-  background-color: var(--secondary-color);
+  background-color: #6EC1E4;
   z-index: 0;
 }
 
@@ -48,7 +48,7 @@
   right: 2rem;
   top: 1rem;
   padding: 0.5rem 1rem;
-  background-color: var(--secondary-color);
+  background-color: #6EC1E4;
   color: var(--text-color);
   border: none;
   border-radius: 20px;

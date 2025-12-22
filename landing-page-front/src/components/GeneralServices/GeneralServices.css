@@ -22,7 +22,7 @@
   top: 0;
   width: 40px;
   height: 40px;
-  background-color: #7FD8B1;
+  background-color: #FF7F32;
   z-index: 0;
 }
 
@@ -48,7 +48,7 @@
   right: 0;
   top: 0;
   padding: 0.5rem 1.5rem;
-  background-color: #7FD8B1;
+  background-color: #FF7F32;
   color: black;
   border: none;
   border-radius: 20px;
