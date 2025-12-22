@@ -103,6 +103,40 @@
   transform: translateY(-2px);
   background-color: #FF7F32;
 }
+/* ===== Bouton Ajouter une prestation ===== */
+
+.entreprise-hero-btn-wrapper {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.entreprise-hero-add-btn {
+  background-color: #FF7F32;       /* orange */
+  color: white;
+  padding: 0.9rem 2rem;
+  border-radius: 40px;             /* arrondi */
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;                       /* espace entre + et texte */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25); /* même ombre */
+  transition: 0.2s ease;
+}
+
+.entreprise-hero-add-btn:hover {
+  transform: translateY(-2px);
+  background-color: #ff6a00;      /* léger hover */
+}
+
+.entreprise-hero-plus {
+  font-size: 22px;                /* même taille que image */
+  font-weight: bold;
+  line-height: 0;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
