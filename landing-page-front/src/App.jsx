@@ -11,12 +11,14 @@ import ChoseInscrip from './screens/ChoseInscrip';
 import RegisterFormEtud from './screens/RegisterFormEtudScreen';
 import RegisterFormEntreprise from './screens/RegisterFormEntrepriseScreen';
 import ProfileEntreprise from './screens/ProfileEntrepriseScreen';
-import PrestationsqualifieScreen from './screens/PrestationsqualifieScreen';
+import PrestationsqualifieScreen from './screens/PrestationsScreen';
 import PqProfileScreen from './screens/PqProfileScreen';
 import AproposScreen from './screens/AproposScreen';
 import ProfileEtudiant from './screens/ProfileEtudiant';
 import { AuthProvider } from './components/context/AuthContext'; 
 import Feedback from './screens/Feedback';
+import AddPrestation from './screens/AddPrestation';
+import PrestationsScreen from './screens/PrestationsScreen';
 
 function App() {
   return (
@@ -34,12 +36,13 @@ function App() {
           <Route path="/registerStudent" element={<RegisterFormEtud />} />
           <Route path="/registerEntreprise" element={<RegisterFormEntreprise />} />
           <Route path="/profile/:id" element={<ProfileEntreprise />} />
-          <Route path="/prestationsqualifiee" element={<PrestationsqualifieScreen />} />
           <Route path="/prestationsqualifiee/:id" element={<PqProfileScreen />} />
           <Route path="/apropos" element={<AproposScreen />} />
           <Route path="/profile-etudiant" element={<ProfileEtudiant />} />
           <Route path="/feedback" element={<Feedback />} />
-
+          <Route path="/addprestation" element={<AddPrestation />} />
+          <Route path="/prestationsqualifiee" element={<PrestationsScreen />} />
+          <Route path="/prestationsgenerales" element={<PrestationsScreen />} />
         </Routes>
       </div>
     </Router>
