@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import "./HeroPrestation.css";
 
-import logoHero from "../../assets/LogoHero.png";
+import logoHero from "../../assets/Logo_linkyjob_Blanc.png";
 import bgQualifie from "../../assets/prqBg.jpg";
 import bgGeneral from "../../assets/prnqBg.jpg";
 

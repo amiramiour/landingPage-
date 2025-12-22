@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ContactForm.css';
-import LogoContact from '../../assets/LogoContact.png';
+import LogoContact from '../../assets/logo_linkyjob.png';
 
 function ContactForm() {
   const [nom, setNom] = useState('');

@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Condition.css';
 
-import logoImage from './Linkyjob.png';
+import logoImage from '../../assets/Logo_linkyjob_Blanc.png';
 import logomain from './main.png';
 import logoMajeur from './majeur.png';
 import logopc from './pc.png';

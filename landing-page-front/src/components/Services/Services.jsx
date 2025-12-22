@@ -2,8 +2,8 @@ import React, { useRef, useEffect, useState } from "react";
 import ServiceCard from "../ServiceCard/ServiceCard";
 import "./Services.css";
 
-import arrowLeft from "../../assets/Buttongauche.png";
-import arrowRight from "../../assets/Buttondroite.png";
+import arrowLeft from "../../assets/btn_blue_left.png";
+import arrowRight from "../../assets/btn_blue_right.png";
 import defaultImg from "../../assets/Techniciensinformatique.jpeg"; 
 
 const Services = () => {
@@ -29,7 +29,7 @@ const Services = () => {
   return (
     <section className="services">
       <div className="services-header">
-        <h2>MISSIONS D’EXPERTISE</h2>
+        <h2>NOS PROFILS ETUDIANTS</h2>
         <p className="services-description">
           Pour les missions requérant des compétences techniques ou un savoir certifié.
         </p>

@@ -1,6 +1,6 @@
 import React from 'react';
 import './ChoseInscripComponent.css';
-import LogoLogin from '../../assets/LogoLogin.png';
+import LogoLogin from '../../assets/logo_linkyjob.png';
 import { Link } from 'react-router-dom';
 const ChoseInscripComponent = () => {
   return (
@@ -8,7 +8,6 @@ const ChoseInscripComponent = () => {
       <div className="choseInsc-wrapper">
         <div className="logo-container">
           <img src={LogoLogin} alt="Logo LinkyJob" className="lf-logo" />
-          <h2 className="choseInsc-title">Inscrivez-vous</h2>
 
         </div>
 

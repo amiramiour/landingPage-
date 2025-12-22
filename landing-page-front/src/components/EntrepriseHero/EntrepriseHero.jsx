@@ -1,6 +1,6 @@
 import React from 'react';
 import './EntrepriseHero.css';
-import logoHero from '../../assets/LogoHero.png';
+import logoHero from '../../assets/Logo_linkyjob_Blanc.png';
 import { useNavigate } from 'react-router-dom';
 
 const Entreprise = () => {

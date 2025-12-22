@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './RegisterFormEtud.css';
-import LogoLogin from '../../assets/LogoLogin.png';
+import LogoLogin from '../../assets/logo_linkyjob.png';
 import { Link, useNavigate } from 'react-router-dom';   // ⬅️ AJOUT
 
 const RegisterFormEtud = () => {

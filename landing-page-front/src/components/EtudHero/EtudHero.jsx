@@ -1,6 +1,6 @@
 import React from 'react';
 import './EtudHero.css';
-import logoHero from '../../assets/LogoHero.png';
+import logoHero from '../../assets/Logo_linkyjob_Blanc.png';
 import { Link } from 'react-router-dom';
 
 const EtudHero = () => {

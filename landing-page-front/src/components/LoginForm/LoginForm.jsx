@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './LoginForm.css';
-import LogoLogin from '../../assets/LogoLogin.png';
+import LogoLogin from '../../assets/logo_linkyjob.png';
 import profilePicture from '../../assets/profilePicture.png';
 const LoginForm = () => {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.css';
-import LogoFooter from '../../assets/LogoFooter.png';
+import LogoFooter from '../../assets/Logo_linkyjob_Blanc.png';
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 

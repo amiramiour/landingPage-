@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Feedback.css';
-import LogoContact from '../../assets/LogoContact.png';
+import LogoContact from '../../assets/logo_linkyjob.png';
 
 const Feedback = () => {
   const [nom, setNom] = useState('');

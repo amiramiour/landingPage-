@@ -2,9 +2,9 @@ import React, { useRef, useEffect, useState } from "react";
 import ServiceCard1 from "../ServiceCard1/ServiceCard";
 import "./GeneralServices.css";
 
-import arrowLeft from "../../assets/ButtonVgauche.png";
-import arrowRight from "../../assets/ButtonVdroite.png";
-import defaultImg from "../../assets/Animateur interculturel.jpeg"; // ❗ Même image pour toutes
+import arrowLeft from "../../assets/btn_orange_left.png";
+import arrowRight from "../../assets/btn_orange_right.png";
+import defaultImg from "../../assets/Animateur interculturel.jpeg";
 
 const GeneralServices = () => {
   const scrollRef = useRef(null);
@@ -15,46 +15,71 @@ const GeneralServices = () => {
       .then((res) => res.json())
       .then((data) => {
         const all = data.data || data;
-        const filtered = all.filter(
-          (m) => m.type === "mission_de_service"
-        );
-        setMissions(filtered);
+
+        // 🔥 Trier par missions les plus récentes
+        const sorted = [...all].sort((a, b) => {
+          if (!a.startDate || !b.startDate) return 0;
+          return new Date(b.startDate) - new Date(a.startDate);
+        });
+
+        setMissions(sorted);
       })
       .catch((err) => console.error(err));
   }, []);
 
-  const scrollLeft = () => scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
-  const scrollRight = () => scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+  const scrollLeft = () =>
+    scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
+
+  const scrollRight = () =>
+    scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+
+  // ✅ On limite volontairement à 5 missions
+  const visibleMissions = missions.slice(0, 5);
 
   return (
     <section className="services">
       <div className="services-header-section">
-        <h2>MISSIONS DE SERVICE</h2>
+        <h2>NOS MISSIONS DISPONIBLES</h2>
         <p className="services-description-section">
-          Pour les missions accessibles sans formation préalable ou expertise particulière.
+          Explorez des missions variées adaptées aux compétences et aux ambitions des étudiants.
         </p>
         <button className="voir-plus-section">Voir plus</button>
       </div>
 
       <div className="services-scroll-section" ref={scrollRef}>
         <div className="services-grid-section">
-          {missions.map((mission) => (
+          {visibleMissions.map((mission) => (
             <ServiceCard1
               key={mission.id}
               id={mission.id}
               title={mission.title}
               description={mission.description}
-              category={mission.niveau || "Mission de service"}
-              date={mission.startDate?.slice(0,10)}
+              category={
+                mission.type === "mission_de_service"
+                  ? "Mission de service"
+                  : "Mission d’expertise"
+              }
+              date={mission.startDate?.slice(0, 10)}
               icon={defaultImg}
+              type={mission.type}
             />
           ))}
         </div>
       </div>
 
       <div className="scroll-buttons-section">
-        <img src={arrowLeft} className="scroll-btn-section" onClick={scrollLeft} />
-        <img src={arrowRight} className="scroll-btn-section" onClick={scrollRight} />
+        <img
+          src={arrowLeft}
+          className="scroll-btn-section"
+          onClick={scrollLeft}
+          alt="scroll left"
+        />
+        <img
+          src={arrowRight}
+          className="scroll-btn-section"
+          onClick={scrollRight}
+          alt="scroll right"
+        />
       </div>
     </section>
   );
