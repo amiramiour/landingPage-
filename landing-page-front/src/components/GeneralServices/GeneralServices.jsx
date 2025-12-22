@@ -1,44 +1,31 @@
-import React from 'react';
-import ServiceCard1 from '../ServiceCard1/ServiceCard';
-import './GeneralServices.css';
-import receptionist from '../../assets/recept.jpeg';
-import Animateur from '../../assets/Animateur interculturel.jpeg';
-import Assistant from '../../assets/Assistant relation.jpeg';
-import Assistantexport from '../../assets/Assistant export.png';
+import React, { useRef, useEffect, useState } from "react";
+import ServiceCard1 from "../ServiceCard1/ServiceCard";
+import "./GeneralServices.css";
 
-
-const servicesData = [
-  {
-    title: 'Réceptionniste bilingue/trilingue',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    category: 'Office de tourisme en France',
-    date: '15 DEC 2024',
-    icon: receptionist,
-  },
-  {
-    title: 'Animateur interculturel',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    category: 'CDJ',
-    date: '10 DEC 2024',
-    icon: Animateur,
-  },
-  {
-    title: 'Assistant relation client international',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    category: 'Groupe valorlty',
-    date: '07 DEC 2024',
-    icon: Assistant,
-  },
-  {
-    title: 'Assistant export',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    category: 'Groupe valorlty',
-    date: '03 DEC 2024',
-    icon: Assistantexport,
-  },
-];
+import arrowLeft from "../../assets/ButtonVgauche.png";
+import arrowRight from "../../assets/ButtonVdroite.png";
+import defaultImg from "../../assets/Animateur interculturel.jpeg"; // ❗ Même image pour toutes
 
 const GeneralServices = () => {
+  const scrollRef = useRef(null);
+  const [missions, setMissions] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/missions")
+      .then((res) => res.json())
+      .then((data) => {
+        const all = data.data || data;
+        const filtered = all.filter(
+          (m) => m.type === "mission_de_service"
+        );
+        setMissions(filtered);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  const scrollLeft = () => scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
+  const scrollRight = () => scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+
   return (
     <section className="services">
       <div className="services-header-section">
@@ -48,12 +35,26 @@ const GeneralServices = () => {
         </p>
         <button className="voir-plus-section">Voir plus</button>
       </div>
-      <div className="services-scroll-section">
+
+      <div className="services-scroll-section" ref={scrollRef}>
         <div className="services-grid-section">
-          {servicesData.map((service, index) => (
-            <ServiceCard1 key={index} {...service} />
+          {missions.map((mission) => (
+            <ServiceCard1
+              key={mission.id}
+              id={mission.id}
+              title={mission.title}
+              description={mission.description}
+              category={mission.niveau || "Mission de service"}
+              date={mission.startDate?.slice(0,10)}
+              icon={defaultImg}
+            />
           ))}
         </div>
+      </div>
+
+      <div className="scroll-buttons-section">
+        <img src={arrowLeft} className="scroll-btn-section" onClick={scrollLeft} />
+        <img src={arrowRight} className="scroll-btn-section" onClick={scrollRight} />
       </div>
     </section>
   );
