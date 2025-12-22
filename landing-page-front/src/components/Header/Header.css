@@ -1,51 +1,80 @@
 @import '../../styles/variables.css';
 
+/* ----------------------------------------- */
+/*                 HEADER                    */
+/* ----------------------------------------- */
+
 .header {
-  background-color: black;
   position: fixed;
-  width: 100%;
   top: 0;
-  z-index: 1000;
-  height: 60px;
+  width: 100%;
+
+  height: 72px;
+  padding: 0 25px;
+
   display: flex;
-  align-items: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  align-items: center;          
+  justify-content: flex-start;  
+
+  background-color: black;
+  z-index: 1000;
 }
 
 .header nav {
   display: flex;
+  align-items: center;          
   justify-content: space-between;
-  align-items: center;
+
   width: 100%;
-  padding: 0 2rem;
   max-width: 1300px;
-  margin: 0 auto;
+
+  flex-shrink: 0;
+  align-self: stretch;
+}
+.profile-dropdown {
+  right: 0;
+  left: auto;
+}
+.profile-dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;     
+  left: auto;   
 }
 
-/* Logo */
+/* ----------------------------------------- */
+/*                   LOGO                    */
+/* ----------------------------------------- */
+
 .header-logo {
-  height: 38px;
-  width: auto;
+  width: 95px;   
+  height: 26px;  
   object-fit: contain;
 }
 
-/* Liens centrés */
+/* ----------------------------------------- */
+/*              NAVIGATION LINKS             */
+/* ----------------------------------------- */
+
+/* LOGO → GAP 35PX → NAV LINKS */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  flex: 1;
-  justify-content: center; /* centre horizontalement */
+  gap: 32px;           /* ✔ 32px entre chaque lien */
+  margin-left: 35px;   /* ✔ 35px entre logo et nav links */
 }
 
+/* Style des liens */
 .nav-link {
   color: white;
   text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
+
   font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+
   cursor: pointer;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .nav-link:hover {
@@ -53,33 +82,45 @@
   transform: translateY(-2px);
 }
 
-/* Dropdown */
+/* ----------------------------------------- */
+/*                 DROPDOWN MISSIONS         */
+/* ----------------------------------------- */
+
 .vector-icon {
-  width: 12px; 
+  width: 12px;
   height: 8px;
   margin-left: 4px;
+}
+
+.dropdown {
+  position: relative;
 }
 
 .dropdown-content {
   position: absolute;
   display: flex;
   flex-direction: column;
+  top: 110%;
+
   border-radius: 8px;
   overflow: hidden;
   z-index: 1001;
+
+  background: white;
+  min-width: 180px;
+
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  margin-top: 5px;
-  width: max-content;
 }
 
 .dropdown-link {
-  padding: 10px 20px;
-  font-family: 'Montserrat', sans-serif;
+  padding: 12px 18px;
   text-decoration: none;
-  font-weight: 600;
+
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.95rem;
-  text-align: center;
-  transition: opacity 0.2s;
+  font-weight: 600;
+
+  transition: 0.2s;
 }
 
 .dropdown-link.qualifiees {
@@ -96,61 +137,97 @@
   opacity: 0.8;
 }
 
-/* Section droite */
+/* ----------------------------------------- */
+/*               SECTION DROITE              */
+/* ----------------------------------------- */
+
 .right-section {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
+/* Boutons */
 .btn-connexion-header {
-  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   color: white;
   border: 1px solid white;
-  padding: 0.5rem 1.2rem;
+
+  padding: 0.45rem 1.2rem;
   border-radius: 25px;
+
+  font-family: 'Montserrat', sans-serif;
   font-weight: 500;
+  font-size: 0.95rem;
+
+  background-color: transparent;
+  cursor: pointer;
+
+  transition: 0.2s ease;
   text-decoration: none;
-  transition: all 0.2s ease;
 }
 
-.btn-connexion-header:hover,
-.btn-connexion-header.active {
+.btn-connexion-header:hover {
   background-color: white;
   color: black;
 }
 
+/* Profil */
 .profile-pic {
   width: 40px;
   height: 40px;
+
   border-radius: 50%;
-  object-fit: cover;
   border: 2px solid white;
+  object-fit: cover;
+
+  cursor: pointer;
 }
 
-/* Menu mobile */
+.profile-dropdown {
+  background: white;
+  padding: 0;
+  min-width: 160px;
+}
+
+.profile-dropdown .dropdown-link {
+  background: white;
+  color: black !important;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-dropdown .dropdown-link:hover {
+  background: #f2f2f2;
+}
+
+/* ----------------------------------------- */
+/*                 MOBILE                    */
+/* ----------------------------------------- */
+
 .menu-toggle {
   display: none;
   background: transparent;
   border: none;
-  cursor: pointer;
 }
 
 .menu-toggle img {
   width: 24px;
-  height: 24px;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
     flex-direction: column;
     gap: 1rem;
+
     position: absolute;
-    top: 60px;
+    top: 72px;
     left: 0;
     width: 100%;
+
     background-color: black;
     padding: 1rem 0;
   }
@@ -161,24 +238,5 @@
 
   .menu-toggle {
     display: block;
-  }
-
-  .header-logo {
-    max-width: 120px;
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-link {
-    font-size: 0.85rem;
-  }
-
-  .btn-connexion-header {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.85rem;
-  }
-
-  .header-logo {
-    max-width: 100px;
   }
 }

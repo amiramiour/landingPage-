@@ -76,6 +76,24 @@
   gap: 2rem;
   width: max-content;
 }
+.scroll-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.scroll-btn {
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.scroll-btn:hover {
+  transform: scale(1.1);
+}
+
 
 /* === Responsive === */
 @media (max-width: 768px) {

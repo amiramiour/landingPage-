@@ -22,11 +22,13 @@
 
 /* ====== CARTES BLEU CLAIR ====== */
 .profil-card,
-.dossier-card,
 .suivi-card {
   background-color: #e6f2fb;
   border-radius: 15px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+.dossier-card{
+  border-radius: 15px;
 }
 
 /* ====== PROFIL ====== */
@@ -37,12 +39,11 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .profil-photo {
-  width: 90px;
-  height: 90px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto 10px;
@@ -57,23 +58,40 @@
 .profil-info p {
   font-size: 14px;
   color: #333;
-  margin: 10px 0;
+  margin: 20px 0;
   text-align: left;
+  display: grid;
 }
 
 .btn-modifier {
-  background-color: #007bff;
-  color: white;
+  background-color: #6EC1E4;
+  color: black;
   border: none;
   padding: 8px 14px;
   border-radius: 20px;
-  margin-top: 10px;
+  margin-top: 100px;
   cursor: pointer;
   align-self: center;
   transition: background-color 0.3s;
 }
 
 .btn-modifier:hover {
+  background-color: #0056b3;
+}
+.btn-modifier-photo {
+  background-color: #6EC1E4;
+  color: black;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  align-self: center;
+  transition: background-color 0.3s;
+    margin-top: 20px;
+
+}
+
+.btn-modifier-photo:hover {
   background-color: #0056b3;
 }
 
@@ -115,7 +133,7 @@
 .btn-upload {
   background: transparent;
   border: none;
-  color: #007bff;
+  color: #000;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -145,7 +163,7 @@
 }
 
 .btn-soumettre.active {
-  background-color: #007bff;
+  background-color: #6EC1E4;
   cursor: pointer;
 }
 
@@ -180,7 +198,7 @@
 }
 
 .etape.active svg {
-  color: #007bff;
+  color: #6EC1E4;
 }
 
 .etape p {
@@ -222,7 +240,7 @@
 }
 
 .btn-ok {
-  background-color: #007bff;
+  background-color: #6EC1E4;
   color: white;
   border: none;
   padding: 8px 18px;
@@ -240,18 +258,11 @@
   position: relative;
 }
 
-.dossier-timeline {
-  position: relative;
-  width: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .dossier-circle {
   width: 16px;
   height: 16px;
-  background-color: #56aaff;
+  background-color: #6ec1e4;
   border-radius: 50%;
   z-index: 1;
 }
@@ -265,10 +276,12 @@
 
 .dossier-content {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;   
+  align-items: flex-start;   
+  gap: 4px;                  
   flex: 1;
 }
+
 /* ====== TIMELINE VERTICALE DANS DÉPÔT DE DOSSIER ====== */
 .dossier-item {
   display: flex;
@@ -285,15 +298,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 4px;
 }
 
 .dossier-circle {
   width: 18px;
   height: 18px;
-  background-color: #56aaff;
+  background-color: #6ec1e4;
   border-radius: 50%;
   z-index: 2;
-  border: 1px solid #3399ff;
+  border: 1px solid #6EC1E4;
 }
 
 .dossier-line {
@@ -307,9 +321,61 @@
 .dossier-content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex: 1;
 }
+/* ====== TIMELINE ÉTAPES ====== */
+.timeline-etapes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0; 
+  margin-top: 40px;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.etape {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.etape p {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #222;
+  font-size: 14px;
+}
+
+/* ======================================================
+   CERCLE EXACT — version finale correcte
+   ====================================================== */
+
+
+
+/* Cadenas */
+.icone-lock-img {
+  width: 65px;        /* adapte si tu veux */
+  height: 65px;
+  object-fit: contain;
+  z-index: 3;
+}
+
+
+
+
+/* ===== Lignes ===== */
+.ligne-etape-img {
+  width: 250px;           /*  ajuste à la taille que tu veux */
+  height: auto;           /* garde les proportions */
+  object-fit: contain;
+  margin: 0 10px;         /* espace entre les cercles */
+  padding-bottom: 35px;
+}
+
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 900px) {
