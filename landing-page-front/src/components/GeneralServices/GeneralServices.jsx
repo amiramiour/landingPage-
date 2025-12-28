@@ -16,7 +16,7 @@ const GeneralServices = () => {
       .then((data) => {
         const all = data.data || data;
 
-        // 🔥 Trier par missions les plus récentes
+        //  Trier par missions les plus récentes
         const sorted = [...all].sort((a, b) => {
           if (!a.startDate || !b.startDate) return 0;
           return new Date(b.startDate) - new Date(a.startDate);
@@ -33,7 +33,7 @@ const GeneralServices = () => {
   const scrollRight = () =>
     scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
 
-  // ✅ On limite volontairement à 5 missions
+  //  On limite volontairement à 5 missions
   const visibleMissions = missions.slice(0, 5);
 
   return (
@@ -50,19 +50,23 @@ const GeneralServices = () => {
         <div className="services-grid-section">
           {visibleMissions.map((mission) => (
             <ServiceCard1
-              key={mission.id}
-              id={mission.id}
-              title={mission.title}
-              description={mission.description}
-              category={
-                mission.type === "mission_de_service"
-                  ? "Mission de service"
-                  : "Mission d’expertise"
-              }
-              date={mission.startDate?.slice(0, 10)}
-              icon={defaultImg}
-              type={mission.type}
-            />
+  key={mission.id}
+  title={mission.title}
+  description={mission.description}
+  date={mission.startDate?.slice(0, 10)}
+  type={mission.type}
+
+  /*  ENTREPRISE */
+  companyName={mission.employer?.companyName}
+  companyLogo={
+    mission.employer?.photoUrl
+      ? `http://localhost:3000/${mission.employer.photoUrl}`
+      : defaultImg
+  }
+
+  /* image mission */
+  icon={defaultImg}
+/>
           ))}
         </div>
       </div>
