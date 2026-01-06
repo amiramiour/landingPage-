@@ -132,9 +132,13 @@ const Header = () => {
               {profileOpen && (
                 <div className="dropdown-content profile-dropdown">
 
-                  <Link to="/profile-etudiant" className="dropdown-link">
-                    Mon profil
-                  </Link>
+                  <Link
+  to={user.role === "company" ? "/profile-entreprise" : "/profile-etudiant"}
+  className="dropdown-link"
+>
+  Mon profil
+</Link>
+
 
                   <Link to="/mes-candidatures" className="dropdown-link">
                     Mes candidatures
