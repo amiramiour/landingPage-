@@ -59,7 +59,7 @@ const Apropos = () => {
 
 
       {/* Platform Description */}
-      <section className="platform-section animate-on-scroll">
+      <section className="platform-section animate-on-scroll from-left">
   <div className="platform-illustration">
     <img src={amico} alt="Illustration étudiants" className="illustration" />
   </div>
@@ -72,7 +72,7 @@ const Apropos = () => {
 
 
       {/* Opportunities Section */}
-      <section className="opportunities-section animate-on-scroll">
+      <section className="opportunities-section animate-on-scroll from-right">
   <div className="opportunities-content">
     <p className="opportunities-description">
       Offre des <span className="text-orange-linkyjob">opportunités</span> variées, <br />
@@ -86,7 +86,7 @@ const Apropos = () => {
 
 
       {/* Security Section */}
-      <section className="security-section animate-on-scroll">
+      <section className="security-section animate-on-scroll from-left">
   <div className="security-illustration">
     <img src={pana} alt="Illustration sécurité" className="illustration" />
   </div>

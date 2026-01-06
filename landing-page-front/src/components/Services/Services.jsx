@@ -1,59 +1,59 @@
-//Services.jsx
-import React from 'react';
-import ServiceCard from '../ServiceCard/ServiceCard';
-import './Services.css';
-import tech from '../../assets/Techniciensinformatique.jpeg'; // Import du logo
-import soutien from '../../assets/Cours de soutien de langueetrangere.jpeg'; // Import du logo
-import community from '../../assets/CommunityManagermultilingue.jpeg'; // Import du logo
-import conseiller from '../../assets/Conseillerclienteleinternationale.jpeg'; // Import du logo
+import React, { useRef, useEffect, useState } from "react";
+import ServiceCard from "../ServiceCard/ServiceCard";
+import "./Services.css";
 
-const servicesData = [
-  {
-    title: 'Techniciens informatique',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    category: 'Freelance Informatique',
-    date: '11 DEC 2024',
-    icon: tech,
-  },
-  {
-    title: 'Cours de soutien de langue étrangère',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    category: 'Comptabilité',
-    date: '05 DEC 2024',
-    icon: soutien,
-  },
-  {
-    title: 'Community Manager multilingue',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    category: 'Community',
-    date: '30 NOV 2024',
-    icon: community,
-  },
-  {
-    title: 'Conseiller commercial',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    category: 'Diplomatie',
-    date: '27 NOV 2024',
-    icon: conseiller,
-  },
-];
+import arrowLeft from "../../assets/btn_blue_left.png";
+import arrowRight from "../../assets/btn_blue_right.png";
+import defaultImg from "../../assets/Techniciensinformatique.jpeg"; 
 
 const Services = () => {
+  const scrollRef = useRef(null);
+  const [students, setStudents] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/students")
+      .then((res) => res.json())
+      .then((data) => {
+        setStudents(data.data || data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  const scrollLeft = () =>
+    scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
+
+  const scrollRight = () =>
+    scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+
   return (
     <section className="services">
       <div className="services-header">
-        <h2>PRESTATIONS QUALIFIES</h2>
+        <h2>NOS PROFILS ÉTUDIANTS</h2>
         <p className="services-description">
-          Pour les missions requérant des compétences techniques ou un savoir certifié.
+          Découvrez des étudiants qualifiés, prêts à intervenir sur vos projets.
         </p>
         <button className="voir-plus">Voir plus</button>
       </div>
-      <div className="services-scroll">
+
+      <div className="services-scroll" ref={scrollRef}>
         <div className="services-grid">
-          {servicesData.map((service, index) => (
-            <ServiceCard key={index} {...service} />
+          {students.map((student) => (
+            <ServiceCard
+              key={student.id}
+              id={student.id}
+photo={`http://localhost:3000/${student.photoUrl}`}
+              fullName={`${student.firstName} ${student.lastName}`}
+              training={student.training}
+              school={student.school}
+              date={student.createdAt?.slice(0, 10)}
+            />
           ))}
         </div>
+      </div>
+
+      <div className="scroll-buttons">
+        <img src={arrowLeft} className="scroll-btn" onClick={scrollLeft} />
+        <img src={arrowRight} className="scroll-btn" onClick={scrollRight} />
       </div>
     </section>
   );

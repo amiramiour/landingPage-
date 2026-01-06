@@ -8,7 +8,7 @@ function PqProfile() {
       
       {/* Bloc texte en haut à droite */}
       <div className="pq-profile-top-right">
-        <span className="pq-qualification-badge">Prestation Qualifiée</span>
+        <span className="pq-qualification-badge">Mission d'expertise</span>
         <h1 className="pq-profile-title">Techniciens informatique</h1>
       </div>
 

@@ -1,0 +1,392 @@
+/* ====== PAGE ====== */
+.profile-etudiant .profile-page {
+  background-color: #ffffff; /* fond global blanc */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 20px 40px; /* espace sous le header */
+  font-family: "Poppins", sans-serif;
+}
+
+/* ====== SECTION DU HAUT : 2 COLONNES ====== */
+.profile-etudiant .top-section {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* assure même hauteur */
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 40px;
+}
+
+/* ====== CARTES BLEU CLAIR ====== */
+.profile-etudiant .profil-card,
+.profile-etudiant .suivi-card {
+  background-color: #e6f2fb;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+.profile-etudiant .dossier-card{
+  border-radius: 15px;
+}
+
+/* ====== PROFIL ====== */
+.profile-etudiant .profil-card {
+  flex: 1;
+  max-width: 350px;
+  padding: 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-etudiant .profil-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 10px;
+}
+
+.profile-etudiant .profil-titre {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.profile-etudiant .profil-info p {
+  font-size: 14px;
+  color: #333;
+  margin: 20px 0;
+  text-align: left;
+  display: grid;
+}
+
+.profile-etudiant .btn-modifier {
+  background-color: #6EC1E4;
+  color: black;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  margin-top: 100px;
+  cursor: pointer;
+  align-self: center;
+  transition: background-color 0.3s;
+}
+
+.profile-etudiant .btn-modifier:hover {
+  background-color: #6EC1E43D;
+}
+.profile-etudiant .btn-modifier-photo {
+  background-color: #6EC1E4;
+  color: black;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  align-self: center;
+  transition: background-color 0.3s;
+    margin-top: 20px;
+
+}
+
+.profile-etudiant .btn-modifier-photo:hover {
+  background-color: #6EC1E43D;
+}
+
+/* ====== DÉPÔT DE DOSSIER ====== */
+.profile-etudiant .dossier-card {
+  flex: 2;
+  padding: 25px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profile-etudiant .dossier-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.profile-etudiant .dossier-liste {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.profile-etudiant .dossier-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #cfdbe6;
+}
+
+.profile-etudiant .dossier-nom {
+  text-transform: capitalize;
+  color: #000;
+}
+
+.profile-etudiant .btn-upload {
+  background: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.profile-etudiant .btn-upload:hover {
+  text-decoration: underline;
+}
+
+.profile-etudiant .icon-check {
+  color: #28a745;
+  font-size: 20px;
+}
+
+.profile-etudiant .btn-soumettre {
+  background-color: #ccc;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 25px;
+  cursor: not-allowed;
+  display: block;
+  margin: 25px auto 0;
+  transition: background 0.3s;
+}
+
+.profile-etudiant .btn-soumettre.active {
+  background-color: #6EC1E4;
+  cursor: pointer;
+}
+
+/* ====== SUIVI ====== */
+.profile-etudiant .suivi-card {
+  width: 100%;
+  max-width: 1200px;
+  padding: 30px;
+  text-align: center;
+}
+
+.profile-etudiant .suivi-card h2 {
+  color: #000;
+}
+
+.profile-etudiant .timeline {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.profile-etudiant .etape {
+  flex: 1;
+  text-align: center;
+  color: #999;
+}
+
+.profile-etudiant .etape svg {
+  font-size: 30px;
+  margin-bottom: 6px;
+  color: #ccc;
+}
+
+.profile-etudiant .etape.active svg {
+  color: #6EC1E4;
+}
+
+.profile-etudiant .etape p {
+  font-size: 14px;
+  margin: 0;
+  color: #333;
+}
+
+.profile-etudiant .etape small {
+  display: block;
+  color: #777;
+}
+
+/* ====== MODAL ====== */
+.profile-etudiant .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-etudiant .modal-content {
+  background: white;
+  padding: 30px 50px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.profile-etudiant .modal-icon {
+  color: #28a745;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.profile-etudiant .btn-ok {
+  background-color: #6EC1E4;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+/* ====== TIMELINE VERTICALE DANS DÉPÔT DE DOSSIER ====== */
+.profile-etudiant .dossier-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #cfdbe6;
+  position: relative;
+}
+
+
+.profile-etudiant .dossier-circle {
+  width: 16px;
+  height: 16px;
+  background-color: #6ec1e4;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.profile-etudiant .dossier-line {
+  width: 2px;
+  background-color: #000;
+  flex-grow: 1;
+  margin-top: 2px;
+}
+
+.profile-etudiant .dossier-content {
+  display: flex;
+  flex-direction: column;   
+  align-items: flex-start;   
+  gap: 4px;                  
+  flex: 1;
+}
+
+/* ====== TIMELINE VERTICALE DANS DÉPÔT DE DOSSIER ====== */
+.profile-etudiant .dossier-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #cfdbe6;
+  position: relative;
+}
+
+.profile-etudiant .dossier-timeline {
+  position: relative;
+  width: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.profile-etudiant .dossier-circle {
+  width: 18px;
+  height: 18px;
+  background-color: #6ec1e4;
+  border-radius: 50%;
+  z-index: 2;
+  border: 1px solid #6EC1E4;
+}
+
+.profile-etudiant .dossier-line {
+  width: 2px;
+  background-color: #000;
+  flex-grow: 1;
+  margin-top: 2px;
+  z-index: 1;
+}
+
+.profile-etudiant .dossier-content {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+/* ====== TIMELINE ÉTAPES ====== */
+.profile-etudiant .timeline-etapes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0; 
+  margin-top: 40px;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-etudiant .etape {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-etudiant .etape p {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #222;
+  font-size: 14px;
+}
+
+/* ======================================================
+   CERCLE EXACT — version finale correcte
+   ====================================================== */
+
+
+
+/* Cadenas */
+.profile-etudiant .icone-lock-img {
+  width: 65px;        /* adapte si tu veux */
+  height: 65px;
+  object-fit: contain;
+  z-index: 3;
+}
+
+
+
+
+/* ===== Lignes ===== */
+.profile-etudiant .ligne-etape-img {
+  width: 250px;           /*  ajuste à la taille que tu veux */
+  height: auto;           /* garde les proportions */
+  object-fit: contain;
+  margin: 0 10px;         /* espace entre les cercles */
+  padding-bottom: 35px;
+}
+
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+  .profile-etudiant .top-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-etudiant .profil-card,
+  .profile-etudiant .dossier-card {
+    width: 100%;
+    max-width: 700px;
+  }
+}

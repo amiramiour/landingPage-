@@ -1,168 +1,132 @@
 @import '../../styles/variables.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
+/* =========================
+   CARD CONTAINER
+========================= */
 .service-card {
-  flex: 0 0 280px;
+  flex: 0 0 320px;
   background: var(--white);
-  border-radius: 12px;
-  padding: 0;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--gray-200);
+  border-radius: 0;
   overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, scale 0.3s ease;
-  animation: fadeInUp 0.6s ease forwards;
-  transform: translateY(20px);
-  opacity: 0;
-  cursor: pointer;
   text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .service-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-5px);
 }
 
+/* =========================
+   IMAGE
+========================= */
 .service-card-image {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
-  margin-bottom: 0;
-  transition: transform 0.5s ease;
 }
 
-.service-card:hover .service-card-image {
-  transform: scale(1.05);
+/* =========================
+   CONTENT
+========================= */
+.service-card-content {
+  padding-top: 1rem;
 }
 
-.service-qualifies {
-  color: var(--gray-600);
-  font-size: 0.875rem;
-  padding: 1rem 1rem 0.5rem;
-}
-
-.service-card h3 {
-  font-size: 1.25rem;
-  color: var(--text-color);
-  margin-bottom: 0.5rem;
-  padding: 0 1rem;
+/* Nom + Prénom */
+.service-card-content h3 {
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
-  transition: color 0.3s ease;
+  font-size: 20px;
+  line-height: 150%;
+  margin: 0 0 4px;
+  color: var(--text-color);
 }
 
-.service-card:hover h3 {
-  color: var(--primary-color, #ffd700);
+/* Formation */
+.service-training {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 140%;
+  margin-bottom: 8px;
+  color: black;
 }
 
-.service-card p {
+/* Description */
+.service-card-content p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
   color: var(--gray-600);
-  margin-bottom: 1rem;
-  font-size: 0.875rem;
-  padding: 0 1rem;
-  transition: color 0.3s ease;
+  margin: 0;
 }
 
-.service-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  border-top: 1px solid var(--gray-200);
-  background: var(--gray-50);
-}
-
-.category-container {
+/* =========================
+   FOOTER
+========================= */
+.service-card-footer {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  margin-top: auto;
 }
 
+/* Logo université */
 .category-icon {
-  width: 24px;
-  height: 24px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
+/* Infos université */
+.service-meta-info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Nom école */
 .category {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
   color: var(--gray-600);
-  font-size: 0.875rem;
 }
 
+/* Date */
 .date {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
   color: var(--gray-500);
-  font-size: 0.875rem;
-  padding-left: 2rem;
 }
 
-/* Animation keyframes */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* === Responsive === */
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 768px) {
   .service-card {
-    flex: 0 0 240px;
+    flex: 0 0 260px;
   }
 
   .service-card-image {
     height: 180px;
   }
 
-  .service-qualifies {
-    font-size: 0.8rem;
-    padding: 0.8rem 1rem 0.5rem;
+  .service-card-content h3 {
+    font-size: 18px;
   }
 
-  .service-card h3 {
-    font-size: 1.1rem;
-    padding: 0 1rem;
-  }
-
-  .service-card p {
-    font-size: 0.8rem;
-    padding: 0 1rem;
-  }
-
-  .category {
-    font-size: 0.8rem;
-  }
-
-  .date {
-    font-size: 0.8rem;
-    padding-left: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .service-card {
-    flex: 0 0 200px;
-  }
-
-  .service-card-image {
-    height: 150px;
-  }
-
-  .service-qualifies {
-    font-size: 0.75rem;
-  }
-
-  .service-card h3 {
-    font-size: 1rem;
-  }
-
-  .service-card p {
-    font-size: 0.75rem;
-  }
-
-  .category,
-  .date {
-    font-size: 0.75rem;
+  .service-training {
+    font-size: 18px;
   }
 }

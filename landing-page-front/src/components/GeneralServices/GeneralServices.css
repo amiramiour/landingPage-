@@ -22,7 +22,7 @@
   top: 0;
   width: 40px;
   height: 40px;
-  background-color: #7FD8B1;
+  background-color: #FF7F32;
   z-index: 0;
 }
 
@@ -48,7 +48,7 @@
   right: 0;
   top: 0;
   padding: 0.5rem 1.5rem;
-  background-color: #7FD8B1;
+  background-color: #FF7F32;
   color: black;
   border: none;
   border-radius: 20px;
@@ -76,6 +76,25 @@
   gap: 2rem;
   width: max-content;
 }
+
+.scroll-buttons-section {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.scroll-btn-section {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.scroll-btn-section:hover {
+  transform: scale(1.1);
+}
+
 @media (max-width: 768px) {
   .services-section {
     padding: 2rem 1rem;

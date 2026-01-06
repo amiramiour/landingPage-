@@ -1,166 +1,89 @@
-@import '../../styles/variables.css';
-
 .linky-service-card {
-  flex: 0 0 280px;
-  background: var(--white);
-  border-radius: 12px;
-  padding: 0;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--gray-200);
+  flex: 0 0 320px;
+  background: white;
+  border-radius: 0;
   overflow: hidden;
-  text-decoration: none;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  animation: fadeInUp 0.6s ease forwards;
-  transform: translateY(20px);
-  opacity: 0;
-  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .linky-service-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-5px);
 }
 
+/* IMAGE */
 .linky-service-card-image {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
-  margin-bottom: 0;
-  transition: transform 0.5s ease;
 }
 
-.linky-service-card:hover .linky-service-card-image {
-  transform: scale(1.05);
+/* TYPE DE MISSION (SOUS IMAGE) */
+.linky-service-type {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: bold;
 }
 
-.linky-service-qualifies {
-  color: var(--gray-600);
-  font-size: 0.875rem;
-  padding: 1rem 1rem 0.5rem;
+.linky-service-type.expertise {
+  background: #FFEB64;
+  color: black;
 }
+
+.linky-service-type.service {
+  background: #7FD8B1;
+  color: black;
+}
+
 
 .linky-service-card h3 {
-  font-size: 1.25rem;
-  color: var(--text-color);
+  font-size: 1.4rem;
   margin-bottom: 0.5rem;
-  padding: 0 1rem;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.linky-service-card:hover h3 {
-  color: #7FD8B1; /* Accentuation personnalisée au survol */
+  font-weight: 700;
 }
 
 .linky-service-card p {
-  color: var(--gray-600);
-  margin-bottom: 1rem;
-  font-size: 0.875rem;
-  padding: 0 1rem;
-  transition: color 0.3s ease;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
 }
 
-.linky-service-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  border-top: 1px solid var(--gray-200);
-  background: var(--gray-50);
-}
-
-.linky-category-container {
+/* FOOTER */
+.linky-service-footer {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
-.linky-category-icon {
-  width: 24px;
-  height: 24px;
+.linky-company-logo {
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.linky-category {
-  color: var(--gray-600);
-  font-size: 0.875rem;
+.linky-company-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.linky-company-name {
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .linky-date {
-  color: var(--gray-500);
-  font-size: 0.875rem;
-  padding-left: 2rem;
+  font-size: 0.85rem;
+  color: #666;
 }
 
-/* Animation keyframes */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* === Responsive === */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .linky-service-card {
-    flex: 0 0 240px;
+    flex: 0 0 260px;
   }
 
   .linky-service-card-image {
     height: 180px;
-  }
-
-  .linky-service-qualifies {
-    font-size: 0.8rem;
-    padding: 0.8rem 1rem 0.5rem;
-  }
-
-  .linky-service-card h3 {
-    font-size: 1.1rem;
-  }
-
-  .linky-service-card p {
-    font-size: 0.8rem;
-  }
-
-  .linky-category {
-    font-size: 0.8rem;
-  }
-
-  .linky-date {
-    font-size: 0.8rem;
-    padding-left: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .linky-service-card {
-    flex: 0 0 200px;
-  }
-
-  .linky-service-card-image {
-    height: 150px;
-  }
-
-  .linky-service-qualifies {
-    font-size: 0.75rem;
-  }
-
-  .linky-service-card h3 {
-    font-size: 1rem;
-  }
-
-  .linky-service-card p {
-    font-size: 0.75rem;
-  }
-
-  .linky-category,
-  .linky-date {
-    font-size: 0.75rem;
   }
 }

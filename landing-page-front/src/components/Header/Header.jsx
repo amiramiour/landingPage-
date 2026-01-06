@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo_linkyjob.svg';
 import menuIcon from '../../assets/menu-icon-24.png';
 import vectorIcon from '../../assets/Vector.png';
 import { useAuth } from '../context/AuthContext';
@@ -9,23 +9,22 @@ import { useAuth } from '../context/AuthContext';
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [prestationsOpen, setPrestationsOpen] = useState(false);
-  const [activePage, setActivePage] = useState('');
-  const { user } = useAuth();
-  const location = useLocation();
+  const [profileOpen, setProfileOpen] = useState(false);
 
-  React.useEffect(() => {
-    // initialise l’onglet actif selon l’URL actuelle
-    const path = location.pathname;
-    if (path.includes('espace-etudiant')) setActivePage('etudiant');
-    else if (path.includes('espace-entreprise')) setActivePage('entreprise');
-    else if (path.includes('apropos')) setActivePage('apropos');
-    else if (path.includes('contact')) setActivePage('contact');
-    else setActivePage('');
-  }, [location.pathname]);
+  const { user, logout } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const togglePrestations = () => setPrestationsOpen(!prestationsOpen);
+  const toggleProfile = () => setProfileOpen(!profileOpen);
 
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
+  // 🎨 Couleurs dynamiques par page
   const getLinkStyle = (page) => {
     switch (page) {
       case 'etudiant': return { color: '#6EC1E4' };
@@ -36,69 +35,122 @@ const Header = () => {
     }
   };
 
+  //  Applique la couleur si la route est active
+  const activeStyle = (path, key) =>
+    location.pathname === path ? getLinkStyle(key) : {};
+
   return (
     <header className="header">
       <nav>
+
+        {/* Logo */}
         <div className="left-section">
-          <div className="logo">
-            <Link to="/">
-              <img src={logo} alt="LINKYJOB Logo" className="header-logo" />
-            </Link>
+          <Link to="/">
+            <img src={logo} alt="LINKYJOB Logo" className="header-logo" />
+          </Link>
+        </div>
+
+        {/* Liens */}
+        <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
+
+          <Link
+            to="/espace-etudiant"
+            className="nav-link"
+            style={activeStyle('/espace-etudiant', 'etudiant')}
+          >
+            Espace Etudiant
+          </Link>
+
+          <Link
+            to="/espace-entreprise"
+            className="nav-link"
+            style={activeStyle('/espace-entreprise', 'entreprise')}
+          >
+            Espace Entreprise
+          </Link>
+
+          {/* Dropdown Missions */}
+          <div className="dropdown">
+            <span className="nav-link" onClick={togglePrestations}>
+              Missions
+              <img src={vectorIcon} alt="▼" className="vector-icon" />
+            </span>
+
+            {prestationsOpen && (
+              <div className="dropdown-content">
+                <Link
+                  to="/prestationsqualifiee"
+                  className="dropdown-link qualifiees"
+                >
+                  Missions d'expertise
+                </Link>
+
+                <Link
+                  to="/prestationsgenerales"
+                  className="dropdown-link generales"
+                >
+                  Missions de service
+                </Link>
+              </div>
+            )}
           </div>
-          <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
-            <Link
-              to="/espace-etudiant"
-              className="nav-link"
-              onClick={() => setActivePage('etudiant')}
-              style={activePage === 'etudiant' ? getLinkStyle('etudiant') : {}}
-            >
-              Espace Etudiant
-            </Link>
-            <Link
-              to="/espace-entreprise"
-              className="nav-link"
-              onClick={() => setActivePage('entreprise')}
-              style={activePage === 'entreprise' ? getLinkStyle('entreprise') : {}}
-            >
-              Espace Entreprise
-            </Link>
+
+          <Link
+            to="/apropos"
+            className="nav-link"
+            style={activeStyle('/apropos', 'apropos')}
+          >
+            A propos
+          </Link>
+
+          <Link
+            to="/contact"
+            className="nav-link"
+            style={activeStyle('/contact', 'contact')}
+          >
+            Contact
+          </Link>
+
+        </div>
+
+        {/* Profil + Menu Mobile */}
+        <div className="right-section">
+
+          {user ? (
             <div className="dropdown">
-              <span className="nav-link" onClick={togglePrestations}>
-                Prestations <img src={vectorIcon} alt="Flèche bas" className="vector-icon" />
-              </span>
-              {prestationsOpen && (
-                <div className="dropdown-content">
-                  <Link to="/prestationsqualifiee" className="dropdown-link qualifiees">
-                    Prestations Qualifiées
+              <img
+                src={
+                  user.photoUrl
+                    ? `http://localhost:3000/${user.photoUrl}`
+                    : "http://localhost:3000/uploads/default-avatar.png"
+                }
+                alt="Profil"
+                className="profile-pic"
+                onClick={toggleProfile}
+              />
+
+              {profileOpen && (
+                <div className="dropdown-content profile-dropdown">
+
+                  <Link
+  to={user.role === "company" ? "/profile-entreprise" : "/profile-etudiant"}
+  className="dropdown-link"
+>
+  Mon profil
+</Link>
+
+
+                  <Link to="/mes-candidatures" className="dropdown-link">
+                    Mes candidatures
                   </Link>
-                  <Link to="/prestationsgenerales" className="dropdown-link generales">
-                    Prestations Générales
-                  </Link>
+
+                  <button className="dropdown-link logout-link" onClick={handleLogout}>
+                    Déconnexion
+                  </button>
+
                 </div>
               )}
             </div>
-            <Link
-              to="/apropos"
-              className="nav-link"
-              onClick={() => setActivePage('apropos')}
-              style={activePage === 'apropos' ? getLinkStyle('apropos') : {}}
-            >
-              A propos
-            </Link>
-            <Link
-              to="/contact"
-              className="nav-link"
-              onClick={() => setActivePage('contact')}
-              style={activePage === 'contact' ? getLinkStyle('contact') : {}}
-            >
-              Contact
-            </Link>
-          </div>
-        </div>
-
-        <div className="right-section">
-          {user ? (
-            <img src={user.photo} alt="Profil" className="profile-pic" />
           ) : (
             <NavLink
               to="/login"
@@ -109,10 +161,14 @@ const Header = () => {
               Connexion
             </NavLink>
           )}
+
+          {/* Bouton burger */}
           <button className="menu-toggle" onClick={toggleMenu}>
-            <img src={menuIcon} alt="Menu Icon" />
+            <img src={menuIcon} alt="menu" />
           </button>
+
         </div>
+
       </nav>
     </header>
   );

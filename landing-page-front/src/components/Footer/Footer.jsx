@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.css';
-import LogoFooter from '../../assets/LogoFooter.png';
+import LogoFooter from '../../assets/Logo_linkyjob_Blanc.png';
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -21,6 +21,8 @@ const Footer = () => {
           <a href="#prestations">Prestations</a>
           <a href="#a-propos">A propos</a>
           <a href="#contact">Contact</a>
+          <Link to="/feedback" className="nav-link">Feedback</Link>
+
         </nav>
 
         <hr className="divider" />

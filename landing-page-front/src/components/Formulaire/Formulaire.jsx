@@ -29,7 +29,6 @@ const Formulaire = () => {
     { label: 'DIPLOME ETUDES', name: 'diplomeEtudes' },
     { label: 'RIB', name: 'rib' },
     { label: 'JUSTIFICATIF DOMICILE', name: 'justificatifDomicile' },
-    { label: '3 CHOIX PRESTATIONS', name: 'troisChoixPrestations' },
     { label: 'CHARTE D’ENGAGEMENT', name: 'charteEngagement' }
   ];
 

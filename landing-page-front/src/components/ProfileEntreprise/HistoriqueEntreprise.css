@@ -1,0 +1,266 @@
+.historique-entreprise {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* ===== SECTIONS ===== */
+.historique-section {
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.historique-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.historique-subtitle {
+  color: #555;
+  margin-bottom: 40px;
+}
+
+/* ===== COULEURS ===== */
+.orange {
+  color: #FF7F32;
+}
+
+.yellow {
+  background-color: #FFEB64;
+}
+
+.green {
+  background-color: #7FD8B1;
+}
+
+/* ===== MISSIONS GRID ===== */
+.missions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 👈 4 MAX */
+  gap: 30px;
+}
+
+/* ===== CARD ===== */
+.mission-card {
+  background: white;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+/* IMAGE */
+.mission-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* BADGE */
+.mission-badge {
+  align-self: flex-start;
+  margin: 15px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* TITRE */
+.mission-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 15px 8px;
+  color: #111;
+}
+
+/* DESCRIPTION */
+.mission-description {
+  font-size: 14px;
+  color: #555;
+  margin: 0 15px 15px;
+  line-height: 1.4;
+}
+
+/* FOOTER */
+.mission-meta {
+  margin-top: auto;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mission-company {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  color: #555;
+}
+
+.mission-company span {
+  color: #999;
+}
+/* ===== FOOTER LINKYJOB ===== */
+.linky-service-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 15px 15px;
+}
+
+.linky-company-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.linky-company-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.linky-company-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #111;
+}
+
+.linky-date {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* ===== BOUTON MODIFIER EXACT ===== */
+.linky-btn-modifier {
+  background-color: #FF7F32;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.linky-btn-modifier:hover {
+  background-color: #e96f28;
+  transform: translateY(-1px);
+}
+/* ===== ALIGNEMENT GAUCHE CARTE MISSION ===== */
+.mission-card {
+  text-align: left;
+}
+/* Bouton en bas de carte */
+.mission-btn {
+  margin: 0 15px 15px;
+  align-self: flex-start;
+}
+/* ===== NORMALISATION HAUTEUR DES CARTES ===== */
+
+/* Le contenu texte doit prendre une hauteur fixe */
+.mission-title,
+.mission-description {
+  min-height: 48px;
+}
+
+/* La description peut prendre plus de place */
+.mission-description {
+  min-height: 84px;
+}
+/* Footer toujours aligné entre les cartes */
+.linky-service-footer {
+  margin-top: auto;
+}
+
+/* Bouton toujours au même niveau */
+.mission-btn {
+  margin-top: 10px;
+}
+/* ===== LAYOUT DÉTAIL MISSION ===== */
+.mission-detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.mission-detail-left {
+  max-width: 420px;
+}
+
+.mission-extra {
+  padding: 0 15px 15px;
+  font-size: 14px;
+  color: #444;
+}
+
+.mission-extra p {
+  margin-bottom: 6px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .missions-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .missions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .missions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== CANDIDATS ===== */
+.candidats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 30px;
+}
+
+.candidat-card {
+  text-align: center;
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #ddd;
+  margin: 0 auto 10px;
+}
+
+.candidat-card h4 {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.candidat-card span {
+  font-size: 12px;
+  color: #777;
+}
+
+.candidat-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.icon-btn {
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+}

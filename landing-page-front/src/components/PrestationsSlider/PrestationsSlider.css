@@ -1,0 +1,96 @@
+.prestas-container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.prestas-title {
+    text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #6EC1E4;
+  margin-bottom: 1rem;
+}
+
+.prestas-subtitle {
+  color: #444;
+  margin-top: -10px;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+/* FILTRES */
+.prestas-filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.filter-button,
+.filter-link {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  font-weight: 500;
+  background: transparent;
+  color: black;
+  transition: 0.3s;
+}
+
+.filter-button:hover,
+.filter-link:hover {
+  background: #6EC1E4;
+  color: white;
+}
+
+.filter-button.active {
+    border: 2px solid black;
+  background: white;
+  color: black;
+}
+
+.filter-link.active {
+  background: #6EC1E4;
+  color: white;
+}
+
+/* 🌟 3 colonnes FIXES */
+.prestas-grid-fixed {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* toujours 3 */
+  gap: 1.5rem;
+}
+
+/* NAVIGATION */
+.prestas-navigation {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.nav-button-img {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav-button-img:hover {
+  transform: scale(1.1);
+}
+
+.nav-button-img.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .prestas-grid-fixed {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,13 +1,14 @@
 import React from 'react';
 import './EntrepriseHero.css';
-import logoHero from '../../assets/LogoHero.png';
-import { Link } from 'react-router-dom';
+import logoHero from '../../assets/Logo_linkyjob_Blanc.png';
+import { useNavigate } from 'react-router-dom';
 
 const Entreprise = () => {
+  const navigate = useNavigate();
   return (
     <div className="entreprise-hero-container">
       <div className="entreprise-hero">
-      <img src={logoHero} alt="LINKYJOB Logo" className="entreprise-hero-logo" />
+        <img src={logoHero} alt="LINKYJOB Logo" className="entreprise-hero-logo" />
         
         <h1 className="entreprise-hero-title">
           <div className="entreprise-hero-line">
@@ -19,6 +20,18 @@ const Entreprise = () => {
             <span className="entreprise-hero-linky">Talents internationaux.</span>
           </div>
         </h1>
+
+        {/* BOUTON */}
+        <div className="entreprise-hero-btn-wrapper">
+          <button 
+            className="entreprise-hero-add-btn"
+            onClick={() => navigate("/addprestation")}
+          >
+            <span className="entreprise-hero-plus">+</span>
+            Ajouter une prestation
+          </button>
+        </div>
+
       </div>
     </div>
   );

@@ -9,21 +9,21 @@ const Prestas = () => {
   const prestas = [
     {
       image: tech,
-      type: 'Prestation qualifiés',
+      type: 'MISSION D’EXPERTISE',
       date: '11 DEC 2024',
       title: 'Techniciens informatique',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
     },
     {
       image: CommunityManagermultilingue,
-      type: 'Service qualifiés',
+      type: 'MISSION D’EXPERTISE',
       date: '05 DEC 2024',
       title: 'Community Manager multilingue',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
     },
     {
       image: Cours,
-      type: 'Service qualifiés',
+      type: 'MISSION D’EXPERTISE',
       date: '30 NOV 2024',
       title: 'Cours de soutien langue étrangère',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
@@ -45,8 +45,8 @@ const Prestas = () => {
       <h2 className="prestas-title">ESPACE ETUDIANT</h2>
       <div className="prestas-filters">
         <button className="filter-button active">Tous</button>
-        <a href="#" className="filter-link">Prestations qualifiés</a>
-        <a href="#" className="filter-link">Prestations générales</a>
+        <a href="#" className="filter-link">MISSIONS D’EXPERTISE</a>
+        <a href="#" className="filter-link">MISSIONS DE SERVICE</a>
       </div>
 
       <div className="prestas-grid">

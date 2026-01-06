@@ -27,7 +27,31 @@
     height: auto;
     border-radius: 12px;
   }
-  
+  /* ============================= */
+/* SCROLL ANIMATIONS LEFT / RIGHT */
+/* ============================= */
+
+.animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+/* Entrée par la gauche */
+.animate-on-scroll.from-left {
+  transform: translateX(-80px);
+}
+
+/* Entrée par la droite */
+.animate-on-scroll.from-right {
+  transform: translateX(80px);
+}
+
+/* Quand visible */
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
   /* Responsive Design */
   @media (max-width: 1024px) {
     .hero-linkyjob,

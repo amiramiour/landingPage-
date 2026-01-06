@@ -1,86 +1,29 @@
-import React from 'react';
-import { Linkedin, Twitter, Instagram } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import './TeamDirectory.css';
+import React, { useEffect, useState } from "react";
+import { Linkedin, Twitter, Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
+import "./TeamDirectory.css";
 
-const teamMembers = [
-  {
-    id: 1,
-    name: 'Jenny Wilson',
-    title: 'Job title',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
-    image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600',
-    social: { linkedin: '#', twitter: '#', instagram: '#' }
-  },
-  {
-    id: 2,
-    name: 'Annette Black',
-    title: 'Job title',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
-    image: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=600',
-    social: { linkedin: '#', twitter: '#', instagram: '#' }
-  },
-  {
-    id: 3,
-    name: 'Bessie Cooper',
-    title: 'Job title',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
-    image: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600',
-    social: { linkedin: '#', twitter: '#', instagram: '#' }
-  },
-  {
-    id: 4,
-    name: 'Sihem Lakhder',
-    title: 'Job title',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
-    image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=600',
-    social: { linkedin: '#', twitter: '#', instagram: '#' }
-  },
-  {
-    id: 5,
-    name: 'Nadir Larbi',
-    title: 'Job title',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
-    image: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=600',
-    social: { linkedin: '#', twitter: '#', instagram: '#' }
-  },
-  {
-    id: 6,
-    name: 'Ronald Richards',
-    title: 'Job title',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
-    image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=600',
-    social: { linkedin: '#', twitter: '#', instagram: '#' }
-  },
-  {
-    id: 7,
-    name: 'Eleanor Pena',
-    title: 'Job title',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
-    image: 'https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=600',
-    social: { linkedin: '#', twitter: '#', instagram: '#' }
-  },
-  {
-    id: 8,
-    name: 'Jenny Wilson',
-    title: 'Job title',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
-    image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=600',
-    social: { linkedin: '#', twitter: '#', instagram: '#' }
-  },
-  {
-    id: 9,
-    name: 'Cody Fisher',
-    title: 'Job title',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
-    image: 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600',
-    social: { linkedin: '#', twitter: '#', instagram: '#' }
-  }
-];
+const DEFAULT_DESCRIPTION =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.";
 
 function TeamDirectory() {
+  const [students, setStudents] = useState([]);
+  const [limit, setLimit] = useState(9);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/students")
+      .then((res) => res.json())
+      .then((data) => {
+        const list = data.data || data;
+        setStudents(list);
+      })
+      .catch((err) => console.error("Erreur chargement étudiants :", err));
+  }, []);
+
+  const visibleStudents = students.slice(0, limit);
+
   const handleLoadMore = () => {
-    console.log('Load more team members');
+    setLimit((prev) => prev + 6);
   };
 
   return (
@@ -89,40 +32,59 @@ function TeamDirectory() {
         <h2 className="team-directory__title">ESPACE ENTREPRISE</h2>
 
         <div className="team-directory__grid">
-          {teamMembers.map((member) => (
+          {visibleStudents.map((student) => (
             <Link
-              to={`/profile/${member.id}`}
-              key={member.id}
+              to={`/profile/${student.id}`}
+              key={student.id}
               className="team-member-link"
             >
               <div className="team-member">
+                {/* PHOTO */}
                 <div className="team-member__image-wrapper">
                   <img
-                    src={member.image}
-                    alt={member.name}
+                    src={`http://localhost:3000/${student.photoUrl}`}
+                    alt={`${student.firstName} ${student.lastName}`}
                     className="team-member__image"
+                    onError={(e) => {
+                      e.target.src = "/uploads/default-avatar.png";
+                    }}
                   />
                 </div>
 
-                <h3 className="team-member__name">{member.name}</h3>
-                <p className="team-member__title">{member.title}</p>
-                <p className="team-member__description">{member.description}</p>
+                {/* NOM COMPLET */}
+                <h3 className="team-member__name">
+                  {student.firstName} {student.lastName}
+                </h3>
 
+                {/* FORMATION */}
+                <p className="team-member__title">{student.training}</p>
+
+                {/* DESCRIPTION FIXE */}
+                <p className="team-member__description">
+                  {DEFAULT_DESCRIPTION}
+                </p>
+
+                {/* SOCIAL (placeholder) */}
                 <div className="team-member__social">
-                  <a href={member.social.linkedin} className="social-icon" aria-label="LinkedIn"><Linkedin size={18} /></a>
-                  <a href={member.social.twitter} className="social-icon" aria-label="Twitter"><Twitter size={18} /></a>
-                  <a href={member.social.instagram} className="social-icon" aria-label="Instagram"><Instagram size={18} /></a>
+                  <span className="social-icon"><Linkedin size={18} /></span>
+                  <span className="social-icon"><Twitter size={18} /></span>
+                  <span className="social-icon"><Instagram size={18} /></span>
                 </div>
               </div>
             </Link>
           ))}
         </div>
 
-        <div className="team-directory__cta">
-          <button className="team-directory__load-more" onClick={handleLoadMore}>
-            Voir plus
-          </button>
-        </div>
+        {limit < students.length && (
+          <div className="team-directory__cta">
+            <button
+              className="team-directory__load-more"
+              onClick={handleLoadMore}
+            >
+              Voir plus
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -1,0 +1,72 @@
+@import '../../styles/variables.css';
+
+.hero-presta-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.hero-presta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-presta-logo {
+  max-height: 150px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-presta-title {
+  color: white;
+  line-height: 1.3;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+.hero-presta-text-white {
+  font-size: 24px;
+  color: white;
+}
+
+.hero-presta-text-colored {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.hero-presta-button {
+  margin-top: 2rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  color: black;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .2s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.hero-presta-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-presta-text-white {
+    font-size: 20px;
+  }
+
+  .hero-presta-text-colored {
+    font-size: 26px;
+  }
+
+  .hero-presta-logo {
+    max-width: 75%;
+  }
+}

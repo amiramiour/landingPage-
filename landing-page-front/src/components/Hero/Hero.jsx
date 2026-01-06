@@ -1,6 +1,6 @@
 import React from 'react';
 import './Hero.css';
-import logoHero from '../../assets/LogoHero.png'; 
+import logoHero from '../../assets/Logo_linkyjob_Blanc.png'; 
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
@@ -13,11 +13,11 @@ const Hero = () => {
           <div className="hero-line">
             <span className="hero-plateforme">La plateforme </span>
             <span className="hero-relie"> qui relie </span>
-            <span className="hero-students"> étudiants internationaux </span>
+            <span className="hero-students"> Étudiants Internationaux </span>
+            <span className="hero-et">et</span>
           </div>
           <div className="hero-line">
-            <span className="hero-et">et</span>
-            <span className="hero-employers"> employeurs </span>
+            <span className="hero-employers"> Employeurs </span>
             <span className="hero-missions"> pour des missions adaptées partout en France.</span>
           </div>
         </h1>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ForgetPass.css';
-import LogoLogin from '../../assets/LogoLogin.png';
+import LogoLogin from '../../assets/logo_linkyjob.png';
 
 const ForgetPass = () => {
   const [email, setEmail] = useState('');

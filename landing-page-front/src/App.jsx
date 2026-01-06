@@ -1,20 +1,25 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import EspaceEtudiant from './components/screens/EspaceEtudiant';
-import EspaceEntreprise from './components/screens/EspaceEntreprise';
-import Home from './components/screens/Home';
-import Contact from './components/screens/Contact';
-import LogIn from './components/screens/LogIn';
-import ForgetPass from './components/screens/ForgetPass';
-import ChoseInscrip from './components/screens/ChoseInscrip';
-import RegisterFormEtud from './components/screens/RegisterFormEtudScreen';
-import RegisterFormEntreprise from './components/screens/RegisterFormEntrepriseScreen';
-import ProfileEntreprise from './components/screens/ProfileEntrepriseScreen';
-import PrestationsqualifieScreen from './components/screens/PrestationsqualifieScreen';
-import PqProfileScreen from './components/screens/PqProfileScreen';
-import AproposScreen from './components/screens/AproposScreen';
+import EspaceEtudiant from './screens/EspaceEtudiant';
+import EspaceEntreprise from './screens/EspaceEntreprise';
+import Home from './screens/Home';
+import Contact from './screens/Contact';
+import LogIn from './screens/LogIn';
+import ForgetPass from './screens/ForgetPass';
+import ChoseInscrip from './screens/ChoseInscrip';
+import RegisterFormEtud from './screens/RegisterFormEtudScreen';
+import RegisterFormEntreprise from './screens/RegisterFormEntrepriseScreen';
+import StudentPublicProfile from './screens/StudentPublicProfileScreen';
+import PrestationsqualifieScreen from './screens/PrestationsScreen';
+import PqProfileScreen from './screens/PqProfileScreen';
+import AproposScreen from './screens/AproposScreen';
+import ProfileEtudiant from './screens/ProfileEtudiant';
+import ProfileEntreprise from './screens/ProfileEntreprise';
 import { AuthProvider } from './components/context/AuthContext'; 
+import Feedback from './screens/Feedback';
+import AddPrestation from './screens/AddPrestation';
+import PrestationsScreen from './screens/PrestationsScreen';
 
 function App() {
   return (
@@ -31,10 +36,15 @@ function App() {
           <Route path="/choseInscrip" element={<ChoseInscrip />} />
           <Route path="/registerStudent" element={<RegisterFormEtud />} />
           <Route path="/registerEntreprise" element={<RegisterFormEntreprise />} />
-          <Route path="/profile/:id" element={<ProfileEntreprise />} />
-          <Route path="/prestationsqualifiee" element={<PrestationsqualifieScreen />} />
+          <Route path="/profile/:id" element={<StudentPublicProfile />} />
           <Route path="/prestationsqualifiee/:id" element={<PqProfileScreen />} />
           <Route path="/apropos" element={<AproposScreen />} />
+          <Route path="/profile-etudiant" element={<ProfileEtudiant />} />
+          <Route path="/profile-entreprise" element={<ProfileEntreprise />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/addprestation" element={<AddPrestation />} />
+          <Route path="/prestationsqualifiee" element={<PrestationsScreen />} />
+          <Route path="/prestationsgenerales" element={<PrestationsScreen />} />
         </Routes>
       </div>
     </Router>

@@ -30,7 +30,7 @@
 }
 
 .hero-plateforme {
-  font-size: 32px;
+  font-size: 24px;
   color: var(--white);
   font-weight: bold;
   font-family: 'Montserrat', sans-serif;
@@ -45,7 +45,7 @@
 }
 
 .hero-students {
-  font-size: 32px;
+  font-size: 24px;
   color: #6EC1E4;
   font-weight: bold;
   font-family: 'Montserrat', sans-serif;
@@ -59,7 +59,7 @@
 }
 
 .hero-employers {
-  font-size: 32px;
+  font-size: 24px;
   color: #FF7F32;
   font-weight: bold;
   font-family: 'Montserrat', sans-serif;

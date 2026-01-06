@@ -1,23 +1,25 @@
-// LoginForm.jsx
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './LoginForm.css';
-import LogoLogin from '../../assets/LogoLogin.png';
+import LogoLogin from '../../assets/logo_linkyjob.png';
 import profilePicture from '../../assets/profilePicture.png';
 const LoginForm = () => {
-  const { login } = useAuth();
   const navigate = useNavigate();
+  const { login } = useAuth();
+
 
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
   });
 
   const [errors, setErrors] = useState({
-    username: '',
+    email: '',
     password: '',
   });
+
+  const [apiError, setApiError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,23 +28,54 @@ const LoginForm = () => {
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
+    setApiError('');
   };
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.username.trim()) newErrors.username = 'Le nom est requis';
-    if (!formData.password) newErrors.password = 'Le mot de passe est requis';
+    if (!formData.email.trim()) newErrors.email = 'Email requis';
+    if (!formData.password) newErrors.password = 'Mot de passe requis';
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      login({ name: formData.username, photo: profilePicture });
-      navigate('/');
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch("http://localhost:3000/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: formData.email,
+        password: formData.password
+      })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error || "Erreur de connexion");
+      return;
     }
-  };
+
+    //  stocker le user + token
+    login(data.user, data.token);
+
+    //  redirection selon le rôle
+    if (data.user.role === "student") {
+      navigate("/profile-etudiant");
+    } else if (data.user.role === "company") {
+      navigate("/profile-entreprise");
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Erreur réseau");
+  }
+};
+
 
   return (
     <div className="login-container">
@@ -61,24 +94,26 @@ const LoginForm = () => {
         <div className="form-container">
           <h2 className="form-title">Connexion</h2>
 
+          {apiError && <p className="api-error">{apiError}</p>}
+
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="username">Nom*</label>
+              <label htmlFor="email">Email*</label>
               <input
-                type="text"
-                id="username"
-                name="username"
-                value={formData.username}
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
                 onChange={handleChange}
-                className={errors.username ? 'input-error' : ''}
+                className={errors.email ? 'input-error' : ''}
               />
-              {errors.username && <span className="error-message">{errors.username}</span>}
+              {errors.email && <span className="error-message">{errors.email}</span>}
             </div>
 
             <div className="form-group">
               <div className="password-header">
                 <label htmlFor="password">Mot de passe*</label>
-                <Link to="/mot-de-passe-oublie" className="forgot-password">Mot de passe oublié?</Link>
+                <Link to="/mot-de-passe-oublie" className="forgot-password">Mot de passe oublié ?</Link>
               </div>
               <input
                 type="password"
@@ -106,7 +141,7 @@ const LoginForm = () => {
             </div>
 
             <div className="register-prompt">
-              <span>Vous n'avez pas de compte?</span>
+              <span>Vous n'avez pas de compte ?</span>
               <Link to="/choseInscrip" className="register-link">Inscription</Link>
             </div>
           </form>
