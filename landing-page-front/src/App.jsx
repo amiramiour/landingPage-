@@ -10,7 +10,7 @@ import ForgetPass from './screens/ForgetPass';
 import ChoseInscrip from './screens/ChoseInscrip';
 import RegisterFormEtud from './screens/RegisterFormEtudScreen';
 import RegisterFormEntreprise from './screens/RegisterFormEntrepriseScreen';
-import ProfileEntreprise from './screens/ProfileEntrepriseScreen';
+import StudentPublicProfile from './screens/StudentPublicProfileScreen';
 import PrestationsqualifieScreen from './screens/PrestationsScreen';
 import PqProfileScreen from './screens/PqProfileScreen';
 import AproposScreen from './screens/AproposScreen';
@@ -35,7 +35,7 @@ function App() {
           <Route path="/choseInscrip" element={<ChoseInscrip />} />
           <Route path="/registerStudent" element={<RegisterFormEtud />} />
           <Route path="/registerEntreprise" element={<RegisterFormEntreprise />} />
-          <Route path="/profile/:id" element={<ProfileEntreprise />} />
+          <Route path="/profile/:id" element={<StudentPublicProfile />} />
           <Route path="/prestationsqualifiee/:id" element={<PqProfileScreen />} />
           <Route path="/apropos" element={<AproposScreen />} />
           <Route path="/profile-etudiant" element={<ProfileEtudiant />} />
