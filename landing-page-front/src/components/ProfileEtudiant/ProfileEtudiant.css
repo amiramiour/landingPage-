@@ -1,16 +1,16 @@
 /* ====== PAGE ====== */
-.profile-page {
+.profile-etudiant .profile-page {
   background-color: #ffffff; /* fond global blanc */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 80px 20px 40px; /* espace sous le header */
+  padding: 0px 20px 40px; /* espace sous le header */
   font-family: "Poppins", sans-serif;
 }
 
 /* ====== SECTION DU HAUT : 2 COLONNES ====== */
-.top-section {
+.profile-etudiant .top-section {
   display: flex;
   justify-content: center;
   align-items: stretch; /* assure même hauteur */
@@ -21,18 +21,18 @@
 }
 
 /* ====== CARTES BLEU CLAIR ====== */
-.profil-card,
-.suivi-card {
+.profile-etudiant .profil-card,
+.profile-etudiant .suivi-card {
   background-color: #e6f2fb;
   border-radius: 15px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
-.dossier-card{
+.profile-etudiant .dossier-card{
   border-radius: 15px;
 }
 
 /* ====== PROFIL ====== */
-.profil-card {
+.profile-etudiant .profil-card {
   flex: 1;
   max-width: 350px;
   padding: 25px;
@@ -41,7 +41,7 @@
   flex-direction: column;
 }
 
-.profil-photo {
+.profile-etudiant .profil-photo {
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -49,13 +49,13 @@
   margin: 0 auto 10px;
 }
 
-.profil-titre {
+.profile-etudiant .profil-titre {
   font-size: 20px;
   margin-bottom: 10px;
   color: #000;
 }
 
-.profil-info p {
+.profile-etudiant .profil-info p {
   font-size: 14px;
   color: #333;
   margin: 20px 0;
@@ -63,7 +63,7 @@
   display: grid;
 }
 
-.btn-modifier {
+.profile-etudiant .btn-modifier {
   background-color: #6EC1E4;
   color: black;
   border: none;
@@ -75,10 +75,10 @@
   transition: background-color 0.3s;
 }
 
-.btn-modifier:hover {
-  background-color: #0056b3;
+.profile-etudiant .btn-modifier:hover {
+  background-color: #6EC1E43D;
 }
-.btn-modifier-photo {
+.profile-etudiant .btn-modifier-photo {
   background-color: #6EC1E4;
   color: black;
   border: none;
@@ -91,12 +91,12 @@
 
 }
 
-.btn-modifier-photo:hover {
-  background-color: #0056b3;
+.profile-etudiant .btn-modifier-photo:hover {
+  background-color: #6EC1E43D;
 }
 
 /* ====== DÉPÔT DE DOSSIER ====== */
-.dossier-card {
+.profile-etudiant .dossier-card {
   flex: 2;
   padding: 25px 30px;
   display: flex;
@@ -104,20 +104,20 @@
   justify-content: space-between;
 }
 
-.dossier-card h2 {
+.profile-etudiant .dossier-card h2 {
   text-align: center;
   margin-bottom: 20px;
   color: #000;
 }
 
-.dossier-liste {
+.profile-etudiant .dossier-liste {
   list-style: none;
   padding: 0;
   margin: 0;
   flex-grow: 1;
 }
 
-.dossier-item {
+.profile-etudiant .dossier-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -125,12 +125,12 @@
   border-bottom: 1px solid #cfdbe6;
 }
 
-.dossier-nom {
+.profile-etudiant .dossier-nom {
   text-transform: capitalize;
   color: #000;
 }
 
-.btn-upload {
+.profile-etudiant .btn-upload {
   background: transparent;
   border: none;
   color: #000;
@@ -141,16 +141,16 @@
   font-size: 14px;
 }
 
-.btn-upload:hover {
+.profile-etudiant .btn-upload:hover {
   text-decoration: underline;
 }
 
-.icon-check {
+.profile-etudiant .icon-check {
   color: #28a745;
   font-size: 20px;
 }
 
-.btn-soumettre {
+.profile-etudiant .btn-soumettre {
   background-color: #ccc;
   color: white;
   border: none;
@@ -162,58 +162,58 @@
   transition: background 0.3s;
 }
 
-.btn-soumettre.active {
+.profile-etudiant .btn-soumettre.active {
   background-color: #6EC1E4;
   cursor: pointer;
 }
 
 /* ====== SUIVI ====== */
-.suivi-card {
+.profile-etudiant .suivi-card {
   width: 100%;
   max-width: 1200px;
   padding: 30px;
   text-align: center;
 }
 
-.suivi-card h2 {
+.profile-etudiant .suivi-card h2 {
   color: #000;
 }
 
-.timeline {
+.profile-etudiant .timeline {
   display: flex;
   justify-content: space-between;
   margin-top: 25px;
 }
 
-.etape {
+.profile-etudiant .etape {
   flex: 1;
   text-align: center;
   color: #999;
 }
 
-.etape svg {
+.profile-etudiant .etape svg {
   font-size: 30px;
   margin-bottom: 6px;
   color: #ccc;
 }
 
-.etape.active svg {
+.profile-etudiant .etape.active svg {
   color: #6EC1E4;
 }
 
-.etape p {
+.profile-etudiant .etape p {
   font-size: 14px;
   margin: 0;
   color: #333;
 }
 
-.etape small {
+.profile-etudiant .etape small {
   display: block;
   color: #777;
 }
 
 /* ====== MODAL ====== */
-.modal-overlay {
+.profile-etudiant .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -225,7 +225,7 @@
   align-items: center;
 }
 
-.modal-content {
+.profile-etudiant .modal-content {
   background: white;
   padding: 30px 50px;
   border-radius: 10px;
@@ -233,13 +233,13 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.modal-icon {
+.profile-etudiant .modal-icon {
   color: #28a745;
   font-size: 40px;
   margin-bottom: 10px;
 }
 
-.btn-ok {
+.profile-etudiant .btn-ok {
   background-color: #6EC1E4;
   color: white;
   border: none;
@@ -249,7 +249,7 @@
   cursor: pointer;
 }
 /* ====== TIMELINE VERTICALE DANS DÉPÔT DE DOSSIER ====== */
-.dossier-item {
+.profile-etudiant .dossier-item {
   display: flex;
   align-items: flex-start;
   gap: 15px;
@@ -259,7 +259,7 @@
 }
 
 
-.dossier-circle {
+.profile-etudiant .dossier-circle {
   width: 16px;
   height: 16px;
   background-color: #6ec1e4;
@@ -267,14 +267,14 @@
   z-index: 1;
 }
 
-.dossier-line {
+.profile-etudiant .dossier-line {
   width: 2px;
   background-color: #000;
   flex-grow: 1;
   margin-top: 2px;
 }
 
-.dossier-content {
+.profile-etudiant .dossier-content {
   display: flex;
   flex-direction: column;   
   align-items: flex-start;   
@@ -283,7 +283,7 @@
 }
 
 /* ====== TIMELINE VERTICALE DANS DÉPÔT DE DOSSIER ====== */
-.dossier-item {
+.profile-etudiant .dossier-item {
   display: flex;
   align-items: flex-start;
   gap: 15px;
@@ -292,7 +292,7 @@
   position: relative;
 }
 
-.dossier-timeline {
+.profile-etudiant .dossier-timeline {
   position: relative;
   width: 25px;
   display: flex;
@@ -301,7 +301,7 @@
   padding-top: 4px;
 }
 
-.dossier-circle {
+.profile-etudiant .dossier-circle {
   width: 18px;
   height: 18px;
   background-color: #6ec1e4;
@@ -310,7 +310,7 @@
   border: 1px solid #6EC1E4;
 }
 
-.dossier-line {
+.profile-etudiant .dossier-line {
   width: 2px;
   background-color: #000;
   flex-grow: 1;
@@ -318,13 +318,13 @@
   z-index: 1;
 }
 
-.dossier-content {
+.profile-etudiant .dossier-content {
   display: flex;
   justify-content: space-between;
   flex: 1;
 }
 /* ====== TIMELINE ÉTAPES ====== */
-.timeline-etapes {
+.profile-etudiant .timeline-etapes {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -336,14 +336,14 @@
   margin-right: auto;
 }
 
-.etape {
+.profile-etudiant .etape {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-.etape p {
+.profile-etudiant .etape p {
   margin-top: 10px;
   font-weight: 600;
   color: #222;
@@ -357,7 +357,7 @@
 
 
 /* Cadenas */
-.icone-lock-img {
+.profile-etudiant .icone-lock-img {
   width: 65px;        /* adapte si tu veux */
   height: 65px;
   object-fit: contain;
@@ -368,7 +368,7 @@
 
 
 /* ===== Lignes ===== */
-.ligne-etape-img {
+.profile-etudiant .ligne-etape-img {
   width: 250px;           /*  ajuste à la taille que tu veux */
   height: auto;           /* garde les proportions */
   object-fit: contain;
@@ -379,13 +379,13 @@
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 900px) {
-  .top-section {
+  .profile-etudiant .top-section {
     flex-direction: column;
     align-items: center;
   }
 
-  .profil-card,
-  .dossier-card {
+  .profile-etudiant .profil-card,
+  .profile-etudiant .dossier-card {
     width: 100%;
     max-width: 700px;
   }
