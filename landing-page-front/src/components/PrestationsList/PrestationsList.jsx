@@ -87,7 +87,7 @@ const PrestationsList = () => {
 
                 <div className="pq-content">
                   <span className="pq-service-label">
-                    {isExpertPage ? "Service qualifié" : "Service général"}
+                    {isExpertPage ? "Mission d'expertise" : "Mission de service"}
                   </span>
 
                   <h3 className="pq-title">{service.title}</h3>
