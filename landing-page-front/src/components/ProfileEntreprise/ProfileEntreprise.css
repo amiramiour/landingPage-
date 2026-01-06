@@ -1,0 +1,392 @@
+/* ====== PAGE ====== */
+.profile-entreprise .profile-page {
+  background-color: #ffffff; /* fond global blanc */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 20px 40px; /* espace sous le header */
+  font-family: "Poppins", sans-serif;
+}
+
+/* ====== SECTION DU HAUT : 2 COLONNES ====== */
+.profile-entreprise .top-section {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* assure même hauteur */
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 40px;
+}
+
+/* ====== CARTES BLEU CLAIR ====== */
+.profile-entreprise .profil-card,
+.profile-entreprise .suivi-card {
+  background-color: #FF7F323D;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+.profile-entreprise .dossier-card{
+  border-radius: 15px;
+}
+
+/* ====== PROFIL ====== */
+.profile-entreprise .profil-card {
+  flex: 1;
+  max-width: 350px;
+  padding: 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-entreprise .profil-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 10px;
+}
+
+.profile-entreprise .profil-titre {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.profile-entreprise .profil-info p {
+  font-size: 14px;
+  color: #333;
+  margin: 20px 0;
+  text-align: left;
+  display: grid;
+}
+
+.profile-entreprise .btn-modifier {
+  background-color: #FF7F32;
+  color: black;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  margin-top: 100px;
+  cursor: pointer;
+  align-self: center;
+  transition: background-color 0.3s;
+}
+
+.profile-entreprise .btn-modifier:hover {
+  background-color: #FF7F323D;
+}
+.profile-entreprise .btn-modifier-photo {
+  background-color: #FF7F32;
+  color: black;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  align-self: center;
+  transition: background-color 0.3s;
+    margin-top: 20px;
+
+}
+
+.profile-entreprise .btn-modifier-photo:hover {
+  background-color: #FF7F323D;
+}
+
+/* ====== DÉPÔT DE DOSSIER ====== */
+.profile-entreprise .dossier-card {
+  flex: 2;
+  padding: 25px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profile-entreprise .dossier-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.profile-entreprise .dossier-liste {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.profile-entreprise .dossier-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #cfdbe6;
+}
+
+.profile-entreprise .dossier-nom {
+  text-transform: capitalize;
+  color: #000;
+}
+
+.profile-entreprise .btn-upload {
+  background: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.profile-entreprise .btn-upload:hover {
+  text-decoration: underline;
+}
+
+.profile-entreprise .icon-check {
+  color: #28a745;
+  font-size: 20px;
+}
+
+.profile-entreprise .btn-soumettre {
+  background-color: #ccc;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 25px;
+  cursor: not-allowed;
+  display: block;
+  margin: 25px auto 0;
+  transition: background 0.3s;
+}
+
+.profile-entreprise .btn-soumettre.active {
+  background-color: #FF7F32;
+  cursor: pointer;
+}
+
+/* ====== SUIVI ====== */
+.profile-entreprise .suivi-card {
+  width: 100%;
+  max-width: 1200px;
+  padding: 30px;
+  text-align: center;
+}
+
+.profile-entreprise .suivi-card h2 {
+  color: #000;
+}
+
+.profile-entreprise .timeline {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.profile-entreprise .etape {
+  flex: 1;
+  text-align: center;
+  color: #999;
+}
+
+.profile-entreprise .etape svg {
+  font-size: 30px;
+  margin-bottom: 6px;
+  color: #ccc;
+}
+
+.profile-entreprise .etape.active svg {
+  color: #FF7F32;
+}
+
+.profile-entreprise .etape p {
+  font-size: 14px;
+  margin: 0;
+  color: #333;
+}
+
+.profile-entreprise .etape small {
+  display: block;
+  color: #777;
+}
+
+/* ====== MODAL ====== */
+.profile-entreprise .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-entreprise .modal-content {
+  background: white;
+  padding: 30px 50px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.profile-entreprise .modal-icon {
+  color: #28a745;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.profile-entreprise .btn-ok {
+  background-color: #FF7F32;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+/* ====== TIMELINE VERTICALE DANS DÉPÔT DE DOSSIER ====== */
+.profile-entreprise .dossier-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #cfdbe6;
+  position: relative;
+}
+
+
+.profile-entreprise .dossier-circle {
+  width: 16px;
+  height: 16px;
+  background-color: #FF7F32;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.profile-entreprise .dossier-line {
+  width: 2px;
+  background-color: #000;
+  flex-grow: 1;
+  margin-top: 2px;
+}
+
+.profile-entreprise .dossier-content {
+  display: flex;
+  flex-direction: column;   
+  align-items: flex-start;   
+  gap: 4px;                  
+  flex: 1;
+}
+
+/* ====== TIMELINE VERTICALE DANS DÉPÔT DE DOSSIER ====== */
+.profile-entreprise .dossier-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #cfdbe6;
+  position: relative;
+}
+
+.profile-entreprise .dossier-timeline {
+  position: relative;
+  width: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.profile-entreprise .dossier-circle {
+  width: 18px;
+  height: 18px;
+  background-color: #FF7F32;
+  border-radius: 50%;
+  z-index: 2;
+  border: 1px solid #FF7F32;
+}
+
+.profile-entreprise .dossier-line {
+  width: 2px;
+  background-color: #000;
+  flex-grow: 1;
+  margin-top: 2px;
+  z-index: 1;
+}
+
+.profile-entreprise .dossier-content {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+/* ====== TIMELINE ÉTAPES ====== */
+.profile-entreprise .timeline-etapes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0; 
+  margin-top: 40px;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-entreprise .etape {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-entreprise .etape p {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #222;
+  font-size: 14px;
+}
+
+/* ======================================================
+   CERCLE EXACT — version finale correcte
+   ====================================================== */
+
+
+
+/* Cadenas */
+.profile-entreprise .icone-lock-img {
+  width: 65px;        /* adapte si tu veux */
+  height: 65px;
+  object-fit: contain;
+  z-index: 3;
+}
+
+
+
+
+/* ===== Lignes ===== */
+.profile-entreprise .ligne-etape-img {
+  width: 250px;           /*  ajuste à la taille que tu veux */
+  height: auto;           /* garde les proportions */
+  object-fit: contain;
+  margin: 0 10px;         /* espace entre les cercles */
+  padding-bottom: 35px;
+}
+
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+  .profile-entreprise .top-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-entreprise .profil-card,
+  .profile-entreprise .dossier-card {
+    width: 100%;
+    max-width: 700px;
+  }
+}
