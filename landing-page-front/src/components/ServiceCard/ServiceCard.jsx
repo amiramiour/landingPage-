@@ -1,34 +1,54 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./ServiceCard.css";
+import universityLogo from "../../assets/university-default.png";
+const formatDateFR = (dateString) => {
+  if (!dateString) return "";
 
-const ServiceCard = ({ id, title, description, icon, category, date }) => {
+  const date = new Date(dateString);
+
+  return new Intl.DateTimeFormat("fr-FR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+};
+const ServiceCard = ({
+  id,
+  photo,
+  fullName,
+  training,
+  description,
+  school,
+  date,
+}) => {
   return (
-    <Link to={`/prestationsqualifiee/${id}`} className="service-card">
+    <Link to={`/profile-etudiant/${id}`} className="service-card">
 
-      {/* IMAGE */}
-      <img src={icon} alt={title} className="service-card-image" />
+      {/* PHOTO ÉTUDIANT */}
+      <img src={photo} alt={fullName} className="service-card-image" />
 
-      {/* TYPE (comme linky-service-type) */}
-      <div className="service-type">
-        MISSIONS D’EXPERTISE
-      </div>
-
-      {/* CONTENU */}
+      {/* NOM + FORMATION */}
       <div className="service-card-content">
-        <h3>{title}</h3>
+        <h3>{fullName}</h3>
+        <span className="service-training">{training}</span>
         <p>{description}</p>
       </div>
 
       {/* FOOTER */}
       <div className="service-card-footer">
-        <img src={icon} alt={category} className="category-icon" />
+  <img
+    src={universityLogo}
+    alt={school}
+    className="category-icon"
+  />
 
-        <div className="service-meta-info">
-          <span className="category">{category}</span>
-          <span className="date">{date}</span>
-        </div>
-      </div>
+  <div className="service-meta-info">
+    <span className="category">{school}</span>
+    <span className="date">{formatDateFR(date)}</span>
+  </div>
+</div>
+
 
     </Link>
   );
