@@ -1,0 +1,120 @@
+.candidatures-mission {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* ===== CARD ===== */
+.candidat-row {
+  display: flex;
+  gap: 25px;
+padding: 18px 20px;
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== PHOTO ===== */
+.candidat-avatar {
+    width: 212px;
+    height: 222px;
+    border-radius: 50%;
+    object-fit: cover;
+    align-self: center;
+}
+
+/* ===== INFOS ===== */
+.candidat-info {
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+  flex-direction: column;
+}
+
+.candidat-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.candidat-formation {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.candidat-info p {
+  margin: 2px 0; /* ⬅️ normalise tous les <p> */
+}
+/* ===== FOOTER ÉCOLE ===== */
+.candidat-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.school-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.school-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.school-name {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.candidat-date {
+  font-size: 12px;
+  color: #777;
+}
+.candidat-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.action-icon {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.action-icon:hover {
+  transform: scale(1.08);
+  opacity: 0.9;
+}
+
+/* ===== ACTIONS EN BAS ===== */
+.candidat-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: auto; /* pousse les boutons tout en bas */
+  padding-top: 10px;
+  justify-content: flex-start;
+}
+
+.btn-accept,
+.btn-refuse {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-accept {
+  background-color: #7FD8B1;
+  color: white;
+}
+
+.btn-refuse {
+  background-color: #EF4444;
+  color: white;
+}
