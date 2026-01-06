@@ -8,45 +8,44 @@ import defaultImg from "../../assets/Techniciensinformatique.jpeg";
 
 const Services = () => {
   const scrollRef = useRef(null);
-  const [missions, setMissions] = useState([]);
+  const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/missions")
+    fetch("http://localhost:3000/students")
       .then((res) => res.json())
       .then((data) => {
-        const all = data.data || data; // cache ou db
-        const filtered = all.filter(
-          (m) => m.type === "mission_d_expertise"
-        );
-        setMissions(filtered);
+        setStudents(data.data || data);
       })
       .catch((err) => console.error(err));
   }, []);
 
-  const scrollLeft = () => scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
-  const scrollRight = () => scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+  const scrollLeft = () =>
+    scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
+
+  const scrollRight = () =>
+    scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
 
   return (
     <section className="services">
       <div className="services-header">
-        <h2>NOS PROFILS ETUDIANTS</h2>
+        <h2>NOS PROFILS ÉTUDIANTS</h2>
         <p className="services-description">
-          Pour les missions requérant des compétences techniques ou un savoir certifié.
+          Découvrez des étudiants qualifiés, prêts à intervenir sur vos projets.
         </p>
         <button className="voir-plus">Voir plus</button>
       </div>
 
       <div className="services-scroll" ref={scrollRef}>
         <div className="services-grid">
-          {missions.map((mission) => (
+          {students.map((student) => (
             <ServiceCard
-              key={mission.id}
-              id={mission.id}
-              title={mission.title}
-              description={mission.description}
-              category={mission.niveau || "Mission qualifiée"}
-              date={mission.startDate?.slice(0, 10)}
-              icon={defaultImg}
+              key={student.id}
+              id={student.id}
+photo={`http://localhost:3000/${student.photoUrl}`}
+              fullName={`${student.firstName} ${student.lastName}`}
+              training={student.training}
+              school={student.school}
+              date={student.createdAt?.slice(0, 10)}
             />
           ))}
         </div>
