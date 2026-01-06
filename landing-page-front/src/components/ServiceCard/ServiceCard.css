@@ -1,81 +1,118 @@
 @import '../../styles/variables.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
+/* =========================
+   CARD CONTAINER
+========================= */
 .service-card {
   flex: 0 0 320px;
   background: var(--white);
-  border-radius: 0; /* identique à linky */
+  border-radius: 0;
   overflow: hidden;
   text-decoration: none;
   cursor: pointer;
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .service-card:hover {
   transform: translateY(-5px);
 }
 
-/* IMAGE */
+/* =========================
+   IMAGE
+========================= */
 .service-card-image {
   width: 100%;
   height: 220px;
   object-fit: cover;
 }
 
-/* TYPE (sous image) */
-.service-type {
-  display: inline-block;
-  padding: 0.4rem 0.8rem;
-  font-size: 0.85rem;
-  font-weight: bold;
-  color: var(--gray-600); /* couleur conservée */
+/* =========================
+   CONTENT
+========================= */
+.service-card-content {
+  padding-top: 1rem;
 }
 
-
-
+/* Nom + Prénom */
 .service-card-content h3 {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
+  font-size: 20px;
+  line-height: 150%;
+  margin: 0 0 4px;
   color: var(--text-color);
 }
 
-.service-card-content p {
-  font-size: 0.9rem;
-  color: var(--gray-600);
-  line-height: 1.4;
+/* Formation */
+.service-training {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 140%;
+  margin-bottom: 8px;
+  color: black;
 }
 
-/* FOOTER */
+/* Description */
+.service-card-content p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: var(--gray-600);
+  margin: 0;
+}
+
+/* =========================
+   FOOTER
+========================= */
 .service-card-footer {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  margin-top: auto;
 }
 
+/* Logo université */
 .category-icon {
   width: 42px;
   height: 42px;
   border-radius: 50%;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
+/* Infos université */
 .service-meta-info {
   display: flex;
   flex-direction: column;
 }
 
+/* Nom école */
 .category {
+  font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 14px;
+  line-height: 150%;
   color: var(--gray-600);
 }
 
+/* Date */
 .date {
-  font-size: 0.85rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
   color: var(--gray-500);
 }
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 768px) {
   .service-card {
     flex: 0 0 260px;
@@ -83,5 +120,13 @@
 
   .service-card-image {
     height: 180px;
+  }
+
+  .service-card-content h3 {
+    font-size: 18px;
+  }
+
+  .service-training {
+    font-size: 18px;
   }
 }
