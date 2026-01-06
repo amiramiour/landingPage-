@@ -15,6 +15,7 @@ import PrestationsqualifieScreen from './screens/PrestationsScreen';
 import PqProfileScreen from './screens/PqProfileScreen';
 import AproposScreen from './screens/AproposScreen';
 import ProfileEtudiant from './screens/ProfileEtudiant';
+import ProfileEntreprise from './screens/ProfileEntreprise';
 import { AuthProvider } from './components/context/AuthContext'; 
 import Feedback from './screens/Feedback';
 import AddPrestation from './screens/AddPrestation';
@@ -39,6 +40,7 @@ function App() {
           <Route path="/prestationsqualifiee/:id" element={<PqProfileScreen />} />
           <Route path="/apropos" element={<AproposScreen />} />
           <Route path="/profile-etudiant" element={<ProfileEtudiant />} />
+          <Route path="/profile-entreprise" element={<ProfileEntreprise />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/addprestation" element={<AddPrestation />} />
           <Route path="/prestationsqualifiee" element={<PrestationsScreen />} />
