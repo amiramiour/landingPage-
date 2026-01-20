@@ -1,82 +1,60 @@
+import { useEffect, useState } from "react";
 import "./HistoriqueEtudiant.css";
 import icon from "../../assets/icon.png";
 
-/* ================= DATA STATIQUE ================= */
-
-const candidatures = [
-  {
-    id: 1,
-    type: "expertise",
-    title: "Technicien informatique",
-    description:
-      "Maintenance, diagnostic, installation et assistance utilisateurs.",
-    entreprise: "Freelance informatique",
-    date: "15 DEC 2024",
-    status: "envoye",
-  },
-  {
-    id: 2,
-    type: "service",
-    title: "Cours de soutien de langue étrangère",
-    description:
-      "Accompagnement linguistique pour étudiants internationaux.",
-    entreprise: "Completude",
-    date: "15 DEC 2024",
-    status: "en_cours",
-  },
-  {
-    id: 3,
-    type: "expertise",
-    title: "Développement d’une application web",
-    description:
-      "Développement front-end React et intégration API.",
-    entreprise: "Freelance informatique",
-    date: "15 DEC 2024",
-    status: "accepte",
-  },
-  {
-    id: 4,
-    type: "service",
-    title: "Animateur interculturel",
-    description:
-      "Animation d’ateliers interculturels pour enfants.",
-    entreprise: "CDJ",
-    date: "15 DEC 2024",
-    status: "refuse",
-  },
-  {
-    id: 5,
-    type: "service",
-    title: "Animateur interculturel",
-    description:
-      "Animation d’ateliers interculturels pour enfants.",
-    entreprise: "CDJ",
-    date: "15 DEC 2024",
-    status: "refuse",
-  },
-];
-
-/* ================= COMPONENT ================= */
-
 function HistoriqueEtudiant() {
-  const renderActionButton = (status) => {
+  const [candidatures, setCandidatures] = useState([]);
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/candidatures/my", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(res => res.json())
+      .then(data => setCandidatures(data))
+      .catch(err => console.error(err));
+  }, []);
+
+  const renderStatus = (status) => {
     switch (status) {
-      case "envoye":
-      case "en_cours":
+      case "submitted":
+        return "Envoyée";
+      case "under_review":
+        return "En cours de traitement";
+      case "accepted":
+        return "Acceptée";
+      case "rejected":
+        return "Refusée";
+      case "cancelled":
+        return "Annulée";
+      default:
+        return "";
+    }
+  };
+
+  const renderActionButton = (candidature) => {
+    switch (candidature.status) {
+      case "submitted":
+      case "under_review":
         return (
-          <button className="linky-btn-secondary">
+          <button
+            className="linky-btn-secondary"
+            onClick={() => cancelCandidature(candidature.id)}
+          >
             Annuler
           </button>
         );
 
-      case "accepte":
+      case "accepted":
         return (
           <button className="linky-btn-primary">
             Choisir cette mission
           </button>
         );
 
-      case "refuse":
+      case "rejected":
         return (
           <button className="linky-btn-outline">
             Candidater à nouveau
@@ -88,54 +66,59 @@ function HistoriqueEtudiant() {
     }
   };
 
+  const cancelCandidature = async (id) => {
+    await fetch(`http://localhost:3000/api/candidatures/cancel/${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // refresh
+    setCandidatures(candidatures.filter(c => c.id !== id));
+  };
+
   return (
     <div className="historique-etudiant">
-
-      {/* ===== TITRE ===== */}
       <section className="historique-section">
         <h2 className="historique-title blue">
           SUIVI DE MES CANDIDATURES
         </h2>
+
         <p className="historique-subtitle">
           Retrouvez les missions auxquelles vous avez candidaté
         </p>
 
-        {/* ===== GRILLE ===== */}
         <div className="missions-grid">
-          {candidatures.map((mission) => (
-            <div key={mission.id} className="mission-card">
+          {candidatures.map((c) => (
+            <div key={c.id} className="mission-card">
 
-              <img
-                src={icon}
-                alt={mission.title}
-                className="mission-image"
-              />
+              <img src={icon} className="mission-image" />
 
-              {/* BADGE TYPE */}
+              {/* TYPE */}
               <span
                 className={`mission-badge ${
-                  mission.type === "expertise" ? "yellow" : "green"
+                  c.mission.type === "mission_de_expertise"
+                    ? "yellow"
+                    : "green"
                 }`}
               >
-                {mission.type === "expertise"
+                {c.mission.type === "mission_de_expertise"
                   ? "Mission d’expertise"
                   : "Mission de service"}
               </span>
 
               {/* TITRE */}
-              <h3 className="mission-title">{mission.title}</h3>
+              <h3 className="mission-title">{c.mission.title}</h3>
 
               {/* DESCRIPTION */}
               <p className="mission-description">
-                {mission.description}
+                {c.mission.description}
               </p>
 
-              {/* ===== STATUS ===== */}
-              <div className={`mission-status ${mission.status}`}>
-                {mission.status === "envoye" && "Envoyée"}
-                {mission.status === "en_cours" && "En cours de traitement"}
-                {mission.status === "accepte" && "Acceptée"}
-                {mission.status === "refuse" && "Refusée"}
+              {/* STATUS */}
+              <div className={`mission-status ${c.status}`}>
+                {renderStatus(c.status)}
               </div>
 
               {/* FOOTER */}
@@ -143,15 +126,16 @@ function HistoriqueEtudiant() {
                 <img src={icon} className="linky-company-logo" />
                 <div className="linky-company-info">
                   <span className="linky-company-name">
-                    {mission.entreprise}
+                    {c.mission.employer?.companyName || "Entreprise"}
                   </span>
-                  <span className="linky-date">{mission.date}</span>
+                  <span className="linky-date">
+                    {new Date(c.createdAt).toLocaleDateString("fr-FR")}
+                  </span>
                 </div>
               </div>
 
-              {/* ACTION */}
               <div className="mission-btn">
-                {renderActionButton(mission.status)}
+                {renderActionButton(c)}
               </div>
 
             </div>
