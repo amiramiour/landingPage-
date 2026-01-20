@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ProfileEtudiant.css";
-import { FaCheckCircle, FaCloudUploadAlt, FaLock } from "react-icons/fa";
+import { FaCheckCircle, FaCloudUploadAlt, FaCamera } from "react-icons/fa";
 import lockIcon from "../../assets/locked.png";
 import lineIcon from "../../assets/line.png";
 
 function ProfileEtudiant() {
   const [profil, setProfil] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [form, setForm] = useState({});
   const [documents, setDocuments] = useState({
     photoIdentite: false,
     titreSejour: false,
@@ -18,33 +20,31 @@ function ProfileEtudiant() {
 
   const [showModal, setShowModal] = useState(false);
   const fileInputs = useRef({});
-  const fileInputRef = useRef();
+  const fileInputRef = useRef(null);
 
-  const allUploaded = Object.values(documents).every((v) => v);
+  const allUploaded = Object.values(documents).every(Boolean);
 
-  // Charger l'utilisateur depuis localStorage
+  /* ================= CHARGEMENT PROFIL ================= */
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
+    if (!storedUser) return;
 
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
+    const user = JSON.parse(storedUser);
 
-      setProfil({
-        nom: user.lastName,
-        prenom: user.firstName,
-        telephone: user.phone,
-        domaine: user.field,
-        formation: user.training,
-        etablissement: user.school,
-
-        photo: user.photoUrl
-          ? `http://localhost:3000/${user.photoUrl}`
-          : "http://localhost:3000/uploads/default-avatar.png",
-      });
-    }
+    setProfil({
+      nom: user.lastName,
+      prenom: user.firstName,
+      telephone: user.phone,
+      domaine: user.field,
+      formation: user.training,
+      etablissement: user.school,
+      photo: user.photoUrl
+        ? `http://localhost:3000/${user.photoUrl}`
+        : "http://localhost:3000/uploads/default-avatar.png",
+    });
   }, []);
 
-  // Upload photo
+  /* ================= PHOTO ================= */
   const handlePhotoUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -53,76 +53,126 @@ function ProfileEtudiant() {
     const formData = new FormData();
     formData.append("photo", file);
 
-    try {
-      const res = await fetch("http://localhost:3000/auth/upload-photo", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData,
-      });
+    const res = await fetch("http://localhost:3000/auth/upload-photo", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+      body: formData,
+    });
 
-      const data = await res.json();
+    const data = await res.json();
+    if (!res.ok) return alert(data.error);
 
-      if (!res.ok) {
-        alert("Erreur upload photo : " + data.error);
-        return;
-      }
+    const stored = JSON.parse(localStorage.getItem("user"));
+    stored.photoUrl = data.photoUrl;
+    localStorage.setItem("user", JSON.stringify(stored));
 
-      // Mise à jour localStorage
-      const stored = JSON.parse(localStorage.getItem("user"));
-      stored.photoUrl = data.photoUrl;
-      localStorage.setItem("user", JSON.stringify(stored));
-
-      // Mise à jour du visuel
-      setProfil((prev) => ({
-        ...prev,
-        photo: `http://localhost:3000/${data.photoUrl}`,
-      }));
-    } catch (err) {
-      console.error(err);
-      alert("Erreur serveur pendant l’upload.");
-    }
+    setProfil((prev) => ({
+      ...prev,
+      photo: `http://localhost:3000/${data.photoUrl}`,
+    }));
   };
 
-  if (!profil) return <p style={{ textAlign: "center" }}>Chargement du profil...</p>;
+  /* ================= MODE ÉDITION ================= */
+  const handleEdit = () => {
+    setForm({
+      firstName: profil.prenom,
+      lastName: profil.nom,
+      phone: profil.telephone,
+      field: profil.domaine,
+      training: profil.formation,
+      school: profil.etablissement,
+    });
+    setEditMode(true);
+  };
+
+  const handleSave = async () => {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch("http://localhost:3000/me", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(form),
+    });
+
+    const data = await res.json();
+    if (!res.ok) return alert(data.error);
+
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    setProfil({
+      nom: data.user.lastName,
+      prenom: data.user.firstName,
+      telephone: data.user.phone,
+      domaine: data.user.field,
+      formation: data.user.training,
+      etablissement: data.user.school,
+      photo: `http://localhost:3000/${data.user.photoUrl}`,
+    });
+
+    setEditMode(false);
+  };
+
+  if (!profil) return <p style={{ textAlign: "center" }}>Chargement…</p>;
 
   return (
     <div className="profile-page">
-
       <div className="top-section">
 
-        {/* ----- PROFIL ----- */}
+        {/* ================= PROFIL ================= */}
         <div className="profil-card">
-          <img src={profil.photo} alt="profil" className="profil-photo" />
 
-          {/* Bouton changer la photo */}
-          <button 
-            className="btn-modifier-photo"
+          {/* PHOTO */}
+          <div
+            className="profil-photo-wrapper"
             onClick={() => fileInputRef.current.click()}
           >
-            Changer la photo
-          </button>
+            <img src={profil.photo} className="profil-photo" />
+            <div className="photo-overlay"><FaCamera /></div>
+          </div>
 
           <input
             type="file"
             accept="image/*"
             ref={fileInputRef}
             onChange={handlePhotoUpload}
-            style={{ display: "none" }}
+            hidden
           />
 
           <h2 className="profil-titre">Profil</h2>
 
           <div className="profil-info">
-            <p><strong>Nom </strong>{profil.nom}</p>
-            <p><strong>Prénom </strong>{profil.prenom}</p>
-            <p><strong>Téléphone </strong>{profil.telephone}</p>
-            <p><strong>Domaine d’études </strong>{profil.domaine}</p>
-            <p><strong>Formation </strong>{profil.formation}</p>
-            <p><strong>Établissement </strong>{profil.etablissement}</p>
+            {editMode ? (
+              <>
+                <input value={form.lastName} onChange={(e) => setForm({ ...form, lastName: e.target.value })} />
+                <input value={form.firstName} onChange={(e) => setForm({ ...form, firstName: e.target.value })} />
+                <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+                <input value={form.field} onChange={(e) => setForm({ ...form, field: e.target.value })} />
+                <input value={form.training} onChange={(e) => setForm({ ...form, training: e.target.value })} />
+                <input value={form.school} onChange={(e) => setForm({ ...form, school: e.target.value })} />
+              </>
+            ) : (
+              <>
+                <p><strong>Nom </strong>{profil.nom}</p>
+                <p><strong>Prénom </strong>{profil.prenom}</p>
+                <p><strong>Téléphone </strong>{profil.telephone}</p>
+                <p><strong>Domaine </strong>{profil.domaine}</p>
+                <p><strong>Formation </strong>{profil.formation}</p>
+                <p><strong>Établissement </strong>{profil.etablissement}</p>
+              </>
+            )}
           </div>
 
-          {/* Bouton modifier infos */}
-          <button className="btn-modifier">Modifier</button>
+          {editMode ? (
+            <div className="edit-actions">
+              <button className="btn-primary" onClick={handleSave}>Enregistrer</button>
+              <button className="btn-outline" onClick={() => setEditMode(false)}>Annuler</button>
+            </div>
+          ) : (
+            <button className="btn-modifier" onClick={handleEdit}>Modifier</button>
+          )}
         </div>
 
         {/* ----- DOSSIER DÉPÔT ----- */}
