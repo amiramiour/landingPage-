@@ -376,6 +376,112 @@
   padding-bottom: 35px;
 }
 
+/* ===== PHOTO PROFIL INTERACTIVE ===== */
+
+.profil-photo-wrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.profil-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.profil-photo-wrapper:hover .profil-photo {
+  transform: scale(1.05);
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.profil-photo-wrapper:hover .photo-overlay {
+  opacity: 1;
+}
+/* ====== MODE ÉDITION : INPUTS PROFIL (ETUDIANT) ====== */
+.profile-etudiant .profil-info input {
+  width: 100%;
+  border: none;
+  border-bottom: 1.5px solid #ccc;
+  background: transparent;
+  font-size: 14px;
+  padding: 6px 2px;
+  margin: 10px 0;
+  font-family: "Poppins", sans-serif;
+  transition: border-color 0.25s ease;
+}
+
+.profile-etudiant .profil-info input:focus {
+  outline: none;
+  border-bottom-color: #6EC1E4;
+}
+/* ====== ACTIONS MODE ÉDITION ====== */
+.profile-etudiant .edit-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: auto; /* pousse les boutons en bas comme Modifier */
+}
+.profile-etudiant .btn-primary {
+  background-color: #6EC1E4;
+  color: #000;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.25s ease;
+}
+
+.profile-etudiant .btn-primary:hover {
+  background-color: #6EC1E43D;
+}
+.profile-etudiant .btn-outline {
+  background: transparent;
+  color: #000;
+  border: 1px solid #ccc;
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.profile-etudiant .btn-outline:hover {
+  border-color: #6EC1E4;
+  color: #6EC1E4;
+}
+.profile-etudiant .profil-info p,
+.profile-etudiant .profil-info input {
+  transition: all 0.2s ease;
+}
+/* ====== BOUTONS MODE ÉDITION : TAILLE IDENTIQUE (ETUDIANT) ====== */
+.profile-etudiant .edit-actions button {
+  min-width: 120px;   /* même largeur */
+  height: 38px;       /* même hauteur */
+  padding: 0;         /* évite différences internes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 900px) {
