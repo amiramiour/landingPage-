@@ -108,8 +108,36 @@ function HistoriqueEntreprise() {
 
               <h3 className="mission-title">{selectedMission.title}</h3>
               <p className="mission-description">
-                {selectedMission.description}
-              </p>
+  {selectedMission.description}
+</p>
+
+<div className="mission-extra">
+  <p>
+    <strong>Niveau études :</strong>{" "}
+    {selectedMission.niveau}
+  </p>
+
+  <p>
+    <strong>Date :</strong>{" "}
+    {new Date(selectedMission.startDate).toLocaleDateString("fr-FR")}
+  </p>
+
+  <p>
+    <strong>Durée :</strong>{" "}
+    {selectedMission.durationHours} h
+  </p>
+
+  <p>
+    <strong>Montant :</strong>{" "}
+    {selectedMission.remuneration} € / heure
+  </p>
+
+  <p>
+    <strong>Lieu :</strong>{" "}
+    {selectedMission.location}
+  </p>
+</div>
+
 
               <div className="linky-service-footer">
                 <img src={icon} className="linky-company-logo" />
@@ -126,7 +154,10 @@ function HistoriqueEntreprise() {
           </div>
 
           <div className="mission-detail-right">
-            <CandidaturesMission missionId={selectedMission.id} />
+<CandidaturesMission
+  missionId={selectedMission.id}
+  mission={selectedMission}
+/>
           </div>
         </div>
       )}
