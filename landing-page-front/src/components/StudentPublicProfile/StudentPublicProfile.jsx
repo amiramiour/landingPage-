@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./StudentPublicProfile.css";
 import { Link, useParams } from "react-router-dom";
+const DEFAULT_MISSIONS = [
+  "🎓 Missions liées à la formation",
+  "🧠 Missions qualifiées",
+  "📚 Missions polyvalentes",
+];
 
 const StudentPublicProfile = () => {
   const { id } = useParams();
@@ -20,6 +25,12 @@ const StudentPublicProfile = () => {
   if (!student) {
     return <p style={{ textAlign: "center" }}>Chargement du profil…</p>;
   }
+  const missions =
+  student.profile?.missions_recherchees &&
+  student.profile.missions_recherchees.length > 0
+    ? student.profile.missions_recherchees
+    : DEFAULT_MISSIONS;
+
 
   return (
     <div className="pe-container">
@@ -54,12 +65,15 @@ const StudentPublicProfile = () => {
             <strong>Établissement :</strong> {student.school || "—"}
           </p>
 
-          <h2 className="pe-missions-title">Missions recherchées :</h2>
-          <ul className="pe-missions">
-            <li>🎓 Missions liées à la formation</li>
-            <li>🧠 Missions qualifiées</li>
-            <li>📚 Missions polyvalentes</li>
-          </ul>
+<h2 className="pe-missions-title">Missions recherchées :</h2>
+
+<ul className="pe-missions">
+  {missions.map((mission, index) => (
+    <li key={index}>{mission.startsWith("🎓") ? mission : `🎯 ${mission}`}</li>
+  ))}
+</ul>
+
+
 
           <button className="pe-btn">Contacter</button>
         </div>
