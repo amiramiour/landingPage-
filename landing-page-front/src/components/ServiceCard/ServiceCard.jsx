@@ -23,7 +23,7 @@ const ServiceCard = ({
   date,
 }) => {
   return (
-    <Link to={`/profile-etudiant/${id}`} className="service-card">
+<Link to={`/profile/${id}`} className="service-card">
 
       {/* PHOTO ÉTUDIANT */}
       <img src={photo} alt={fullName} className="service-card-image" />

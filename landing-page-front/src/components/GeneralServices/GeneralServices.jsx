@@ -51,6 +51,7 @@ const GeneralServices = () => {
           {visibleMissions.map((mission) => (
             <ServiceCard1
   key={mission.id}
+   id={mission.id}
   title={mission.title}
   description={mission.description}
   date={mission.startDate?.slice(0, 10)}

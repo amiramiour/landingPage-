@@ -1,5 +1,7 @@
 import React from "react";
 import "./ServiceCard.css";
+import { useNavigate } from "react-router-dom";
+
 const formatDateFR = (dateString) => {
   if (!dateString) return "";
 
@@ -13,6 +15,7 @@ const formatDateFR = (dateString) => {
 };
 
 const ServiceCard1 = ({
+   id,  
   title,
   description,
   icon,
@@ -21,8 +24,14 @@ const ServiceCard1 = ({
   date,
   type,
 }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="linky-service-card">
+<div
+  className="linky-service-card"
+  onClick={() => navigate(`/prestationsqualifiee/${id}`)}
+  style={{ cursor: "pointer" }}
+>
 
       {/* IMAGE MISSION */}
       <img src={icon} alt={title} className="linky-service-card-image" />

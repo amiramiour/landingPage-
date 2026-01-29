@@ -46,6 +46,7 @@ function App() {
           <Route path="/prestationsqualifiee" element={<PrestationsScreen />} />
           <Route path="/prestationsgenerales" element={<PrestationsScreen />} />
           <Route path="/prestationsgenerales/:id" element={<PqProfileScreen />} />
+          <Route path="/profile-etudiant/:id" element={<ProfileEtudiant />} />
 
         </Routes>
       </div>
