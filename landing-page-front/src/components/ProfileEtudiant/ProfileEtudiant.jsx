@@ -278,22 +278,14 @@ setShowModal(true);
 
   if (!profil) return null;
 
-const REQUIRED_DOC_KEYS = [
-  "photoIdentite",
-  "titreSejour",
-  "certificatScolarite",
-  "rib",
-];
-
-const hasAllRequiredDocs = REQUIRED_DOC_KEYS.every(
-  (key) => documents[key]
-);
+const ALL_DOC_KEYS = Object.keys(documents);
 
 const canSubmit =
-  hasAllRequiredDocs &&
   kycStatus &&
-  !kycStatus.deposited &&
-  kycStatus.refused; // uniquement en cas de refus
+  !kycStatus.validated &&
+  !kycStatus.inReview;
+
+
 
 
 
