@@ -58,3 +58,43 @@
   border-radius: 9999px;
   cursor: pointer;
 }
+.mission-status.submitted {
+  color: #3b82f6; /* bleu */
+}
+
+.mission-status.under_review {
+  color: #facc15; /* jaune */
+}
+
+.mission-status.accepted {
+  color: #22c55e; /* vert */
+}
+
+.mission-status.rejected {
+  color: #ef4444; /* rouge */
+}
+
+.mission-status.cancelled {
+  color: #9ca3af; /* gris */
+}
+.mission-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 15px 12px;
+}
+.mission-status {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* espace icône / texte */
+}
+
+.status-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+.mission-status-actions {
+  display: flex;
+  align-items: center;
+}

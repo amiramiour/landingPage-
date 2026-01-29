@@ -17,6 +17,8 @@ import imgGenerales from "../../assets/Animateur interculturel.jpeg";
 const PrestationsSlider = ({ theme, missions }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  if (!missions || missions.length === 0) return null;
+
   const arrowLeft = theme === "green" ? arrowLeftGreen : arrowLeftYellow;
   const arrowRight = theme === "green" ? arrowRightGreen : arrowRightYellow;
   const imgToUse = theme === "yellow" ? imgExpertise : imgGenerales;
@@ -53,6 +55,7 @@ const PrestationsSlider = ({ theme, missions }) => {
           mission.type === "mission_d_expertise" ? (
             <PrestaCard
               key={mission.id}
+              id={mission.id}                 // ✅ AJOUT CRITIQUE
               image={imgToUse}
               type="MISSION D’EXPERTISE"
               date={mission.startDate?.slice(0, 10) || "--"}
@@ -62,6 +65,7 @@ const PrestationsSlider = ({ theme, missions }) => {
           ) : (
             <PrestaCardGen
               key={mission.id}
+              id={mission.id}                 //  AJOUT CRITIQUE
               image={imgToUse}
               type="MISSION DE SERVICE"
               date={mission.startDate?.slice(0, 10) || "--"}
@@ -72,7 +76,7 @@ const PrestationsSlider = ({ theme, missions }) => {
         )}
       </div>
 
-      {/* NAV */}
+      {/* NAVIGATION — RESTAURÉE */}
       {len >= 1 && (
         <div className="prestas-navigation">
           <img

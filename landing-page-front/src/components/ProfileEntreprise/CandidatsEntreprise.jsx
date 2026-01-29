@@ -6,33 +6,63 @@ function CandidatsEntreprise() {
   const { token } = useAuth();
   const [candidats, setCandidats] = useState([]);
 
+  /* ================= CHARGEMENT DES CANDIDATS ================= */
   useEffect(() => {
-    fetch("http://localhost:3000/api/candidatures/my", {
+    fetch("http://localhost:3000/api/candidatures/company", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => res.json())
       .then(data => {
+        // évite les doublons d'étudiants
         const uniques = new Map();
-        data.forEach(c => uniques.set(c.student.id, c.student));
+
+        data.forEach(c => {
+          uniques.set(c.student.id, {
+            ...c.student,
+            missionTitle: c.mission.title,
+          });
+        });
+
         setCandidats([...uniques.values()]);
-      });
+      })
+      .catch(console.error);
   }, [token]);
 
   return (
     <section className="team-directory">
-      <h2 className="team-directory__title">ÉTUDIANTS AYANT CANDIDATÉ</h2>
+      <h2 className="team-directory__title">
+        ÉTUDIANTS AYANT CANDIDATÉ
+      </h2>
 
       <div className="team-directory__grid">
+        {candidats.length === 0 && (
+          <p style={{ textAlign: "center", color: "#666" }}>
+            Aucun étudiant pour le moment
+          </p>
+        )}
+
         {candidats.map(student => (
           <div key={student.id} className="team-member">
             <img
               src={`http://localhost:3000/${student.photoUrl}`}
               className="team-member__image"
+              alt={student.firstName}
+              onError={(e) => {
+                e.target.src = "/uploads/default-avatar.png";
+              }}
             />
+
             <h3 className="team-member__name">
               {student.firstName} {student.lastName}
             </h3>
-            <p className="team-member__title">{student.training}</p>
+
+            <p className="team-member__title">
+              {student.training || "—"}
+            </p>
+
+            <small className="team-member__mission">
+              Mission : {student.missionTitle}
+            </small>
           </div>
         ))}
       </div>

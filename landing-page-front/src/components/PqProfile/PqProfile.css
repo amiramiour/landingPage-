@@ -52,7 +52,10 @@
     margin-bottom: 1rem;
     width: fit-content;
   }
-  
+  .pq-qualification-badge.service {
+  background-color: #7FD8B1;
+}
+
   .pq-profile-title {
     font-size: 2rem;
     font-weight: bold;

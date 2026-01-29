@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import "./HistoriqueEtudiant.css";
 import icon from "../../assets/icon.png";
+import sentIcon from "../../assets/status-submitted.png";
+import reviewIcon from "../../assets/status-review.png";
+import acceptIcon from "../../assets/status-accepted.png";
+import rejectIcon from "../../assets/status-rejected.png";
 
 function HistoriqueEtudiant() {
   const [candidatures, setCandidatures] = useState([]);
@@ -17,22 +21,49 @@ function HistoriqueEtudiant() {
       .catch(err => console.error(err));
   }, []);
 
-  const renderStatus = (status) => {
-    switch (status) {
-      case "submitted":
-        return "Envoyée";
-      case "under_review":
-        return "En cours de traitement";
-      case "accepted":
-        return "Acceptée";
-      case "rejected":
-        return "Refusée";
-      case "cancelled":
-        return "Annulée";
-      default:
-        return "";
-    }
-  };
+const renderStatus = (status) => {
+  switch (status) {
+    case "submitted":
+      return (
+        <>
+          Envoyée
+          <img src={sentIcon} className="status-icon" />
+
+        </>
+      );
+
+    case "under_review":
+      return (
+        <>
+          En cours de traitement
+          <img src={reviewIcon} className="status-icon" />
+
+        </>
+      );
+
+    case "accepted":
+      return (
+        <>
+          Acceptée
+                    <img src={acceptIcon} className="status-icon" />
+
+        </>
+      );
+
+    case "rejected":
+      return (
+        <>
+          Refusée
+                    <img src={rejectIcon} className="status-icon" />
+
+        </>
+      );
+
+    default:
+      return null;
+  }
+};
+
 
   const renderActionButton = (candidature) => {
     switch (candidature.status) {

@@ -1,64 +1,111 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import './PqProfile.css';
 import icon from '../../assets/icon.png';
 
 function PqProfile() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const [mission, setMission] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const getMissionLabel = (type) => {
+    switch (type) {
+      case "mission_d_expertise":
+        return "Mission d’expertise";
+      case "mission_de_service":
+        return "Mission de service";
+      default:
+        return "Mission";
+    }
+  };
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/missions/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        setMission(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) {
+    return <p style={{ padding: '4rem', textAlign: 'center' }}>Chargement...</p>;
+  }
+
+  if (!mission) {
+    return <p style={{ padding: '4rem', textAlign: 'center' }}>Mission introuvable</p>;
+  }
+
   return (
     <div className="pq-profile-container">
-      
-      {/* Bloc texte en haut à droite */}
+
+      {/* Bloc texte en haut */}
       <div className="pq-profile-top-right">
-        <span className="pq-qualification-badge">Mission d'expertise</span>
-        <h1 className="pq-profile-title">Techniciens informatique</h1>
+        <span
+  className={`pq-qualification-badge ${
+    mission.type === "mission_de_service" ? "service" : ""
+  }`}
+>
+  {getMissionLabel(mission.type)}
+</span>
+
+        <h1 className="pq-profile-title">{mission.title}</h1>
       </div>
 
-      {/* Bloc principal image + texte */}
+      {/* Bloc principal */}
       <div className="pq-profile-content">
+
         <div className="pq-profile-image-wrapper">
-          <img 
-            src="https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="Technicien informatique au travail"
+          <img
+            src="https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg"
+            alt={mission.title}
             className="pq-profile-image"
           />
         </div>
 
         <div className="pq-profile-text-content">
           <div>
-            <p className="pq-profile-description">
-              Freelance informatique recrute un(e) technicien(ne) pour intervenir sur la maintenance et le support informatique auprès de TPE/PME.
-            </p>
-            <p className="pq-profile-description">
-              La mission inclut diagnostics, installations, et assistance utilisateurs. Encadrement, formation et environnement de travail motivant garantis.
-            </p>
-            <p className="pq-profile-description">
-              Vous serez accompagné par un technicien senior, et formé aux procédures internes.
-            </p>
+            <p className="pq-profile-description">{mission.description}</p>
 
-            <h2 className="pq-profile-subtitle">Niveau études</h2>
-            <p className="pq-profile-description">BTS Informatique, Licence Informatique.</p>
+            {mission.niveau && (
+              <>
+                <h2 className="pq-profile-subtitle">Niveau études</h2>
+                <p className="pq-profile-description">{mission.niveau}</p>
+              </>
+            )}
 
             <div className="pq-details-grid">
               <span className="pq-details-label">Date :</span>
-              <span>10 DEC 2024</span>
-              
+              <span>
+                {mission.startDate
+                  ? new Date(mission.startDate).toLocaleDateString()
+                  : '—'}
+              </span>
+
               <span className="pq-details-label">Durée :</span>
-              <span>3 mois renouvelables</span>
-              
+              <span>{mission.durationHours || '—'}</span>
+
               <span className="pq-details-label">Montant :</span>
-              <span>15.20 € / heure (brut)</span>
-              
+              <span>
+                {mission.remuneration
+                  ? `${mission.remuneration} €`
+                  : '—'}
+              </span>
+
               <span className="pq-details-label">Lieu :</span>
-              <span>28 Rue de la République, 69001 Lyon</span>
+              <span>{mission.location || '—'}</span>
             </div>
           </div>
 
           <div>
             <div className="pq-company-info">
-              <img 
-                src={icon}
-                alt="Logo Freelance informatique"
-                className="pq-company-logo"
-              />
+              <img src={icon} alt="Entreprise" className="pq-company-logo" />
               <span className="font-medium">Freelance informatique</span>
             </div>
 
@@ -69,7 +116,14 @@ function PqProfile() {
         </div>
       </div>
 
-      <a href="#" className="pq-back-link">← Retour</a>
+      <span
+  className="pq-back-link"
+  onClick={() => navigate(-1)}
+  style={{ cursor: "pointer" }}
+>
+  &lt; Retour
+</span>
+
     </div>
   );
 }

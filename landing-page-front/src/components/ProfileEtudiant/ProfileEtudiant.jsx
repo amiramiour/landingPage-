@@ -1,8 +1,29 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ProfileEtudiant.css";
 import { FaCheckCircle, FaCloudUploadAlt, FaCamera } from "react-icons/fa";
+
 import lockIcon from "../../assets/locked.png";
 import lineIcon from "../../assets/line.png";
+
+import iconBlue from "../../assets/checkblue.png";
+import iconYellow from "../../assets/checkjaune.png";
+import iconRed from "../../assets/refusrouge.png";
+import iconGreen from "../../assets/checkvert.png";
+
+/* ================= MAPPING FRONT ↔ BACK ================= */
+const DOC_TYPE_MAP = {
+  photoIdentite: "photo_identite",
+  titreSejour: "titre_sejour",
+  certificatScolarite: "certificat_scolarite",
+  diplomeEtudes: "diplome",
+  rib: "rib",
+  justificatifDomicile: "justificatif_domicile",
+  charteEngagement: "charte_engagement",
+};
+
+const DOC_TYPE_REVERSE = Object.fromEntries(
+  Object.entries(DOC_TYPE_MAP).map(([k, v]) => [v, k])
+);
 
 function ProfileEtudiant() {
   const [profil, setProfil] = useState(null);
@@ -18,7 +39,9 @@ function ProfileEtudiant() {
     charteEngagement: false,
   });
 
+  const [kycStatus, setKycStatus] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
   const fileInputs = useRef({});
   const fileInputRef = useRef(null);
 
@@ -43,6 +66,70 @@ function ProfileEtudiant() {
         : "http://localhost:3000/uploads/default-avatar.png",
     });
   }, []);
+
+  /* ================= KYC STATUS ================= */
+const loadKycStatus = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  const res = await fetch("http://localhost:3000/documents/kyc-status", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!res.ok) {
+    console.warn("KYC status non accessible");
+    return;
+  }
+
+  const data = await res.json();
+  setKycStatus(data);
+};
+
+
+  useEffect(() => {
+    loadKycStatus();
+  }, []);
+
+  /* ================= DOCUMENTS EXISTANTS ================= */
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  fetch("http://localhost:3000/documents/my", {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+    .then(async (res) => {
+      if (!res.ok) throw new Error("Unauthorized");
+      return res.json();
+    })
+    .then((docs) => {
+      if (!Array.isArray(docs)) return;
+
+      const freshState = {
+        photoIdentite: false,
+        titreSejour: false,
+        certificatScolarite: false,
+        diplomeEtudes: false,
+        rib: false,
+        justificatifDomicile: false,
+        charteEngagement: false,
+      };
+
+      docs.forEach((doc) => {
+        const key = DOC_TYPE_REVERSE[doc.docType];
+        if (key && doc.fileUrl) {
+          freshState[key] = true;
+        }
+      });
+
+      setDocuments(freshState);
+    })
+    .catch(() => {
+      console.warn("Impossible de charger les documents (auth)");
+    });
+}, [kycStatus]); // 
+
+
 
   /* ================= PHOTO ================= */
   const handlePhotoUpload = async (e) => {
@@ -115,8 +202,102 @@ function ProfileEtudiant() {
     setEditMode(false);
   };
 
-  if (!profil) return <p style={{ textAlign: "center" }}>Chargement…</p>;
+  /* ================= UPLOAD DOCUMENT ================= */
+  const handleDocumentUpload = async (frontKey, file) => {
+    if (!file) return;
 
+    const token = localStorage.getItem("token");
+    const docType = DOC_TYPE_MAP[frontKey];
+
+const presign = await fetch(
+  `http://localhost:3000/documents/presigned-url?type=${docType}`,
+  { headers: { Authorization: `Bearer ${token}` } }
+);
+
+if (!presign.ok) {
+  alert("Session expirée, reconnecte-toi");
+  return;
+}
+
+const { uploadUrl, s3Key } = await presign.json();
+
+
+const uploadRes = await fetch(uploadUrl, {
+  method: "PUT",
+  headers: { "Content-Type": file.type },
+  body: file,
+});
+
+if (!uploadRes.ok) {
+  alert("Erreur upload S3");
+  return;
+}
+
+const confirmRes = await fetch("http://localhost:3000/documents/confirm", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify({ type: docType, s3Key }),
+});
+
+if (!confirmRes.ok) {
+  alert("Erreur confirmation document");
+  return;
+}
+
+
+   
+
+    setDocuments((prev) => ({ ...prev, [frontKey]: true }));
+    loadKycStatus();
+  };
+
+  /* ================= SUBMIT ================= */
+ const handleSubmit = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+const res = await fetch("http://localhost:3000/documents/submit", {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+
+if (!res.ok) {
+  alert("Impossible de soumettre le dossier");
+  return;
+}
+
+await loadKycStatus();
+setShowModal(true);
+
+};
+
+  if (!profil) return null;
+
+const REQUIRED_DOC_KEYS = [
+  "photoIdentite",
+  "titreSejour",
+  "certificatScolarite",
+  "rib",
+];
+
+const hasAllRequiredDocs = REQUIRED_DOC_KEYS.every(
+  (key) => documents[key]
+);
+
+const canSubmit =
+  hasAllRequiredDocs &&
+  kycStatus &&
+  !kycStatus.deposited &&
+  kycStatus.refused; // uniquement en cas de refus
+
+
+
+  /* ================= RENDER ================= */
   return (
     <div className="profile-page">
       <div className="top-section">
@@ -175,90 +356,128 @@ function ProfileEtudiant() {
           )}
         </div>
 
-        {/* ----- DOSSIER DÉPÔT ----- */}
+        {/* ===== DOSSIER ===== */}
         <div className="dossier-card">
           <h2>Dépôt de dossier d’inscription</h2>
 
           <ul className="dossier-liste">
-            {Object.keys(documents).map((key, i) => (
-              <li key={i} className="dossier-item">
+            {Object.keys(documents).map((key, i) => {
+              const refused = kycStatus?.refusedDocs?.includes(DOC_TYPE_MAP[key]);
+              const validated = kycStatus?.validatedDocs?.includes(
+  DOC_TYPE_MAP[key]
+);
 
-                <div className="dossier-timeline">
-                  <div className="dossier-circle"></div>
-                  {i < Object.keys(documents).length - 1 && (
-                    <div className="dossier-line"></div>
-                  )}
-                </div>
+const canUpload =
+  !documents[key] || refused;
 
-                <div className="dossier-content">
-                  <span className="dossier-nom">
-                    {key.replace(/([A-Z])/g, " $1").replace(/^./, (c) => c.toUpperCase())}
-                  </span>
 
-                  {documents[key] ? (
-                    <FaCheckCircle className="icon-check" />
-                  ) : (
-                    <>
-                      <button className="btn-upload" onClick={() => fileInputs.current[key].click()}>
-                        <FaCloudUploadAlt /> Télécharger
-                      </button>
+              return (
+                <li key={i} className="dossier-item">
+                  <div className="dossier-timeline">
+                    <div className="dossier-circle"></div>
+                    {i < 6 && <div className="dossier-line"></div>}
+                  </div>
 
-                      <input
-                        type="file"
-                        ref={(el) => (fileInputs.current[key] = el)}
-                        style={{ display: "none" }}
-                        onChange={() => setDocuments((prev) => ({ ...prev, [key]: true }))}
-                      />
-                    </>
-                  )}
-                </div>
+<div className="dossier-content">
+  <span className="dossier-nom">
+    {key.replace(/([A-Z])/g, " $1")}
+  </span>
 
-              </li>
-            ))}
-          </ul>
+  {refused ? (
+    <>
+      <button
+        className="btn-upload"
+        onClick={() => fileInputs.current[key].click()}
+      >
+        <FaCloudUploadAlt /> Télécharger <span className="icon-refused">❗</span>
+      </button>
+      <input
+        type="file"
+        hidden
+        ref={(el) => (fileInputs.current[key] = el)}
+        onChange={(e) =>
+          handleDocumentUpload(key, e.target.files[0])
+        }
+      />
+    </>
+  ) : documents[key] ? (
+  <span className="uploaded-text">
+    Téléchargé
+    {validated && <FaCheckCircle className="icon-validated" />}
+  </span>
+) : (
+    <>
+      <button
+        className="btn-upload"
+        onClick={() => fileInputs.current[key].click()}
+      >
+        <FaCloudUploadAlt /> Télécharger
+      </button>
+      <input
+        type="file"
+        hidden
+        ref={(el) => (fileInputs.current[key] = el)}
+        onChange={(e) =>
+          handleDocumentUpload(key, e.target.files[0])
+        }
+      />
+    </>
+  )}
+</div>
+
+
+
+                          </li>
+                        );
+                      })}
+                    </ul>
 
           <button
-            className={`btn-soumettre ${allUploaded ? "active" : ""}`}
-            disabled={!allUploaded}
-            onClick={() => setShowModal(true)}
+            className={`btn-soumettre ${canSubmit ? "active" : ""}`}
+            disabled={!canSubmit}
+            onClick={handleSubmit}
           >
             Soumettre
           </button>
         </div>
       </div>
 
-      {/* ----- SUIVI ----- */}
+      {/* ================= TIMELINE ================= */}
       <div className="timeline-etapes">
-        {["Dépôt du dossier", "Etude du dossier", "Prise de décision"].map((txt, i) => (
+        {[
+          { title: "Dépôt du dossier", ok: kycStatus?.deposited, date: kycStatus?.depositedAt, icon: iconBlue },
+          { title: "Etude du dossier", ok: kycStatus?.inReview, date: kycStatus?.reviewStartedAt, icon: iconYellow },
+          {
+            title: "Prise de décision",
+            ok: kycStatus?.validated || kycStatus?.refused,
+            date: kycStatus?.decisionAt,
+            icon: kycStatus?.validated ? iconGreen : iconRed,
+          },
+        ].map((step, i) => (
           <React.Fragment key={i}>
-            <div className="etape locked">
+            <div className="etape">
               <div className="icone-etape">
-<img src={lockIcon} alt="locked" className="icone-lock-img" />
+                <img src={step.ok ? step.icon : lockIcon} className="icone-lock-img" />
               </div>
-              <p>{txt}</p>
+              <p>{step.title}</p>
+              {step.ok && step.date && (
+                <small>{new Date(step.date).toLocaleDateString()}</small>
+              )}
             </div>
-                  {i < 2 && (
-                    <img 
-                      src={lineIcon} 
-                      alt="line" 
-                      className="ligne-etape-img"
-                    />
-                  )}
+            {i < 2 && <img src={lineIcon} className="ligne-etape-img" />}
           </React.Fragment>
         ))}
       </div>
 
-      {/* ----- MODAL ----- */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">
             <FaCheckCircle className="modal-icon" />
-            <p>Le dossier a été soumis avec succès 🎉</p>
+            <p>Le dossier a été soumis avec succès</p>
             <button className="btn-ok" onClick={() => setShowModal(false)}>OK</button>
           </div>
         </div>
       )}
-
     </div>
   );
 }

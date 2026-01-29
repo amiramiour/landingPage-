@@ -45,6 +45,8 @@ function App() {
           <Route path="/addprestation" element={<AddPrestation />} />
           <Route path="/prestationsqualifiee" element={<PrestationsScreen />} />
           <Route path="/prestationsgenerales" element={<PrestationsScreen />} />
+          <Route path="/prestationsgenerales/:id" element={<PqProfileScreen />} />
+
         </Routes>
       </div>
     </Router>

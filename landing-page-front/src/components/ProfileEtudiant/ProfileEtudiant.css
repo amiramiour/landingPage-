@@ -482,6 +482,25 @@
   align-items: center;
   justify-content: center;
 }
+.uploaded-text {
+  font-weight: 500;
+}
+
+.icon-refused {
+  color: #e74c3c;
+  font-weight: bold;
+}
+.icon-validated {
+  color: #34AD4A; /* vert propre */
+  margin-left: 8px;
+  font-size: 1rem;
+}
+.uploaded-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 900px) {

@@ -54,7 +54,7 @@ const ServiceCard1 = ({
 
         <div className="linky-company-info">
           <span className="linky-company-name">{companyName}</span>
-<span className="linky-date">{formatDateFR(date)}</span>
+          <span className="linky-date">{formatDateFR(date)}</span>
         </div>
       </div>
 
