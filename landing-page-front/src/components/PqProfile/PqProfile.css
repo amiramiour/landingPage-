@@ -128,7 +128,17 @@
   .pq-back-link:hover {
     text-decoration: underline;
   }
-  
+  .pq-apply-button.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.pq-apply-hint {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #888;
+}
+
   /* Responsive mobile */
   @media (max-width: 768px) {
     .pq-profile-container {

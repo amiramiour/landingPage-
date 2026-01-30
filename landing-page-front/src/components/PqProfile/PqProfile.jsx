@@ -4,11 +4,17 @@ import './PqProfile.css';
 import icon from '../../assets/icon.png';
 
 function PqProfile() {
+  const storedUser = localStorage.getItem("user");
+const user = storedUser ? JSON.parse(storedUser) : null;
+
+const isStudent = user?.role === "student";
+
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [mission, setMission] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [kycStatus, setKycStatus] = useState(null);
 
   const getMissionLabel = (type) => {
     switch (type) {
@@ -20,6 +26,26 @@ function PqProfile() {
         return "Mission";
     }
   };
+  useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  fetch("http://localhost:3000/documents/kyc-status", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("KYC non accessible");
+      return res.json();
+    })
+    .then((data) => {
+      setKycStatus(data);
+    })
+    .catch((err) => {
+      console.warn(err.message);
+    });
+}, []);
 
   useEffect(() => {
     fetch(`http://localhost:3000/missions/${id}`)
@@ -41,6 +67,12 @@ function PqProfile() {
   if (!mission) {
     return <p style={{ padding: '4rem', textAlign: 'center' }}>Mission introuvable</p>;
   }
+ const canApply =
+  isStudent &&
+  kycStatus &&
+  kycStatus.validated === true;
+
+
 
   return (
     <div className="pq-profile-container">
@@ -109,9 +141,14 @@ function PqProfile() {
               <span className="font-medium">Freelance informatique</span>
             </div>
 
-            <button className="pq-apply-button">
-              Candidater
-            </button>
+            <button
+  className={`pq-apply-button ${!canApply ? "disabled" : ""}`}
+  disabled={!canApply}
+  title={!canApply ? "Votre dossier doit être validé pour candidater" : ""}
+>
+  Candidater
+</button>
+
           </div>
         </div>
       </div>
