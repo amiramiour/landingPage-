@@ -69,7 +69,7 @@ const StudentPublicProfile = () => {
 
 <ul className="pe-missions">
   {missions.map((mission, index) => (
-    <li key={index}>{mission.startsWith("🎓") ? mission : `🎯 ${mission}`}</li>
+    <li key={index}>{mission.startsWith("🎓") ? mission : ` ${mission}`}</li>
   ))}
 </ul>
 
