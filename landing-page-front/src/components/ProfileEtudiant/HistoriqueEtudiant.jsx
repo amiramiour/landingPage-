@@ -129,12 +129,12 @@ const renderStatus = (status) => {
               {/* TYPE */}
               <span
                 className={`mission-badge ${
-                  c.mission.type === "mission_de_expertise"
+                  c.mission.type === "mission_d_expertise"
                     ? "yellow"
                     : "green"
                 }`}
               >
-                {c.mission.type === "mission_de_expertise"
+                {c.mission.type === "mission_d_expertise"
                   ? "Mission d’expertise"
                   : "Mission de service"}
               </span>
