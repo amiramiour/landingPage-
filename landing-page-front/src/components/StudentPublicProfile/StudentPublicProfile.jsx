@@ -54,10 +54,6 @@ const StudentPublicProfile = () => {
           </h2>
 
           <p>
-            <strong>Domaine :</strong> {student.field || "—"}
-          </p>
-
-          <p>
             <strong>Formation :</strong> {student.training || "—"}
           </p>
 

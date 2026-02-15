@@ -73,7 +73,11 @@
     padding: 2rem;
     z-index: 1;
   }
-  
+  /* === DISPONIBILITÉS : PLUS LARGE QUE LE FORMULAIRE === */
+.rf-dispo-group {
+  width: calc(100% + 80px);   /*  élargissement */
+  margin-left: -40px;        /* recentrage */
+}
   .rf-etud-logo-container {
     display: flex;
     justify-content: center;
@@ -169,19 +173,212 @@
     background: #f9fafb;
   }
   
-  .rf-etud-back {
-    display: block;
-    text-align: left;
-    margin-top: 1rem;
-    font-size: 0.875rem;
-    color: black;
-    text-decoration: none;
-  }
-  
-  .rf-etud-back:hover {
-    text-decoration: underline;
-  }
-  
+.rf-etud-back {
+  background: none;
+  border: none;
+  padding: 0;
+
+  display: block;
+  text-align: left;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.rf-etud-back:hover {
+  text-decoration: underline;
+}
+  .rf-etud-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.rf-etud-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  border: 1px solid #333;
+  resize: vertical;
+  font-family: inherit;
+}
+.rf-etud-next {
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  cursor: pointer;
+  color: black;
+}
+.rf-lang-block {
+  margin-bottom: 16px;
+}
+
+.rf-lang-levels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.rf-lang-level {
+  padding: 6px 12px;
+  border: 1px solid #333;
+  background: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.rf-lang-level.active {
+  background: black;
+  color: white;
+}
+
+.rf-lang-add {
+  margin-top: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+.rf-etud-next:hover {
+  text-decoration: underline;
+}
+.rf-lang-card {
+  margin-bottom: 20px;
+}
+
+/* input + bouton + */
+.rf-lang-input-wrapper {
+  position: relative;
+}
+
+.rf-lang-input {
+  padding-right: 40px;
+}
+
+.rf-lang-plus {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: black;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.rf-lang-plus:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.rf-lang-radio {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, auto);
+  row-gap: 16px;
+  column-gap: 40px;
+  margin-top: 16px;
+}
+
+.rf-lang-radio-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.rf-lang-radio-item input {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid black;
+  border-radius: 50%;
+  position: relative;
+}
+.rf-lang-radio-item[data-level="A1"] { grid-row: 1; grid-column: 1; }
+.rf-lang-radio-item[data-level="B2"] { grid-row: 1; grid-column: 2; }
+
+.rf-lang-radio-item[data-level="A2"] { grid-row: 2; grid-column: 1; }
+.rf-lang-radio-item[data-level="C1"] { grid-row: 2; grid-column: 2; }
+
+.rf-lang-radio-item[data-level="B1"] { grid-row: 3; grid-column: 1; }
+.rf-lang-radio-item[data-level="C2"] { grid-row: 3; grid-column: 2; }
+
+.rf-lang-radio-item[data-level="Natif"] { 
+  grid-row: 4; 
+  grid-column: 2; 
+}
+
+/* Titre "Vos disponibilités" */
+.rf-etud-group > label {
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+}
+.rf-lang-radio-item input:checked::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+/* ===== DISPONIBILITÉS ===== */
+/* Conteneur visuel de la box */
+.rf-etud-group {
+  margin-bottom: 32px; /* espace global */
+}
+
+/* La box */
+.rf-etud-group table {
+  max-width: 640px;     /*  limite propre */
+  border: 1px solid black;
+  border-collapse: separate;
+}
+/* espace entre le titre et le cadre */
+.rf-etud-group label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* cellules */
+.rf-etud-group table th,
+.rf-etud-group table td {
+  padding: 10px 8px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* colonne Jours alignée à gauche */
+.rf-etud-group table th:first-child,
+.rf-etud-group table td:first-child {
+  text-align: left;
+  padding-left: 10px;
+}
+
+/* ===== CHECKBOX STYLE (CARRE, SANS RADIUS) ===== */
+.rf-etud-group input[type="checkbox"] {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid black;
+  border-radius: 0;           /*  PAS D’ARRONDI */
+  cursor: pointer;
+  position: relative;
+}
+
+/* état coché */
+.rf-etud-group input[type="checkbox"]:checked {
+  background: black;
+}
   @media (max-width: 640px) {
     .rf-etud-wrapper {
       max-width: 90%;

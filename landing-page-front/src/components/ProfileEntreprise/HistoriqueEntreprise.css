@@ -37,7 +37,7 @@
 /* ===== MISSIONS GRID ===== */
 .missions-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 👈 4 MAX */
+  grid-template-columns: repeat(4, 1fr); /*  4 MAX */
   gap: 30px;
 }
 

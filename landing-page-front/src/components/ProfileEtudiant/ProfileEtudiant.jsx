@@ -41,7 +41,9 @@ function ProfileEtudiant() {
 
   const [kycStatus, setKycStatus] = useState(null);
   const [showModal, setShowModal] = useState(false);
-
+  const [studentProfile, setStudentProfile] = useState(null);
+  const [editExtra, setEditExtra] = useState(false);
+  const [extraForm, setExtraForm] = useState(null);
   const fileInputs = useRef({});
   const fileInputRef = useRef(null);
 
@@ -58,7 +60,6 @@ function ProfileEtudiant() {
       nom: user.lastName,
       prenom: user.firstName,
       telephone: user.phone,
-      domaine: user.field,
       formation: user.training,
       etablissement: user.school,
       photo: user.photoUrl
@@ -66,6 +67,26 @@ function ProfileEtudiant() {
         : "http://localhost:3000/uploads/default-avatar.png",
     });
   }, []);
+  useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  fetch("http://localhost:3000/student-profile/me", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Erreur chargement profil étudiant");
+      return res.json();
+    })
+    .then(data => {
+      setStudentProfile(data);
+    })
+    .catch(err => {
+      console.error("StudentProfile error:", err);
+    });
+}, []);
 
   /* ================= KYC STATUS ================= */
 const loadKycStatus = async () => {
@@ -165,7 +186,6 @@ useEffect(() => {
       firstName: profil.prenom,
       lastName: profil.nom,
       phone: profil.telephone,
-      field: profil.domaine,
       training: profil.formation,
       school: profil.etablissement,
     });
@@ -193,7 +213,6 @@ useEffect(() => {
       nom: data.user.lastName,
       prenom: data.user.firstName,
       telephone: data.user.phone,
-      domaine: data.user.field,
       formation: data.user.training,
       etablissement: data.user.school,
       photo: `http://localhost:3000/${data.user.photoUrl}`,
@@ -287,6 +306,13 @@ const canSubmit =
 
 
 
+const missions =
+  typeof studentProfile?.missions_recherchees === "string"
+    ? studentProfile.missions_recherchees
+        .split(/\n|,/)
+        .map(m => m.trim())
+        .filter(Boolean)
+    : [];
 
 
   /* ================= RENDER ================= */
@@ -322,7 +348,6 @@ const canSubmit =
                 <input value={form.lastName} onChange={(e) => setForm({ ...form, lastName: e.target.value })} />
                 <input value={form.firstName} onChange={(e) => setForm({ ...form, firstName: e.target.value })} />
                 <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-                <input value={form.field} onChange={(e) => setForm({ ...form, field: e.target.value })} />
                 <input value={form.training} onChange={(e) => setForm({ ...form, training: e.target.value })} />
                 <input value={form.school} onChange={(e) => setForm({ ...form, school: e.target.value })} />
               </>
@@ -331,7 +356,6 @@ const canSubmit =
                 <p><strong>Nom </strong>{profil.nom}</p>
                 <p><strong>Prénom </strong>{profil.prenom}</p>
                 <p><strong>Téléphone </strong>{profil.telephone}</p>
-                <p><strong>Domaine </strong>{profil.domaine}</p>
                 <p><strong>Formation </strong>{profil.formation}</p>
                 <p><strong>Établissement </strong>{profil.etablissement}</p>
               </>
@@ -433,6 +457,165 @@ const canUpload =
           </button>
         </div>
       </div>
+      {studentProfile && (
+          <div className="profile-extra-section">
+
+            {/* COLONNE GAUCHE */}
+            <div className="profile-extra-left">
+                <h3>Mes compétences</h3>
+
+              <div className="profile-box">
+              {editExtra ? (
+                <textarea
+                  className="profile-textarea"
+                  value={extraForm.competences}
+                  onChange={(e) =>
+                    setExtraForm({ ...extraForm, competences: e.target.value })
+                  }
+                />
+              ) : (
+                <p className="profile-text">
+                  {studentProfile.competences || "—"}
+                </p>
+              )}
+            </div>
+                        <h3>Missions recherchées</h3>
+                        <div className="profile-box">
+  {editExtra ? (
+    <textarea
+      className="profile-textarea"
+      value={extraForm.missions}
+      placeholder={`Exemple :
+Support technique
+Développement web`}
+      onChange={(e) =>
+        setExtraForm({ ...extraForm, missions: e.target.value })
+      }
+    />
+  ) : (
+    <ul className="profile-list no-bullets">
+      {missions.length
+        ? missions.map((m, i) => <li key={i}>{m}</li>)
+        : <li>—</li>}
+    </ul>
+  )}
+</div>
+
+            </div>
+
+            {/* COLONNE DROITE */}
+            <div className="profile-extra-right">
+                <h3>Mes disponibilités</h3>
+
+              <div className="profile-box">
+
+                <table className="dispo-table">
+                  <thead>
+                    <tr>
+                      <th>Jours</th>
+                      <th>9h-12h</th>
+                      <th>12h-15h</th>
+                      <th>15h-18h</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+{Object.entries(editExtra
+    ? extraForm?.disponibilites || {}
+    : studentProfile?.disponibilites || {})
+  .map(([day, slots]) => (
+    <tr key={day}>
+      <td>{day}</td>
+      {Object.entries(slots).map(([slot, value]) => (
+        <td key={slot}>
+          {editExtra ? (
+            <input
+              type="checkbox"
+              checked={value}
+              onChange={() => {
+                setExtraForm(prev => ({
+                  ...prev,
+                  disponibilites: {
+                    ...prev.disponibilites,
+                    [day]: {
+                      ...prev.disponibilites[day],
+                      [slot]: !value,
+                    },
+                  },
+                }));
+              }}
+            />
+          ) : (
+            <span className={value ? "box-checked" : "box-empty"} />
+          )}
+        </td>
+      ))}
+    </tr>
+  ))}
+</tbody>
+                </table>
+              </div>
+
+{/* ACTIONS */}
+{!editExtra ? (
+  <button
+    className="btn-modifier-dispo"
+    onClick={() => {
+      setExtraForm({
+        competences: studentProfile.competences || "",
+        missions: studentProfile.missions_recherchees || "",
+        disponibilites: JSON.parse(
+          JSON.stringify(studentProfile.disponibilites || {})
+        ),
+      });
+      setEditExtra(true);
+    }}
+  >
+    Modifier
+  </button>
+) : (
+  <div className="edit-actions-inline">
+    <button
+      className="btn-modifier-dispo btn-cancel"
+      onClick={() => setEditExtra(false)}
+    >
+      Annuler
+    </button>
+
+    <button
+      className="btn-modifier-dispo btn-save"
+      onClick={async () => {
+        const token = localStorage.getItem("token");
+
+        await fetch("http://localhost:3000/student-profile/me", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            competences: extraForm.competences,
+            missions_recherchees: extraForm.missions,
+            disponibilites: extraForm.disponibilites,
+          }),
+        });
+
+        setStudentProfile({
+          ...studentProfile,
+          competences: extraForm.competences,
+          missions_recherchees: extraForm.missions,
+          disponibilites: extraForm.disponibilites,
+        });
+
+        setEditExtra(false);
+      }}
+    >
+      Enregistrer
+    </button>
+  </div>
+)}
+            </div>
+          </div>
+      )}
 
       {/* ================= TIMELINE ================= */}
       <div className="timeline-etapes">
