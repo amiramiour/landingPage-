@@ -301,6 +301,7 @@ const ALL_DOC_KEYS = Object.keys(documents);
 
 const canSubmit =
   kycStatus &&
+  !kycStatus.deposited &&   
   !kycStatus.validated &&
   !kycStatus.inReview;
 

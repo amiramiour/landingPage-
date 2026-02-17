@@ -47,7 +47,6 @@
   background-color: white; /* Définit un arrière-plan blanc */
   padding: 20px; /* Ajoute un espace intérieur pour une meilleure présentation */
   border-radius: 8px; /* Optionnel : ajoute des coins arrondis */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optionnel : ajoute une ombre pour un effet de carte */
 }
 
 .information-item {
