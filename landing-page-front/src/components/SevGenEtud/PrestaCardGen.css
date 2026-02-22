@@ -75,6 +75,40 @@
 .presta-card-link:hover {
   text-decoration: underline;
 }
+/* ================= APPLIED ================= */
+
+.presta-card.applied .presta-card-image {
+  filter: grayscale(100%) opacity(0.5);
+}
+
+.presta-card.applied:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ================= BANDEAU ================= */
+
+.presta-card {
+  position: relative;
+}
+
+.applied-banner1 {
+  position: absolute;
+  top: 150px; 
+  left: 12px;
+  right: 12px;
+  background: #D2D2D2;
+  color: #000;
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  font-weight: 600;
+  z-index: 10;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
 
 /* === Responsive === */
 @media (max-width: 768px) {

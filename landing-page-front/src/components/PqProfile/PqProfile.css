@@ -1,3 +1,6 @@
+
+/* ... (garder le début de ton CSS existant) ... */
+
 .pq-profile-container {
     max-width: 1200px;
     margin: 60px auto;
@@ -38,7 +41,7 @@
     grid-area: text;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* pour que tout occupe la hauteur */
+    justify-content: space-between;
     height: 100%;
   }
   
@@ -117,6 +120,12 @@
   .pq-apply-button:hover {
     background-color: #1a1a1a;
   }
+
+  .pq-apply-button.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
   
   .pq-back-link {
     display: inline-block;
@@ -128,16 +137,74 @@
   .pq-back-link:hover {
     text-decoration: underline;
   }
-  .pq-apply-button.disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-.pq-apply-hint {
-  margin-top: 8px;
-  font-size: 0.85rem;
-  color: #888;
-}
+
+  /* MODALS */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+  }
+
+  .modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+
+  .modal-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 25px;
+  }
+
+  .modal-confirm-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #000;
+    margin-bottom: 30px;
+    line-height: 1.4;
+    padding: 0 10px;
+  }
+
+  .modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .modal-content button {
+    padding: 10px 35px;
+    border-radius: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid #000;
+    background: white;
+    color: #000;
+    min-width: 120px;
+  }
+
+  .modal-content button:hover {
+    background: #f8f8f8;
+  }
+
+  .modal-content .btn-ok {
+    background: #000;
+    color: #fff;
+    margin-top: 20px;
+  }
 
   /* Responsive mobile */
   @media (max-width: 768px) {
@@ -147,6 +214,7 @@
         "image"
         "text";
       grid-template-columns: 1fr;
+      padding: 1rem;
     }
   
     .pq-apply-button {
@@ -158,5 +226,8 @@
       margin-left: 0;
       align-items: center;
     }
+
+    .modal-confirm-title {
+      font-size: 1.25rem;
+    }
   }
-  

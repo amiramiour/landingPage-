@@ -2,21 +2,26 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './PrestaCardGen.css';
 
-const PrestaCardGen = ({ id, image, type, date, title, description }) => {
+const PrestaCardGen = ({ id, image, type, date, title, description ,  alreadyApplied}) => {
   const navigate = useNavigate();
 
-  const handleClick = (e) => {
-    e.preventDefault(); // empêche le #details
-    if (!id) return;
-    navigate(`/prestationsqualifiee/${id}`);
-  };
+const handleClick = (e) => {
+  e.preventDefault();
+  if (!id || alreadyApplied) return; 
+  navigate(`/prestationsqualifiee/${id}`);
+};
 
   return (
-    <div
-      className="presta-card"
-      onClick={handleClick}
-      style={{ cursor: id ? 'pointer' : 'default' }}
-    >
+<div
+  className={`presta-card ${alreadyApplied ? "applied" : ""}`}
+  onClick={handleClick}
+  style={{ cursor: alreadyApplied ? "default" : "pointer" }}
+>
+  {alreadyApplied && (
+  <div className="applied-banner1">
+    Une candidature a déjà été déposée
+  </div>
+)}
       <img src={image} alt={title} className="presta-card-image" />
       <div className="presta-card-content">
         <div className="presta-card-header">

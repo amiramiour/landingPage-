@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 const formatDateFR = (dateString) => {
   if (!dateString) return "";
-
   const date = new Date(dateString);
 
   return new Intl.DateTimeFormat("fr-FR", {
@@ -15,7 +14,7 @@ const formatDateFR = (dateString) => {
 };
 
 const ServiceCard1 = ({
-   id,  
+  id,
   title,
   description,
   icon,
@@ -23,20 +22,33 @@ const ServiceCard1 = ({
   companyName,
   date,
   type,
+  alreadyApplied
 }) => {
   const navigate = useNavigate();
 
-  return (
-<div
-  className="linky-service-card"
-  onClick={() => navigate(`/prestationsqualifiee/${id}`)}
-  style={{ cursor: "pointer" }}
->
+  const handleClick = () => {
+    if (alreadyApplied) return; 
+    navigate(`/prestationsqualifiee/${id}`);
+  };
 
-      {/* IMAGE MISSION */}
+  return (
+    <div
+      className={`linky-service-card ${alreadyApplied ? "applied" : ""}`}
+      onClick={handleClick}
+      style={{ cursor: alreadyApplied ? "default" : "pointer" }}
+    >
+
+      {/* BANDEAU SI DÉJÀ CANDIDATÉ */}
+      {alreadyApplied && (
+        <div className="applied-banner">
+          Une candidature a déjà été déposée
+        </div>
+      )}
+
+      {/* IMAGE */}
       <img src={icon} alt={title} className="linky-service-card-image" />
 
-      {/* TYPE DE MISSION (SOUS IMAGE) */}
+      {/* TYPE */}
       <div
         className={`linky-service-type ${
           type === "mission_d_expertise" ? "expertise" : "service"
@@ -53,10 +65,10 @@ const ServiceCard1 = ({
         <p>{description}</p>
       </div>
 
-      {/* FOOTER ENTREPRISE */}
+      {/* FOOTER */}
       <div className="linky-service-footer">
         <img
-          src={icon}
+          src={companyLogo}
           alt={companyName}
           className="linky-company-logo"
         />
