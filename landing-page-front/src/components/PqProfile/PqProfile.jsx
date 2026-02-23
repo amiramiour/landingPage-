@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './PqProfile.css';
@@ -11,192 +10,128 @@ function PqProfile() {
   const [alreadyApplied, setAlreadyApplied] = useState(false);
 
   const isStudent = user?.role === "student";
-
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [mission, setMission] = useState(null);
   const [loading, setLoading] = useState(true);
   const [kycStatus, setKycStatus] = useState(null);
-  const isMissionExpired = mission?.startDate
-    ? new Date(mission.startDate) < new Date()
-    : false;
+  const isMissionExpired = mission?.startDate ? new Date(mission.startDate) < new Date() : false;
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
   const getMissionLabel = (type) => {
     switch (type) {
-      case "mission_d_expertise":
-        return "Mission d’expertise";
-      case "mission_de_service":
-        return "Mission de service";
-      default:
-        return "Mission";
+      case "mission_d_expertise": return "Mission d’expertise";
+      case "mission_de_service": return "Mission de service";
+      default: return "Mission";
     }
   };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) return;
-
     fetch(`${import.meta.env.VITE_API_URL}/documents/kyc-status`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error("KYC non accessible");
-        return res.json();
-      })
-      .then((data) => {
-        setKycStatus(data);
-      })
-      .catch((err) => {
-        console.warn(err.message);
-      });
+      headers: { Authorization: `Bearer ${token}` },
+    }).then((res) => res.ok ? res.json() : Promise.reject()).then(setKycStatus).catch(() => {});
   }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token || !isStudent) return;
-
     fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/my`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then(res => res.json())
-      .then(data => {
-        const candidature = data.find(
-          (c) => c.missionId === Number(id)
-        );
-
-        if (!candidature) {
-          setAlreadyApplied(false);
-          return;
-        }
-
-        if (candidature.status === "rejected") {
-          setAlreadyApplied(false);
-        } else {
-          setAlreadyApplied(true);
-        }
-      })
-      .catch(err => {
-        console.warn("Erreur historique candidatures", err);
-      });
+      headers: { Authorization: `Bearer ${token}` },
+    }).then(res => res.json()).then(data => {
+      const candidature = data.find((c) => c.missionId === Number(id));
+      setAlreadyApplied(candidature && candidature.status !== "rejected");
+    }).catch(() => {});
   }, [id, isStudent]);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/missions/${id}`)
       .then(res => res.json())
-      .then(data => {
-        setMission(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-      });
+      .then(data => { setMission(data); setLoading(false); })
+      .catch(() => setLoading(false));
   }, [id]);
 
-  if (loading) {
-    return <p style={{ padding: '4rem', textAlign: 'center' }}>Chargement...</p>;
-  }
+  if (loading) return <div className="pq-loading">Chargement...</div>;
+  if (!mission) return <div className="pq-loading">Mission introuvable</div>;
 
-  if (!mission) {
-    return <p style={{ padding: '4rem', textAlign: 'center' }}>Mission introuvable</p>;
-  }
-
-  const canApply =
-    isStudent &&
-    kycStatus?.validated === true &&
-    !alreadyApplied &&
-    !isMissionExpired;
-
-  // Ouvre le premier pop-in (confirmation)
-  const handleRequestApply = () => {
-    if (!canApply) return;
-    setShowConfirm(true);
-  };
-
-  // Exécute l'application réelle après validation
+  const canApply = isStudent && kycStatus?.validated === true && !alreadyApplied && !isMissionExpired;
+  const handleRequestApply = () => canApply && setShowConfirm(true);
+  
   const handleConfirmApplication = async () => {
     const token = localStorage.getItem("token");
     if (!token) return;
-
     try {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/candidatures/apply/${id}`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        alert(data.error || "Erreur candidature");
-        setShowConfirm(false);
-        return;
-      }
-
-      setShowConfirm(false);
-      setShowSuccess(true);
-      setAlreadyApplied(true);
-    } catch (err) {
-      console.error("Erreur candidature", err);
-      setShowConfirm(false);
-    }
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/apply/${id}`, {
+        method: "POST", headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) throw new Error();
+      setShowConfirm(false); setShowSuccess(true); setAlreadyApplied(true);
+    } catch { setShowConfirm(false); }
   };
 
   return (
-    <div className="pq-profile-container">
-      <div className="pq-profile-top-right">
-        <span className={`pq-qualification-badge ${mission.type === "mission_de_service" ? "service" : ""}`}>
-          {getMissionLabel(mission.type)}
-        </span>
-        <h1 className="pq-profile-title">{mission.title}</h1>
-      </div>
-
-      <div className="pq-profile-content">
-        <div className="pq-profile-image-wrapper">
+    <div className="pq-wrapper">
+      
+      <div className="pq-grid-container">
+        
+        {/* COLONNE GAUCHE (Image décalée vers le bas via CSS) */}
+        <div className="pq-left-column">
           <img
             src="https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg"
             alt={mission.title}
-            className="pq-profile-image"
+            className="pq-main-image"
           />
         </div>
 
-        <div className="pq-profile-text-content">
-          <div>
-            <p className="pq-profile-description">{mission.description}</p>
-            {mission.niveau && (
-              <>
-                <h2 className="pq-profile-subtitle">Niveau études</h2>
-                <p className="pq-profile-description">{mission.niveau}</p>
-              </>
-            )}
-            <div className="pq-details-grid">
-              <span className="pq-details-label">Date :</span>
-              <span>{mission.startDate ? new Date(mission.startDate).toLocaleDateString() : '—'}</span>
-              <span className="pq-details-label">Durée :</span>
-              <span>{mission.durationHours || '—'}</span>
-              <span className="pq-details-label">Montant :</span>
-              <span>{mission.remuneration ? `${mission.remuneration} €` : '—'}</span>
-              <span className="pq-details-label">Lieu :</span>
-              <span>{mission.location || '—'}</span>
+        {/* COLONNE DROITE (Texte collé en haut) */}
+        <div className="pq-right-column">
+          
+          <span className={`pq-badge ${mission.type === "mission_de_service" ? "service" : "expertise"}`}>
+            {getMissionLabel(mission.type)}
+          </span>
+
+          <h1 className="pq-title">{mission.title}</h1>
+
+          <div className="pq-description">
+            {mission.description}
+          </div>
+
+          {mission.niveau && (
+            <div>
+              <div className="pq-subtitle">Niveau études</div>
+              <div className="pq-text">{mission.niveau}</div>
+            </div>
+          )}
+
+          <div className="pq-details-list">
+            <div className="pq-detail-row">
+              <strong>Date début de mission :</strong> 
+              <span> {mission.startDate ? new Date(mission.startDate).toLocaleDateString() : 'À définir'}</span>
+            </div>
+            <div className="pq-detail-row">
+              <strong>Durée :</strong> 
+              <span> {mission.durationHours || 'Non spécifiée'}</span>
+            </div>
+            <div className="pq-detail-row">
+              <strong>Montant :</strong> 
+              <span> {mission.remuneration ? `${mission.remuneration} € / heure` : '—'}</span>
+            </div>
+            <div className="pq-detail-row">
+              <strong>Lieu :</strong> 
+              <span> {mission.location || '—'}</span>
             </div>
           </div>
 
-          <div>
-            <div className="pq-company-info">
-              <img src={icon} alt="Entreprise" className="pq-company-logo" />
-              <span className="font-medium">Freelance informatique</span>
+          <div className="pq-action-area">
+             <div className="pq-company-info">
+            <img
+              src={`${import.meta.env.VITE_API_URL}/${mission.employer?.photoUrl}`}
+              className="pq-company-logo"
+            />              <span className="font-medium">{mission.employer?.companyName}</span>
             </div>
             <button
               className={`pq-apply-button ${!canApply ? "disabled" : ""}`}
@@ -212,45 +147,35 @@ function PqProfile() {
               {alreadyApplied ? "Déjà candidaté" : "Candidater"}
             </button>
           </div>
+
         </div>
       </div>
 
-      <span className="pq-back-link" onClick={() => navigate(-1)} style={{ cursor: "pointer" }}>
+      {/* Bouton retour en bas */}
+      <button className="pq-back-bottom" onClick={() => navigate(-1)}>
         &lt; Retour
-      </span>
+      </button>
 
-      {/* MODAL DE CONFIRMATION */}
+      {/* MODALS */}
       {showConfirm && (
         <div className="modal-overlay">
           <div className="modal-content confirm-modal">
-            <img src={checkVert} alt="Confirmation" className="modal-icon" />
-            <h3 className="modal-confirm-title">
-              Souhaitez-vous confirmer votre choix pour cette mission ?
-            </h3>
-            <div className="modal-buttons">
-              <button className="btn-valider" onClick={handleConfirmApplication}>
-                Valider
-              </button>
-              <button className="btn-annuler" onClick={() => setShowConfirm(false)}>
-                Annuler
-              </button>
+            <img src={checkVert} alt="Confirm" style={{ width: 50, marginBottom: 20 }} />
+            <h3 style={{ fontSize: '1.2rem', marginBottom: 30 }}>Souhaitez-vous confirmer votre choix pour cette mission ?</h3>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 15 }}>
+              <button className="btn-valider" style={{ background: '#000', color: '#fff', padding: '10px 30px', borderRadius: 8, border: 'none', cursor: 'pointer' }} onClick={handleConfirmApplication}>Valider</button>
+              <button className="btn-annuler" style={{ background: '#f3f4f6', color: '#000', padding: '10px 30px', borderRadius: 8, border: 'none', cursor: 'pointer' }} onClick={() => setShowConfirm(false)}>Annuler</button>
             </div>
           </div>
         </div>
       )}
 
-      {/* MODAL DE SUCCÈS */}
       {showSuccess && (
         <div className="modal-overlay">
-          <div className="modal-content">
-            <img src={checkVert} alt="Succès" className="modal-icon" />
-            <p>
-              Votre candidature a été envoyée avec succès.<br />
-              Consultez le suivi pour connaître l’état de votre candidature.
-            </p>
-            <button className="btn-ok" onClick={() => setShowSuccess(false)}>
-              OK
-            </button>
+          <div className="modal-content" style={{ padding: 40, background: 'white', borderRadius: 12, textAlign: 'center' }}>
+            <img src={checkVert} alt="Success" style={{ width: 50, marginBottom: 20 }} />
+            <p>Votre candidature a été envoyée avec succès.</p>
+            <button style={{ marginTop: 20, background: '#000', color: '#fff', padding: '10px 30px', borderRadius: 8, border: 'none', cursor: 'pointer' }} onClick={() => setShowSuccess(false)}>OK</button>
           </div>
         </div>
       )}

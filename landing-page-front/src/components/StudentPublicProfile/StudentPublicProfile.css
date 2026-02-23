@@ -1,161 +1,307 @@
-.pe-container {
+/* --- VARIABLES --- */
+:root {
+  --pe-bg-page: #f9fafb;
+  --pe-bg-card: #ffffff;
+  --pe-text-primary: #111827;
+  --pe-text-secondary: #6b7280;
+  --pe-border-color: #e5e7eb;
+  --pe-accent-blue: #2563eb; /* Utilisé avec parcimonie pour les icônes */
+  --pe-radius: 12px;
+  --pe-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 5px 15px rgba(0,0,0,0.02);
+}
+
+/* --- LAYOUT GLOBAL --- */
+.pe-page-wrapper {
+  margin-top: 4rem;
+  background-color: var(--pe-bg-page);
   min-height: 100vh;
+  padding: 40px 20px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--pe-text-primary);
+  display: flex;
+  justify-content: center;
+}
+
+.pe-content-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr; /* Sidebar fixe, contenu flexible */
+  gap: 30px;
+  max-width: 1100px;
   width: 100%;
+}
+
+/* --- LOADER --- */
+.pe-loader-container {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+.pe-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top-color: var(--pe-text-secondary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* --- CARTES GÉNÉRIQUES --- */
+.pe-card {
+  background: var(--pe-bg-card);
+  border-radius: var(--pe-radius);
+  box-shadow: var(--pe-shadow);
+  border: 1px solid var(--pe-border-color);
+  padding: 30px;
+  margin-bottom: 24px;
+}
+
+/* --- SIDEBAR (IDENTITÉ) --- */
+.pe-sidebar {
+  position: sticky;
+  top: 30px;
+  height: fit-content;
+}
+
+.pe-card-identity {
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding: 60px 20px;
-  background: #f8f9fb; /* fond léger pour moderniser */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  position: relative;
 }
 
-/* ===============================
-   CARD PRINCIPALE
-================================ */
-.pe-profile {
-  display: flex;
-  align-items: center;
-  gap: 60px;
-  max-width: 1000px;
-  width: 100%;
-  background: #ffffff;
-  padding: 50px 60px;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-}
-
-/* ===============================
-   PHOTO
-================================ */
-.pe-image-wrapper {
-  width: 240px;
-  height: 240px;
+.pe-avatar-box {
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+  margin-bottom: 15px;
+  background-color: #f3f4f6;
+  border: 1px solid var(--pe-border-color);
 }
 
-.pe-image {
+.pe-avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* ===============================
-   INFOS
-================================ */
-.pe-info {
-  flex: 1;
-}
-
-.pe-name {
-  font-size: 30px;
+.pe-fullname {
+  font-size: 1.4rem;
   font-weight: 700;
-  margin-bottom: 18px;
-  color: #111;
+  margin: 0 0 5px 0;
+  color: var(--pe-text-primary);
+  text-transform: capitalize;
 }
 
-/* BLOCS PRINCIPAUX */
-.pe-details-block p {
-  font-size: 15px;
-  margin: 3px 0;
-  color: #444;
+.pe-job-title {
+  font-size: 1rem;
+  color: var(--pe-text-secondary);
+  margin-bottom: 20px;
+  font-weight: 500;
 }
 
-.pe-details-block strong {
-  font-weight: 600;
-  color: #000;
-}
-
-/* ===============================
-   SECTIONS
-================================ */
-.pe-section {
-  margin-top: 18px; /* réduit l’espace */
-}
-
-.pe-section-title {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 4px;
-  color: #000;
-}
-
-.pe-list-content p,
-.pe-text-content {
-  font-size: 14px;
-  margin: 2px 0;
-  color: #555;
-  line-height: 1.4;
-}
-
-/* ===============================
-   BOUTON
-================================ */
-.pe-actions {
+.pe-meta-infos {
   width: 100%;
   display: flex;
-  justify-content: center;
-  margin-top: 30px;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
-.pe-btn-contacter {
-  background: linear-gradient(135deg, #d2d2d2, #bdbdbd);
-  color: white;
+.pe-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centré dans la sidebar */
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--pe-text-secondary);
+}
+
+.pe-meta-row svg {
+  color: var(--pe-text-primary); /* Icônes plus sombres */
+}
+
+.pe-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--pe-border-color);
+  margin: 20px 0;
+}
+/* === BOUTON CONTACT === */
+.pe-btn-contact {
+  width: 100%;
+  padding: 13px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 19px;
   border: none;
-  border-radius: 20px;
-  padding: 10px 50px;
-  font-size: 16px;
-  font-weight: 500;
+  background: #121212;
+  color: #ffffff;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.pe-btn-contacter:hover {
-  transform: translateY(-2px);
+/* Hover seulement si actif */
+.pe-btn-contact:hover:not(:disabled) {
   opacity: 0.9;
+  transform: translateY(-1px);
 }
 
-/* ===============================
-   RETOUR
-================================ */
-.pe-back {
-  position: absolute;
-  bottom: 30px;
-  left: 30px;
-  font-size: 14px;
-  color: #555;
+/* Etat désactivé */
+.pe-btn-contact:disabled {
+  background: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  opacity: 1;
+}
+
+/* BOUTON GRISÉ (DESIGN DEMANDÉ) */
+
+
+.pe-note-auth {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+.pe-link-return {
+  margin-top: 20px;
+  color: var(--pe-text-secondary);
   text-decoration: none;
+  font-size: 0.85rem;
+  border-bottom: 1px solid transparent;
+}
+.pe-link-return:hover {
+  border-bottom-color: var(--pe-text-secondary);
 }
 
-.pe-back:hover {
-  text-decoration: underline;
+/* --- CONTENU PRINCIPAL --- */
+
+/* Headers de section */
+.pe-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f3f4f6;
 }
 
-/* ===============================
-   RESPONSIVE
-================================ */
-@media (max-width: 992px) {
-  .pe-profile {
-    flex-direction: column;
-    padding: 40px 25px;
-    gap: 30px;
-    text-align: center;
+.pe-card-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--pe-text-primary);
+}
+
+.pe-card-header svg {
+  color: var(--pe-text-secondary);
+}
+
+/* Liste Missions */
+.pe-missions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pe-mission-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.pe-icon-check {
+  margin-top: 2px;
+  color: var(--pe-text-primary); /* Check sombre */
+}
+
+.pe-mission-item p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #374151;
+}
+
+/* Tags (Compétences & Langues) */
+.pe-group-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9ca3af;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.pe-mt { margin-top: 20px; }
+
+.pe-tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pe-tag {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 1px solid transparent;
+}
+
+/* Disponibilités Grille */
+.pe-availability-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.pe-slot-item {
+  border: 1px solid var(--pe-border-color);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  background: #f9fafb;
+}
+
+.pe-day {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--pe-text-primary);
+  text-transform: capitalize;
+  margin-bottom: 4px;
+}
+
+.pe-hour {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--pe-text-secondary);
+}
+
+.pe-empty-text {
+  font-style: italic;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .pe-content-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .pe-sidebar {
+    position: static; /* Plus de sticky sur mobile */
   }
 
-  .pe-info {
-    text-align: center;
-  }
-
-  .pe-image-wrapper {
-    width: 200px;
-    height: 200px;
-  }
-
-  .pe-back {
-    position: static;
-    margin-top: 30px;
+  .pe-meta-row {
+    justify-content: center;
   }
 }
