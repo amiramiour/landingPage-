@@ -1,50 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AvisClient.css';
 
-const reviews = [
-  {
-    id: 1,
-    rating: 4,
-    text: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
-    author: 'Wade Warren',
-    role: 'Etudiant en Informatique',
-    avatar: 'https://i.pravatar.cc/150?u=wade'
-  },
-  {
-    id: 2,
-    rating: 3,
-    text: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
-    author: 'General Technologie',
-    role: 'Entreprise spécialisée en informatique',
-    avatar: 'https://api.dicebear.com/7.x/initials/svg?seed=GT'
-  },
-  {
-    id: 3,
-    rating: 3,
-    text: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
-    author: 'Jenny Wilson',
-    role: 'Etudiante en Design',
-    avatar: 'https://i.pravatar.cc/150?u=jenny'
-  },
-  {
-    id: 4,
-    rating: 5,
-    text: '"Une plateforme exceptionnelle qui facilite réellement la mise en relation entre étudiants et startups. Un gain de temps précieux pour nos projets."',
-    author: 'Guy Hawkins',
-    role: 'CEO chez InnovateCorp',
-    avatar: 'https://i.pravatar.cc/150?u=guy'
-  }
-];
-
 const AvisClient = () => {
+  const [reviews, setReviews] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  //  Charger les avis depuis l'API
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/feedback");
+        const data = await res.json();
+
+        const formatted = data.map((item) => ({
+          id: item.id,
+          rating: item.note,
+          text: `"${item.message}"`,
+          author: `${item.prenom} ${item.nom}`,
+          role:
+            item.typeProfil === "etudiant"
+              ? "Étudiant"
+              : item.typeProfil === "entreprise"
+              ? "Entreprise"
+              : "Particulier",
+          avatar:
+            item.typeProfil === "entreprise"
+              ? "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+              : "https://cdn-icons-png.flaticon.com/512/847/847969.png",
+        }));
+
+        setReviews(formatted);
+      } catch (err) {
+        console.error("Erreur chargement avis:", err);
+      }
+    };
+
+    fetchReviews();
+  }, []);
+
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1 >= reviews.length - 1 ? 0 : prev + 1));
+    if (reviews.length < 2) return;
+    setCurrentIndex((prev) =>
+      prev + 1 >= reviews.length - 1 ? 0 : prev + 1
+    );
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? reviews.length - 2 : prev - 1));
+    if (reviews.length < 2) return;
+    setCurrentIndex((prev) =>
+      prev === 0 ? reviews.length - 2 : prev - 1
+    );
   };
 
   const renderStars = (rating) => {
@@ -55,7 +60,11 @@ const AvisClient = () => {
     ));
   };
 
- return (
+  if (reviews.length === 0) {
+    return null; 
+  }
+
+  return (
     <section className="avis-section">
       <div 
         className="avis-container" 
@@ -69,9 +78,13 @@ const AvisClient = () => {
               </div>
               <p className="avis-text">{review.text}</p>
             </div>
-            
+
             <div className="profile-section">
-              <img src={review.avatar} alt={review.author} className="profile-avatar" />
+              <img
+                src={review.avatar}
+                alt={review.author}
+                className="profile-avatar"
+              />
               <div className="profile-info">
                 <h4>{review.author}</h4>
                 <p>{review.role}</p>
@@ -83,9 +96,9 @@ const AvisClient = () => {
 
       <div className="avis-controls">
         <div className="pagination-dots">
-          {Array.from({ length: reviews.length - 1 }).map((_, i) => (
-            <div 
-              key={i} 
+          {Array.from({ length: Math.max(reviews.length - 1, 0) }).map((_, i) => (
+            <div
+              key={i}
               className={`dot ${currentIndex === i ? 'active' : ''}`}
               onClick={() => setCurrentIndex(i)}
             />
