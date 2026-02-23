@@ -9,10 +9,11 @@ const Feedback = () => {
   const [note, setNote] = useState(0);
   const [message, setMessage] = useState('');
   const [accepteConditions, setAccepteConditions] = useState(false);
-
+  const [email, setEmail] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
   const tags = ["Plateforme", "Accompagnement", "Offres", "Support", "Autre"];
-
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const toggleTag = (tag) => {
     setSelectedTags(prev =>
       prev.includes(tag)
@@ -21,18 +22,55 @@ const Feedback = () => {
     );
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Feedback soumis :', {
-      nom,
-      prenom,
-      typeProfil,
-      note,
-      selectedTags,
-      message,
-      accepteConditions,
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (loading) return;
+
+  try {
+    setLoading(true);
+
+    const res = await fetch("http://localhost:3000/feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nom,
+        prenom,
+        email,
+        typeProfil,
+        note,
+        tags: selectedTags,
+        message,
+        accepteConditions,
+      }),
     });
-  };
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error);
+
+    setSuccess(true);
+
+    setNom("");
+    setPrenom("");
+    setEmail("");
+    setTypeProfil("etudiant");
+    setNote(0);
+    setMessage("");
+    setSelectedTags([]);
+    setAccepteConditions(false);
+
+    setTimeout(() => {
+      setSuccess(false);
+    }, 3000);
+
+  } catch (err) {
+    alert("Erreur : " + err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const labelsNote = {
     0: "Donnez-nous une note",
@@ -54,7 +92,6 @@ const Feedback = () => {
 
       <img src={LogoContact} alt="Logo LinkyJob" className="fb-logo" />
 
-      {/* 👉 NOUVEAU : conteneur encadré */}
       <div className="fb-box">
 
         <h1 className="fb-title">Votre avis compte</h1>
@@ -89,6 +126,16 @@ const Feedback = () => {
               />
             </div>
           </div>
+          <div className="fb-form-group">
+  <label>Email</label>
+  <input
+    type="email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    required
+    className="fb-form-input"
+  />
+</div>
 
           {/* Profil + Note */}
           <div className="fb-form-row">
@@ -172,10 +219,19 @@ const Feedback = () => {
               J'accepte que mon avis soit utilisé pour améliorer LinkyJob.
             </label>
           </div>
+          {success && (
+  <div className="fb-success-message">
+    Merci pour votre avis 
+  </div>
+)}
 
-          <button type="submit" className="fb-submit-button">
-            Envoyer mon avis
-          </button>
+       <button
+  type="submit"
+  className="fb-submit-button"
+  disabled={loading}
+>
+  {loading ? "Envoi en cours..." : "Envoyer mon avis"}
+</button>
 
           <p className="fb-disclaimer">
             Certains avis pourront être mis en avant de façon anonyme sur le site.
