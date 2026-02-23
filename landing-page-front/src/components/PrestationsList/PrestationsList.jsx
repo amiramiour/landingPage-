@@ -35,11 +35,11 @@ const PrestationsList = () => {
     },
   };
 
-  // 📌 Choisir la bonne config selon l’URL
+  //  Choisir la bonne config selon l’URL
   const page = isExpertPage ? config.expertise : config.service;
 
   useEffect(() => {
-    fetch("http://localhost:3000/missions")
+    fetch(`${import.meta.env.VITE_API_URL}/missions`)
       .then((res) => res.json())
       .then((data) => {
         const list = data.data || data;

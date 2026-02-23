@@ -15,7 +15,7 @@ function EspaceEtudiant() {
   const generalRef = useRef(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/missions")
+    fetch(`${import.meta.env.VITE_API_URL}/missions`)
       .then((res) => res.json())
       .then((data) => {
         const missions = data.data || data;
@@ -25,7 +25,7 @@ function EspaceEtudiant() {
       });
   }, []);
 
-  // 🔥 Gestion du scroll selon filtre
+  //  Gestion du scroll selon filtre
   const handleFilter = (value) => {
     setFilter(value);
 

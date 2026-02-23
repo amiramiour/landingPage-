@@ -11,7 +11,7 @@ const HeroPrestation = () => {
 
   const isQualifie = pathname.includes("prestationsqualifiee");
 
-  // 🎨 PARAMÈTRES DYNAMIQUES
+  //  PARAMÈTRES DYNAMIQUES
   const titleColor = isQualifie ? "#FFEB64" : "#7FD8B1";
   const bgImage = isQualifie ? bgQualifie : bgGeneral;
 

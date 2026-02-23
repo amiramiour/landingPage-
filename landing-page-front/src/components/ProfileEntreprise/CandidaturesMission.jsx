@@ -14,7 +14,7 @@ function CandidaturesMission({ missionId, mission }) {
 
   /* ================= CHARGEMENT CANDIDATURES ================= */
   useEffect(() => {
-    fetch(`http://localhost:3000/api/candidatures/mission/${missionId}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/mission/${missionId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -26,7 +26,7 @@ function CandidaturesMission({ missionId, mission }) {
 
   /* ================= UPDATE STATUS ================= */
   const updateStatus = (id, action) => {
-    fetch(`http://localhost:3000/api/candidatures/${action}/${id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/${action}/${id}`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
     }).then(() => {
@@ -77,11 +77,11 @@ function CandidaturesMission({ missionId, mission }) {
           }
         >
           <img
-            src={`http://localhost:3000/${student.photoUrl}`}
+            src={`${import.meta.env.VITE_API_URL}/${student.photoUrl}`}
             className="candidat-avatar"
             alt={student.firstName}
             onError={(e) => {
-              e.target.src = "/uploads/default-avatar.png";
+              e.target.src = `${import.meta.env.VITE_API_URL}/uploads/default-avatar.png`;
             }}
           />
 

@@ -12,7 +12,7 @@ const Services = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3000/students")
+    fetch(`${import.meta.env.VITE_API_URL}/students`)
       .then((res) => res.json())
       .then((data) => {
         setStudents(data.data || data);
@@ -47,7 +47,11 @@ const Services = () => {
             <ServiceCard
               key={student.id}
               id={student.id}
-photo={`http://localhost:3000/${student.photoUrl}`}
+              photo={
+                student.photoUrl
+                  ? `${import.meta.env.VITE_API_URL}/${student.photoUrl}`
+                  : `${import.meta.env.VITE_API_URL}/uploads/default-avatar.png`
+              }
               fullName={`${student.firstName} ${student.lastName}`}
               training={student.training}
               school={student.school}

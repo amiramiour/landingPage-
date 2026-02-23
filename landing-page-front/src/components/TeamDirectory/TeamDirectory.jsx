@@ -11,7 +11,7 @@ function TeamDirectory() {
   const [limit, setLimit] = useState(9);
 
   useEffect(() => {
-    fetch("http://localhost:3000/students")
+    fetch(`${import.meta.env.VITE_API_URL}/students`)
       .then((res) => res.json())
       .then((data) => {
         const list = data.data || data;
@@ -42,7 +42,7 @@ function TeamDirectory() {
                 {/* PHOTO */}
                 <div className="team-member__image-wrapper">
                   <img
-                    src={`http://localhost:3000/${student.photoUrl}`}
+                    src={`${import.meta.env.VITE_API_URL}/${student.photoUrl}`}
                     alt={`${student.firstName} ${student.lastName}`}
                     className="team-member__image"
                     onError={(e) => {

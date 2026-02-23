@@ -11,7 +11,7 @@ function HistoriqueEntreprise() {
   const [selectedMission, setSelectedMission] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/missions/my", {
+    fetch(`${import.meta.env.VITE_API_URL}/missions/my`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

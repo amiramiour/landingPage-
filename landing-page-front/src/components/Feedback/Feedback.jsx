@@ -30,7 +30,7 @@ const handleSubmit = async (e) => {
   try {
     setLoading(true);
 
-    const res = await fetch("http://localhost:3000/feedback", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/feedback`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

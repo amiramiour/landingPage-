@@ -9,7 +9,7 @@ const AvisClient = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const res = await fetch("http://localhost:3000/feedback");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/feedback`);
         const data = await res.json();
 
         const formatted = data.map((item) => ({

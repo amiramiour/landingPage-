@@ -11,7 +11,7 @@ function HistoriqueEtudiant() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/candidatures/my", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/my`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -98,7 +98,7 @@ const renderStatus = (status) => {
   };
 
   const cancelCandidature = async (id) => {
-    await fetch(`http://localhost:3000/api/candidatures/cancel/${id}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/cancel/${id}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

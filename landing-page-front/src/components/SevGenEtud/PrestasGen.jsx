@@ -16,7 +16,7 @@ const PrestasGen = ({ missions }) => {
     const user = JSON.parse(storedUser);
     if (user.role !== "student") return;
 
-    fetch("http://localhost:3000/api/candidatures/my", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/my`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

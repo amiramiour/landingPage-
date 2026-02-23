@@ -18,7 +18,7 @@ function StudentCandidatureProfile({
         {/* PHOTO */}
         <div className="pe-image-wrapper">
           <img
-            src={`http://localhost:3000/${student.photoUrl}`}
+            src={`${import.meta.env.VITE_API_URL}/${student.photoUrl}`}
             alt={`${student.firstName} ${student.lastName}`}
             className="pe-image"
             onError={(e) => {

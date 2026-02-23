@@ -40,7 +40,7 @@ function PqProfile() {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    fetch("http://localhost:3000/documents/kyc-status", {
+    fetch(`${import.meta.env.VITE_API_URL}/documents/kyc-status`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -61,7 +61,7 @@ function PqProfile() {
     const token = localStorage.getItem("token");
     if (!token || !isStudent) return;
 
-    fetch("http://localhost:3000/api/candidatures/my", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/my`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -89,7 +89,7 @@ function PqProfile() {
   }, [id, isStudent]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/missions/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/missions/${id}`)
       .then(res => res.json())
       .then(data => {
         setMission(data);
@@ -128,7 +128,7 @@ function PqProfile() {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/api/candidatures/apply/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/candidatures/apply/${id}`,
         {
           method: "POST",
           headers: {

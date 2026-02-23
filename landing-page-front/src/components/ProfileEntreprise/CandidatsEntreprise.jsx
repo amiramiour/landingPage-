@@ -8,7 +8,7 @@ function CandidatsEntreprise() {
 
   /* ================= CHARGEMENT DES CANDIDATS ================= */
   useEffect(() => {
-    fetch("http://localhost:3000/api/candidatures/company", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/company`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => res.json())
@@ -44,7 +44,7 @@ function CandidatsEntreprise() {
         {candidats.map(student => (
           <div key={student.id} className="team-member">
             <img
-              src={`http://localhost:3000/${student.photoUrl}`}
+              src={`${import.meta.env.VITE_API_URL}/${student.photoUrl}`}
               className="team-member__image"
               alt={student.firstName}
               onError={(e) => {

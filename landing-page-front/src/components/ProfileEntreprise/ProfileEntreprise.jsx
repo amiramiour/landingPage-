@@ -38,8 +38,8 @@ function ProfileEntreprise() {
       telephone: user.phone,
       adresse: user.address,
       photo: user.photoUrl
-        ? `http://localhost:3000/${user.photoUrl}`
-        : "http://localhost:3000/uploads/default-avatar.png",
+      ? `${import.meta.env.VITE_API_URL}/${user.photoUrl}`
+      : `${import.meta.env.VITE_API_URL}/uploads/default-avatar.png`,
     });
   }, []);
 
@@ -52,7 +52,7 @@ function ProfileEntreprise() {
     const formData = new FormData();
     formData.append("photo", file);
 
-    const res = await fetch("http://localhost:3000/auth/upload-photo", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/upload-photo`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -69,7 +69,7 @@ function ProfileEntreprise() {
 
     setProfil((prev) => ({
       ...prev,
-      photo: `http://localhost:3000/${data.photoUrl}`,
+      photo: `${import.meta.env.VITE_API_URL}/${data.photoUrl}`,
     }));
   };
 
@@ -88,7 +88,7 @@ function ProfileEntreprise() {
   const handleSave = async () => {
     const token = localStorage.getItem("token");
 
-    const res = await fetch("http://localhost:3000/me", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/me`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -108,7 +108,9 @@ function ProfileEntreprise() {
       siret: data.user.companyId,
       telephone: data.user.phone,
       adresse: data.user.address,
-      photo: `http://localhost:3000/${data.user.photoUrl}`,
+      photo: data.user.photoUrl
+  ? `${import.meta.env.VITE_API_URL}/${data.user.photoUrl}`
+  : `${import.meta.env.VITE_API_URL}/uploads/default-avatar.png`,
     });
 
     setEditMode(false);
@@ -293,7 +295,7 @@ function ProfileEntreprise() {
         <div className="modal-overlay">
           <div className="modal-content">
             <FaCheckCircle className="modal-icon" />
-            <p>Le dossier a été soumis avec succès 🎉</p>
+            <p>Le dossier a été soumis avec succès </p>
             <button className="btn-ok" onClick={() => setShowModal(false)}>OK</button>
           </div>
         </div>

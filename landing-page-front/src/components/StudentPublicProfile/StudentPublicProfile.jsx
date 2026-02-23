@@ -14,7 +14,7 @@ const StudentPublicProfile = () => {
   const [student, setStudent] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/students/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/students/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setStudent(data.data || data);
@@ -74,7 +74,7 @@ const StudentPublicProfile = () => {
         <div className="pe-left-col">
           <div className="pe-image-wrapper">
             <img
-              src={`http://localhost:3000/${student.photoUrl}`}
+              src={`${import.meta.env.VITE_API_URL}/${student.photoUrl}`}
               alt={`${student.firstName} ${student.lastName}`}
               className="pe-image"
               onError={(e) => {

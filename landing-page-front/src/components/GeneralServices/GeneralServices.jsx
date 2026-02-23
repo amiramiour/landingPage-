@@ -11,7 +11,7 @@ const GeneralServices = () => {
   const [missions, setMissions] = useState([]);
   const [appliedMissions, setAppliedMissions] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/missions")
+    fetch(`${import.meta.env.VITE_API_URL}/missions`)
       .then((res) => res.json())
       .then((data) => {
         const all = data.data || data;
@@ -35,7 +35,7 @@ const GeneralServices = () => {
   const user = JSON.parse(storedUser);
   if (user.role !== "student") return;
 
-  fetch("http://localhost:3000/api/candidatures/my", {
+  fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/my`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -86,7 +86,7 @@ const GeneralServices = () => {
       companyName={mission.employer?.companyName}
       companyLogo={
         mission.employer?.photoUrl
-          ? `http://localhost:3000/${mission.employer.photoUrl}`
+          ? `${import.meta.env.VITE_API_URL}/${mission.employer.photoUrl}`
           : defaultImg
       }
       icon={defaultImg}

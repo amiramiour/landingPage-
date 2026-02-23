@@ -63,15 +63,15 @@ function ProfileEtudiant() {
       formation: user.training,
       etablissement: user.school,
       photo: user.photoUrl
-        ? `http://localhost:3000/${user.photoUrl}`
-        : "http://localhost:3000/uploads/default-avatar.png",
+  ? `${import.meta.env.VITE_API_URL}/${user.photoUrl}`
+  : `${import.meta.env.VITE_API_URL}/uploads/default-avatar.png`,
     });
   }, []);
   useEffect(() => {
   const token = localStorage.getItem("token");
   if (!token) return;
 
-  fetch("http://localhost:3000/student-profile/me", {
+  fetch(`${import.meta.env.VITE_API_URL}/student-profile/me`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -93,7 +93,7 @@ const loadKycStatus = async () => {
   const token = localStorage.getItem("token");
   if (!token) return;
 
-  const res = await fetch("http://localhost:3000/documents/kyc-status", {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/documents/kyc-status`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 
@@ -116,7 +116,7 @@ useEffect(() => {
   const token = localStorage.getItem("token");
   if (!token) return;
 
-  fetch("http://localhost:3000/documents/my", {
+  fetch(`${import.meta.env.VITE_API_URL}/documents/my`, {
     headers: { Authorization: `Bearer ${token}` },
   })
     .then(async (res) => {
@@ -161,7 +161,7 @@ useEffect(() => {
     const formData = new FormData();
     formData.append("photo", file);
 
-    const res = await fetch("http://localhost:3000/auth/upload-photo", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/upload-photo`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
@@ -176,7 +176,7 @@ useEffect(() => {
 
     setProfil((prev) => ({
       ...prev,
-      photo: `http://localhost:3000/${data.photoUrl}`,
+      photo: `${import.meta.env.VITE_API_URL}/${data.photoUrl}`,
     }));
   };
 
@@ -195,7 +195,7 @@ useEffect(() => {
   const handleSave = async () => {
     const token = localStorage.getItem("token");
 
-    const res = await fetch("http://localhost:3000/me", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/me`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -215,7 +215,9 @@ useEffect(() => {
       telephone: data.user.phone,
       formation: data.user.training,
       etablissement: data.user.school,
-      photo: `http://localhost:3000/${data.user.photoUrl}`,
+      photo: data.user.photoUrl
+  ? `${import.meta.env.VITE_API_URL}/${data.user.photoUrl}`
+  : `${import.meta.env.VITE_API_URL}/uploads/default-avatar.png`,
     });
 
     setEditMode(false);
@@ -229,7 +231,7 @@ useEffect(() => {
     const docType = DOC_TYPE_MAP[frontKey];
 
 const presign = await fetch(
-  `http://localhost:3000/documents/presigned-url?type=${docType}`,
+  `${import.meta.env.VITE_API_URL}/documents/presigned-url?type=${docType}`,
   { headers: { Authorization: `Bearer ${token}` } }
 );
 
@@ -252,7 +254,7 @@ if (!uploadRes.ok) {
   return;
 }
 
-const confirmRes = await fetch("http://localhost:3000/documents/confirm", {
+const confirmRes = await fetch(`${import.meta.env.VITE_API_URL}/documents/confirm`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -278,7 +280,7 @@ if (!confirmRes.ok) {
   const token = localStorage.getItem("token");
   if (!token) return;
 
-const res = await fetch("http://localhost:3000/documents/submit", {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/documents/submit`, {
   method: "POST",
   headers: {
     Authorization: `Bearer ${token}`,
@@ -587,7 +589,7 @@ Développement web`}
       onClick={async () => {
         const token = localStorage.getItem("token");
 
-        await fetch("http://localhost:3000/student-profile/me", {
+        await fetch(`${import.meta.env.VITE_API_URL}/student-profile/me`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
