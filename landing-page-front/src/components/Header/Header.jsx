@@ -140,9 +140,7 @@ const Header = () => {
 </Link>
 
 
-                  <Link to="/mes-candidatures" className="dropdown-link">
-                    Mes candidatures
-                  </Link>
+                  
 
                   <button className="dropdown-link logout-link" onClick={handleLogout}>
                     Déconnexion

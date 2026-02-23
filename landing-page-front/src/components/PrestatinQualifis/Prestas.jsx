@@ -1,74 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PrestaCard from './PrestaCard';
 import './Prestas.css';
-import tech from '../../assets/Techniciensinformatique.jpeg';
-import CommunityManagermultilingue from '../../assets/CommunityManagermultilingue.jpeg';
-import Cours from '../../assets/Cours de soutien de langueetrangere.jpeg';
 
-const Prestas = () => {
-  const prestas = [
-    {
-      image: tech,
-      type: 'MISSION D’EXPERTISE',
-      date: '11 DEC 2024',
-      title: 'Techniciens informatique',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
-    },
-    {
-      image: CommunityManagermultilingue,
-      type: 'MISSION D’EXPERTISE',
-      date: '05 DEC 2024',
-      title: 'Community Manager multilingue',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
-    },
-    {
-      image: Cours,
-      type: 'MISSION D’EXPERTISE',
-      date: '30 NOV 2024',
-      title: 'Cours de soutien langue étrangère',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
-    },
-  ];
+const Prestas = ({ missions }) => {
+  const [appliedMissions, setAppliedMissions] = useState([]);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
 
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? prestas.length - 1 : prevIndex - 1));
-  };
+    if (!token || !storedUser) return;
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === prestas.length - 1 ? 0 : prevIndex + 1));
-  };
+    const user = JSON.parse(storedUser);
+    if (user.role !== "student") return;
+
+    fetch("http://localhost:3000/api/candidatures/my", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        const missionIds = data
+          .filter(c => c.status !== "rejected")
+          .map(c => c.missionId);
+
+        setAppliedMissions(missionIds);
+      })
+      .catch(() => {});
+  }, []);
+
+  if (!missions || missions.length === 0) {
+    return <p style={{ textAlign: "center" }}>Aucune mission disponible</p>;
+  }
 
   return (
     <div className="prestas-container">
-      <h2 className="prestas-title">ESPACE ETUDIANT</h2>
-      <div className="prestas-filters">
-        <button className="filter-button active">Tous</button>
-        <a href="#" className="filter-link">MISSIONS D’EXPERTISE</a>
-        <a href="#" className="filter-link">MISSIONS DE SERVICE</a>
-      </div>
+      <h2 className="prestas-title">ESPACE ÉTUDIANT</h2>
 
       <div className="prestas-grid">
-        {prestas.map((presta, index) => (
-          <PrestaCard
-            key={index}
-            image={presta.image}
-            type={presta.type}
-            date={presta.date}
-            title={presta.title}
-            description={presta.description}
-          />
-        ))}
-      </div>
+        {missions
+          .filter(m => m.type === "mission_d_expertise")
+          .map(mission => {
+            const alreadyApplied = appliedMissions.includes(Number(mission.id));
 
-      <div className="prestas-navigation">
-        <button className="nav-button" onClick={handlePrev}>
-          ←
-        </button>
-        <button className="nav-button" onClick={handleNext}>
-          →
-        </button>
+            return (
+              <PrestaCard
+                key={mission.id}
+                id={mission.id}
+                image="/images/default-mission.jpg"
+                type="MISSION D’EXPERTISE"
+                date={mission.startDate?.slice(0, 10) || "--"}
+                title={mission.title}
+                description={mission.description}
+                alreadyApplied={alreadyApplied}  // 👈 ICI
+              />
+            );
+          })}
       </div>
     </div>
   );

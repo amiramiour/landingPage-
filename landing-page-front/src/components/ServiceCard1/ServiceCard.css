@@ -1,9 +1,11 @@
+
 .linky-service-card {
   flex: 0 0 320px;
   background: white;
   border-radius: 0;
   overflow: hidden;
   transition: transform 0.3s ease;
+  position: relative; /* Nécessaire pour le positionnement absolu du bandeau */
 }
 
 .linky-service-card:hover {
@@ -15,6 +17,7 @@
   width: 100%;
   height: 220px;
   object-fit: cover;
+  display: block;
 }
 
 /* TYPE DE MISSION (SOUS IMAGE) */
@@ -23,6 +26,8 @@
   padding: 0.4rem 0.8rem;
   font-size: 0.85rem;
   font-weight: bold;
+  margin-top: 1rem;
+  margin-left: 1rem;
 }
 
 .linky-service-type.expertise {
@@ -35,16 +40,21 @@
   color: black;
 }
 
+.linky-service-content {
+  padding: 0 1rem;
+  margin-top: 1rem;
+}
 
 .linky-service-card h3 {
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
   font-weight: 700;
+  color: #666; /* Couleur grise comme sur la photo */
 }
 
 .linky-service-card p {
   font-size: 0.9rem;
-  color: #555;
+  color: #888;
   line-height: 1.4;
 }
 
@@ -53,6 +63,8 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  padding: 1rem;
+  margin-top: auto;
 }
 
 .linky-company-logo {
@@ -70,20 +82,57 @@
 .linky-company-name {
   font-weight: 600;
   font-size: 0.9rem;
+  color: #444;
 }
 
 .linky-date {
   font-size: 0.85rem;
-  color: #666;
+  color: #999;
+}
+
+/* ================= CARD APPLIED ================= */
+
+.linky-service-card.applied .linky-service-card-image {
+  filter: grayscale(100%) opacity(0.5);
+}
+
+.linky-service-card.applied:hover {
+  transform: none;
+}
+
+/* ================= BANDEAU (CORRECTED) ================= */
+
+.applied-banner {
+  position: absolute;
+  top: 180px;
+  left: 12px;
+  width: 90%;
+  background: #D2D2D2;
+  color: #000;
+  font-size: 0.75rem;        /* un peu plus petit */
+  padding: 6px 12px;
+  font-weight: 600;
+  z-index: 10;
+  text-align: left;
+  pointer-events: none;
+
+  white-space: nowrap;       /*  empêche retour à la ligne */
+  overflow: hidden;          /* coupe si trop long */
+  text-overflow: ellipsis;   /* ajoute "..." si dépasse */
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .linky-service-card {
-    flex: 0 0 260px;
+    flex: 0 0 280px;
   }
 
   .linky-service-card-image {
     height: 180px;
+  }
+
+  .applied-banner {
+    top: 140px;
+    font-size: 0.7rem;
   }
 }

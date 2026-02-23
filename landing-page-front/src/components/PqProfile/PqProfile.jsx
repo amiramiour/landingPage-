@@ -1,75 +1,259 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import './PqProfile.css';
 import icon from '../../assets/icon.png';
+import checkVert from "../../assets/checkvert.png";
 
 function PqProfile() {
+  const storedUser = localStorage.getItem("user");
+  const user = storedUser ? JSON.parse(storedUser) : null;
+  const [alreadyApplied, setAlreadyApplied] = useState(false);
+
+  const isStudent = user?.role === "student";
+
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const [mission, setMission] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [kycStatus, setKycStatus] = useState(null);
+  const isMissionExpired = mission?.startDate
+    ? new Date(mission.startDate) < new Date()
+    : false;
+
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const getMissionLabel = (type) => {
+    switch (type) {
+      case "mission_d_expertise":
+        return "Mission d’expertise";
+      case "mission_de_service":
+        return "Mission de service";
+      default:
+        return "Mission";
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    fetch("http://localhost:3000/documents/kyc-status", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("KYC non accessible");
+        return res.json();
+      })
+      .then((data) => {
+        setKycStatus(data);
+      })
+      .catch((err) => {
+        console.warn(err.message);
+      });
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token || !isStudent) return;
+
+    fetch("http://localhost:3000/api/candidatures/my", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        const candidature = data.find(
+          (c) => c.missionId === Number(id)
+        );
+
+        if (!candidature) {
+          setAlreadyApplied(false);
+          return;
+        }
+
+        if (candidature.status === "rejected") {
+          setAlreadyApplied(false);
+        } else {
+          setAlreadyApplied(true);
+        }
+      })
+      .catch(err => {
+        console.warn("Erreur historique candidatures", err);
+      });
+  }, [id, isStudent]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/missions/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        setMission(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) {
+    return <p style={{ padding: '4rem', textAlign: 'center' }}>Chargement...</p>;
+  }
+
+  if (!mission) {
+    return <p style={{ padding: '4rem', textAlign: 'center' }}>Mission introuvable</p>;
+  }
+
+  const canApply =
+    isStudent &&
+    kycStatus?.validated === true &&
+    !alreadyApplied &&
+    !isMissionExpired;
+
+  // Ouvre le premier pop-in (confirmation)
+  const handleRequestApply = () => {
+    if (!canApply) return;
+    setShowConfirm(true);
+  };
+
+  // Exécute l'application réelle après validation
+  const handleConfirmApplication = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    try {
+      const res = await fetch(
+        `http://localhost:3000/api/candidatures/apply/${id}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.error || "Erreur candidature");
+        setShowConfirm(false);
+        return;
+      }
+
+      setShowConfirm(false);
+      setShowSuccess(true);
+      setAlreadyApplied(true);
+    } catch (err) {
+      console.error("Erreur candidature", err);
+      setShowConfirm(false);
+    }
+  };
+
   return (
     <div className="pq-profile-container">
-      
-      {/* Bloc texte en haut à droite */}
       <div className="pq-profile-top-right">
-        <span className="pq-qualification-badge">Mission d'expertise</span>
-        <h1 className="pq-profile-title">Techniciens informatique</h1>
+        <span className={`pq-qualification-badge ${mission.type === "mission_de_service" ? "service" : ""}`}>
+          {getMissionLabel(mission.type)}
+        </span>
+        <h1 className="pq-profile-title">{mission.title}</h1>
       </div>
 
-      {/* Bloc principal image + texte */}
       <div className="pq-profile-content">
         <div className="pq-profile-image-wrapper">
-          <img 
-            src="https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="Technicien informatique au travail"
+          <img
+            src="https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg"
+            alt={mission.title}
             className="pq-profile-image"
           />
         </div>
 
         <div className="pq-profile-text-content">
           <div>
-            <p className="pq-profile-description">
-              Freelance informatique recrute un(e) technicien(ne) pour intervenir sur la maintenance et le support informatique auprès de TPE/PME.
-            </p>
-            <p className="pq-profile-description">
-              La mission inclut diagnostics, installations, et assistance utilisateurs. Encadrement, formation et environnement de travail motivant garantis.
-            </p>
-            <p className="pq-profile-description">
-              Vous serez accompagné par un technicien senior, et formé aux procédures internes.
-            </p>
-
-            <h2 className="pq-profile-subtitle">Niveau études</h2>
-            <p className="pq-profile-description">BTS Informatique, Licence Informatique.</p>
-
+            <p className="pq-profile-description">{mission.description}</p>
+            {mission.niveau && (
+              <>
+                <h2 className="pq-profile-subtitle">Niveau études</h2>
+                <p className="pq-profile-description">{mission.niveau}</p>
+              </>
+            )}
             <div className="pq-details-grid">
               <span className="pq-details-label">Date :</span>
-              <span>10 DEC 2024</span>
-              
+              <span>{mission.startDate ? new Date(mission.startDate).toLocaleDateString() : '—'}</span>
               <span className="pq-details-label">Durée :</span>
-              <span>3 mois renouvelables</span>
-              
+              <span>{mission.durationHours || '—'}</span>
               <span className="pq-details-label">Montant :</span>
-              <span>15.20 € / heure (brut)</span>
-              
+              <span>{mission.remuneration ? `${mission.remuneration} €` : '—'}</span>
               <span className="pq-details-label">Lieu :</span>
-              <span>28 Rue de la République, 69001 Lyon</span>
+              <span>{mission.location || '—'}</span>
             </div>
           </div>
 
           <div>
             <div className="pq-company-info">
-              <img 
-                src={icon}
-                alt="Logo Freelance informatique"
-                className="pq-company-logo"
-              />
+              <img src={icon} alt="Entreprise" className="pq-company-logo" />
               <span className="font-medium">Freelance informatique</span>
             </div>
-
-            <button className="pq-apply-button">
-              Candidater
+            <button
+              className={`pq-apply-button ${!canApply ? "disabled" : ""}`}
+              disabled={!canApply}
+              onClick={handleRequestApply}
+              title={
+                !isStudent ? "Seuls les étudiants peuvent candidater" :
+                isMissionExpired ? "Cette mission est terminée" :
+                alreadyApplied ? "Vous avez déjà candidaté à cette mission" :
+                !kycStatus?.validated ? "Votre dossier doit être validé pour candidater" : ""
+              }
+            >
+              {alreadyApplied ? "Déjà candidaté" : "Candidater"}
             </button>
           </div>
         </div>
       </div>
 
-      <a href="#" className="pq-back-link">← Retour</a>
+      <span className="pq-back-link" onClick={() => navigate(-1)} style={{ cursor: "pointer" }}>
+        &lt; Retour
+      </span>
+
+      {/* MODAL DE CONFIRMATION */}
+      {showConfirm && (
+        <div className="modal-overlay">
+          <div className="modal-content confirm-modal">
+            <img src={checkVert} alt="Confirmation" className="modal-icon" />
+            <h3 className="modal-confirm-title">
+              Souhaitez-vous confirmer votre choix pour cette mission ?
+            </h3>
+            <div className="modal-buttons">
+              <button className="btn-valider" onClick={handleConfirmApplication}>
+                Valider
+              </button>
+              <button className="btn-annuler" onClick={() => setShowConfirm(false)}>
+                Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL DE SUCCÈS */}
+      {showSuccess && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <img src={checkVert} alt="Succès" className="modal-icon" />
+            <p>
+              Votre candidature a été envoyée avec succès.<br />
+              Consultez le suivi pour connaître l’état de votre candidature.
+            </p>
+            <button className="btn-ok" onClick={() => setShowSuccess(false)}>
+              OK
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

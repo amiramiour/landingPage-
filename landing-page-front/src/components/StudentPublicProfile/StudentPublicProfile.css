@@ -1,26 +1,40 @@
 .pe-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 4rem 1.5rem;
-  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 60px 20px;
+  background: #f8f9fb; /* fond léger pour moderniser */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  position: relative;
 }
 
-/* === LAYOUT === */
+/* ===============================
+   CARD PRINCIPALE
+================================ */
 .pe-profile {
   display: flex;
-  align-items: center; 
-  gap: 3.5rem;
-  margin-top: 4rem;
+  align-items: center;
+  gap: 60px;
+  max-width: 1000px;
+  width: 100%;
+  background: #ffffff;
+  padding: 50px 60px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
 }
 
-
-/* === PHOTO === */
+/* ===============================
+   PHOTO
+================================ */
 .pe-image-wrapper {
-  width: 260px;
-  height: 260px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
   overflow: hidden;
-  flex-shrink: 0;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.08);
 }
 
 .pe-image {
@@ -29,69 +43,90 @@
   object-fit: cover;
 }
 
-/* === TEXTE === */
+/* ===============================
+   INFOS
+================================ */
 .pe-info {
-  max-width: 520px;
+  flex: 1;
 }
 
-/* NOM */
 .pe-name {
-  font-size: 2rem;
+  font-size: 30px;
   font-weight: 700;
-  margin-bottom: 1.2rem;
-  color: #000;
-}
-
-/* LIGNES INFO */
-.pe-info p {
-  margin: 0.35rem 0;
-  font-size: 1rem;
-  line-height: 1.6;
+  margin-bottom: 18px;
   color: #111;
 }
 
-.pe-info strong {
-  font-weight: 600;
+/* BLOCS PRINCIPAUX */
+.pe-details-block p {
+  font-size: 15px;
+  margin: 3px 0;
+  color: #444;
 }
 
-/* === MISSIONS === */
-.pe-missions-title {
-  margin-top: 2.5rem;
-  margin-bottom: 0.6rem;
-  font-size: 1.1rem;
+.pe-details-block strong {
   font-weight: 600;
   color: #000;
 }
 
-.pe-missions {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 2rem 0;
+/* ===============================
+   SECTIONS
+================================ */
+.pe-section {
+  margin-top: 18px; /* réduit l’espace */
 }
 
-.pe-missions li {
-  font-size: 1rem;
-  margin-bottom: 0.45rem;
+.pe-section-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #000;
 }
 
-/* === BOUTON === */
-.pe-btn {
-  background-color: #d1d1d1;
-  color: #fff;
+.pe-list-content p,
+.pe-text-content {
+  font-size: 14px;
+  margin: 2px 0;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* ===============================
+   BOUTON
+================================ */
+.pe-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.pe-btn-contacter {
+  background: linear-gradient(135deg, #d2d2d2, #bdbdbd);
+  color: white;
   border: none;
-  border-radius: 14px;
-  padding: 0.75rem 2.2rem;
-  font-size: 1rem;
+  border-radius: 20px;
+  padding: 10px 50px;
+  font-size: 16px;
   font-weight: 500;
-  cursor: not-allowed;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* === RETOUR === */
+.pe-btn-contacter:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* ===============================
+   RETOUR
+================================ */
 .pe-back {
-  display: inline-block;
-  margin-top: 3rem;
-  font-size: 0.85rem;
-  color: #000;
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  font-size: 14px;
+  color: #555;
   text-decoration: none;
 }
 
@@ -99,20 +134,28 @@
   text-decoration: underline;
 }
 
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 992px) {
   .pe-profile {
     flex-direction: column;
-    align-items: center;
-    text-align: left;
+    padding: 40px 25px;
+    gap: 30px;
+    text-align: center;
   }
 
   .pe-info {
-    max-width: 100%;
+    text-align: center;
   }
 
   .pe-image-wrapper {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
+  }
+
+  .pe-back {
+    position: static;
+    margin-top: 30px;
   }
 }

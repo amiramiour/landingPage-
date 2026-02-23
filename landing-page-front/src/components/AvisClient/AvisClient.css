@@ -1,0 +1,153 @@
+
+.avis-section {
+  max-width: 1280px;
+  margin: 60px auto;
+  padding: 0 20px;
+  overflow: hidden;
+}
+
+.avis-container {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.5s ease-out;
+  margin-bottom: 40px;
+}
+
+.avis-card {
+  flex: 0 0 calc(40% - 16px);
+  min-width: 350px;
+  border: 1px solid black;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.avis-card:hover {
+  border-color: #000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.stars-container {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.star {
+  font-size: 20px;
+}
+
+.star.active {
+  color: #FFEB3B; /* Jaune vif comme sur l'image */
+}
+
+.star.inactive {
+  color: #000; /* Noir comme sur l'image */
+}
+
+.avis-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 30px;
+  font-style: italic;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #f0f0f0;
+}
+
+.profile-info h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.profile-info p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: #666;
+  margin: 2px 0 0 0;
+}
+
+.avis-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.pagination-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background-color: #000;
+  transform: scale(1.2);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.nav-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  .avis-card {
+    flex: 0 0 85%;
+    min-width: 280px;
+  }
+  
+  .avis-section {
+    margin: 40px auto;
+  }
+}

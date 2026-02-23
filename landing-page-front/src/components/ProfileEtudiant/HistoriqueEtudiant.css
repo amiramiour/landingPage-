@@ -1,0 +1,100 @@
+.historique-etudiant {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0px 20px;
+}
+
+.blue {
+  color: #6EC1E4;
+}
+
+/* ===== STATUS ===== */
+.mission-status {
+  margin: 0 15px 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.mission-status.envoye {
+  color: #3b82f6;
+}
+
+.mission-status.en_cours {
+  color: #facc15;
+}
+
+.mission-status.accepte {
+  color: #22c55e;
+}
+
+.mission-status.refuse {
+  color: #ef4444;
+}
+
+/* ===== BOUTONS ===== */
+.linky-btn-primary {
+  background-color: #6EC1E4;
+  color: black;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.linky-btn-secondary {
+  background-color: #e5e7eb;
+  color: #111;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.linky-btn-outline {
+  background: transparent;
+  border: 1px solid black;
+  color: black;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+.mission-status.submitted {
+  color: #3b82f6; /* bleu */
+}
+
+.mission-status.under_review {
+  color: #facc15; /* jaune */
+}
+
+.mission-status.accepted {
+  color: #22c55e; /* vert */
+}
+
+.mission-status.rejected {
+  color: #ef4444; /* rouge */
+}
+
+.mission-status.cancelled {
+  color: #9ca3af; /* gris */
+}
+.mission-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 15px 12px;
+}
+.mission-status {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* espace icône / texte */
+}
+
+.status-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+.mission-status-actions {
+  display: flex;
+  align-items: center;
+}

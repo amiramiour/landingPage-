@@ -9,7 +9,7 @@ import defaultImg from "../../assets/Animateur interculturel.jpeg";
 const GeneralServices = () => {
   const scrollRef = useRef(null);
   const [missions, setMissions] = useState([]);
-
+  const [appliedMissions, setAppliedMissions] = useState([]);
   useEffect(() => {
     fetch("http://localhost:3000/missions")
       .then((res) => res.json())
@@ -26,6 +26,30 @@ const GeneralServices = () => {
       })
       .catch((err) => console.error(err));
   }, []);
+  useEffect(() => {
+  const token = localStorage.getItem("token");
+  const storedUser = localStorage.getItem("user");
+
+  if (!token || !storedUser) return;
+
+  const user = JSON.parse(storedUser);
+  if (user.role !== "student") return;
+
+  fetch("http://localhost:3000/api/candidatures/my", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then(res => res.json())
+    .then(data => {
+      const missionIds = data
+        .filter(c => c.status !== "rejected")
+        .map(c => c.missionId);
+
+      setAppliedMissions(missionIds);
+    })
+    .catch(() => {});
+}, []);
 
   const scrollLeft = () =>
     scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
@@ -48,26 +72,30 @@ const GeneralServices = () => {
 
       <div className="services-scroll-section" ref={scrollRef}>
         <div className="services-grid-section">
-          {visibleMissions.map((mission) => (
-            <ServiceCard1
-  key={mission.id}
-  title={mission.title}
-  description={mission.description}
-  date={mission.startDate?.slice(0, 10)}
-  type={mission.type}
+          {visibleMissions.map((mission) => {
+  const alreadyApplied = appliedMissions.includes(mission.id);
 
-  /*  ENTREPRISE */
-  companyName={mission.employer?.companyName}
-  companyLogo={
-    mission.employer?.photoUrl
-      ? `http://localhost:3000/${mission.employer.photoUrl}`
-      : defaultImg
-  }
+  return (
+    <ServiceCard1
+      key={mission.id}
+      id={mission.id}
+      title={mission.title}
+      description={mission.description}
+      date={mission.startDate?.slice(0, 10)}
+      type={mission.type}
+      companyName={mission.employer?.companyName}
+      companyLogo={
+        mission.employer?.photoUrl
+          ? `http://localhost:3000/${mission.employer.photoUrl}`
+          : defaultImg
+      }
+      icon={defaultImg}
 
-  /* image mission */
-  icon={defaultImg}
-/>
-          ))}
+      /* 👇 NOUVEAU PROP */
+      alreadyApplied={alreadyApplied}
+    />
+  );
+})}
         </div>
       </div>
 

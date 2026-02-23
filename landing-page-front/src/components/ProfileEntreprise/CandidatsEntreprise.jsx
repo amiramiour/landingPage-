@@ -1,96 +1,70 @@
-import { Linkedin, Twitter, Instagram } from "lucide-react";
-import "../TeamDirectory/TeamDirectory.css"; // 
-
-const DEFAULT_DESCRIPTION =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.";
-
-const candidats = [
-  {
-    id: 1,
-    firstName: "Jenny",
-    lastName: "Wilson",
-    training: "Job title",
-    photoUrl: "/uploads/default-avatar.png",
-  },
-  {
-    id: 2,
-    firstName: "Annette",
-    lastName: "Black",
-    training: "Job title",
-    photoUrl: "/uploads/default-avatar.png",
-  },
-  {
-    id: 3,
-    firstName: "Bessie",
-    lastName: "Cooper",
-    training: "Job title",
-    photoUrl: "/uploads/default-avatar.png",
-  },
-  {
-    id: 4,
-    firstName: "Sihem",
-    lastName: "Lakhdar",
-    training: "Job title",
-    photoUrl: "/uploads/default-avatar.png",
-  },
-  {
-    id: 5,
-    firstName: "Nadir",
-    lastName: "Larbi",
-    training: "Job title",
-    photoUrl: "/uploads/default-avatar.png",
-  },
-  {
-    id: 6,
-    firstName: "Ronald",
-    lastName: "Richards",
-    training: "Job title",
-    photoUrl: "/uploads/default-avatar.png",
-  },
-];
+import { useEffect, useState } from "react";
+import "../TeamDirectory/TeamDirectory.css";
+import { useAuth } from "../context/AuthContext";
 
 function CandidatsEntreprise() {
+  const { token } = useAuth();
+  const [candidats, setCandidats] = useState([]);
+
+  /* ================= CHARGEMENT DES CANDIDATS ================= */
+  useEffect(() => {
+    fetch("http://localhost:3000/api/candidatures/company", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(res => res.json())
+      .then(data => {
+        // évite les doublons d'étudiants
+        const uniques = new Map();
+
+        data.forEach(c => {
+          uniques.set(c.student.id, {
+            ...c.student,
+            missionTitle: c.mission.title,
+          });
+        });
+
+        setCandidats([...uniques.values()]);
+      })
+      .catch(console.error);
+  }, [token]);
+
   return (
     <section className="team-directory">
-      <div className="container">
-        <h2 className="team-directory__title">
-          ÉTUDIANTS AYANT CANDIDATÉ
-        </h2>
+      <h2 className="team-directory__title">
+        ÉTUDIANTS AYANT CANDIDATÉ
+      </h2>
 
-        <div className="team-directory__grid">
-          {candidats.map((student) => (
-            <div key={student.id} className="team-member">
-              {/* PHOTO */}
-              <div className="team-member__image-wrapper">
-                <img
-                  src={student.photoUrl}
-                  alt={`${student.firstName} ${student.lastName}`}
-                  className="team-member__image"
-                />
-              </div>
+      <div className="team-directory__grid">
+        {candidats.length === 0 && (
+          <p style={{ textAlign: "center", color: "#666" }}>
+            Aucun étudiant pour le moment
+          </p>
+        )}
 
-              {/* NOM */}
-              <h3 className="team-member__name">
-                {student.firstName} {student.lastName}
-              </h3>
+        {candidats.map(student => (
+          <div key={student.id} className="team-member">
+            <img
+              src={`http://localhost:3000/${student.photoUrl}`}
+              className="team-member__image"
+              alt={student.firstName}
+              onError={(e) => {
+                e.target.src = "/uploads/default-avatar.png";
+              }}
+            />
 
-              {/* FORMATION */}
-              <p className="team-member__title">{student.training}</p>
+            <h3 className="team-member__name">
+              {student.firstName} {student.lastName}
+            </h3>
 
-              {/* DESCRIPTION */}
-              <p className="team-member__description">
-                {DEFAULT_DESCRIPTION}
-              </p>
+            <p className="team-member__title">
+              {student.training || "—"}
+            </p>
 
-              {/* SOCIAL */}
-              <div className="team-member__social">
-                <span className="social-icon"><Linkedin size={18} /></span>
-                <span className="social-icon"><Twitter size={18} /></span>
-                <span className="social-icon"><Instagram size={18} /></span>
-              </div>
-            </div>
-          ))}
-        </div>
+            <small className="team-member__mission">
+              Mission : {student.missionTitle}
+            </small>
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import ServiceCard from "../ServiceCard/ServiceCard";
 import "./Services.css";
-
+import { useNavigate } from "react-router-dom";
 import arrowLeft from "../../assets/btn_blue_left.png";
 import arrowRight from "../../assets/btn_blue_right.png";
 import defaultImg from "../../assets/Techniciensinformatique.jpeg"; 
@@ -9,6 +9,7 @@ import defaultImg from "../../assets/Techniciensinformatique.jpeg";
 const Services = () => {
   const scrollRef = useRef(null);
   const [students, setStudents] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:3000/students")
@@ -32,7 +33,12 @@ const Services = () => {
         <p className="services-description">
           Découvrez des étudiants qualifiés, prêts à intervenir sur vos projets.
         </p>
-        <button className="voir-plus">Voir plus</button>
+        <button
+          className="voir-plus"
+          onClick={() => navigate("/espace-entreprise")}
+        >
+          Voir plus
+        </button>
       </div>
 
       <div className="services-scroll" ref={scrollRef}>

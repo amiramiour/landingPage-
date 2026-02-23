@@ -1,84 +1,134 @@
+import { useEffect, useState } from "react";
 import "./CandidaturesMission.css";
-import avatar from "../../assets/Assistant relation.jpeg";
-import schoolLogo from "../../assets/icon.png";
 import acceptIcon from "../../assets/accept.png";
 import refuseIcon from "../../assets/refus.png";
+import schoolLogo from "../../assets/icon.png";
+import { useAuth } from "../context/AuthContext";
+import StudentCandidatureProfile from "../CandidaturesMission/StudentCandidatureProfile";
 
-const candidats = [
-  {
-    id: 1,
-    name: "Bessie Cooper",
-    formation: "Licence informatique",
-    age: 22,
-    nationalite: "Brésilienne",
-    langues: "Espagnol (natif), Français (B2), Anglais (C1)",
-    ecole: "Université Sorbonne",
-    date: "11 DEC 2024",
-  },
-  {
-    id: 2,
-    name: "John Fav",
-    formation: "Licence Big Data",
-    age: 23,
-    nationalite: "Chinois",
-    langues: "Chinois (natif), Français (B2), Anglais (C1)",
-    ecole: "Université Paris 13",
-    date: "10 DEC 2024",
-  },
-];
+function CandidaturesMission({ missionId, mission }) {
+    const { token, user } = useAuth();
 
-function CandidaturesMission() {
+  const [candidatures, setCandidatures] = useState([]);
+  const [selectedCandidature, setSelectedCandidature] = useState(null);
+
+  /* ================= CHARGEMENT CANDIDATURES ================= */
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/candidatures/mission/${missionId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then(setCandidatures)
+      .catch(console.error);
+  }, [missionId, token]);
+
+  /* ================= UPDATE STATUS ================= */
+  const updateStatus = (id, action) => {
+    fetch(`http://localhost:3000/api/candidatures/${action}/${id}`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+    }).then(() => {
+      setCandidatures((prev) =>
+        prev.map((c) =>
+          c.id === id
+            ? { ...c, status: action === "accept" ? "accepted" : "rejected" }
+            : c
+        )
+      );
+      setSelectedCandidature(null);
+    });
+  };
+
+  /* ================= PAGE PROFIL CANDIDAT ================= */
+  if (selectedCandidature) {
+    return (
+      <StudentCandidatureProfile
+        student={selectedCandidature.student}
+        candidatureId={selectedCandidature.id}
+        mission={{
+          title: mission?.title || "—",
+          companyName: mission?.employer?.companyName || user.companyName,
+        }}
+
+        onAccept={updateStatus}
+        onReject={updateStatus}
+        onBack={() => setSelectedCandidature(null)}
+      />
+    );
+  }
+
+  /* ================= LISTE DES CANDIDATS ================= */
   return (
     <div className="candidatures-mission">
-      {candidats.map((candidat) => (
-        <div key={candidat.id} className="candidat-row">
+      {candidatures.length === 0 && (
+        <p style={{ textAlign: "center", color: "#666" }}>
+          Aucune candidature pour cette mission
+        </p>
+      )}
 
-          {/* PHOTO */}
+      {candidatures.map(({ id, student, createdAt, status, mission }) => (
+        <div
+          key={id}
+          className="candidat-row"
+          onClick={() =>
+            setSelectedCandidature({ id, student, mission })
+          }
+        >
           <img
-            src={avatar}
-            alt={candidat.name}
+            src={`http://localhost:3000/${student.photoUrl}`}
             className="candidat-avatar"
+            alt={student.firstName}
+            onError={(e) => {
+              e.target.src = "/uploads/default-avatar.png";
+            }}
           />
 
-          {/* INFOS + ACTIONS */}
           <div className="candidat-info">
+            <h4 className="candidat-name">
+              {student.firstName} {student.lastName}
+            </h4>
 
-            <h4 className="candidat-name">{candidat.name}</h4>
+            <p className="candidat-formation">
+              {student.training || "—"}
+            </p>
 
-            <p className="candidat-formation">{candidat.formation}</p>
-
-            <p><strong>Âge :</strong> {candidat.age} ans</p>
-            <p><strong>Nationalité :</strong> {candidat.nationalite}</p>
-            <p><strong>Langues :</strong> {candidat.langues}</p>
-
-            {/* FOOTER ÉCOLE */}
             <div className="candidat-footer">
-              <img
-                src={schoolLogo}
-                alt={candidat.ecole}
-                className="school-logo"
-              />
+              <img src={schoolLogo} className="school-logo" />
+
               <div className="school-info">
-                <span className="school-name">{candidat.ecole}</span>
-                <span className="candidat-date">{candidat.date}</span>
+                <span className="school-name">
+                  {student.school || "—"}
+                </span>
+
+                <span className="candidat-date">
+                  {new Date(createdAt).toLocaleDateString("fr-FR")}
+                </span>
               </div>
             </div>
 
-            {/* ACTIONS EN BAS */}
-            <div className="candidat-actions">
-  <img
-    src={acceptIcon}
-    alt="Accepter"
-    className="action-icon accept"
-  />
-  <img
-    src={refuseIcon}
-    alt="Refuser"
-    className="action-icon refuse"
-  />
-</div>
+            {/* ACTIONS RAPIDES */}
+            <div
+              className="candidat-actions"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={acceptIcon}
+                className={`action-icon accept ${
+                  status === "accepted" ? "disabled" : ""
+                }`}
+                onClick={() => updateStatus(id, "accept")}
+              />
 
-
+              <img
+                src={refuseIcon}
+                className={`action-icon refuse ${
+                  status === "rejected" ? "disabled" : ""
+                }`}
+                onClick={() => updateStatus(id, "reject")}
+              />
+            </div>
           </div>
         </div>
       ))}

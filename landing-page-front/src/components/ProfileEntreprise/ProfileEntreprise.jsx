@@ -1,45 +1,49 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ProfileEntreprise.css";
-import { FaCheckCircle, FaCloudUploadAlt, FaLock } from "react-icons/fa";
+import {
+  FaCheckCircle,
+  FaCloudUploadAlt,
+  FaCamera,
+} from "react-icons/fa";
 import lockIcon from "../../assets/locked.png";
 import lineIcon from "../../assets/line.png";
 
 function ProfileEntreprise() {
   const [profil, setProfil] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [form, setForm] = useState({});
   const [documents, setDocuments] = useState({
-  extraitKbis: false,
-  attestationUrssaf: false,
-  charteEngagement: false,
-});
-
+    extraitKbis: false,
+    attestationUrssaf: false,
+    charteEngagement: false,
+  });
 
   const [showModal, setShowModal] = useState(false);
   const fileInputs = useRef({});
-  const fileInputRef = useRef();
+  const fileInputRef = useRef(null);
 
-  const allUploaded = Object.values(documents).every((v) => v);
+  const allUploaded = Object.values(documents).every(Boolean);
 
-  // Charger l'utilisateur depuis localStorage
+  /* ================= CHARGEMENT PROFIL ================= */
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
+    if (!storedUser) return;
 
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
+    const user = JSON.parse(storedUser);
 
-      setProfil({
-        nomEntreprise: user.companyName,
-  typeEntreprise: user.companyType,
-  siret: user.siret,
-  telephone: user.phone,
-  adresse: user.address,
-        photo: user.photoUrl
-          ? `http://localhost:3000/${user.photoUrl}`
-          : "http://localhost:3000/uploads/default-avatar.png",
-      });
-    }
+    setProfil({
+      nomEntreprise: user.companyName,
+      typeEntreprise: user.companyType,
+      siret: user.companyId,
+      telephone: user.phone,
+      adresse: user.address,
+      photo: user.photoUrl
+        ? `http://localhost:3000/${user.photoUrl}`
+        : "http://localhost:3000/uploads/default-avatar.png",
+    });
   }, []);
 
-  // Upload photo
+  /* ================= UPLOAD PHOTO ================= */
   const handlePhotoUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -48,76 +52,167 @@ function ProfileEntreprise() {
     const formData = new FormData();
     formData.append("photo", file);
 
-    try {
-      const res = await fetch("http://localhost:3000/auth/upload-photo", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData,
-      });
+    const res = await fetch("http://localhost:3000/auth/upload-photo", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
 
-      const data = await res.json();
+    const data = await res.json();
+    if (!res.ok) return alert(data.error);
 
-      if (!res.ok) {
-        alert("Erreur upload photo : " + data.error);
-        return;
-      }
+    const stored = JSON.parse(localStorage.getItem("user"));
+    stored.photoUrl = data.photoUrl;
+    localStorage.setItem("user", JSON.stringify(stored));
 
-      // Mise à jour localStorage
-      const stored = JSON.parse(localStorage.getItem("user"));
-      stored.photoUrl = data.photoUrl;
-      localStorage.setItem("user", JSON.stringify(stored));
-
-      // Mise à jour du visuel
-      setProfil((prev) => ({
-        ...prev,
-        photo: `http://localhost:3000/${data.photoUrl}`,
-      }));
-    } catch (err) {
-      console.error(err);
-      alert("Erreur serveur pendant l’upload.");
-    }
+    setProfil((prev) => ({
+      ...prev,
+      photo: `http://localhost:3000/${data.photoUrl}`,
+    }));
   };
 
-  if (!profil) return <p style={{ textAlign: "center" }}>Chargement du profil...</p>;
+  /* ================= MODE ÉDITION ================= */
+  const handleEdit = () => {
+    setForm({
+      companyName: profil.nomEntreprise,
+      companyType: profil.typeEntreprise,
+      companyId: profil.siret,
+      phone: profil.telephone,
+      address: profil.adresse,
+    });
+    setEditMode(true);
+  };
+
+  const handleSave = async () => {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch("http://localhost:3000/me", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(form),
+    });
+
+    const data = await res.json();
+    if (!res.ok) return alert(data.error);
+
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    setProfil({
+      nomEntreprise: data.user.companyName,
+      typeEntreprise: data.user.companyType,
+      siret: data.user.companyId,
+      telephone: data.user.phone,
+      adresse: data.user.address,
+      photo: `http://localhost:3000/${data.user.photoUrl}`,
+    });
+
+    setEditMode(false);
+  };
+
+  if (!profil) {
+    return <p style={{ textAlign: "center" }}>Chargement du profil…</p>;
+  }
 
   return (
     <div className="profile-page">
-
       <div className="top-section">
 
-        {/* ----- PROFIL ----- */}
+        {/* ================= PROFIL ================= */}
         <div className="profil-card">
-          <img src={profil.photo} alt="profil" className="profil-photo" />
 
-          {/* Bouton changer la photo */}
-          <button 
-            className="btn-modifier-photo"
+          {/* PHOTO */}
+          <div
+            className="profil-photo-wrapper"
             onClick={() => fileInputRef.current.click()}
           >
-            Changer la photo
-          </button>
+            <img src={profil.photo} alt="profil" className="profil-photo" />
+            <div className="photo-overlay">
+              <FaCamera />
+            </div>
+          </div>
 
           <input
             type="file"
             accept="image/*"
             ref={fileInputRef}
             onChange={handlePhotoUpload}
-            style={{ display: "none" }}
+            hidden
           />
 
           <h2 className="profil-titre">Profil</h2>
 
           <div className="profil-info">
-  <p><strong>Entreprise </strong>{profil.nomEntreprise}</p>
-  <p><strong>Type </strong>{profil.typeEntreprise}</p>
-  <p><strong>SIRET </strong>{profil.siret}</p>
-  <p><strong>Téléphone </strong>{profil.telephone}</p>
-  <p><strong>Adresse </strong>{profil.adresse}</p>
-</div>
+            {editMode ? (
+              <>
+                <input
+                  value={form.companyName}
+                  onChange={(e) =>
+                    setForm({ ...form, companyName: e.target.value })
+                  }
+                  placeholder="Nom de l’entreprise"
+                />
+                <input
+                  value={form.companyType}
+                  onChange={(e) =>
+                    setForm({ ...form, companyType: e.target.value })
+                  }
+                  placeholder="Type d’entreprise"
+                />
+                <input
+                  value={form.companyId}
+                  onChange={(e) =>
+                    setForm({ ...form, companyId: e.target.value })
+                  }
+                  placeholder="SIRET"
+                />
+                <input
+                  value={form.phone}
+                  onChange={(e) =>
+                    setForm({ ...form, phone: e.target.value })
+                  }
+                  placeholder="Téléphone"
+                />
+                <input
+                  value={form.address}
+                  onChange={(e) =>
+                    setForm({ ...form, address: e.target.value })
+                  }
+                  placeholder="Adresse"
+                />
+              </>
+            ) : (
+              <>
+                <p><strong>Entreprise </strong>{profil.nomEntreprise}</p>
+                <p><strong>Type </strong>{profil.typeEntreprise}</p>
+                <p><strong>SIRET </strong>{profil.siret}</p>
+                <p><strong>Téléphone </strong>{profil.telephone}</p>
+                <p><strong>Adresse </strong>{profil.adresse}</p>
+              </>
+            )}
+          </div>
 
-
-          {/* Bouton modifier infos */}
-          <button className="btn-modifier">Modifier</button>
+          {editMode ? (
+            <div className="edit-actions">
+              <button className="btn-primary" onClick={handleSave}>
+                Enregistrer
+              </button>
+              <button
+                className="btn-outline"
+                onClick={() => setEditMode(false)}
+              >
+                Annuler
+              </button>
+            </div>
+          ) : (
+            <button className="btn-modifier" onClick={handleEdit}>
+              Modifier
+            </button>
+          )}
         </div>
 
         {/* ----- DOSSIER DÉPÔT ----- */}
@@ -175,21 +270,21 @@ function ProfileEntreprise() {
       {/* ----- SUIVI ----- */}
       <div className="timeline-etapes">
         {["Dépôt du dossier", "Etude du dossier", "Prise de décision"].map((txt, i) => (
-          <React.Fragment key={i}>
-            <div className="etape locked">
+            <React.Fragment key={i}>
+              <div className="etape locked">
               <div className="icone-etape">
 <img src={lockIcon} alt="locked" className="icone-lock-img" />
               </div>
-              <p>{txt}</p>
-            </div>
-                  {i < 2 && (
+                <p>{txt}</p>
+              </div>
+              {i < 2 && (
                     <img 
                       src={lineIcon} 
                       alt="line" 
                       className="ligne-etape-img"
                     />
-                  )}
-          </React.Fragment>
+              )}
+            </React.Fragment>
         ))}
       </div>
 
