@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './PqProfile.css';
 import icon from '../../assets/icon.png';
-import checkVert from "../../assets/checkvert.png";
+import checkVert from "../../assets/Container.png";
 
 function PqProfile() {
   const storedUser = localStorage.getItem("user");
@@ -156,26 +156,47 @@ function PqProfile() {
         &lt; Retour
       </button>
 
-      {/* MODALS */}
+      {/* --- MODALS MISES À JOUR --- */}
       {showConfirm && (
         <div className="modal-overlay">
-          <div className="modal-content confirm-modal">
-            <img src={checkVert} alt="Confirm" style={{ width: 50, marginBottom: 20 }} />
-            <h3 style={{ fontSize: '1.2rem', marginBottom: 30 }}>Souhaitez-vous confirmer votre choix pour cette mission ?</h3>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 15 }}>
-              <button className="btn-valider" style={{ background: '#000', color: '#fff', padding: '10px 30px', borderRadius: 8, border: 'none', cursor: 'pointer' }} onClick={handleConfirmApplication}>Valider</button>
-              <button className="btn-annuler" style={{ background: '#f3f4f6', color: '#000', padding: '10px 30px', borderRadius: 8, border: 'none', cursor: 'pointer' }} onClick={() => setShowConfirm(false)}>Annuler</button>
+          <div className="modal-content">
+            
+            {/* Conteneur icône */}
+            <div className="modal-icon-wrapper">
+              <img src={checkVert} alt="Confirm" className="modal-icon-img" />
             </div>
+
+            <h3 className="modal-text">
+              Souhaitez-vous confirmer votre choix <br/> pour cette mission ?
+            </h3>
+
+            <div className="modal-actions">
+              <button className="modal-btn" onClick={handleConfirmApplication}>
+                Valider
+              </button>
+              <button className="modal-btn" onClick={() => setShowConfirm(false)}>
+                Annuler
+              </button>
+            </div>
+
           </div>
         </div>
       )}
 
       {showSuccess && (
         <div className="modal-overlay">
-          <div className="modal-content" style={{ padding: 40, background: 'white', borderRadius: 12, textAlign: 'center' }}>
-            <img src={checkVert} alt="Success" style={{ width: 50, marginBottom: 20 }} />
-            <p>Votre candidature a été envoyée avec succès.</p>
-            <button style={{ marginTop: 20, background: '#000', color: '#fff', padding: '10px 30px', borderRadius: 8, border: 'none', cursor: 'pointer' }} onClick={() => setShowSuccess(false)}>OK</button>
+          <div className="modal-content">
+            <div className="modal-icon-wrapper">
+              <img src={checkVert} alt="Success" className="modal-icon-img" />
+            </div>
+            <p className="modal-text" style={{ fontSize: '1.2rem' }}>
+              Votre candidature a été envoyée avec succès.
+            </p>
+            <div className="modal-actions">
+               <button className="modal-btn" onClick={() => setShowSuccess(false)}>
+                 OK
+               </button>
+            </div>
           </div>
         </div>
       )}
