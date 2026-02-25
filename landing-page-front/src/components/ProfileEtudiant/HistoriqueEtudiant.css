@@ -9,92 +9,73 @@
 }
 
 /* ===== STATUS ===== */
+/* Flexbox pour aligner texte et icône */
 .mission-status {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espace entre le texte et l'icone */
   margin: 0 15px 10px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
-.mission-status.envoye {
-  color: #3b82f6;
+.status-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 
-.mission-status.en_cours {
-  color: #facc15;
-}
-
-.mission-status.accepte {
-  color: #22c55e;
-}
-
-.mission-status.refuse {
-  color: #ef4444;
-}
-
-/* ===== BOUTONS ===== */
-.linky-btn-primary {
-  background-color: #6EC1E4;
-  color: black;
-  border: none;
-  padding: 6px 16px;
-  border-radius: 9999px;
-  cursor: pointer;
-}
-
-.linky-btn-secondary {
-  background-color: #e5e7eb;
-  color: #111;
-  border: none;
-  padding: 6px 16px;
-  border-radius: 9999px;
-  cursor: pointer;
-}
-
-.linky-btn-outline {
-  background: transparent;
-  border: 1px solid black;
-  color: black;
-  padding: 6px 16px;
-  border-radius: 9999px;
-  cursor: pointer;
-}
-.mission-status.submitted {
-  color: #3b82f6; /* bleu */
-}
-
+/* Couleurs spécifiques aux états Backend */
+.mission-status.submitted,
 .mission-status.under_review {
-  color: #facc15; /* jaune */
+  color: #facc15; /* Jaune (En cours) */
 }
 
 .mission-status.accepted {
-  color: #22c55e; /* vert */
+  color: #22c55e; /* Vert (Accepter) */
 }
 
 .mission-status.rejected {
-  color: #ef4444; /* rouge */
+  color: #ef4444; /* Rouge (Refuser) */
 }
 
 .mission-status.cancelled {
-  color: #9ca3af; /* gris */
-}
-.mission-status-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 15px 12px;
-}
-.mission-status {
-  display: flex;
-  align-items: center;
-  gap: 6px; /* espace icône / texte */
+  color: #9ca3af; /* Gris */
 }
 
-.status-icon {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
+/* ===== BOUTONS ===== */
+.mission-btn {
+  margin: 0 15px 15px;
+  align-self: flex-start;
 }
-.mission-status-actions {
-  display: flex;
-  align-items: center;
+
+/* Bouton Bleu (Choisir cette mission) */
+.linky-btn-primary {
+  background-color: #6EC1E4;
+  color: #fff; /* Texte blanc sur fond bleu */
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100%; /* Optionnel: si tu veux que le bouton prenne toute la largeur */
 }
+
+/* Bouton Outline (Annuler, Candidater à nouveau) */
+.linky-btn-outline {
+  background: transparent;
+  border: 1px solid #000; /* Bordure noire */
+  color: #000;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100%; /* Optionnel */
+  transition: background 0.2s;
+}
+
+.linky-btn-outline:hover {
+  background-color: #f3f4f6;
+}
+
+/* Le reste du CSS (grid, card, header...) reste tel quel dans ton fichier original */
