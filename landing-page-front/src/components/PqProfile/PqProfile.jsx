@@ -46,7 +46,7 @@ function PqProfile() {
       const candidature = data.find((c) => c.missionId === Number(id));
       const isBlocked = candidature && !["rejected", "cancelled"].includes(candidature.status);
       setAlreadyApplied(isBlocked);
-    }).catch(() => {});
+    }).catch(() => {}); 
   }, [id, isStudent]);
 
   useEffect(() => {

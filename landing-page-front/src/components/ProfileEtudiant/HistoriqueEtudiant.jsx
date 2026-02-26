@@ -99,7 +99,6 @@ function HistoriqueEtudiant() {
       }
     };
 
-// MODIFICATION DE LA FONCTION cancelCandidature
   const cancelCandidature = async (id) => {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/cancel/${id}`, {
@@ -108,7 +107,6 @@ function HistoriqueEtudiant() {
       });
 
       if (res.ok) {
-        // AU LIEU DE SUPPRIMER (.filter), ON MET À JOUR (.map)
         setCandidatures((prevCandidatures) =>
           prevCandidatures.map((c) =>
             c.id === id ? { ...c, status: "cancelled" } : c
@@ -122,7 +120,6 @@ function HistoriqueEtudiant() {
     }
   };
 
-  // Action : Re-Candidater
   const retryCandidature = async (missionId) => {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/apply/${missionId}`, {
