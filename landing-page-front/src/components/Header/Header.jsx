@@ -48,7 +48,12 @@ useEffect(() => {
   const getLinkStyle = (page) => {
     switch (page) {
       case 'etudiant': return { color: '#6EC1E4' };
-      case 'entreprise': return { color: '#FF7F32' }; 
+      case 'entreprise': return { color: '#FF7F32' };
+      case 'contact': return { color: '#7FD8B1' }; 
+      case 'apropos': return { color: '#FFEB64' }; 
+      case 'missionservice': return { color: '#7FD8B1' };
+      case 'missionexpertise': return { color: '#FFEB64' };
+
       default: return {};
     }
   };
@@ -99,7 +104,8 @@ useEffect(() => {
               <div className="dropdown-content">
 <Link 
   to="/prestationsqualifiee" 
-  className="dropdown-link" 
+  className="dropdown-link"
+  style={activeStyle('/prestationsqualifiee', 'missionexpertise')}
   onClick={() => {
     setPrestationsOpen(false);
     setMenuOpen(false);
@@ -108,7 +114,8 @@ useEffect(() => {
                 </Link>
 <Link 
   to="/prestationsgenerales" 
-  className="dropdown-link" 
+  className="dropdown-link"
+  style={activeStyle('/prestationsgenerales', 'missionservice')}
   onClick={() => {
     setPrestationsOpen(false);
     setMenuOpen(false);
@@ -120,9 +127,22 @@ useEffect(() => {
             )}
           </div>
 
-          <Link to="/apropos" className="nav-link" onClick={() => setMenuOpen(false)}>A propos</Link>
-          <Link to="/contact" className="nav-link" onClick={() => setMenuOpen(false)}>Contact</Link>
-
+<Link 
+  to="/apropos" 
+  className="nav-link"
+  style={activeStyle('/apropos', 'apropos')}
+  onClick={() => setMenuOpen(false)}
+>
+  A propos
+</Link>
+<Link 
+  to="/contact" 
+  className="nav-link"
+  style={activeStyle('/contact', 'contact')}
+  onClick={() => setMenuOpen(false)}
+>
+  Contact
+</Link>
           {user && (
             <div className="mobile-profile-links">
               <div className="mobile-divider"></div>
