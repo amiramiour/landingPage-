@@ -8,12 +8,11 @@
   color: #6EC1E4;
 }
 
-/* ===== STATUS ===== */
-/* Flexbox pour aligner texte et icône */
+
 .mission-status {
   display: flex;
   align-items: center;
-  gap: 8px; /* Espace entre le texte et l'icone */
+  gap: 8px; 
   margin: 0 15px 10px;
   font-size: 14px;
   font-weight: 600;
@@ -25,22 +24,21 @@
   object-fit: contain;
 }
 
-/* Couleurs spécifiques aux états Backend */
 .mission-status.submitted,
 .mission-status.under_review {
-  color: #facc15; /* Jaune (En cours) */
+  color: #facc15; 
 }
 
 .mission-status.accepted {
-  color: #22c55e; /* Vert (Accepter) */
+  color: #22c55e; 
 }
 
 .mission-status.rejected {
-  color: #ef4444; /* Rouge (Refuser) */
+  color: #ef4444; 
 }
 
 .mission-status.cancelled {
-  color: #9ca3af; /* Gris */
+  color: #9ca3af; 
 }
 
 /* ===== BOUTONS ===== */
@@ -52,25 +50,25 @@
 /* Bouton Bleu (Choisir cette mission) */
 .linky-btn-primary {
   background-color: #6EC1E4;
-  color: #fff; /* Texte blanc sur fond bleu */
+  color: #fff; 
   border: none;
   padding: 8px 20px;
   border-radius: 20px;
   cursor: pointer;
   font-weight: 500;
-  width: 100%; /* Optionnel: si tu veux que le bouton prenne toute la largeur */
+  width: 100%; 
 }
 
 /* Bouton Outline (Annuler, Candidater à nouveau) */
 .linky-btn-outline {
   background: transparent;
-  border: 1px solid #000; /* Bordure noire */
+  border: 1px solid #000; 
   color: #000;
   padding: 8px 20px;
   border-radius: 20px;
   cursor: pointer;
   font-weight: 500;
-  width: 100%; /* Optionnel */
+  width: 100%;
   transition: background 0.2s;
 }
 
@@ -78,4 +76,3 @@
   background-color: #f3f4f6;
 }
 
-/* Le reste du CSS (grid, card, header...) reste tel quel dans ton fichier original */

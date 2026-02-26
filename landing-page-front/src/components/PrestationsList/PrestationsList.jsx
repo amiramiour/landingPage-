@@ -27,7 +27,7 @@ const PrestationsList = () => {
     },
     service: {
       type: "mission_de_service",
-      title: "PRESTATIONS GÉNÉRALES",
+      title: "MISSIONS DE SERVICE",
       subtitle: "Pour les missions accessibles sans formation préalable ou expertise particulière.",
       color: "#7FD8B1",
       slug: "/prestationsgenerales",

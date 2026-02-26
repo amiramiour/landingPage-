@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
 import logo from '../../assets/logo_linkyjob.svg';
-import menuIcon from '../../assets/menu-icon-24.png';
 import vectorIcon from '../../assets/Vector.png';
 import { useAuth } from '../context/AuthContext';
 
@@ -10,114 +9,140 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [prestationsOpen, setPrestationsOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
 
   const { user, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
-  const togglePrestations = () => setPrestationsOpen(!prestationsOpen);
-  const toggleProfile = () => setProfileOpen(!profileOpen);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 900);
+      if (window.innerWidth >= 900) {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
+  const handleProfileClick = () => {
+    if (isMobile) {
+      setMenuOpen(!menuOpen);
+      setProfileOpen(false); 
+    } else {
+      setProfileOpen(!profileOpen);
+    }
+  };
+
+useEffect(() => {
+  setPrestationsOpen(false);
+  setProfileOpen(false);
+}, [location.pathname]);
   const handleLogout = () => {
     logout();
     navigate('/');
+    setMenuOpen(false);
   };
 
-  // 🎨 Couleurs dynamiques par page
   const getLinkStyle = (page) => {
     switch (page) {
       case 'etudiant': return { color: '#6EC1E4' };
-      case 'entreprise': return { color: '#FF7F32' };
-      case 'apropos': return { color: '#FFEB64' };
-      case 'contact': return { color: '#7FD8B1' };
+      case 'entreprise': return { color: '#FF7F32' }; 
       default: return {};
     }
   };
 
-  //  Applique la couleur si la route est active
   const activeStyle = (path, key) =>
     location.pathname === path ? getLinkStyle(key) : {};
 
   return (
     <header className="header">
-      <nav>
+      <div className="header-container">
+        
+        <Link to="/" className="logo-link">
+          <img src={logo} alt="LinkyJob" className="header-logo" />
+        </Link>
 
-        {/* Logo */}
-        <div className="left-section">
-          <Link to="/">
-            <img src={logo} alt="LINKYJOB Logo" className="header-logo" />
-          </Link>
-        </div>
-
-        {/* Liens */}
-        <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
-
-          <Link
-            to="/espace-etudiant"
+        <nav className={`nav-links ${menuOpen ? 'active' : ''}`}>
+          
+          <Link 
+            to="/espace-etudiant" 
             className="nav-link"
             style={activeStyle('/espace-etudiant', 'etudiant')}
+            onClick={() => setMenuOpen(false)}
           >
             Espace Etudiant
           </Link>
 
-          <Link
-            to="/espace-entreprise"
+          <Link 
+            to="/espace-entreprise" 
             className="nav-link"
             style={activeStyle('/espace-entreprise', 'entreprise')}
+            onClick={() => setMenuOpen(false)}
           >
             Espace Entreprise
           </Link>
 
-          {/* Dropdown Missions */}
-          <div className="dropdown">
-            <span className="nav-link" onClick={togglePrestations}>
-              Missions
-              <img src={vectorIcon} alt="▼" className="vector-icon" />
+          <div 
+  className="dropdown"
+>
+<span 
+  className="nav-link"
+  onClick={() => setPrestationsOpen(!prestationsOpen)}
+>
+                Missions 
+              <img src={vectorIcon} alt="v" className="vector-icon" style={{transform: prestationsOpen ? 'rotate(180deg)' : 'rotate(0deg)'}} />
             </span>
-
+            
             {prestationsOpen && (
               <div className="dropdown-content">
-                <Link
-                  to="/prestationsqualifiee"
-                  className="dropdown-link qualifiees"
-                >
-                  Missions d'expertise
+<Link 
+  to="/prestationsqualifiee" 
+  className="dropdown-link" 
+  onClick={() => {
+    setPrestationsOpen(false);
+    setMenuOpen(false);
+  }}
+>                  Missions d'expertise
                 </Link>
-
-                <Link
-                  to="/prestationsgenerales"
-                  className="dropdown-link generales"
-                >
-                  Missions de service
-                </Link>
+<Link 
+  to="/prestationsgenerales" 
+  className="dropdown-link" 
+  onClick={() => {
+    setPrestationsOpen(false);
+    setMenuOpen(false);
+  }}
+>
+  Missions de service
+</Link>
               </div>
             )}
           </div>
 
-          <Link
-            to="/apropos"
-            className="nav-link"
-            style={activeStyle('/apropos', 'apropos')}
-          >
-            A propos
-          </Link>
+          <Link to="/apropos" className="nav-link" onClick={() => setMenuOpen(false)}>A propos</Link>
+          <Link to="/contact" className="nav-link" onClick={() => setMenuOpen(false)}>Contact</Link>
 
-          <Link
-            to="/contact"
-            className="nav-link"
-            style={activeStyle('/contact', 'contact')}
-          >
-            Contact
-          </Link>
+          {user && (
+            <div className="mobile-profile-links">
+              <div className="mobile-divider"></div>
+              <Link 
+                to={user.role === "company" ? "/profile-entreprise" : "/profile-etudiant"} 
+                className="nav-link mobile-link-item"
+                onClick={() => setMenuOpen(false)}
+              >
+                Mon profil
+              </Link>
+              <span className="nav-link mobile-link-item logout-text" onClick={handleLogout}>
+                Déconnexion
+              </span>
+            </div>
+          )}
+        </nav>
 
-        </div>
-
-        {/* Profil + Menu Mobile */}
         <div className="right-section">
-
           {user ? (
-            <div className="dropdown">
+            <div className="dropdown" style={{ marginLeft: '10px' }}>
               <img
                 src={
                   user.photoUrl
@@ -126,48 +151,35 @@ const Header = () => {
                 }
                 alt="Profil"
                 className="profile-pic"
-                onClick={toggleProfile}
+                onClick={handleProfileClick}
               />
-
-              {profileOpen && (
+              
+              {!isMobile && profileOpen && (
                 <div className="dropdown-content profile-dropdown">
-
-                  <Link
-  to={user.role === "company" ? "/profile-entreprise" : "/profile-etudiant"}
-  className="dropdown-link"
->
-  Mon profil
-</Link>
-
-
-                  
-
-                  <button className="dropdown-link logout-link" onClick={handleLogout}>
+                  <Link 
+                    to={user.role === "company" ? "/profile-entreprise" : "/profile-etudiant"} 
+                    className="dropdown-link"
+                    onClick={() => setProfileOpen(false)}
+                  >
+                    Mon profil
+                  </Link>
+                  <button className="dropdown-link logout-btn" onClick={handleLogout}>
                     Déconnexion
                   </button>
-
                 </div>
               )}
             </div>
           ) : (
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                isActive ? 'btn-connexion-header active' : 'btn-connexion-header'
-              }
+            <NavLink 
+              to="/login" 
+              className="btn-connexion-header"
             >
               Connexion
             </NavLink>
           )}
-
-          {/* Bouton burger */}
-          <button className="menu-toggle" onClick={toggleMenu}>
-            <img src={menuIcon} alt="menu" />
-          </button>
-
         </div>
 
-      </nav>
+      </div>
     </header>
   );
 };

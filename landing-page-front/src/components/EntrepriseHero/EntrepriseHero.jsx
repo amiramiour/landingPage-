@@ -8,20 +8,15 @@ const Entreprise = () => {
   return (
     <div className="entreprise-hero-container">
       <div className="entreprise-hero">
-        <img src={logoHero} alt="LINKYJOB Logo" className="entreprise-hero-logo" />
+        <img src={logoHero} alt="LINKYJOB" className="entreprise-hero-logo" />
         
         <h1 className="entreprise-hero-title">
-          <div className="entreprise-hero-line">
-            <span className="entreprise-hero-students">ESPACE Entreprise</span>
-          </div>
-          <div className="entreprise-hero-line">
-            <span className="entreprise-hero-question">Accédez </span>
-            <span className="entreprise-hero-find">à une nouvelle génération de </span>
-            <span className="entreprise-hero-linky">Talents internationaux.</span>
-          </div>
+          <span className="entreprise-hero-header">ESPACE ENTREPRISE</span>
+          <span className="entreprise-hero-subtitle">
+            Accédez à une nouvelle génération de <span className="text-orange">Talents internationaux</span>
+          </span>
         </h1>
 
-        {/* BOUTON */}
         <div className="entreprise-hero-btn-wrapper">
           <button 
             className="entreprise-hero-add-btn"
