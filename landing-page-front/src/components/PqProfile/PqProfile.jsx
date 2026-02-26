@@ -44,7 +44,8 @@ function PqProfile() {
       headers: { Authorization: `Bearer ${token}` },
     }).then(res => res.json()).then(data => {
       const candidature = data.find((c) => c.missionId === Number(id));
-      setAlreadyApplied(candidature && candidature.status !== "rejected");
+      const isBlocked = candidature && !["rejected", "cancelled"].includes(candidature.status);
+      setAlreadyApplied(isBlocked);
     }).catch(() => {});
   }, [id, isStudent]);
 

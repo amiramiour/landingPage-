@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 import "./HistoriqueEtudiant.css";
 import icon from "../../assets/icon.png";
 // Assure-toi que ces images existent ou utilise les tiennes
@@ -10,30 +11,28 @@ import rejectIcon from "../../assets/status-rejected.png";
 function HistoriqueEtudiant() {
   const [candidatures, setCandidatures] = useState([]);
   const token = localStorage.getItem("token");
-
+  const navigate = useNavigate();
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/my`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // On masque les candidatures annulées pour ne pas polluer l'affichage
-        const activeData = data.filter(c => c.status !== "cancelled");
-        setCandidatures(activeData);
+      fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/my`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
-      .catch((err) => console.error(err));
-  }, []);
+        .then((res) => res.json())
+        .then((data) => {
+          // CORRECTION ICI : on utilise 'data' directement
+          setCandidatures(data); 
+        })
+        .catch((err) => console.error(err));
+    }, []);
 
-  // --- LOGIQUE DES STATUTS (TEXTE + ICONE) ---
   const renderStatus = (status) => {
     switch (status) {
-      case "submitted": // Cas legacy (si existant)
+      case "submitted":
       case "under_review":
         return (
           <>
-            En cours de traitement
+            <span style={{ color: "#F4B740" }}>En cours de traitement</span>
             <img src={reviewIcon} className="status-icon" alt="review" />
           </>
         );
@@ -41,15 +40,19 @@ function HistoriqueEtudiant() {
       case "accepted":
         return (
           <>
-            Accepter
+            <span style={{ color: "#00C293" }}>Acceptée</span>
             <img src={acceptIcon} className="status-icon" alt="accepted" />
           </>
         );
 
+      // ICI : On traite "rejected" ET "cancelled" de la même façon visuelle
       case "rejected":
+      case "cancelled": 
         return (
           <>
-            Refuser
+            <span style={{ color: "#E05D5D" }}>
+              {status === "cancelled" ? "Annulée" : "Refusée"}
+            </span>
             <img src={rejectIcon} className="status-icon" alt="rejected" />
           </>
         );
@@ -59,51 +62,61 @@ function HistoriqueEtudiant() {
     }
   };
 
-  // --- LOGIQUE DES BOUTONS ---
+// GESTION DES BOUTONS
   const renderActionButton = (candidature) => {
-    switch (candidature.status) {
-      case "submitted":
-      case "under_review":
-        return (
-          <button
-            className="linky-btn-outline" // Style blanc avec bordure (comme sur ton image 'Annuler')
-            onClick={() => cancelCandidature(candidature.id)}
-          >
-            Annuler
-          </button>
-        );
+      switch (candidature.status) {
+        case "submitted":
+        case "under_review":
+          return (
+            <button
+              className="linky-btn-outline"
+              onClick={() => cancelCandidature(candidature.id)}
+            >
+              Annuler
+            </button>
+          );
 
-      case "accepted":
-        return (
-          <button className="linky-btn-primary">
-            Choisir cette mission
-          </button>
-        );
+        case "accepted":
+          return (
+            <button className="linky-btn-primary">
+              Choisir cette mission
+            </button>
+          );
 
-      case "rejected":
-        return (
-          <button 
-            className="linky-btn-outline" // Style blanc avec bordure
-            onClick={() => retryCandidature(candidature.missionId)}
-          >
-            Candidater à nouveau
-          </button>
-        );
+        case "rejected":
+        case "cancelled":
+          return (
+            <button 
+              className="linky-btn-outline"
+              onClick={() => navigate(`/prestationsqualifiee/${candidature.missionId}`)}
+            >
+              Candidater à nouveau
+            </button>
+          );
 
-      default:
-        return null;
-    }
-  };
+        default:
+          return null;
+      }
+    };
 
-  // Action : Annuler
+// MODIFICATION DE LA FONCTION cancelCandidature
   const cancelCandidature = async (id) => {
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/cancel/${id}`, {
-        method: "POST",
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/cancel/${id}`, {
+        method: "POST", // Assure-toi que c'est bien POST ou PUT selon ta route
         headers: { Authorization: `Bearer ${token}` },
       });
-      // Mise à jour locale (retire la carte)
-      setCandidatures(candidatures.filter((c) => c.id !== id));
+
+      if (res.ok) {
+        // AU LIEU DE SUPPRIMER (.filter), ON MET À JOUR (.map)
+        setCandidatures((prevCandidatures) =>
+          prevCandidatures.map((c) =>
+            c.id === id ? { ...c, status: "cancelled" } : c
+          )
+        );
+      } else {
+        console.error("Erreur lors de l'annulation");
+      }
     } catch (error) {
       console.error(error);
     }
