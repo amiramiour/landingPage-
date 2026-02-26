@@ -58,9 +58,8 @@ const GeneralServices = () => {
   const visibleMissions = missions.slice(0, 5);
 
   return (
-    <section className="services-section"> {/* J'ai corrigé className="services" en "services-section" pour matcher le CSS */}
+    <section className="services-section"> 
       
-      {/* NOUVELLE STRUCTURE DU HEADER */}
       <div className="services-header-section">
         <div className="header-text-content">
           <div className="orange-square"></div>

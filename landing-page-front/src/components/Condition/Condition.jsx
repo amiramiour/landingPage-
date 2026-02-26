@@ -27,7 +27,6 @@ const Condition = () => {
           <img src={logoImage} alt="LINKYJOB" className="logoo-image" />
         </div>
 
-        {/* Partie Droite : Liste + Bouton */}
         <div className="right-content">
           <h3>Pour nous rejoindre, il te faut remplir ces <br /> quelques conditions :</h3>
           

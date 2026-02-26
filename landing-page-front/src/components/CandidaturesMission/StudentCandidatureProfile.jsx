@@ -15,7 +15,6 @@ function StudentCandidatureProfile({
   return (
     <div className="pe-container">
       <div className="pe-profile">
-        {/* PHOTO */}
         <div className="pe-image-wrapper">
           <img
             src={`${import.meta.env.VITE_API_URL}/${student.photoUrl}`}
@@ -27,7 +26,6 @@ function StudentCandidatureProfile({
           />
         </div>
 
-        {/* INFOS */}
         <div className="pe-info">
           <h2 className="pe-name">
             {student.firstName} {student.lastName}
@@ -72,7 +70,6 @@ function StudentCandidatureProfile({
             {mission.companyName}
           </p>
 
-          {/* ACTIONS */}
           <div
             style={{
               display: "flex",

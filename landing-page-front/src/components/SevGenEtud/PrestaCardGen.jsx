@@ -33,7 +33,6 @@ const handleClick = (e) => {
         <h3 className="presta-card-title">{title}</h3>
         <p className="presta-card-description">{description}</p>
 
-        {/* lien conservé visuellement */}
         <a
           href="#details"
           className="presta-card-link"

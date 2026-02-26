@@ -2,13 +2,13 @@ import React from 'react';
 
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
-import ChoseInscripComponent from '../components/ChoseInscripComponent/ChoseInscripComponent'; // ⚠️ Renommé ici
+import ChoseInscripComponent from '../components/ChoseInscripComponent/ChoseInscripComponent'; 
 
 function ChoseInscrip() {
   return (
     <div className="app">
       <Header />
-      <ChoseInscripComponent /> {/* ✅ ici aussi */}
+      <ChoseInscripComponent />
       <Footer />
     </div>
   );

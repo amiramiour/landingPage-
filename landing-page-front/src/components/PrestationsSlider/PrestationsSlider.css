@@ -56,7 +56,6 @@
   color: white;
 }
 
-/* 🌟 3 colonnes FIXES */
 .prestas-grid-fixed {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* toujours 3 */

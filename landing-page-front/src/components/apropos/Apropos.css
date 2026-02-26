@@ -1,6 +1,4 @@
-/* --------------------------------- */
-/* BASE STYLES GLOBAL */
-/* --------------------------------- */
+
 .apropos-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -27,9 +25,7 @@
     height: auto;
     border-radius: 12px;
   }
-  /* ============================= */
-/* SCROLL ANIMATIONS LEFT / RIGHT */
-/* ============================= */
+
 
 .animate-on-scroll {
   opacity: 0;
@@ -110,9 +106,7 @@
     font-weight: 600;
   }
   
-  /* --------------------------------- */
-  /* HERO SECTION ("Avec LinkyJob") */
-  /* --------------------------------- */
+
   .hero-linkyjob {
     display: flex;
     align-items: center;
@@ -183,9 +177,7 @@
     height: auto;
   }
   
-  /* --------------------------------- */
-  /* PLATFORM SECTION (Présentation LinkyJob) */
-  /* --------------------------------- */
+
   .platform-section {
     display: flex;
     align-items: center;
@@ -259,9 +251,7 @@
     text-align: center;
   }
   
- /* --------------------------------- */
-/* SECURITY SECTION (Sécurité/Conformité) */
-/* --------------------------------- */
+
 .security-section {
     display: flex;
     align-items: center;

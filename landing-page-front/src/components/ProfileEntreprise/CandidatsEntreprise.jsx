@@ -6,14 +6,12 @@ function CandidatsEntreprise() {
   const { token } = useAuth();
   const [candidats, setCandidats] = useState([]);
 
-  /* ================= CHARGEMENT DES CANDIDATS ================= */
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/company`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => res.json())
       .then(data => {
-        // évite les doublons d'étudiants
         const uniques = new Map();
 
         data.forEach(c => {

@@ -38,12 +38,10 @@ const Formulaire = () => {
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className="candidature-formulaire">
-        {/* Gauche : Titre */}
         <div className="candidature-left">
           <h1 className="candidature-title">Dépôt de candidature</h1>
         </div>
 
-        {/* Droite : Liste des documents */}
         <div className="candidature-right">
           <div className="candidature-timeline">
             {documents.map((doc, index) => (

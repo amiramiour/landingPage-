@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; 
 import "./HistoriqueEtudiant.css";
 import icon from "../../assets/icon.png";
-// Assure-toi que ces images existent ou utilise les tiennes
 import sentIcon from "../../assets/status-submitted.png"; 
 import reviewIcon from "../../assets/status-review.png"; 
 import acceptIcon from "../../assets/status-accepted.png"; 
@@ -102,7 +101,7 @@ function HistoriqueEtudiant() {
   const cancelCandidature = async (id) => {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/cancel/${id}`, {
-        method: "POST", // Assure-toi que c'est bien POST ou PUT selon ta route
+        method: "POST", 
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -148,7 +147,6 @@ function HistoriqueEtudiant() {
             <div key={c.id} className="mission-card">
               <img src={icon} className="mission-image" alt="mission" />
 
-              {/* TYPE */}
               <span
                 className={`mission-badge ${
                   c.mission.type === "mission_d_expertise" ? "yellow" : "green"
@@ -159,18 +157,15 @@ function HistoriqueEtudiant() {
                   : "Mission de service"}
               </span>
 
-              {/* TITRE */}
               <h3 className="mission-title">{c.mission.title}</h3>
 
               {/* DESCRIPTION */}
               <p className="mission-description">{c.mission.description}</p>
 
-              {/* STATUS (Gardé au même endroit que ton design) */}
               <div className={`mission-status ${c.status}`}>
                 {renderStatus(c.status)}
               </div>
 
-              {/* FOOTER */}
               <div className="linky-service-footer">
                 <img src={icon} className="linky-company-logo" alt="logo" />
                 <div className="linky-company-info">

@@ -409,7 +409,6 @@
 .profil-photo-wrapper:hover .photo-overlay {
   opacity: 1;
 }
-/* ====== MODE ÉDITION : INPUTS PROFIL (ETUDIANT) ====== */
 .profile-etudiant .profil-info input {
   width: 100%;
   border: none;

@@ -127,7 +127,6 @@ function ProfileEntreprise() {
         {/* ================= PROFIL ================= */}
         <div className="profil-card">
 
-          {/* PHOTO */}
           <div
             className="profil-photo-wrapper"
             onClick={() => fileInputRef.current.click()}

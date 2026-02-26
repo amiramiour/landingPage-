@@ -32,7 +32,6 @@ const Apropos = () => {
 
   return (
     <div className="apropos-container">
-      {/* Platform Description */}
       <section className="hero-linkyjob">
   <div className="hero-content-linkyjob">
     <div className="hero-top-linkyjob">
@@ -58,7 +57,6 @@ const Apropos = () => {
 
 
 
-      {/* Platform Description */}
       <section className="platform-section animate-on-scroll from-left">
   <div className="platform-illustration">
     <img src={amico} alt="Illustration étudiants" className="illustration" />

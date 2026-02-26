@@ -11,10 +11,8 @@ function PrestationsScreen() {
     <div className="app">
       <Header />
       
-      {/*  Hero dynamique (qualifié / général selon l’URL) */}
       <HeroPrestation />
 
-      {/*  Liste dynamique (qualifié / général selon l’URL) */}
       <PrestationsList />
 
       <Footer />

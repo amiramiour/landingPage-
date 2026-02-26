@@ -29,7 +29,6 @@ const Services = () => {
 
   return (
     <section className="services-section">
-      {/* Icône Aide en position absolue (Haut Droite) */}
       <img
           src={aideIcon}
           alt="Aide"
@@ -37,7 +36,6 @@ const Services = () => {
           onClick={() => navigate("/contact")} 
       />
 
-      {/* HEADER : Structure identique à GeneralServices mais avec carré BLEU */}
       <div className="services-header-section">
         <div className="header-text-content">
           <div className="blue-square"></div>
@@ -55,7 +53,6 @@ const Services = () => {
         </button>
       </div>
 
-      {/* SLIDER / GRID */}
       <div className="services-scroll-section" ref={scrollRef}>
         <div className="services-grid-section">
           {students.map((student) => (

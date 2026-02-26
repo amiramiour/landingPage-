@@ -161,7 +161,7 @@ const StudentPublicProfile = () => {
           {/* Section Compétences & Langues */}
           <section className="pe-card">
             <header className="pe-card-header">
-              <Icons.CheckCircle /> {/* Ou une icône 'Star' / 'Cpu' */}
+              <Icons.CheckCircle /> 
               <h2>Compétences & Langues</h2>
             </header>
             

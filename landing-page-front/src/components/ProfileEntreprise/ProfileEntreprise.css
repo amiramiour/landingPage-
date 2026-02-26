@@ -1,19 +1,18 @@
 /* ====== PAGE ====== */
 .profile-entreprise .profile-page {
-  background-color: #ffffff; /* fond global blanc */
+  background-color: #ffffff; 
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0px 20px 40px; /* espace sous le header */
+  padding: 0px 20px 40px; 
   font-family: "Poppins", sans-serif;
 }
 
-/* ====== SECTION DU HAUT : 2 COLONNES ====== */
 .profile-entreprise .top-section {
   display: flex;
   justify-content: center;
-  align-items: stretch; /* assure même hauteur */
+  align-items: stretch; 
   gap: 40px;
   width: 100%;
   max-width: 1200px;
@@ -350,15 +349,10 @@
   font-size: 14px;
 }
 
-/* ======================================================
-   CERCLE EXACT — version finale correcte
-   ====================================================== */
-
-
 
 /* Cadenas */
 .profile-entreprise .icone-lock-img {
-  width: 65px;        /* adapte si tu veux */
+  width: 65px;      
   height: 65px;
   object-fit: contain;
   z-index: 3;
@@ -369,10 +363,10 @@
 
 /* ===== Lignes ===== */
 .profile-entreprise .ligne-etape-img {
-  width: 250px;           /*  ajuste à la taille que tu veux */
-  height: auto;           /* garde les proportions */
+  width: 250px;           
+  height: auto;           
   object-fit: contain;
-  margin: 0 10px;         /* espace entre les cercles */
+  margin: 0 10px;         
   padding-bottom: 35px;
 }
 
@@ -438,7 +432,7 @@
   display: flex;
   gap: 12px;
   justify-content: center;
-  margin-top: auto; /* reste en bas comme Modifier */
+  margin-top: auto; 
 }
 
 .profile-entreprise .btn-primary {
@@ -478,9 +472,9 @@
 
 /* ====== BOUTONS MODE ÉDITION : TAILLE IDENTIQUE ====== */
 .profile-entreprise .edit-actions button {
-  min-width: 120px;     /* largeur identique */
-  height: 38px;         /* hauteur identique */
-  padding: 0;           /* on neutralise le padding variable */
+  min-width: 120px;  
+  height: 38px;        
+  padding: 0;          
   display: flex;
   align-items: center;
   justify-content: center;

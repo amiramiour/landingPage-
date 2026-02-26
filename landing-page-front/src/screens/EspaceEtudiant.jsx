@@ -53,15 +53,12 @@ function EspaceEtudiant() {
       <Header />
       <EtudHero />
 
-      {/* Référence haut de zone */}
       <div ref={topRef}></div>
 
-      {/* TITRE GLOBAL */}
       <h2 className="prestas-title" style={{ marginTop: "2rem" }}>
         ESPACE ÉTUDIANT
       </h2>
 
-      {/* FILTRES */}
       <div className="prestas-filters">
         <button
           className={`filter-button ${filter === "tous" ? "active" : ""}`}
@@ -85,14 +82,12 @@ function EspaceEtudiant() {
         </button>
       </div>
 
-      {/* CARROUSEL EXPERTISE */}
       <div ref={expertRef}>
         {filteredExpert.length > 0 && (
           <PrestationsSlider theme="yellow" missions={filteredExpert} />
         )}
       </div>
 
-      {/* CARROUSEL SERVICE */}
       <div ref={generalRef}>
         {filteredGeneral.length > 0 && (
           <PrestationsSlider theme="green" missions={filteredGeneral} />

@@ -57,7 +57,6 @@ const PrestationsList = () => {
     <div className="pq-section">
       <div className="pq-container">
 
-        {/* HEADER DYNAMIQUE */}
         <div className="pq-header">
           <div
             className="pq-line"
@@ -68,7 +67,6 @@ const PrestationsList = () => {
           <p className="pq-subtitle">{page.subtitle}</p>
         </div>
 
-        {/* LISTE DES MISSIONS */}
         <div className="pq-grid">
           {visible.map((service) => (
             <Link
@@ -113,7 +111,6 @@ const PrestationsList = () => {
           ))}
         </div>
 
-        {/* BOUTON VOIR PLUS */}
         {limit < missions.length && (
           <div className="pq-cta">
             <button

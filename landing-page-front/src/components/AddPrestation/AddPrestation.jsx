@@ -122,7 +122,6 @@ function AddPrestation() {
             required
           />
 
-          {/* 🟠 Type de prestation */}
           <label className="ap-label">Type de prestation*</label>
           <select
             className="ap-input"
@@ -219,7 +218,6 @@ function AddPrestation() {
         </form>
       </div>
 
-      {/* 🎉 POPUP DE SUCCÈS */}
       {showSuccess && (
         <div className="success-overlay">
           <div className="success-modal">

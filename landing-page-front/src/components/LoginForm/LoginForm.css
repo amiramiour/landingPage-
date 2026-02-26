@@ -6,15 +6,14 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding-top: 80px; /* ajoute de l'espace pour compenser le header */
+    padding-top: 80px; 
 }
 .lf-logo {
-    height: 130px; /* taille réduite du logo */
+    height: 130px;
     width: 400px;
   }
   
   
-  /* Positionnement général */
 .decorative-lines {
     position: absolute;
     width: 100%;
@@ -105,7 +104,7 @@
   
   /* Form container */
   .form-container {
-    padding: 1rem 1.5rem; /* réduit le padding horizontal */
+    padding: 1rem 1.5rem; 
     border: 1px solid black;
     margin-bottom: 50px;
   }
@@ -129,7 +128,7 @@
   }
   
   .form-group {
-    margin-bottom: 1rem; /* au lieu de 1.5rem */
+    margin-bottom: 1rem; 
   }
   
   
@@ -163,11 +162,11 @@
   
   .login-container input {
     width: 100%;
-    padding: 0.6rem 0.75rem; /* un peu plus compact */
+    padding: 0.6rem 0.75rem; 
   font-size: 0.85rem;
-    border: 1px solid black; /* bordure noire */
-    border-radius: 0; /* coins carrés */
-    background-color: white; /* fond totalement blanc */
+    border: 1px solid black; 
+    border-radius: 0; 
+    background-color: white; 
     color: black;
     box-shadow: none;
     transition: border-color 0.2s ease;
@@ -185,7 +184,7 @@
   
   
   .form-group label {
-    color: black; /* couleur du label */
+    color: black; 
     display: block;
     margin-bottom: 0.5rem;
     font-size: 0.875rem;

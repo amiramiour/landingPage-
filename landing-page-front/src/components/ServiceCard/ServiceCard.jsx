@@ -25,17 +25,14 @@ const ServiceCard = ({
   return (
 <Link to={`/profile/${id}`} className="service-card">
 
-      {/* PHOTO ÉTUDIANT */}
       <img src={photo} alt={fullName} className="service-card-image" />
 
-      {/* NOM + FORMATION */}
       <div className="service-card-content">
         <h3>{fullName}</h3>
         <span className="service-training">{training}</span>
         <p>{description}</p>
       </div>
 
-      {/* FOOTER */}
       <div className="service-card-footer">
   <img
     src={universityLogo}

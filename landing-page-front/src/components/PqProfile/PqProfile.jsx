@@ -79,7 +79,6 @@ function PqProfile() {
       
       <div className="pq-grid-container">
         
-        {/* COLONNE GAUCHE (Image décalée vers le bas via CSS) */}
         <div className="pq-left-column">
           <img
             src="https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg"
@@ -88,7 +87,6 @@ function PqProfile() {
           />
         </div>
 
-        {/* COLONNE DROITE (Texte collé en haut) */}
         <div className="pq-right-column">
           
           <span className={`pq-badge ${mission.type === "mission_de_service" ? "service" : "expertise"}`}>
@@ -152,17 +150,14 @@ function PqProfile() {
         </div>
       </div>
 
-      {/* Bouton retour en bas */}
       <button className="pq-back-bottom" onClick={() => navigate(-1)}>
         &lt; Retour
       </button>
 
-      {/* --- MODALS MISES À JOUR --- */}
       {showConfirm && (
         <div className="modal-overlay">
           <div className="modal-content">
             
-            {/* Conteneur icône */}
             <div className="modal-icon-wrapper">
               <img src={checkVert} alt="Confirm" className="modal-icon-img" />
             </div>
