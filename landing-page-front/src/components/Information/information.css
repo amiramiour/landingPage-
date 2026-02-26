@@ -1,68 +1,68 @@
 .title {
   font-family: Arial, sans-serif;
-  font-size: 36px; /* Taille du texte global */
+  font-size: 36px; 
   font-weight: normal;
-  color: black; /* Texte global en noir */
+  color: black; 
 }
 
 .information-text {
   flex: 1;
-  margin-left: 150px; /* Décalage global des titres et textes vers le centre */
-  margin-right: 20px; /* Garde l'espacement avec l'image */
+  margin-left: 150px; 
+  margin-right: 20px; 
 }
 
 .information-text h2 {
-  text-align: left; /* Assure l'alignement à gauche des titres */
-  margin-bottom: 10px; /* Ajoute un espace entre le titre et le texte */
+  text-align: left; 
+  margin-bottom: 10px; 
 }
 
 .information-text p {
-  text-align: left; /* Assure l'alignement à gauche du texte */
-  margin-top: 10px; /* Ajoute un espace au-dessus du paragraphe */
+  text-align: left; 
+  margin-top: 10px; 
 }
 
 .highlight {
-  color: #00BFFF; /* Bleu ciel */
-  font-weight: bold; /* Mettre "400 000 étudiants" en gras */
+  color: #00BFFF; 
+  font-weight: bold; 
 }
 
 .highlight1 {
   color: #90EE90;
-  font-weight: bold; /* Mettre "400 000 étudiants" en gras */
+  font-weight: bold; 
 }
 
 .highlights {
-  color: orange; /* Bleu ciel */
-  font-weight: bold; /* Mettre "400 000 étudiants" en gras */
+  color: orange; 
+  font-weight: bold; 
 }
 
 .black-text {
-  color: #000000; /* Noir foncé */
+  color: #000000; 
 }
 
 .information-container {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  background-color: white; /* Définit un arrière-plan blanc */
-  padding: 20px; /* Ajoute un espace intérieur pour une meilleure présentation */
-  border-radius: 8px; /* Optionnel : ajoute des coins arrondis */
+  background-color: white; 
+  padding: 20px; 
+  border-radius: 8px; 
 }
 
 .information-item {
   display: flex;
-  flex-direction: row; /* Par défaut, texte à gauche, image à droite */
+  flex-direction: row; 
   align-items: center;
   text-align: left;
 }
 
 .information-item.reverse {
-  flex-direction: row-reverse; /* Inverse l'ordre : image à gauche, texte à droite */
+  flex-direction: row-reverse; 
 }
 
 .information-text {
   flex: 1;
-  margin-right: 20px; /* Espacement entre le texte et l'image */
+  margin-right: 20px; 
 }
 
 .information-image {
@@ -76,7 +76,7 @@
   max-width: 100%;
   height: auto;
   border-radius: 8px;
-  max-width: 300px; /* Limite la largeur de l'image */
+  max-width: 300px;
 }
 @keyframes slideFromRight {
   from {
@@ -100,14 +100,12 @@
   }
 }
 
-/* état initial : caché */
 .information-item {
   opacity: 0;
   transform: translateX(0);
   will-change: transform, opacity;
 }
 
-/* visible + animation */
 .information-item.from-right.visible {
   animation: slideFromRight 0.8s ease-out forwards;
 }
@@ -121,54 +119,53 @@
 .information-item:nth-child(2) { animation-delay: 0.25s; }
 .information-item:nth-child(3) { animation-delay: 0.4s; }
 
-/* Media Queries for Responsive Design */
 @media (max-width: 768px) {
   .information-text {
-    margin-left: 10px; /* Réduit le décalage pour les petits écrans */
+    margin-left: 10px; 
     margin-right: 10px;
   }
 
   .information-item {
-    flex-direction: column; /* Empile les éléments verticalement */
+    flex-direction: column; 
     text-align: center;
   }
 
   .information-item.reverse {
-    flex-direction: column; /* Empile les éléments verticalement */
+    flex-direction: column;
   }
 
   .information-text h2 {
-    text-align: center; /* Centre les titres */
+    text-align: center; 
   }
 
   .information-text p {
-    text-align: center; /* Centre le texte */
+    text-align: center;
   }
 
   .information-image img {
-    max-width: 100%; /* Assure que l'image prend toute la largeur disponible */
+    max-width: 100%; 
   }
 }
 
 @media (max-width: 480px) {
   .title {
-    font-size: 28px; /* Réduit la taille du texte pour les très petits écrans */
+    font-size: 28px; 
   }
 
   .information-text {
-    margin-left: 5px; /* Réduit encore plus le décalage pour les très petits écrans */
+    margin-left: 5px;
     margin-right: 5px;
   }
 
   .information-text h2 {
-    font-size: 24px; /* Réduit la taille des titres */
+    font-size: 24px; 
   }
 
   .information-text p {
-    font-size: 14px; /* Réduit la taille du texte */
+    font-size: 14px;
   }
 
   .information-image img {
-    max-width: 100%; /* Assure que l'image prend toute la largeur disponible */
+    max-width: 100%; 
   }
 }

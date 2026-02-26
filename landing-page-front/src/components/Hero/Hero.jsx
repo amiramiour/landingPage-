@@ -7,24 +7,23 @@ const Hero = () => {
   return (
     <div className="hero-container">
       <div className="hero-section">
-        <img src={logoHero} alt="LINKYJOB Logo" className="hero-logo" />
+        
+        <img src={logoHero} alt="LINKYJOB" className="hero-logo" />
         
         <h1 className="hero-heading">
-          <div className="hero-line">
-            <span className="hero-plateforme">La plateforme </span>
-            <span className="hero-relie"> qui relie </span>
-            <span className="hero-students"> Étudiants Internationaux </span>
-            <span className="hero-et">et</span>
-          </div>
-          <div className="hero-line">
-            <span className="hero-employers"> Employeurs </span>
-            <span className="hero-missions"> pour des missions adaptées partout en France.</span>
-          </div>
+          La plateforme qui relie <span className="text-blue">Etudiants internationaux</span> et <span className="text-orange">Employeurs</span> pour des missions adaptées partout en France.
         </h1>
+
         <div className="hero-cta-buttons">
-          <Link to="/espace-etudiant" className="hero-btn-student">Je suis Etudiant</Link>
-          <button className="hero-btn-employer">Je suis Particulier / Entreprise</button>
+          <Link to="/espace-etudiant" className="hero-btn btn-student">
+            Je suis Etudiant
+          </Link>
+          
+          <Link to="/espace-entreprise" className="hero-btn btn-employer">
+            Je suis Entreprise
+          </Link>
         </div>
+
       </div>
     </div>
   );

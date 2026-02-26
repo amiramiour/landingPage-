@@ -1,19 +1,18 @@
 /* ====== PAGE ====== */
 .profile-etudiant .profile-page {
-  background-color: #ffffff; /* fond global blanc */
+  background-color: #ffffff; 
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0px 20px 40px; /* espace sous le header */
+  padding: 0px 20px 40px; 
   font-family: "Poppins", sans-serif;
 }
 
-/* ====== SECTION DU HAUT : 2 COLONNES ====== */
 .profile-etudiant .top-section {
   display: flex;
   justify-content: center;
-  align-items: stretch; /* assure même hauteur */
+  align-items: stretch; 
   gap: 40px;
   width: 100%;
   max-width: 1200px;
@@ -349,15 +348,11 @@
   font-size: 14px;
 }
 
-/* ======================================================
-   CERCLE EXACT — version finale correcte
-   ====================================================== */
-
 
 
 /* Cadenas */
 .profile-etudiant .icone-lock-img {
-  width: 65px;        /* adapte si tu veux */
+  width: 65px;       
   height: 65px;
   object-fit: contain;
   z-index: 3;
@@ -368,10 +363,10 @@
 
 /* ===== Lignes ===== */
 .profile-etudiant .ligne-etape-img {
-  width: 250px;           /*  ajuste à la taille que tu veux */
-  height: auto;           /* garde les proportions */
+  width: 250px;           
+  height: auto;          
   object-fit: contain;
-  margin: 0 10px;         /* espace entre les cercles */
+  margin: 0 10px;       
   padding-bottom: 35px;
 }
 
@@ -431,12 +426,12 @@
   outline: none;
   border-bottom-color: #6EC1E4;
 }
-/* ====== ACTIONS MODE ÉDITION ====== */
+
 .profile-etudiant .edit-actions {
   display: flex;
   gap: 12px;
   justify-content: center;
-  margin-top: auto; /* pousse les boutons en bas comme Modifier */
+  margin-top: auto; 
 }
 .profile-etudiant .btn-primary {
   background-color: #6EC1E4;
@@ -474,9 +469,9 @@
 }
 /* ====== BOUTONS MODE ÉDITION : TAILLE IDENTIQUE (ETUDIANT) ====== */
 .profile-etudiant .edit-actions button {
-  min-width: 120px;   /* même largeur */
-  height: 38px;       /* même hauteur */
-  padding: 0;         /* évite différences internes */
+  min-width: 120px;  
+  height: 38px;     
+  padding: 0;         
   display: flex;
   align-items: center;
   justify-content: center;
@@ -490,7 +485,7 @@
   font-weight: bold;
 }
 .icon-validated {
-  color: #34AD4A; /* vert propre */
+  color: #34AD4A; 
   margin-left: 8px;
   font-size: 1rem;
 }
@@ -590,13 +585,13 @@
   font-size: 13px;
 }
 .profile-list {
-  list-style: none;     /* enlève les points */
-  padding-left: 0;     /* enlève l'indentation */
+  list-style: none;     
+  padding-left: 0;    
   margin: 0;
 }
 
 .profile-list li {
-  margin-bottom: 6px;  /* espace entre les lignes */
+  margin-bottom: 6px;  
 }
 .profile-list.no-bullets {
   list-style: none;
@@ -613,7 +608,7 @@
   margin-top: 12px;
 }
 .btn-save {
-  background-color: #6EC1E4; /* identique à Modifier */
+  background-color: #6EC1E4; 
 }
 
 .btn-cancel {

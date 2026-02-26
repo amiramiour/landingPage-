@@ -2,9 +2,10 @@ import React, { useRef, useEffect, useState } from "react";
 import ServiceCard from "../ServiceCard/ServiceCard";
 import "./Services.css";
 import { useNavigate } from "react-router-dom";
+
 import arrowLeft from "../../assets/btn_blue_left.png";
 import arrowRight from "../../assets/btn_blue_right.png";
-import defaultImg from "../../assets/Techniciensinformatique.jpeg"; 
+import aideIcon from "../../assets/Aide.png"; 
 
 const Services = () => {
   const scrollRef = useRef(null);
@@ -27,22 +28,36 @@ const Services = () => {
     scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
 
   return (
-    <section className="services">
-      <div className="services-header">
-        <h2>NOS PROFILS ÉTUDIANTS</h2>
-        <p className="services-description">
-          Découvrez des étudiants qualifiés, prêts à intervenir sur vos projets.
-        </p>
+    <section className="services-section">
+      {/* Icône Aide en position absolue (Haut Droite) */}
+      <img
+          src={aideIcon}
+          alt="Aide"
+          className="aide-icon"
+          onClick={() => navigate("/contact")} 
+      />
+
+      {/* HEADER : Structure identique à GeneralServices mais avec carré BLEU */}
+      <div className="services-header-section">
+        <div className="header-text-content">
+          <div className="blue-square"></div>
+          <h2>NOS PROFILS ÉTUDIANTS</h2>
+          <p className="services-description-section">
+            Découvrez des étudiants qualifiés, motivés et prêts à relever de nouveaux défis.
+          </p>
+        </div>
+        
         <button
-          className="voir-plus"
-          onClick={() => navigate("/espace-entreprise")}
+            className="voir-plus-section1"
+            onClick={() => navigate("/espace-entreprise")}
         >
-          Voir plus
+            Voir plus
         </button>
       </div>
 
-      <div className="services-scroll" ref={scrollRef}>
-        <div className="services-grid">
+      {/* SLIDER / GRID */}
+      <div className="services-scroll-section" ref={scrollRef}>
+        <div className="services-grid-section">
           {students.map((student) => (
             <ServiceCard
               key={student.id}
@@ -61,9 +76,9 @@ const Services = () => {
         </div>
       </div>
 
-      <div className="scroll-buttons">
-        <img src={arrowLeft} className="scroll-btn" onClick={scrollLeft} />
-        <img src={arrowRight} className="scroll-btn" onClick={scrollRight} />
+      <div className="scroll-buttons-section">
+        <img src={arrowLeft} className="scroll-btn-section" alt="gauche" onClick={scrollLeft} />
+        <img src={arrowRight} className="scroll-btn-section" alt="droite" onClick={scrollRight} />
       </div>
     </section>
   );

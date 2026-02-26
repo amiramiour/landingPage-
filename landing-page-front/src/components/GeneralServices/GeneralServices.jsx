@@ -10,46 +10,44 @@ const GeneralServices = () => {
   const scrollRef = useRef(null);
   const [missions, setMissions] = useState([]);
   const [appliedMissions, setAppliedMissions] = useState([]);
+
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/missions`)
       .then((res) => res.json())
       .then((data) => {
         const all = data.data || data;
-
-        //  Trier par missions les plus récentes
         const sorted = [...all].sort((a, b) => {
           if (!a.startDate || !b.startDate) return 0;
           return new Date(b.startDate) - new Date(a.startDate);
         });
-
         setMissions(sorted);
       })
       .catch((err) => console.error(err));
   }, []);
+
   useEffect(() => {
-  const token = localStorage.getItem("token");
-  const storedUser = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
 
-  if (!token || !storedUser) return;
+    if (!token || !storedUser) return;
 
-  const user = JSON.parse(storedUser);
-  if (user.role !== "student") return;
+    const user = JSON.parse(storedUser);
+    if (user.role !== "student") return;
 
-  fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/my`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then(res => res.json())
-    .then(data => {
-      const missionIds = data
-        .filter(c => c.status !== "rejected")
-        .map(c => c.missionId);
-
-      setAppliedMissions(missionIds);
+    fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/my`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     })
-    .catch(() => {});
-}, []);
+      .then((res) => res.json())
+      .then((data) => {
+        const missionIds = data
+          .filter((c) => c.status !== "rejected")
+          .map((c) => c.missionId);
+        setAppliedMissions(missionIds);
+      })
+      .catch(() => {});
+  }, []);
 
   const scrollLeft = () =>
     scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
@@ -57,45 +55,47 @@ const GeneralServices = () => {
   const scrollRight = () =>
     scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
 
-  //  On limite volontairement à 5 missions
   const visibleMissions = missions.slice(0, 5);
 
   return (
-    <section className="services">
+    <section className="services-section"> {/* J'ai corrigé className="services" en "services-section" pour matcher le CSS */}
+      
+      {/* NOUVELLE STRUCTURE DU HEADER */}
       <div className="services-header-section">
-        <h2>NOS MISSIONS DISPONIBLES</h2>
-        <p className="services-description-section">
-          Explorez des missions variées adaptées aux compétences et aux ambitions des étudiants.
-        </p>
+        <div className="header-text-content">
+          <div className="orange-square"></div>
+          <h2>NOS MISSIONS DISPONIBLES</h2>
+          <p className="services-description-section">
+            Explorez des missions variées adaptées aux compétences et aux ambitions des étudiants.
+          </p>
+        </div>
         <button className="voir-plus-section">Voir plus</button>
       </div>
 
       <div className="services-scroll-section" ref={scrollRef}>
         <div className="services-grid-section">
           {visibleMissions.map((mission) => {
-  const alreadyApplied = appliedMissions.includes(mission.id);
+            const alreadyApplied = appliedMissions.includes(mission.id);
 
-  return (
-    <ServiceCard1
-      key={mission.id}
-      id={mission.id}
-      title={mission.title}
-      description={mission.description}
-      date={mission.startDate?.slice(0, 10)}
-      type={mission.type}
-      companyName={mission.employer?.companyName}
-      companyLogo={
-        mission.employer?.photoUrl
-          ? `${import.meta.env.VITE_API_URL}/${mission.employer.photoUrl}`
-          : defaultImg
-      }
-      icon={defaultImg}
-
-      /* 👇 NOUVEAU PROP */
-      alreadyApplied={alreadyApplied}
-    />
-  );
-})}
+            return (
+              <ServiceCard1
+                key={mission.id}
+                id={mission.id}
+                title={mission.title}
+                description={mission.description}
+                date={mission.startDate?.slice(0, 10)}
+                type={mission.type}
+                companyName={mission.employer?.companyName}
+                companyLogo={
+                  mission.employer?.photoUrl
+                    ? `${import.meta.env.VITE_API_URL}/${mission.employer.photoUrl}`
+                    : defaultImg
+                }
+                icon={defaultImg}
+                alreadyApplied={alreadyApplied}
+              />
+            );
+          })}
         </div>
       </div>
 

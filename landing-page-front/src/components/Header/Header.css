@@ -1,8 +1,6 @@
 @import '../../styles/variables.css';
 
-/* ----------------------------------------- */
-/*                 HEADER                    */
-/* ----------------------------------------- */
+
 
 .header {
   position: fixed;
@@ -43,9 +41,7 @@
   left: auto;   
 }
 
-/* ----------------------------------------- */
-/*                   LOGO                    */
-/* ----------------------------------------- */
+
 
 .header-logo {
   width: 95px;   
@@ -53,16 +49,13 @@
   object-fit: contain;
 }
 
-/* ----------------------------------------- */
-/*              NAVIGATION LINKS             */
-/* ----------------------------------------- */
 
-/* LOGO → GAP 35PX → NAV LINKS */
+
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 32px;           /* ✔ 32px entre chaque lien */
-  margin-left: 35px;   /* ✔ 35px entre logo et nav links */
+  gap: 32px;          
+  margin-left: 35px;  
 }
 
 /* Style des liens */
@@ -83,9 +76,7 @@
   transform: translateY(-2px);
 }
 
-/* ----------------------------------------- */
-/*                 DROPDOWN MISSIONS         */
-/* ----------------------------------------- */
+
 
 .vector-icon {
   width: 12px;
@@ -138,8 +129,6 @@
   opacity: 0.8;
 }
 
-/* ----------------------------------------- */
-/*               SECTION DROITE              */
 /* ----------------------------------------- */
 
 .right-section {
@@ -204,9 +193,7 @@
   background: #f2f2f2;
 }
 
-/* ----------------------------------------- */
-/*                 MOBILE                    */
-/* ----------------------------------------- */
+
 
 .menu-toggle {
   display: none;

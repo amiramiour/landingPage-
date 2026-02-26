@@ -1,16 +1,14 @@
-/* --- VARIABLES --- */
 :root {
   --pe-bg-page: #f9fafb;
   --pe-bg-card: #ffffff;
   --pe-text-primary: #111827;
   --pe-text-secondary: #6b7280;
   --pe-border-color: #e5e7eb;
-  --pe-accent-blue: #2563eb; /* Utilisé avec parcimonie pour les icônes */
+  --pe-accent-blue: #2563eb; 
   --pe-radius: 12px;
   --pe-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 5px 15px rgba(0,0,0,0.02);
 }
 
-/* --- LAYOUT GLOBAL --- */
 .pe-page-wrapper {
   margin-top: 4rem;
   background-color: var(--pe-bg-page);
@@ -24,13 +22,12 @@
 
 .pe-content-grid {
   display: grid;
-  grid-template-columns: 320px 1fr; /* Sidebar fixe, contenu flexible */
+  grid-template-columns: 320px 1fr; 
   gap: 30px;
   max-width: 1100px;
   width: 100%;
 }
 
-/* --- LOADER --- */
 .pe-loader-container {
   display: flex;
   height: 100vh;
@@ -47,7 +44,6 @@
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* --- CARTES GÉNÉRIQUES --- */
 .pe-card {
   background: var(--pe-bg-card);
   border-radius: var(--pe-radius);
@@ -57,7 +53,6 @@
   margin-bottom: 24px;
 }
 
-/* --- SIDEBAR (IDENTITÉ) --- */
 .pe-sidebar {
   position: sticky;
   top: 30px;
@@ -113,14 +108,14 @@
 .pe-meta-row {
   display: flex;
   align-items: center;
-  justify-content: center; /* Centré dans la sidebar */
+  justify-content: center; 
   gap: 8px;
   font-size: 0.9rem;
   color: var(--pe-text-secondary);
 }
 
 .pe-meta-row svg {
-  color: var(--pe-text-primary); /* Icônes plus sombres */
+  color: var(--pe-text-primary); 
 }
 
 .pe-divider {
@@ -129,7 +124,6 @@
   background: var(--pe-border-color);
   margin: 20px 0;
 }
-/* === BOUTON CONTACT === */
 .pe-btn-contact {
   width: 100%;
   padding: 13px 20px;
@@ -143,13 +137,11 @@
   transition: all 0.2s ease;
 }
 
-/* Hover seulement si actif */
 .pe-btn-contact:hover:not(:disabled) {
   opacity: 0.9;
   transform: translateY(-1px);
 }
 
-/* Etat désactivé */
 .pe-btn-contact:disabled {
   background: #e5e7eb;
   color: #9ca3af;
@@ -158,7 +150,6 @@
   opacity: 1;
 }
 
-/* BOUTON GRISÉ (DESIGN DEMANDÉ) */
 
 
 .pe-note-auth {
@@ -179,9 +170,7 @@
   border-bottom-color: var(--pe-text-secondary);
 }
 
-/* --- CONTENU PRINCIPAL --- */
 
-/* Headers de section */
 .pe-card-header {
   display: flex;
   align-items: center;
@@ -202,7 +191,6 @@
   color: var(--pe-text-secondary);
 }
 
-/* Liste Missions */
 .pe-missions-list {
   display: flex;
   flex-direction: column;
@@ -217,7 +205,7 @@
 
 .pe-icon-check {
   margin-top: 2px;
-  color: var(--pe-text-primary); /* Check sombre */
+  color: var(--pe-text-primary); 
 }
 
 .pe-mission-item p {
@@ -227,7 +215,6 @@
   color: #374151;
 }
 
-/* Tags (Compétences & Langues) */
 .pe-group-title {
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -254,7 +241,6 @@
   border: 1px solid transparent;
 }
 
-/* Disponibilités Grille */
 .pe-availability-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -298,7 +284,7 @@
   }
   
   .pe-sidebar {
-    position: static; /* Plus de sticky sur mobile */
+    position: static; 
   }
 
   .pe-meta-row {

@@ -1,16 +1,19 @@
 .condition-container {
+  position: relative;
+  width: 100%;
+  min-height: 600px; 
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center; 
+  align-items: center;     
+  
   background-image: url('./Condition.png'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 75px;
+  
+  padding: 2rem;
   color: white;
-  height: 100vh; 
   box-sizing: border-box;
-  position: relative; 
 }
 
 .condition-container::before {
@@ -20,153 +23,128 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5); 
-  backdrop-filter: blur(3px); 
+  background: rgba(0, 0, 0, 0.6); 
   z-index: 1; 
 }
 
-.condition-container > * {
+.condition-content-wrapper {
   position: relative;
   z-index: 2;
-}
-
-.logoo-image {
-  width: 220px;
-  height: auto;
-}
-
-.first-line {
-  font-weight: bold; 
-  text-align: center; 
-}
-
-.second-line {
-  display: inline-block; 
-  text-align: center; 
-  margin-left: 30px; 
-  font-size: 90%; 
-}
-
-.information-image img {
-  max-width: 400px; 
-  height: auto; 
-  border-radius: 8px;
-  object-fit: contain;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  width: 100%;
+  max-width: 1200px;
+  gap: 4rem; 
 }
 
 .left-content {
-  width: 20%;
-  text-align: left;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
+  align-items: flex-start;
 }
 
-.left-content h3 {
-  font-size: 32px; 
-  font-weight: bold;
-  line-height: 1.2;
-}
-
-/* Contenu de droite */
-.right-content {
-  width: 50%; 
+.title-large {
+  font-size: 3.5rem; 
+  font-weight: 300; 
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
   text-align: left;
-  padding: 10%;
+}
+
+.logoo-image {
+  width: 180px; 
+  height: auto;
+  object-fit: contain;
+}
+
+.right-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .right-content h3 {
-  font-size: 20px;
-  margin-bottom: 20px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  line-height: 1.4;
 }
 
-.right-content ul {
+.conditions-list {
   list-style: none;
   padding: 0;
+  margin: 0 0 2rem 0; 
+  width: 100%;
 }
 
-.right-content li {
+.conditions-list li {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+  object-fit: contain;
 }
 
 .inscription-button {
-  margin-top: 20px;
-  padding: 10px 30px; 
-  background-color: #87CEEB;
-  color: white;
+  padding: 15px 24px;
+  background-color: #6EC1E4; 
+  color: #000; 
   border: none;
   border-radius: 25px; 
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease; 
+  transition: transform 0.2s ease, background-color 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .inscription-button:hover {
-  background-color: #008CBA;
+  background-color: #5ab1d6;
+  transform: scale(1.05);
 }
 
-@media (max-width: 768px) {
-  .condition-container {
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .condition-content-wrapper {
     flex-direction: column;
-    padding: 20px;
-    height: auto; 
-  }
-
-  .left-content, .right-content {
-    width: 100%;
-    margin-left: 0;
-    padding: 0;
+    align-items: flex-start;
+    gap: 3rem;
   }
 
   .left-content {
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
   }
 
-  .right-content {
-    padding: 0 10%;
-  }
-
-  .logoo-image {
-    width: 150px;
-    height: 80px;
-  }
-
-  .first-line, .second-line {
-    text-align: center;
-    margin-left: 0;
-  }
-
-  .information-image img {
-    max-width: 100%;
-    margin: 0 auto;
+  .title-large {
+    font-size: 2.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .condition-container {
-    padding: 10px;
+  .title-large {
+    font-size: 2rem;
   }
-
-  .left-content h3 {
-    font-size: 24px;
-    margin-left: 0;
-  }
-
+  
   .right-content h3 {
-    font-size: 18px;
+    font-size: 1.1rem;
   }
 
+  .conditions-list li {
+    font-size: 1rem;
+  }
+  
   .inscription-button {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
+    width: 100%; 
   }
 }

@@ -1,7 +1,7 @@
 .ap-container {
   text-align: center;
   padding: 40px 20px;
-  max-width: 600px;        /* ← réduit de 900px → 600px */
+  max-width: 600px;        
   margin: 60px auto;
   position: relative;
 }
@@ -9,7 +9,7 @@
 /* Boîte encadrée */
 .ap-box {
   border: 1px solid #FF7F32;
-  padding: 30px 25px;       /* ← réduit */
+  padding: 30px 25px;       
   background: #fff;
   border-radius: 6px;
 }

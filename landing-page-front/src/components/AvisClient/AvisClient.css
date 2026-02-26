@@ -42,11 +42,11 @@
 }
 
 .star.active {
-  color: #FFEB3B; /* Jaune vif comme sur l'image */
+  color: #FFEB3B;
 }
 
 .star.inactive {
-  color: #000; /* Noir comme sur l'image */
+  color: #000; 
 }
 
 .avis-text {

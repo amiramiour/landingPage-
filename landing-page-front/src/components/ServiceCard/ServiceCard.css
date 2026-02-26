@@ -1,9 +1,7 @@
 @import '../../styles/variables.css';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
-/* =========================
-   CARD CONTAINER
-========================= */
+
 .service-card {
   flex: 0 0 320px;
   background: var(--white);
@@ -20,23 +18,18 @@
   transform: translateY(-5px);
 }
 
-/* =========================
-   IMAGE
-========================= */
+
 .service-card-image {
   width: 100%;
   height: 220px;
   object-fit: cover;
 }
 
-/* =========================
-   CONTENT
-========================= */
+
 .service-card-content {
   padding-top: 1rem;
 }
 
-/* Nom + Prénom */
 .service-card-content h3 {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
@@ -46,7 +39,6 @@
   color: var(--text-color);
 }
 
-/* Formation */
 .service-training {
   display: block;
   font-family: "Montserrat", sans-serif;
@@ -57,7 +49,6 @@
   color: black;
 }
 
-/* Description */
 .service-card-content p {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
@@ -67,9 +58,7 @@
   margin: 0;
 }
 
-/* =========================
-   FOOTER
-========================= */
+
 .service-card-footer {
   display: flex;
   align-items: center;
@@ -77,7 +66,6 @@
   margin-top: auto;
 }
 
-/* Logo université */
 .category-icon {
   width: 42px;
   height: 42px;
@@ -86,13 +74,11 @@
   flex-shrink: 0;
 }
 
-/* Infos université */
 .service-meta-info {
   display: flex;
   flex-direction: column;
 }
 
-/* Nom école */
 .category {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
@@ -101,7 +87,6 @@
   color: var(--gray-600);
 }
 
-/* Date */
 .date {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;

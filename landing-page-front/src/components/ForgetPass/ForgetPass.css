@@ -180,6 +180,6 @@ input[type="email"]:focus {
     }
 
     .fp-line, .fp-circle {
-        display: none; /* Cacher les lignes décoratives sur mobile pour plus de clarté */
+        display: none; 
     }
 }
