@@ -119,11 +119,11 @@ const Header = () => {
           {user ? (
             <div className="dropdown">
               <img
-                src={
-                  user.photoUrl
-                    ? `http://localhost:3000/${user.photoUrl}`
-                    : "http://localhost:3000/uploads/default-avatar.png"
-                }
+              src={
+                user.photoUrl
+                  ? `${import.meta.env.VITE_API_URL}/${user.photoUrl}`
+                  : `${import.meta.env.VITE_API_URL}/uploads/default-avatar.png`
+              }
                 alt="Profil"
                 className="profile-pic"
                 onClick={toggleProfile}
