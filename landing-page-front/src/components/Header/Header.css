@@ -1,8 +1,6 @@
 @import '../../styles/variables.css';
 
-/* ----------------------------------------- */
-/*                 HEADER                    */
-/* ----------------------------------------- */
+
 
 .header {
   position: fixed;
@@ -43,9 +41,7 @@
   left: auto;   
 }
 
-/* ----------------------------------------- */
-/*                   LOGO                    */
-/* ----------------------------------------- */
+
 
 .header-logo {
   width: 95px;   
@@ -53,19 +49,14 @@
   object-fit: contain;
 }
 
-/* ----------------------------------------- */
-/*              NAVIGATION LINKS             */
-/* ----------------------------------------- */
 
-/* LOGO → GAP 35PX → NAV LINKS */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 32px;           /* ✔ 32px entre chaque lien */
-  margin-left: 35px;   /* ✔ 35px entre logo et nav links */
+  gap: 32px;           
+  margin-left: 35px;   
 }
 
-/* Style des liens */
 .nav-link {
   color: white;
   text-decoration: none;
@@ -83,9 +74,7 @@
   transform: translateY(-2px);
 }
 
-/* ----------------------------------------- */
-/*                 DROPDOWN MISSIONS         */
-/* ----------------------------------------- */
+
 
 .vector-icon {
   width: 12px;
@@ -138,9 +127,7 @@
   opacity: 0.8;
 }
 
-/* ----------------------------------------- */
-/*               SECTION DROITE              */
-/* ----------------------------------------- */
+
 
 .right-section {
   display: flex;
@@ -148,7 +135,6 @@
   gap: 1rem;
 }
 
-/* Boutons */
 .btn-connexion-header {
   display: inline-flex;
   align-items: center;
@@ -176,7 +162,6 @@
   color: black;
 }
 
-/* Profil */
 .profile-pic {
   width: 40px;
   height: 40px;
@@ -204,9 +189,7 @@
   background: #f2f2f2;
 }
 
-/* ----------------------------------------- */
-/*                 MOBILE                    */
-/* ----------------------------------------- */
+
 
 .menu-toggle {
   display: none;
@@ -217,7 +200,9 @@
 .menu-toggle img {
   width: 24px;
 }
-
+body.beta-active .header {
+  top: 40px;
+}
 @media (max-width: 768px) {
   .nav-links {
     display: none;
