@@ -1,0 +1,169 @@
+:root {
+  --blue-color: #5BC0EB; 
+  --blue-bg-hover: #E8F6FC; 
+  --orange-color: #FF9F43; 
+  --orange-bg-hover: #FFF2E3; 
+}
+
+.abonnement-section {
+  width: 100%;
+  background-image: url('./../../assets/Abonnement.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.abonnement-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px; 
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap; 
+}
+
+.plan-card {
+  background-color: white;
+  border-radius: 30px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid transparent; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.card-header h3 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.price {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: left;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.price .period {
+  font-size: 16px;
+  font-weight: normal;
+  color: #666;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.features-list li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.chevron {
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.card-footer {
+  margin-top: auto;
+}
+
+.subscribe-btn {
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 50px; 
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-width: 2px;
+  border-style: solid;
+  transition: all 0.3s ease;
+}
+
+
+.student-card {
+  border-color: var(--blue-color);
+}
+
+.student-card h3, 
+.student-card .price {
+  color: var(--blue-color);
+}
+
+.student-card .chevron {
+  color: #333;
+}
+
+.student-card .subscribe-btn {
+  border-color: var(--blue-color);
+  color: var(--blue-color);
+}
+
+.student-card:hover {
+  background-color: var(--blue-bg-hover); 
+  transform: translateY(-5px); 
+}
+
+.student-card:hover .subscribe-btn {
+  background-color: var(--blue-color); 
+  color: white;
+}
+
+.company-card {
+  border-color: var(--orange-color);
+}
+
+.company-card h3, 
+.company-card .price {
+  color: var(--orange-color);
+}
+
+.company-card .subscribe-btn {
+  border-color: var(--orange-color);
+  color: var(--orange-color);
+}
+
+.company-card:hover {
+  background-color: var(--orange-bg-hover); 
+  transform: translateY(-5px);
+}
+
+.company-card:hover .subscribe-btn {
+  background-color: var(--orange-color); 
+  color: white;
+}
+
+@media (max-width: 850px) {
+  .abonnement-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .plan-card {
+    max-width: 100%;
+  }
+}
