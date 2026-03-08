@@ -6,6 +6,19 @@ import { Link, useNavigate } from 'react-router-dom';
 const RegisterFormEtud = () => {
 
   const navigate = useNavigate(); 
+  const validatePassword = (password) => {
+    const strongPasswordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+    return strongPasswordRegex.test(password);
+  };
+  const validateEmail = (email) => {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+};
+const validatePhone = (phone) => {
+  const regex = /^(?:\+33|0)[1-9]\d{8}$/;
+  return regex.test(phone);
+};
   const [step, setStep] = useState(1);
   const [languages, setLanguages] = useState([
   { name: "", level: "" },
@@ -85,6 +98,28 @@ langues_parlees: languages
 };
 
     try {
+      const hasAvailability = Object.values(formData.disponibilites)
+  .some(day => Object.values(day).some(slot => slot));
+
+if (!hasAvailability) {
+  alert("Veuillez sélectionner au moins une disponibilité.");
+  return;
+}
+      if (!validatePassword(formData.password)) {
+  alert(
+    "Mot de passe trop faible : minimum 8 caractères, 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial."
+  );
+  return;
+}
+if (!validateEmail(formData.email)) {
+  alert("Veuillez saisir un email valide.");
+  return;
+}
+
+if (!validatePhone(formData.phone)) {
+  alert("Veuillez saisir un numéro de téléphone valide.");
+  return;
+}
       const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

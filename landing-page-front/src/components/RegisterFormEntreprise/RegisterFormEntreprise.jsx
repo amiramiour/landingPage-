@@ -15,7 +15,19 @@ const RegisterFormEntreprise = () => {
     email: "",
     password: "",
   });
-
+  const validatePassword = (password) => {
+  const strongPasswordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+    return strongPasswordRegex.test(password);
+  };
+  const validateEmail = (email) => {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+};
+const validateCompanyId = (id) => {
+  const regex = /^\d{9}(\d{5})?$/;
+  return regex.test(id);
+};
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -44,6 +56,20 @@ const handleSubmit = async (e) => {
     };
 
     try {
+        if (!validatePassword(formData.password)) {
+    alert(
+      "Mot de passe trop faible : minimum 8 caractères, 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial."
+    );
+    return;
+  }
+    if (!validateEmail(formData.email)) {
+  alert("Veuillez saisir un email valide.");
+  return;
+}
+if (!validateCompanyId(formData.companyId)) {
+  alert("Veuillez saisir un SIREN ou SIRET valide.");
+  return;
+}
       const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
