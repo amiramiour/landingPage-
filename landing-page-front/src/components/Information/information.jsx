@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import './information.css';
-import commeImage from './comme.png';
-import searchImage from './search.png';
-import securiteImage from './securite.png';
+import calque1 from '../../assets/Calque1.png';
+import calque2 from '../../assets/Calque2.png';
+import calque3 from '../../assets/Calque3.png';
 
 const Information = () => {
   const itemsRef = useRef([]);
@@ -13,13 +13,11 @@ const Information = () => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            obs.unobserve(entry.target); // animation une seule fois
+            obs.unobserve(entry.target);
           }
         });
       },
-      {
-        threshold: 0.25,
-      }
+      { threshold: 0.25 }
     );
 
     itemsRef.current.forEach(el => {
@@ -31,57 +29,55 @@ const Information = () => {
 
   const infoData = [
     {
+      id: 1,
       title: (
         <>
-          <span>Plus de </span>
-          <span className="highlight">400 000 étudiants</span><br />
-          <span className="highlight">internationaux</span> en France
+          Plus de <span className="highlight-blue">400 000 étudiants</span><br />
+          <span className="highlight-blue">internationaux</span> en France
         </>
       ),
       text: (
         <>
           Le nombre d’étudiants internationaux en France a augmenté de{' '}
-          <span className="black-text">8 %</span> en{' '}
-          <span className="black-text">2021-2022</span>, dépassant les{' '}
-          <span className="black-text">400 000</span>.
+          <strong>8 %</strong> en <strong>2021-2022</strong>, dépassant les{' '}
+          <strong>400 000</strong>.
         </>
       ),
-      image: commeImage,
-      reverse: false,
+      image: calque1,
+      reverse: true,
     },
     {
+      id: 2,
       title: (
         <>
-          Plus de <span className="highlights">1 000 000</span> profils{' '}
-          <span className="highlights">vérifiés</span>
+          Plus de <span className="highlight-orange">100 profils vérifiés</span>
         </>
       ),
       text: (
         <>
           Échange direct avec les intervenants pour répondre à vos attentes,
-          <span className="black-text"> votre planning </span> et
-          <span className="black-text"> votre budget </span>.
+          <strong> votre planning </strong> et
+          <strong> votre budget</strong>.
         </>
       ),
-      image: searchImage,
-      reverse: true,
+      image: calque2,
+      reverse: false,
     },
     {
+      id: 3,
       title: (
         <>
-          Un <span className="highlight1">paiement rapide</span> et{' '}
-          <span className="highlight1">sécurisé</span>
+          Un <span className="highlight-blue">paiement rapide et sécurisé</span>
         </>
       ),
       text: (
         <>
-          Payez votre intervenant{' '}
-          <span className="black-text">facilement</span> et en toute{' '}
-          <span className="black-text">sécurité</span>, directement sur la plateforme
+          Payez votre intervenant <strong>facilement</strong> et en toute{' '}
+          <strong>sécurité</strong> directement sur la plateforme.
         </>
       ),
-      image: securiteImage,
-      reverse: false,
+      image: calque3,
+      reverse: true,
     },
   ];
 
@@ -89,9 +85,9 @@ const Information = () => {
     <div className="information-container">
       {infoData.map((info, index) => (
         <div
-          key={index}
+          key={info.id}
           ref={(el) => (itemsRef.current[index] = el)}
-          className={`information-item
+          className={`information-item 
             ${info.reverse ? 'reverse' : ''}
             ${index % 2 === 0 ? 'from-right' : 'from-left'}
           `}
@@ -102,7 +98,7 @@ const Information = () => {
           </div>
 
           <div className="information-image">
-            <img src={info.image} alt={`Image ${index + 1}`} className="image" />
+            <img src={info.image} alt="" />
           </div>
         </div>
       ))}
