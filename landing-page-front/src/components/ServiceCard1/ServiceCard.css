@@ -27,7 +27,6 @@
   font-size: 0.85rem;
   font-weight: bold;
   margin-top: 1rem;
-  margin-left: 1rem;
 }
 
 .linky-service-type.expertise {
@@ -41,7 +40,6 @@
 }
 
 .linky-service-content {
-  padding: 0 1rem;
   margin-top: 1rem;
 }
 
