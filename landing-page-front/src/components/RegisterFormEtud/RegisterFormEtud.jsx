@@ -2,9 +2,52 @@ import React, { useState } from 'react';
 import './RegisterFormEtud.css';
 import LogoLogin from '../../assets/logo_linkyjob.png';
 import { Link, useNavigate } from 'react-router-dom';   
-
+import Select from "react-select";
+import countries from "i18n-iso-countries";
+import fr from "i18n-iso-countries/langs/fr.json";
+import ISO6391 from "iso-639-1";
+  countries.registerLocale(fr);
+  const countryOptions = Object.entries(
+  countries.getNames("fr", { select: "official" })
+  ).map(([code, name]) => ({
+    value: name,
+    label: name
+  }));
+  const languageOptions = [
+    { value: "Français", label: "Français" },
+    { value: "Anglais", label: "Anglais" },
+    { value: "Espagnol", label: "Espagnol" },
+    { value: "Arabe", label: "Arabe" },
+    { value: "Allemand", label: "Allemand" },
+    { value: "Italien", label: "Italien" },
+    { value: "Portugais", label: "Portugais" },
+    { value: "Chinois", label: "Chinois" },
+    { value: "Russe", label: "Russe" }
+  ];
 const RegisterFormEtud = () => {
-
+    const selectStyles = {
+    control: (base) => ({
+      ...base,
+      border: "1px solid black",
+      borderRadius: 0,
+      minHeight: "38px",
+      boxShadow: "none",
+      fontSize: "0.85rem",
+    }),
+    valueContainer: (base) => ({
+      ...base,
+      padding: "6px 8px",
+    }),
+    indicatorSeparator: () => ({
+      display: "none",
+    }),
+    dropdownIndicator: (base) => ({
+      ...base,
+      padding: "4px",
+    }),
+  };
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [selectedLevel, setSelectedLevel] = useState("");
   const navigate = useNavigate(); 
   const validatePassword = (password) => {
     const strongPasswordRegex =
@@ -20,9 +63,7 @@ const validatePhone = (phone) => {
   return regex.test(phone);
 };
   const [step, setStep] = useState(1);
-  const [languages, setLanguages] = useState([
-  { name: "", level: "" },
-]);
+  const [languages, setLanguages] = useState([]);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -157,11 +198,7 @@ disponibilites: {
       setLoading(false);
     }
   };
-  const isLanguagesValid =
-  languages.length > 0 &&
-  languages.every(
-    (lang) => lang.name.trim() !== "" && lang.level !== ""
-  );
+  const isLanguagesValid = languages.length > 0;
 
   return (
     <div className="rf-etud-container">
@@ -224,6 +261,21 @@ disponibilites: {
         : "Saisissez les missions que vous recherchez"
     }
   />
+) : name === "nationalite" ? (
+<Select
+  options={countryOptions}
+  placeholder="Choisissez votre nationalité"
+  className="rf-etud-select"
+  styles={selectStyles}
+  isSearchable
+  isClearable
+  onChange={(selected) =>
+    setFormData((prev) => ({
+      ...prev,
+      nationalite: selected?.value || ""
+    }))
+  }
+/>
 ) : (
   <input
     type={type}
@@ -242,68 +294,94 @@ disponibilites: {
                 Veuillez renseigner une langue et sélectionner un niveau.
               </p>
             )}
-            {step === 2 && (
-              <div className="rf-etud-group">
-              <label>Langue et niveau maîtrisé *</label>
+{step === 2 && (
+  <div className="rf-etud-group">
+    <label>Langue et niveau maîtrisé *</label>
 
-              {languages.map((lang, index) => (
-                <div key={index} className="rf-lang-card">
-                  
-                  {/* INPUT + BOUTON + */}
-                  <div className="rf-lang-input-wrapper">
-                    <input
-                      type="text"
-                      placeholder="Choisissez votre langue"
-                      value={lang.name}
-                      onChange={(e) => {
-                        const updated = [...languages];
-                        updated[index].name = e.target.value;
-                        setLanguages(updated);
-                      }}
-                      className="rf-etud-input rf-lang-input"
-                    />
+    {/* SELECT LANGUE */}
+    <div className="rf-lang-input-wrapper">
+      <Select
+        options={languageOptions}
+        placeholder="Choisissez une langue"
+        className="rf-etud-select"
+        styles={selectStyles}
+        isSearchable
+        value={
+          selectedLanguage
+            ? { value: selectedLanguage, label: selectedLanguage }
+            : null
+        }
+        onChange={(selected) =>
+          setSelectedLanguage(selected?.value || "")
+        }
+      />
 
-                    <button
-                      type="button"
-                      className="rf-lang-plus"
-                      disabled={!lang.name || !lang.level}
-                      onClick={() => {
-                        if (index === languages.length - 1) {
-                          setLanguages([...languages, { name: "", level: "" }]);
-                        }
-                      }}
-                    >
-                      +
-                    </button>
-                  </div>
+  <button
+  type="button"
+  className="rf-lang-plus"
+  onClick={() => {
+    setSelectedLanguage("");
+    setSelectedLevel("");
+  }}
+>
+  +
+</button>
+    </div>
 
-                  {/* NIVEAUX */}
-                  <div className="rf-lang-radio">
-                    {["A1", "A2", "B1", "B2", "C1", "C2", "Natif"].map((lvl) => (
-                    <label
-                      key={lvl}
-                      className="rf-lang-radio-item"
-                      data-level={lvl}
-                    >
-                          <input
-                          type="radio"
-                          name={`lang-level-${index}`}
-                          checked={lang.level === lvl}
-                          onChange={() => {
-                            const updated = [...languages];
-                            updated[index].level = lvl;
-                            setLanguages(updated);
-                          }}
-                        />
-                        <span>{lvl}</span>
-                      </label>
-                    ))}
-                  </div>
+    {/* NIVEAUX */}
+    <div className="rf-lang-radio">
+      {["A1","A2","B1","B2","C1","C2","Natif"].map((lvl) => (
+        <label key={lvl} className="rf-lang-radio-item" data-level={lvl}>
+          <input
+            type="radio"
+            checked={selectedLevel === lvl}
+            onChange={() => {
+  setSelectedLevel(lvl);
 
-                </div>
-              ))}
-            </div>
-            )}
+  if (!selectedLanguage) return;
+
+  if (languages.some(l => l.name === selectedLanguage)) {
+    alert("Cette langue est déjà ajoutée");
+    return;
+  }
+
+  const newLanguages = [
+    ...languages,
+    { name: selectedLanguage, level: lvl }
+  ];
+
+  setLanguages(newLanguages);
+
+  setSelectedLanguage("");
+  setSelectedLevel("");
+}}
+          />
+          <span>{lvl}</span>
+        </label>
+      ))}
+    </div>
+
+    {/* LANGUES AJOUTÉES */}
+    <div className="rf-lang-selected">
+      {languages
+        .filter((l) => l.name && l.level)
+        .map((lang, i) => (
+          <div key={i} className="rf-lang-chip">
+            {lang.name} • {lang.level}
+            <span
+              className="rf-lang-remove"
+              onClick={() =>
+                setLanguages(languages.filter((_, idx) => idx !== i))
+              }
+            >
+              ×
+            </span>
+          </div>
+        ))}
+    </div>
+
+  </div>
+)}
             {step === 2 && (
               <div className="rf-etud-group">
                 <label htmlFor="missions">Missions recherchées</label>
