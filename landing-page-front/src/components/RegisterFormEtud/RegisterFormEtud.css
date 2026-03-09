@@ -381,7 +381,38 @@
   font-weight: 500;
   animation: fadeIn 0.3s ease-in-out;
 }
+/* ===== LANGUES SÉLECTIONNÉES (chips) ===== */
 
+.rf-lang-selected {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.rf-lang-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid black;
+  background: white;
+  font-size: 0.8rem;
+  transition: background 0.2s ease;
+}
+
+.rf-lang-chip:hover {
+  background: #f9fafb;
+}
+
+.rf-lang-remove {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.rf-lang-remove:hover {
+  color: red;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
