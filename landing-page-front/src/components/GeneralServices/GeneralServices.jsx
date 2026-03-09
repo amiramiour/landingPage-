@@ -4,7 +4,8 @@ import "./GeneralServices.css";
 
 import arrowLeft from "../../assets/btn_orange_left.png";
 import arrowRight from "../../assets/btn_orange_right.png";
-import defaultImg from "../../assets/Animateur interculturel.jpeg";
+import expertiseImg from "../../assets/Techniciensinformatique.jpeg";
+import serviceImg from "../../assets/Animateur interculturel.jpeg";
 
 const GeneralServices = () => {
   const scrollRef = useRef(null);
@@ -76,6 +77,11 @@ const GeneralServices = () => {
           {visibleMissions.map((mission) => {
             const alreadyApplied = appliedMissions.includes(mission.id);
 
+            const missionImage =
+              mission.type === "mission_d_expertise"
+                ? expertiseImg
+                : serviceImg;
+
             return (
               <ServiceCard1
                 key={mission.id}
@@ -88,9 +94,9 @@ const GeneralServices = () => {
                 companyLogo={
                   mission.employer?.photoUrl
                     ? `${import.meta.env.VITE_API_URL}/${mission.employer.photoUrl}`
-                    : defaultImg
+                    : serviceImg
                 }
-                icon={defaultImg}
+                icon={missionImage}
                 alreadyApplied={alreadyApplied}
               />
             );
