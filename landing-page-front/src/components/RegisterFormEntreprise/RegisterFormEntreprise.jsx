@@ -35,63 +35,79 @@ const validateCompanyId = (id) => {
       [name]: value,
     }));
   };
-
+const [success, setSuccess] = useState(false);
+const [loading, setLoading] = useState(false);
 const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const normalizedType = formData.companyType
-      .trim()
-      .toUpperCase()
-      .replace(/[^A-Z]/g, "_")
-      .replace(/_+/g, "_");
+  if (loading) return;
 
-    const payload = {
-      role: "company",
-      companyName: formData.companyName,
-      companyType: normalizedType,
-      companyId: formData.companyId,
-      address: formData.address,
-      email: formData.email,
-      password: formData.password,
-    };
+  const normalizedType = formData.companyType
+    .trim()
+    .toUpperCase()
+    .replace(/[^A-Z]/g, "_")
+    .replace(/_+/g, "_");
 
-    try {
-        if (!validatePassword(formData.password)) {
-    alert(
-      "Mot de passe trop faible : minimum 8 caractères, 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial."
-    );
-    return;
-  }
-    if (!validateEmail(formData.email)) {
-  alert("Veuillez saisir un email valide.");
-  return;
-}
-if (!validateCompanyId(formData.companyId)) {
-  alert("Veuillez saisir un SIREN ou SIRET valide.");
-  return;
-}
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        alert(data.error || "Erreur lors de l'inscription");
-        return;
-      }
-
-      alert("Compte entreprise créé !");
-      console.log("REGISTER COMPANY:", data);
-
-      navigate("/login");  
-    } catch (err) {
-      console.error(err);
-      alert("Erreur réseau");
-    }
+  const payload = {
+    role: "company",
+    companyName: formData.companyName,
+    companyType: normalizedType,
+    companyId: formData.companyId,
+    address: formData.address,
+    email: formData.email,
+    password: formData.password,
   };
+
+  try {
+
+    setLoading(true);
+
+    if (!validatePassword(formData.password)) {
+      alert(
+        "Mot de passe trop faible : minimum 8 caractères, 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial."
+      );
+      setLoading(false);
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      alert("Veuillez saisir un email valide.");
+      setLoading(false);
+      return;
+    }
+
+    if (!validateCompanyId(formData.companyId)) {
+      alert("Veuillez saisir un SIREN ou SIRET valide.");
+      setLoading(false);
+      return;
+    }
+
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error || "Erreur lors de l'inscription");
+      setLoading(false);
+      return;
+    }
+
+    setSuccess(true);
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 1500);
+
+  } catch (err) {
+    alert("Erreur réseau");
+  } finally {
+    setLoading(false);
+  }
+};
 
 
   return (
@@ -110,6 +126,11 @@ if (!validateCompanyId(formData.companyId)) {
 
         <div className="rf-entreprise-form-container">
           <h2 className="rf-entreprise-title">Inscrivez-vous</h2>
+                      {success && (
+                <div className="rf-success-message">
+                  Compte créé avec succès !
+                </div>
+              )}
           <form onSubmit={handleSubmit}>
             {[
               { label: "Nom de l’entreprise*", name: "companyName" },
@@ -133,8 +154,17 @@ if (!validateCompanyId(formData.companyId)) {
               </div>
             ))}
 
-            <button type="submit" className="rf-entreprise-btn rf-entreprise-btn-primary">Inscription</button>
-
+        <button
+          type="submit"
+          className="rf-entreprise-btn rf-entreprise-btn-primary"
+          disabled={loading || success}
+        >
+          {loading
+            ? "Création du compte..."
+            : success
+            ? "Compte créé ✓"
+            : "Inscription"}
+        </button>
             <button type="button" className="rf-entreprise-btn rf-entreprise-btn-google">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
                   <path  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />

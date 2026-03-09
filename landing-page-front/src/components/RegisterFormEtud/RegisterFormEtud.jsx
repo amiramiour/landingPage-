@@ -48,6 +48,8 @@ disponibilites: {
   Dimanche:{ "9-12": false, "12-15": false, "15-18": false },
 },
   });
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,57 +74,66 @@ disponibilites: {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (loading) return;
+
     const payload = {
-  role: "student",
+      role: "student",
 
-  // User
-  firstName: formData.firstName,
-  lastName: formData.lastName,
-  age: Number(formData.age),
-  email: formData.email,
-  phone: formData.phone,
-  training: formData.training,
-  school: formData.school,
-  password: formData.password,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      age: Number(formData.age),
+      email: formData.email,
+      phone: formData.phone,
+      training: formData.training,
+      school: formData.school,
+      password: formData.password,
 
-  // StudentProfile
-  nationalites: formData.nationalite,
-  competences: formData.competences,
-langues_parlees: languages
-  .filter(l => l.name && l.level)
-  .map(l => `${l.name} (${l.level})`)
-  .join(", "),
-    missions_recherchees: formData.missions,
-  localisation: formData.adresse,
-  disponibilites: formData.disponibilites,
-};
+      nationalites: formData.nationalite,
+      competences: formData.competences,
+      langues_parlees: languages
+        .filter(l => l.name && l.level)
+        .map(l => `${l.name} (${l.level})`)
+        .join(", "),
+      missions_recherchees: formData.missions,
+      localisation: formData.adresse,
+      disponibilites: formData.disponibilites,
+    };
 
     try {
       const hasAvailability = Object.values(formData.disponibilites)
-  .some(day => Object.values(day).some(slot => slot));
+        .some(day => Object.values(day).some(slot => slot));
 
-if (!hasAvailability) {
-  alert("Veuillez sélectionner au moins une disponibilité.");
-  return;
-}
+      if (!hasAvailability) {
+        alert("Veuillez sélectionner au moins une disponibilité.");
+        setLoading(false);
+        return;
+      }
+
       if (!validatePassword(formData.password)) {
-  alert(
-    "Mot de passe trop faible : minimum 8 caractères, 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial."
-  );
-  return;
-}
-if (!validateEmail(formData.email)) {
-  alert("Veuillez saisir un email valide.");
-  return;
-}
+        alert("Mot de passe trop faible.");
+        setLoading(false);
+        return;
+      }
 
-if (!validatePhone(formData.phone)) {
-  alert("Veuillez saisir un numéro de téléphone valide.");
-  return;
-}
+      if (!validateEmail(formData.email)) {
+        alert("Veuillez saisir un email valide.");
+        setLoading(false);
+        return;
+      }
+
+      if (!validatePhone(formData.phone)) {
+        alert("Veuillez saisir un numéro de téléphone valide.");
+        setLoading(false);
+        return;
+      }
+            setLoading(true);
+
+
       const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/register`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(payload),
       });
 
@@ -130,17 +141,20 @@ if (!validatePhone(formData.phone)) {
 
       if (!res.ok) {
         alert(data.error || "Erreur lors de l'inscription");
+        setLoading(false);
         return;
       }
 
-      alert("Compte étudiant créé !");
-      console.log("REGISTER STUDENT:", data);
+      setSuccess(true);
 
-      navigate("/login"); 
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
 
     } catch (err) {
-      console.error(err);
       alert("Erreur réseau");
+    } finally {
+      setLoading(false);
     }
   };
   const isLanguagesValid =
@@ -165,7 +179,11 @@ if (!validatePhone(formData.phone)) {
 
         <div className="rf-etud-form-container">
           <h2 className="rf-etud-title">Inscrivez-vous</h2>
-
+          {success && (
+            <div className="rf-success-message">
+              Compte étudiant créé avec succès !
+            </div>
+          )}
           <form onSubmit={handleSubmit}>
             {[
               ...(step === 1
@@ -365,8 +383,13 @@ if (!validatePhone(formData.phone)) {
                 <button
                   type="submit"
                   className="rf-etud-btn rf-etud-btn-primary"
+                  disabled={loading || success}
                 >
-                  Inscription
+                  {loading
+                    ? "Création du compte..."
+                    : success
+                    ? "Compte créé ✓"
+                    : "Inscription"}
                 </button>
 
                 <button
