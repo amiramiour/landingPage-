@@ -161,44 +161,58 @@ const Header = () => {
           )}
         </nav>
 
-        <div className="right-section">
-          {user ? (
-            <div className="dropdown" style={{ marginLeft: '10px' }}>
-              <img
-                src={
-                  user.photoUrl
-                    ? `${import.meta.env.VITE_API_URL}/${user.photoUrl}`
-                    : `${import.meta.env.VITE_API_URL}/uploads/default-avatar.png`
-                }
-                alt="Profil"
-                className="profile-pic"
-                onClick={handleProfileClick}
-              />
-              
-              {!isMobile && profileOpen && (
-                <div className="dropdown-content profile-dropdown">
-                  <Link 
-                    to={user.role === "company" ? "/profile-entreprise" : "/profile-etudiant"} 
-                    className="dropdown-link"
-                    onClick={() => setProfileOpen(false)}
-                  >
-                    Mon profil
-                  </Link>
-                  <button className="dropdown-link logout-btn" onClick={handleLogout}>
-                    Déconnexion
-                  </button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <NavLink 
-              to="/login" 
-              className="btn-connexion-header"
-            >
-              Connexion
-            </NavLink>
-          )}
+<div className="right-section">
+
+  {!user && (
+    <div 
+      className="hamburger"
+      onClick={() => setMenuOpen(!menuOpen)}
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  )}
+
+  {user ? (
+    <div className="dropdown">
+      <img
+        src={
+          user.photoUrl
+            ? `${import.meta.env.VITE_API_URL}/${user.photoUrl}`
+            : `${import.meta.env.VITE_API_URL}/uploads/default-avatar.png`
+        }
+        alt="Profil"
+        className="profile-pic"
+        onClick={handleProfileClick}
+      />
+
+      {!isMobile && profileOpen && (
+        <div className="dropdown-content profile-dropdown">
+          <Link
+            to={user.role === "company" ? "/profile-entreprise" : "/profile-etudiant"}
+            className="dropdown-link"
+            onClick={() => setProfileOpen(false)}
+          >
+            Mon profil
+          </Link>
+
+          <button className="dropdown-link logout-btn" onClick={handleLogout}>
+            Déconnexion
+          </button>
         </div>
+      )}
+    </div>
+  ) : (
+    <NavLink 
+      to="/login" 
+      className="btn-connexion-header"
+    >
+      Connexion
+    </NavLink>
+  )}
+
+</div>
 
       </div>
     </header>

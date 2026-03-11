@@ -112,7 +112,24 @@
   align-items: center;
   z-index: 20;
 }
-
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 20;
+}
+.right-section{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+.hamburger span {
+  width: 25px;
+  height: 2px;
+  background: white;
+  display: block;
+}
 .btn-connexion-header {
   color: #fff;
   text-decoration: none;
@@ -192,6 +209,10 @@
     gap: 0;
     transition: transform 0.3s ease-in-out;
     overflow-y: auto;
+    left: auto;
+  }
+  .hamburger {
+    display: flex;
   }
 
   .nav-links.active {
