@@ -21,12 +21,15 @@ import Feedback from './screens/Feedback';
 import AddPrestation from './screens/AddPrestation';
 import PrestationsScreen from './screens/PrestationsScreen';
 import BetaBanner from "./components/BetaBanner/BetaBanner";
+import ScrollToTop from './screens/ScrollToTop';
 function App() {
   return (
           <AuthProvider>
     <Router>
       <div className="app">
         <BetaBanner />
+                  <ScrollToTop />
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/espace-etudiant" element={<EspaceEtudiant />} />
