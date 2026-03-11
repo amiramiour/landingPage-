@@ -10,7 +10,6 @@
 }
 
 .pe-page-wrapper {
-  margin-top: 4rem;
   background-color: var(--pe-bg-page);
   min-height: 100vh;
   padding: 40px 20px;
