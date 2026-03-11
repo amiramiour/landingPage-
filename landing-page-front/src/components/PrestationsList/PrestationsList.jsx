@@ -54,7 +54,7 @@ const PrestationsList = () => {
   const handleVoirPlus = () => setLimit((prev) => prev + 4);
 
   return (
-    <div className="pq-section">
+    <div id="prestations-list" className="pq-section">
       <div className="pq-container">
 
         <div className="pq-header">

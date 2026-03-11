@@ -7,6 +7,12 @@ import bgQualifie from "../../assets/prqBg.jpg";
 import bgGeneral from "../../assets/prnqBg.jpg";
 
 const HeroPrestation = () => {
+  const scrollToPrestations = () => {
+  const section = document.getElementById("prestations-list");
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+};
   const { pathname } = useLocation();
 
   const isQualifie = pathname.includes("prestationsqualifiee");
@@ -44,13 +50,13 @@ const HeroPrestation = () => {
           </div>
         </h1>
 
-        <Link
-          to={buttonLink}
+        <button
+          onClick={scrollToPrestations}
           className="hero-presta-button"
           style={{ backgroundColor: buttonColor }}
         >
           En savoir plus
-        </Link>
+        </button>
       </div>
     </div>
   );
