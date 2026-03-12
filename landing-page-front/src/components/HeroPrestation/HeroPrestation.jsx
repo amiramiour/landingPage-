@@ -35,7 +35,7 @@ const HeroPrestation = () => {
     <div
       className="hero-presta-container"
       style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${bgImage})`
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${bgImage})`
       }}
     >
       <div className="hero-presta">
