@@ -5,10 +5,11 @@ const LegalPage = ({ title, subtitle, sections }) => {
   return (
     <div className="legal-page">
 
-      <LegalNav />
 
       <div className="legal-hero">
         <h1>{title}</h1>
+              <LegalNav />
+
         <p>{subtitle}</p>
       </div>
 
