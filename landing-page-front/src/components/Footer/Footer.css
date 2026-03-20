@@ -15,7 +15,6 @@
   align-items: center;
 }
 
-/* --- Logo --- */
 .footer-logo {
   margin-bottom: 2rem;
 }
@@ -31,7 +30,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 2.5rem; 
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .footer-nav a {
@@ -44,6 +43,25 @@
 
 .footer-nav a:hover {
   opacity: 0.8;
+}
+
+.footer-legal {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer-legal a {
+  color: #888;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: opacity 0.3s ease;
+}
+
+.footer-legal a:hover {
+  opacity: 0.7;
 }
 
 .divider {
@@ -70,6 +88,7 @@
 .social-icons svg {
   cursor: pointer;
   transition: transform 0.2s;
+  color: white;
 }
 
 .social-icons svg:hover {
@@ -93,7 +112,6 @@
   font-size: 0.85rem;
 }
 
-/* --- Responsive --- */
 @media (max-width: 992px) {
   .footer-bottom {
     flex-wrap: wrap;
@@ -112,6 +130,11 @@
     flex-direction: column;
     gap: 1rem;
     text-align: center;
+  }
+
+  .footer-legal {
+    flex-direction: column;
+    gap: 0.5rem;
   }
   
   .footer-bottom {

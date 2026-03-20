@@ -22,6 +22,13 @@ import AddPrestation from './screens/AddPrestation';
 import PrestationsScreen from './screens/PrestationsScreen';
 import BetaBanner from "./components/BetaBanner/BetaBanner";
 import ScrollToTop from './screens/ScrollToTop';
+import CGU from "./screens/CGU";
+import Confidentialite from "./screens/Confidentialite";
+import MentionsLegales from "./screens/MentionsLegales";
+import Cookies from "./screens/Cookies";
+import CGV from "./screens/CGV";
+import Accessibilite from "./screens/Accessibilite";
+import CookieBanner from "./components/CookieBanner/CookieBanner";
 function App() {
   return (
           <AuthProvider>
@@ -51,9 +58,16 @@ function App() {
           <Route path="/prestationsgenerales" element={<PrestationsScreen />} />
           <Route path="/prestationsgenerales/:id" element={<PqProfileScreen />} />
           <Route path="/profile-etudiant/:id" element={<ProfileEtudiant />} />
-
+          <Route path="/cgu" element={<CGU />} />
+          <Route path="/confidentialite" element={<Confidentialite />} />
+          <Route path="/mentions-legales" element={<MentionsLegales />} />
+          <Route path="/cookies" element={<Cookies />} />
+          <Route path="/cgv" element={<CGV />} />
+          <Route path="/accessibilite" element={<Accessibilite />} />
+          
         </Routes>
       </div>
+      <CookieBanner />
     </Router>
     </AuthProvider>
 

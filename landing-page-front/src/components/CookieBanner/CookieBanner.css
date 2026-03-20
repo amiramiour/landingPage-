@@ -1,0 +1,156 @@
+.cookie-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+
+  z-index: 9999;
+}
+
+/* BOX */
+.cookie-content {
+  position: relative;
+
+  background: #121212;
+  border: 1px solid #222;
+  border-radius: 20px;
+  padding: 30px;
+
+  max-width: 420px;
+  width: 90%;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  text-align: center;
+
+  animation: fadeIn 0.3s ease;
+}
+
+/* CLOSE BUTTON */
+.cookie-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  background: transparent;
+  border: none;
+  color: #777;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cookie-close:hover {
+  color: #fff;
+}
+
+/* TITLE */
+.cookie-content h3 {
+  color: #FF7F32;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+/* TEXT */
+.cookie-content p {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+/* LINK */
+.cookie-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: #FF7F32;
+  text-decoration: none;
+}
+
+.cookie-link:hover {
+  text-decoration: underline;
+}
+
+/* ACTIONS */
+.cookie-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* COMMON BUTTON */
+.btn-accept,
+.btn-decline {
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+  min-width: 120px;
+}
+
+/* ACCEPT */
+.btn-accept {
+  background: #FF7F32;
+  color: white;
+  border: 1px solid #FF7F32;
+}
+
+.btn-accept:hover {
+  background: #ff9a5c;
+}
+
+/* DECLINE */
+.btn-decline {
+  background: transparent;
+  border: 1px solid #444;
+  color: #aaa;
+}
+
+.btn-decline:hover {
+  border-color: #FF7F32;
+  color: #FF7F32;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 500px) {
+  .cookie-content {
+    padding: 25px 20px;
+  }
+
+  .cookie-actions {
+    flex-direction: column;
+  }
+
+  .btn-accept,
+  .btn-decline {
+    width: 100%;
+  }
+
+  .cookie-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .cookie-content p {
+    font-size: 0.85rem;
+  }
+}
