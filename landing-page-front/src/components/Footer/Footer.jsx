@@ -18,13 +18,21 @@ const Footer = () => {
         
         <nav className="footer-nav">
           <Link to="/espace-etudiant">Espace Etudiant</Link>
-          <a href="#espace-entreprise">Espace Entreprise</a>
-          <a href="#espace-particulier">Espace Particulier</a>
-          <a href="#prestations">Prestations</a>
-          <a href="#a-propos">A propos</a>
-          <a href="#contact">Contact</a>
-          <Link to="/feedback" className="nav-link">Feedback</Link>
+          <Link to="/espace-entreprise">Espace Entreprise</Link>
+          <Link to="/espace-particulier">Espace Particulier</Link>
+          <Link to="/prestations">Prestations</Link>
+          <Link to="/a-propos">A propos</Link>
+          <Link to="/contact">Contact</Link>
+          <Link to="/feedback">Feedback</Link>
+        </nav>
 
+        <nav className="footer-legal">
+          <Link to="/cgu">CGU</Link>
+          <Link to="/cgv">CGV</Link>
+          <Link to="/mentions-legales">Mentions légales</Link>
+          <Link to="/confidentialite">Confidentialité</Link>
+          <Link to="/cookies">Cookies</Link>
+          <Link to="/accessibilite">Accessibilité</Link>
         </nav>
 
         <hr className="divider" />
@@ -32,10 +40,10 @@ const Footer = () => {
         <div className="footer-bottom">
           
           <div className="social-icons">
-            <FaFacebookF size={18} color="white" />
-            <FaInstagram size={18} color="white" />
-            <FaXTwitter size={18} color="white" /> 
-            <FaLinkedinIn size={18} color="white" />
+            <FaFacebookF size={18} />
+            <FaInstagram size={18} />
+            <FaXTwitter size={18} /> 
+            <FaLinkedinIn size={18} />
           </div>
 
           <div className="contact-item">
