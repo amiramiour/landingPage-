@@ -11,7 +11,7 @@ const GeneralServices = () => {
   const scrollRef = useRef(null);
   const [missions, setMissions] = useState([]);
   const [appliedMissions, setAppliedMissions] = useState([]);
-
+  const [hasActiveMission, setHasActiveMission] = useState(false);
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/missions`)
       .then((res) => res.json())
@@ -46,6 +46,8 @@ const GeneralServices = () => {
           .filter((c) => c.status !== "rejected")
           .map((c) => c.missionId);
         setAppliedMissions(missionIds);
+        const hasAccepted = data.some(c => c.status === "accepted");
+  setHasActiveMission(hasAccepted);
       })
       .catch(() => {});
   }, []);
@@ -76,7 +78,7 @@ const GeneralServices = () => {
         <div className="services-grid-section">
           {visibleMissions.map((mission) => {
             const alreadyApplied = appliedMissions.includes(mission.id);
-
+            const isBlocked = hasActiveMission || alreadyApplied;
             const missionImage =
               mission.type === "mission_d_expertise"
                 ? expertiseImg
@@ -98,6 +100,8 @@ const GeneralServices = () => {
                 }
                 icon={missionImage}
                 alreadyApplied={alreadyApplied}
+                hasActiveMission={hasActiveMission}   
+                isBlocked={isBlocked}                
               />
             );
           })}

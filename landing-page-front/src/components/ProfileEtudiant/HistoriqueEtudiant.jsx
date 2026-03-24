@@ -143,7 +143,10 @@ function HistoriqueEtudiant() {
         </p>
 
         <div className="missions-grid">
-          {candidatures.map((c) => (
+        {candidatures.length === 0 ? (
+          <p>Aucune candidature pour le moment</p>
+        ) : (
+          candidatures.map((c) => (
             <div key={c.id} className="mission-card">
               <img src={icon} className="mission-image" alt="mission" />
 
@@ -185,7 +188,8 @@ function HistoriqueEtudiant() {
                 {renderActionButton(c)}
               </div>
             </div>
-          ))}
+          ))
+          )}
         </div>
       </section>
     </div>

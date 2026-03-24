@@ -106,9 +106,13 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0 0px 15px;
+  padding: 0 15px 15px;
 }
-
+.mission-stat {
+  font-weight: 600;
+    font-size: 0.9rem;
+  padding: 0 15px 15px
+}
 .linky-company-logo {
   width: 42px;
   height: 42px;

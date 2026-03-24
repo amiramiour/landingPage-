@@ -25,20 +25,29 @@ function CandidaturesMission({ missionId, mission }) {
   }, [missionId, token]);
 
   /* ================= UPDATE STATUS ================= */
-  const updateStatus = (id, action) => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/${action}/${id}`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
-    }).then(() => {
-      setCandidatures((prev) =>
-        prev.map((c) =>
-          c.id === id
-            ? { ...c, status: action === "accept" ? "accepted" : "rejected" }
-            : c
-        )
-      );
-      setSelectedCandidature(null);
-    });
+  const updateStatus = async (id, action) => {
+  try {
+    await fetch(
+      `${import.meta.env.VITE_API_URL}/api/candidatures/${action}/${id}`,
+      {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/candidatures/mission/${missionId}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    const data = await res.json();
+    setCandidatures(data);
+
+    setSelectedCandidature(null);
+  } catch (err) {
+    console.error(err);
+  }
   };
 
   /* ================= PAGE PROFIL CANDIDAT ================= */
@@ -68,7 +77,10 @@ function CandidaturesMission({ missionId, mission }) {
         </p>
       )}
 
-      {candidatures.map(({ id, student, createdAt, status, mission }) => (
+      {candidatures.map(({ id, student, createdAt, status, mission }) => {
+        const isLocked = status !== "under_review";
+
+        return (
         <div
           key={id}
           className="candidat-row"
@@ -93,6 +105,11 @@ function CandidaturesMission({ missionId, mission }) {
             <p className="candidat-formation">
               {student.training || "—"}
             </p>
+            <p style={{ fontSize: "12px", marginTop: "5px" }}>
+              {status === "accepted" && "✅ Accepté"}
+              {status === "rejected" && "❌ Refusé"}
+              {status === "under_review" && "⏳ En attente"}
+            </p>
 
             <div className="candidat-footer">
               <img src={schoolLogo} className="school-logo" />
@@ -115,23 +132,28 @@ function CandidaturesMission({ missionId, mission }) {
             >
               <img
                 src={acceptIcon}
-                className={`action-icon accept ${
-                  status === "accepted" ? "disabled" : ""
-                }`}
-                onClick={() => updateStatus(id, "accept")}
+                className={`action-icon accept ${isLocked ? "disabled" : ""}`}
+                style={{
+                  pointerEvents: isLocked ? "none" : "auto",
+                  opacity: isLocked ? 0.5 : 1
+                }}
+                onClick={() => !isLocked && updateStatus(id, "accept")}
               />
 
               <img
                 src={refuseIcon}
-                className={`action-icon refuse ${
-                  status === "rejected" ? "disabled" : ""
-                }`}
-                onClick={() => updateStatus(id, "reject")}
+                className={`action-icon refuse ${isLocked ? "disabled" : ""}`}
+                style={{
+                  pointerEvents: isLocked ? "none" : "auto",
+                  opacity: isLocked ? 0.5 : 1
+                }}
+                onClick={() => !isLocked && updateStatus(id, "reject")}
               />
             </div>
           </div>
         </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
