@@ -20,7 +20,7 @@ function PqProfile() {
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-
+  const [errorMessage, setErrorMessage] = useState("");
   const getMissionLabel = (type) => {
     switch (type) {
       case "mission_d_expertise": return "Mission d’expertise";
@@ -60,19 +60,40 @@ function PqProfile() {
   if (!mission) return <div className="pq-loading">Mission introuvable</div>;
 
   const canApply = isStudent && kycStatus?.validated === true && !alreadyApplied && !isMissionExpired;
-  const handleRequestApply = () => canApply && setShowConfirm(true);
-  
+const handleRequestApply = () => {
+  setErrorMessage("");
+  if (canApply) setShowConfirm(true);
+};  
   const handleConfirmApplication = async () => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
-    try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/candidatures/apply/${id}`, {
-        method: "POST", headers: { Authorization: `Bearer ${token}` },
-      });
-      if (!res.ok) throw new Error();
-      setShowConfirm(false); setShowSuccess(true); setAlreadyApplied(true);
-    } catch { setShowConfirm(false); }
-  };
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  try {
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/candidatures/apply/${id}`,
+      {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      setErrorMessage(data.error || "Une erreur est survenue");
+      setShowConfirm(false);
+      return;
+    }
+
+    setShowConfirm(false);
+    setShowSuccess(true);
+    setAlreadyApplied(true);
+
+  } catch (err) {
+    setErrorMessage("Erreur réseau");
+    setShowConfirm(false);
+  }
+};
 
   return (
     <div className="pq-wrapper">
@@ -132,6 +153,11 @@ function PqProfile() {
               className="pq-company-logo"
             />              <span className="font-medium">{mission.employer?.companyName}</span>
             </div>
+            {errorMessage && (
+    <div className="error-message">
+      {errorMessage}
+    </div>
+  )}
             <button
               className={`pq-apply-button ${!canApply ? "disabled" : ""}`}
               disabled={!canApply}

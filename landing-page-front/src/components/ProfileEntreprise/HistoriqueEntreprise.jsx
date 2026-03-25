@@ -7,6 +7,9 @@ import { useAuth } from "../context/AuthContext";
 
 function HistoriqueEntreprise() {
   const { token, user } = useAuth();
+  if (!token || !user) {
+    return <Navigate to="/login" />;
+  }
   const [missions, setMissions] = useState([]);
   const [selectedMission, setSelectedMission] = useState(null);
 
@@ -55,6 +58,9 @@ function HistoriqueEntreprise() {
 
                   <h3 className="mission-title">{mission.title}</h3>
                   <p className="mission-description">{mission.description}</p>
+                  <p className="mission-stat" style={{ fontWeight: "bold" }}>
+                    {mission.status === "active" ? "🟢 Active" : "🔴 Terminée"}
+                  </p>
 
                   <div className="linky-service-footer">
                     <img src={icon} className="linky-company-logo" />

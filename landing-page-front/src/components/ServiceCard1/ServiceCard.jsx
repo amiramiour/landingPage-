@@ -22,12 +22,14 @@ const ServiceCard1 = ({
   companyName,
   date,
   type,
-  alreadyApplied
+  alreadyApplied,
+  hasActiveMission,
+  isBlocked
 }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if (alreadyApplied) return; 
+    if (isBlocked) return; 
     navigate(`/prestationsqualifiee/${id}`);
   };
 
@@ -35,15 +37,20 @@ const ServiceCard1 = ({
     <div
       className={`linky-service-card ${alreadyApplied ? "applied" : ""}`}
       onClick={handleClick}
-      style={{ cursor: alreadyApplied ? "default" : "pointer" }}
+      style={{ cursor: isBlocked  ? "default" : "pointer" }}
     >
 
       {/* BANDEAU SI DÉJÀ CANDIDATÉ */}
-      {alreadyApplied && (
+      {alreadyApplied && !hasActiveMission && (
         <div className="applied-banner">
           Une candidature a déjà été déposée
         </div>
       )}
+      {hasActiveMission && (
+  <div className="applied-banner">
+    Vous avez déjà une mission en cours
+  </div>
+)}
 
       {/* IMAGE */}
       <img src={icon} alt={title} className="linky-service-card-image" />
