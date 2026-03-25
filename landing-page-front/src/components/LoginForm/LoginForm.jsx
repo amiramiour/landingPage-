@@ -64,7 +64,9 @@ const LoginForm = () => {
     login(data.user, data.token);
 
     //  redirection selon le rôle
-    if (data.user.role === "student") {
+    if (data.user.role === "admin") {
+      navigate("/admin");
+    } else if (data.user.role === "student") {
       navigate("/profile-etudiant");
     } else if (data.user.role === "company") {
       navigate("/profile-entreprise");

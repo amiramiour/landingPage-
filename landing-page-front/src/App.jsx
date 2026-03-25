@@ -29,6 +29,8 @@ import Cookies from "./screens/Cookies";
 import CGV from "./screens/CGV";
 import Accessibilite from "./screens/Accessibilite";
 import CookieBanner from "./components/CookieBanner/CookieBanner";
+import AdminDashboard from "./screens/AdminDashboard";
+
 function App() {
   return (
           <AuthProvider>
@@ -64,7 +66,7 @@ function App() {
           <Route path="/cookies" element={<Cookies />} />
           <Route path="/cgv" element={<CGV />} />
           <Route path="/accessibilite" element={<Accessibilite />} />
-          
+          <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </div>
       <CookieBanner />
