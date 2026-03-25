@@ -1,0 +1,195 @@
+.admin-container {
+  background: white;
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.admin-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 15px;
+}
+
+.admin-tools input {
+  flex: 1;
+  max-width: 300px;
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.admin-tools input:focus {
+  border-color: var(--admin-blue);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px; /* Créer un espace entre les lignes */
+}
+
+.admin-table th {
+  background: transparent;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  padding: 10px 20px;
+}
+
+.admin-table tr {
+  background: #ffffff;
+  transition: transform 0.2s ease;
+}
+
+.admin-table td {
+  padding: 16px 20px;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+}
+
+.admin-table td:first-child { border-left: 1px solid #f1f5f9; border-radius: 8px 0 0 8px; }
+.admin-table td:last-child { border-right: 1px solid #f1f5f9; border-radius: 0 8px 8px 0; }
+
+.admin-table tr:hover td {
+  background: #f8fafc;
+}
+
+/* Bouton Supprimer plus moderne */
+.admin-table button {
+  background: #fee2e2;
+  color: #ef4444;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-table button:hover {
+  background: #ef4444;
+  color: white;
+  transform: translateY(-1px);
+}
+/* --- RECHERCHE ET FILTRES (admin-tools) --- */
+.admin-tools {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.admin-tools input, 
+.admin-tools select {
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0; /* Bordure grise très légère */
+  border-radius: 10px;
+  font-size: 0.95rem;
+  outline: none;
+  background-color: white;
+  transition: all 0.2s ease;
+  color: #1e293b;
+}
+
+/* Utilisation du BLEU pour le focus (pour varier de l'orange) */
+.admin-tools input:focus, 
+.admin-tools select:focus {
+  border-color: #6EC1E4; 
+  box-shadow: 0 0 0 3px rgba(110, 193, 228, 0.15);
+  transform: translateY(-1px);
+}
+
+.admin-tools input {
+  flex: 1; /* Le champ de recherche prend la place disponible */
+  max-width: 350px;
+}
+
+.admin-tools select {
+  cursor: pointer;
+  min-width: 160px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  appearance: none; /* Cache la flèche par défaut du navigateur */
+  padding-right: 40px;
+}
+
+/* --- TITRE DE LA SECTION --- */
+.admin-container h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+/* --- PAGINATION --- */
+.pagination {
+  display: flex;
+  justify-content: center; /* Centrée pour un look plus moderne */
+  gap: 8px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.pagination button {
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #64748b;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover:not(.active) {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #1e293b;
+  transform: translateY(-2px);
+}
+
+/* Utilisation de l'ORANGE pour la page active */
+.pagination button.active {
+  background: #FF7F32;
+  border-color: #FF7F32;
+  color: white;
+  box-shadow: 0 4px 10px rgba(255, 127, 50, 0.3);
+}
+
+/* --- AJUSTEMENT TABLEAU (Si non fait précédemment) --- */
+.admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.admin-table th {
+  text-align: left;
+  padding: 12px 15px;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.admin-table td:nth-child(3) { /* Colonne Role */
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #64748b;
+  text-transform: capitalize;
+}
