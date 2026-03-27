@@ -1,7 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Abonnement.css';
 
 const Abonnement = () => {
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [popup, setPopup] = useState({
+  show: false,
+  message: "",
+  type: "" 
+});
+  const subscribe = async (type) => {
+    try {
+      if (!token || !user) {
+        setPopup({
+          show: true,
+          message: "Vous devez être connecté",
+          type: "error"
+        });
+        return;
+      }
+
+      if (user.isPremium) {
+        setPopup({
+          show: true,
+          message: "Vous êtes déjà premium ⭐",
+          type: "error"
+        });
+        return;
+      }
+
+      if (user.role !== type) {
+        setPopup({
+          show: true,
+          message: "Abonnement non autorisé",
+          type: "error"
+        });
+        return;
+      }
+
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/subscribe`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ type }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setPopup({
+          show: true,
+          message: data.error || "Erreur abonnement",
+          type: "error"
+        });
+        return;
+      }
+
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      setPopup({
+        show: true,
+        message: "Paiement simulé réussi ✅",
+        type: "success"
+      });
+
+    } catch (err) {
+      console.error(err);
+      setPopup({
+        show: true,
+        message: "Erreur réseau",
+        type: "error"
+      });
+    }
+  };
+
   return (
     <section className="abonnement-section">
       <div className="abonnement-container">
@@ -35,7 +109,13 @@ const Abonnement = () => {
           </ul>
 
           <div className="card-footer">
-            <button className="subscribe-btn">Souscrire</button>
+            <button
+              className="subscribe-btn"
+              disabled={!user || user.role !== "student"}
+              onClick={() => subscribe("student")}
+            >
+              Souscrire
+            </button>
           </div>
         </div>
 
@@ -68,10 +148,25 @@ const Abonnement = () => {
           </ul>
 
           <div className="card-footer">
-            <button className="subscribe-btn">Souscrire</button>
+            <button
+              className="subscribe-btn"
+              disabled={!user || user.role !== "company"}
+              onClick={() => subscribe("company")}
+            >
+              Souscrire
+            </button>
           </div>
         </div>
-
+{popup.show && (
+  <div className="popup-overlay">
+    <div className={`popup ${popup.type}`}>
+      <p>{popup.message}</p>
+      <button onClick={() => setPopup({ ...popup, show: false })}>
+        OK
+      </button>
+    </div>
+  </div>
+)}
       </div>
     </section>
   );

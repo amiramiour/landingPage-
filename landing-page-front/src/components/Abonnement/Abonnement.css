@@ -155,15 +155,177 @@
   background-color: var(--orange-color); 
   color: white;
 }
+/* OVERLAY */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+    backdrop-filter: blur(3px);
 
-@media (max-width: 850px) {
+}
+
+/* POPUP */
+.popup {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  width: 300px;
+  text-align: center;
+  animation: popupFade 0.3s ease;
+}
+
+/* COLORS */
+.popup.success {
+  border-top: 5px solid #7FD8B1;
+}
+
+.popup.error {
+  border-top: 5px solid #FF7F32;
+}
+
+.popup p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.popup button {
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: #FF7F32;
+  color: white;
+}
+.popup.success button {
+  background: #7FD8B1;
+}
+
+.popup.error button {
+  background: #FF7F32;
+}
+.subscribe-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.plan-card {
+  transition: all 0.3s ease;
+    min-height: 520px;
+
+}
+.subscribe-btn:active {
+  transform: scale(0.98);
+}
+
+
+@media (hover: none) {
+  .plan-card:hover {
+    transform: none;
+  }
+}
+/* ANIMATION */
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (max-width: 1024px) {
+  .abonnement-container {
+    gap: 30px;
+  }
+
+  .plan-card {
+    max-width: 350px;
+    padding: 30px 20px;
+  }
+
+  .price {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .abonnement-section {
+    padding: 50px 15px;
+    background-position: top;
+    background-size: cover;
+  }
+
   .abonnement-container {
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 25px;
   }
-  
+
   .plan-card {
+    width: 100%;
     max-width: 100%;
+    padding: 25px 20px;
+    border-radius: 20px;
+  }
+
+  .card-header h3 {
+    font-size: 22px;
+  }
+
+  .price {
+    font-size: 24px;
+  }
+
+  .features-list li {
+    font-size: 14px;
+  }
+
+  .subscribe-btn {
+    font-size: 16px;
+    padding: 10px;
   }
 }
+
+/* 📱 PETIT MOBILE */
+@media (max-width: 480px) {
+  .abonnement-section {
+    padding: 40px 10px;
+  }
+
+  .card-header h3 {
+    font-size: 20px;
+  }
+
+  .price {
+    font-size: 22px;
+  }
+
+  .features-list li {
+    font-size: 13px;
+  }
+
+  .subscribe-btn {
+    font-size: 15px;
+  }
+    .popup {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .popup p {
+    font-size: 14px;
+  }
+
+  .popup button {
+    width: 100%;
+  }
+
+}
+
