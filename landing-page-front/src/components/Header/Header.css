@@ -274,4 +274,7 @@
   .logout-text {
     color: #ff6b6b;
   }
+  .btn-connexion-header {
+    display: none;
+  }
 }
