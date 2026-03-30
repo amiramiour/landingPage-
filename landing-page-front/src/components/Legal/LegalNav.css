@@ -34,3 +34,30 @@
   height: 2px;
   background-color: #FF7F32;
 }
+@media (max-width: 768px) {
+
+  .legal-nav {
+    justify-content: flex-start;
+    gap: 1.2rem;
+    padding: 12px 16px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .legal-nav::-webkit-scrollbar {
+    display: none; /* Chrome */
+  }
+
+  .legal-nav a {
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  .legal-nav a.active::after {
+    bottom: -4px;
+  }
+}
