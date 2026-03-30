@@ -159,6 +159,18 @@ const Header = () => {
               </span>
             </div>
           )}
+          {!user && (
+            <div className="mobile-profile-links">
+              <div className="mobile-divider"></div>
+              <Link 
+                to="/login"
+                className="nav-link mobile-link-item"
+                onClick={() => setMenuOpen(false)}
+              >
+                Connexion
+              </Link>
+            </div>
+          )}
         </nav>
 
 <div className="right-section">
