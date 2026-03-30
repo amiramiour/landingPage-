@@ -20,7 +20,7 @@ const Footer = () => {
           <Link to="/espace-etudiant">Espace Etudiant</Link>
           <Link to="/espace-entreprise">Espace Entreprise</Link>
           <Link to="/espace-particulier">Espace Particulier</Link>
-          <Link to="/prestations">Prestations</Link>
+          <Link to="/prestationsqualifiee">Prestations</Link>
           <Link to="/a-propos">A propos</Link>
           <Link to="/contact">Contact</Link>
           <Link to="/feedback">Feedback</Link>
