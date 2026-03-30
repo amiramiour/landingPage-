@@ -150,46 +150,66 @@
 }
 
 @media (max-width: 768px) {
+
   .cf-container {
-    padding: 20px 15px;
-    margin: 60px auto;
+    padding: 30px 16px;
+    margin: 40px auto;
+    max-width: 100%;
   }
 
   .cf-logo {
-    max-width: 120px;
+    width: 100%;
+    max-width: 180px;
+    height: auto;
     margin-bottom: 15px;
   }
 
   .cf-title {
-    font-size: 28px; 
+    font-size: 24px;
     margin-bottom: 20px;
   }
 
   .cf-form {
     max-width: 100%;
+    gap: 10px;
+  }
+
+  .cf-form-group {
+    margin-bottom: 10px;
   }
 
   .cf-form-label {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .cf-form-input,
   .cf-form-textarea {
-    font-size: 12px;
-    padding: 6px 10px;
+    width: 100%;
+    font-size: 15px;
+    padding: 14px;
+    border-radius: 6px;
   }
 
   .cf-form-textarea {
-    height: 80px;
+    height: 100px;
   }
 
   .cf-submit-button {
-    padding: 7px 16px;
-    font-size: 13px;
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 30px;
+  }
+
+  .cf-checkbox-container {
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
   }
 
   .cf-checkbox-label {
-    font-size: 12px;
+    font-size: 13px;
+    text-align: left;
   }
 
   .cf-line {
